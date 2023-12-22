@@ -41,7 +41,7 @@ ul {
 					<td>
 						<ul class="">
 							<li class=""><a class="" href="#">축제 기사</a></li>
-							<li class=""><a class="" href="#">축제 정보</a></li>
+							<li class=""><a class="" href="productList">축제 정보</a></li>
 							<li class=""><a class="" href="#">갤러리</a></li>
 						</ul>
 					</td>

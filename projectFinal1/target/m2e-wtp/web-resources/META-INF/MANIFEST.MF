@@ -1,5 +1,29 @@
+<<<<<<< HEAD
 Manifest-Version: 1.0
 Built-By: 6b
 Build-Jdk: 1.8.0_202
 Created-By: Maven Integration for Eclipse
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+Manifest-Version: 1.0
+Built-By: dpcks
+Build-Jdk: 11.0.21
+Created-By: Maven Integration for Eclipse
+
+=======
+Manifest-Version: 1.0
+Built-By: a...
+Build-Jdk: 11.0.21
+Created-By: Maven Integration for Eclipse
+
+>>>>>>> 85c3dfdb5e0af0fa20f3c38b3e556f93ebdba964
+=======
+Manifest-Version: 1.0
+Built-By: LeeHyunJu
+Build-Jdk: 11.0.20
+Created-By: Maven Integration for Eclipse
+
+>>>>>>> origin/hyunju
+>>>>>>> 237e86b218820c403b868cea18a6d2070c1618cf
