@@ -3,14 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="row">
-	<div class="col-4 border border-primary">
+	<div class="col-4 border border-primary" style="display: none;" id="festivalMapDetail">
+		<div class="row">
+			<div class="col text-center fs-1">
+				<p class="productName mt-3"></p>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col">
-				<p class="productName"></p>
+				<img alt="" class="productImage" style="width: 100%; height: 300px;">
 			</div>
 		</div>
 	</div>
-	<div class="col-8">
+	<div class="col" id="festivalMap">
 		<div id="map" style="width: 100%; height: 900px;"></div>
 	</div>
 </div>
@@ -61,8 +66,12 @@
 		                kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
 		                kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 		                kakao.maps.event.addListener(marker, 'click', function() {
-		                	var productNameElements = document.getElementsByClassName('productName');
-		                    productNameElements[0].innerHTML = location.productname;
+		                	var festivalMapDetail = document.getElementById('festivalMapDetail');
+		                	festivalMapDetail.style.maxHeight = '200px';
+		                	var productName = document.getElementsByClassName('productName');
+		                    productName[0].innerHTML = location.productname;
+		                	var productImage = document.getElementsByClassName('productImage');
+		                    productImage[0].src = location.productimage;
 		                    
 		                });
 		            }
