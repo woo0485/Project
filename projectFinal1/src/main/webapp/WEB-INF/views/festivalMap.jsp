@@ -6,7 +6,7 @@
 	<div class="col-4 border border-primary" id="festivalMapDetail"
 		style="display: none;">
 		<div class="row">
-			<div class="col text-center fs-2">
+			<div class="col text-center fs-3">
 				<p class="productName mt-3"></p>
 			</div>
 		</div>
@@ -17,19 +17,33 @@
 		</div>
 		<div class="row">
 			<div class="col">
-				<p class="productContent mt-3"></p>
+				<p class="productContent mt-3" style="font-size: 18px;"></p>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col">
 				<p class="mt-3">
-					<span class="productopendate"></span> - <span class="productclosedate"></span>
+					<span>축제 기간 : </span> <span class="productopendate"></span> - <span class="productclosedate"></span>
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<p>
+					<span>가격 : </span><span class="productPrice"></span><span> 원</span>
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<p>
+					<span>주소 : </span><span class="productLocation"></span>
 				</p>
 			</div>
 		</div>
 	</div>
 	<div class="col" id="festivalMap">
-		<div id="map" style="width: 100%; height: 900px;"></div>
+		<div id="map" style="width: 100%; height: 1100px;"></div>
 	</div>
 </div>
 <script type="text/javascript"
@@ -60,15 +74,19 @@
 		
 		function formatDate(timestamp) {
 			  if (!timestamp || isNaN(timestamp)) {
+			    console.log("Invalid timestamp:", timestamp);
 			    return "--";
 			  }
 
 			  const date = new Date(timestamp);
+			  console.log("Formatted date:", date);
+
 			  const year = date.getFullYear();
 			  const month = (date.getMonth() + 1).toString().padStart(2, '0');
 			  const day = date.getDate().toString().padStart(2, '0');
 
-			  return `${year}-${month}-${day}`;
+			  
+			  return year + "." + month + "." + day;
 			}
 		
 		var locationList = ${festivalMap};
@@ -103,10 +121,14 @@
 		                	productContent[0].innerHTML = location.productcontent;
 		                	const startDate = location.productopendate;
 		                	const endDate = location.productclosedate;
-		                	var productOpenDate = document.getElementsByClassName('productopendate');
-		                	productOpenDate[0].innerHTML = formatDate(startDate);
-		                	var productCloseDate = document.getElementsByClassName('productclosedate');
-		                	productCloseDate[0].innerHTML = formatDate(endDate);
+		                	var productOpenDate = document.querySelector('.productopendate');
+		                	productOpenDate.innerHTML = formatDate(startDate);
+		                	var productCloseDate = document.querySelector('.productclosedate');
+		                	productCloseDate.innerHTML = formatDate(endDate);
+		                	var productLocation = document.querySelector('.productLocation');
+		                	productLocation.innerHTML = location.productlocation;
+		                	var productPrice = document.querySelector('.productPrice');
+		                	productPrice.innerHTML = location.productprice;
 		                    
 		                });
 		            }
