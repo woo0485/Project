@@ -30,10 +30,4 @@ public class ProjectController {
 		return"memberJoinForm";
 	}
 	
-	
-	
-	
-
-	
-	
 }

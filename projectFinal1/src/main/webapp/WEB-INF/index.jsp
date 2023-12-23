@@ -14,7 +14,7 @@
 <script src="resources/js/wooseong.js"></script>
 <script src="resources/js/hyunju.js"></script>
 <script src="resources/js/donggyun.js"></script>
-<link rel="stylesheet" href="resources/css/seongjin.css">
+<link rel="stylesheet" href="resources/css/seongjin.css?ver=1">
 <link rel="stylesheet" href="resources/css/donggyun.css">
 <link rel="stylesheet" href="resources/css/wooseong.css">
 <link rel="stylesheet" href="resources/css/hyunju.css">
@@ -29,3 +29,4 @@
 	<script src="resources/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

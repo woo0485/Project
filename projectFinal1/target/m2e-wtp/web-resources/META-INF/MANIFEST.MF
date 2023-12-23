@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 Manifest-Version: 1.0
 Built-By: USER
 Build-Jdk: 1.8.0_381
 Created-By: Maven Integration for Eclipse
 
+=======
+Manifest-Version: 1.0
+Built-By: a...
+Build-Jdk: 11.0.21
+Created-By: Maven Integration for Eclipse
+
+>>>>>>> origin/seongjin
