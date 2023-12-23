@@ -26,7 +26,7 @@ ul {
 					<th class=""><a href="main" class="col"> <img alt=""
 							src="resources/img/logo.png" style="width: 200px;">
 					</a></th>
-					<th class="col">축제 지도</th>
+					<th class="col"><a href="festivalMap">축제 지도</a></th>
 					<th class="col">축제</th>
 					<th class="col">이벤트</th>
 					<th class="col">고객센터</th>
@@ -40,7 +40,7 @@ ul {
 					<td></td>
 					<td>
 						<ul class="">
-							<li class=""><a class="" href="#">축제 기사</a></li>
+							<li class=""><a class="" href="news">축제 기사</a></li>
 							<li class=""><a class="" href="productList">축제 정보</a></li>
 							<li class=""><a class="" href="#">갤러리</a></li>
 						</ul>
