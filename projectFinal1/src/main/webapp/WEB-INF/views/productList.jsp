@@ -10,7 +10,7 @@
 			class="row justify-content-center my-3">
 			<div class="col-auto">
 				<select name="type" class="form-select">
-					<option value="productname">제목</option>
+					<option value="productname">제목1</option>
 					<option value="productcontent">내용</option>
 					<option value="productlocation">지역</option>
 				</select>
