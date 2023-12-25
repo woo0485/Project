@@ -49,19 +49,11 @@
 	</select>
 	
 		<insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="productno">
-<<<<<<< HEAD
-		INSERT INTO Product(productname, productcontent, productbookmarkcount,
-				productimage, productlocation, productprice, productopendate, productclosedate, 
-				productticketcount,productremainticketcount,adminpassword)
-				
-			VALUES(#{productname}, #{productcontent}, #{productbookmarkcount}, 
-=======
-		INSERT INTO Product(productname, productcontent,
+		INSERT INTO Product(productname, productcontent, 
 				productimage, productlocation, productprice, productopendate, productclosedate, 
 				productticketcount,productremainticketcount,adminpassword)
 				
 			VALUES(#{productname}, #{productcontent}, 
->>>>>>> origin/hyunju
 				 #{productimage}, #{productlocation}, #{productprice}, #{productopendate}, #{productclosedate},
 				  #{productticketcount}, #{productremainticketcount}, #{adminpassword})
 	</insert>
