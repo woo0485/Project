@@ -2,6 +2,7 @@ package com.finalproject.festival.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -72,13 +73,22 @@ public class ProductController {
 	// 1) 게시글 쓰기폼에서 들어오는....
 	@RequestMapping(value="/writeProcess", method=RequestMethod.POST)
 	public String insertProduct(HttpServletRequest request,
-			String productname, String productcontent, String adminpassword) 
+			String productprice, String productname, String productcontent, String adminpassword,
+			String productimage, String productlocation, Timestamp productopendate, Timestamp productclosedate,
+			String productticketcount, String productremainticketcount) 
 					throws IOException {	
 		
 		Product p = new Product();
+		p.setProductimage(productimage);
+		p.setProductprice(productprice);
 		p.setProductname(productname);
 		p.setProductcontent(productcontent);
 		p.setAdminpassword(adminpassword);
+		p.setProductlocation(productlocation);
+		p.setProductopendate(productopendate);
+		p.setProductclosedate(productclosedate);
+		p.setProductticketcount(productticketcount);
+		p.setProductremainticketcount(productremainticketcount);
 		
 		// 서비스에서 게시 글 정보를 게시 글 테이블에 추가한다.
 		sv.insertProduct(p);
