@@ -9,7 +9,7 @@
 	<select id="getBoardCount" parameterType="hashmap" resultType="int">
 		SELECT
 			COUNT(*)
-		FROM manageMember	
+		FROM Member	
 		
 		<where>
 			<if test="type == 'id'">
@@ -39,7 +39,7 @@
 	<select id="manageMember" resultType="Festival" parameterType="hashmap">
 		SELECT
 			*
-		FROM manageMember
+		FROM Member
 		
 		<where>
 			<if test="type == 'id'">
@@ -60,19 +60,19 @@
 	<select id="getManageMember" resultType="Festival" resultMap="ManageMemberMap">
 		SELECT
 			*
-		FROM manageMember
+		FROM Member
 		WHERE id = #{id}
 	</select>
 	
 	<update id="updateManageMember" parameterType="Festival">
-		UPDATE manageMember
+		UPDATE Member
 		SET id = #{id}, name = #{name}, phonenumber = #{phonenumber},
 			email = #{email}, totalpay = #{totalpay}, grade = #{grade}
 		WHERE id = #{id}
 	</update>
 	
 	<delete id="deleteManageMember">
-		DELETE FROM manageMember
+		DELETE FROM Member
 		WHERE id = #{id}
 	</delete>
 	
