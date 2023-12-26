@@ -46,9 +46,9 @@
 						<table class="table table-hover">
 							<thead>
 								<tr class="table-secondary">
-									<th>상품명</th>
-									<th>가격</th>
-									<th>수량</th>								
+									<th></th>
+									<th>날짜</th>
+									<th>총 매출</th>								
 								</tr>
 							</thead>
 							<tbody class="text-secondary">								
@@ -56,8 +56,8 @@
 								<c:forEach var="s" items="${Sales}">
 									<tr>
 										<td>${ s.salesNo }</td>
-										<td>${ m.password }</td>
-										<td>${ m.name }</td>									
+										<td>${ s.saleDate }</td>
+										<td>${ s.salesTotalPrice }</td>									
 									</tr>
 								</c:forEach>							
 								

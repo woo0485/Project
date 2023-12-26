@@ -19,10 +19,10 @@
 				<div class="row">
 					<div class="col border-bottom my-5 pb-4">
 						<i class="bi bi-folder-check"></i>
-						<a class="text-decoration-none fontblack ps-3" href="manageMain">관리자 페이지</a>
+						<a class="text-decoration-none fontblack ps-3" href="manageMain">관리자 메인</a>
 					</div>
 				</div>										
-				<div class="row pt-5">
+				<div class="row">
 					<div class="col-4 text-end">
 						<i class="bi bi-graph-up-arrow"></i>
 					</div>	
@@ -44,14 +44,6 @@
 					</div>	
 					<div class="col-8 text-start">						  	
 					    <a class="text-decoration-none fontblack" href="manageReservation">예약 관리</a>
-					</div>
-				</div>
-				<div class="row pt-5">
-					<div class="col-4 text-end">
-						<i class="bi bi-balloon"></i>
-					</div>	
-					<div class="col-8 text-start">						  	
-					    <a class="text-decoration-none fontblack" href="manageFestival">축제 관리</a>
 					</div>
 				</div>
 				<div class="row pt-5">

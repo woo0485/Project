@@ -22,6 +22,30 @@ div table tbody td {
 	color: #999999;
 	
 }
+.table {
+  border-collapse: collapse;
+  border-top: 3px solid #168;
+}  
+.table th {
+  color: #168;
+  background: #f0f6f9;
+  text-align: center;
+}
+.table th, .table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+.table th:first-child, .table td:first-child {
+  border-left: 0;
+}
+.table th:last-child, .table td:last-child {
+  border-right: 0;
+}
+.table tr td:first-child{
+  text-align: center;
+}
+.table caption{caption-side: bottom; display: none;
+}
 </style>
     
 
@@ -126,7 +150,7 @@ div table tbody td {
 						<div class="col">
 							<span class="fs-4">
 								<i class="bi bi-telephone-fill fs-3 font pe-2 text-success text-opacity-50"></i>고객센터<br>전화상담서비스
-							</span>
+							</span>							
 						</div>
 					</div>
 				</div>		
@@ -141,6 +165,7 @@ div table tbody td {
 								<span class="font ps-1">전화상담 가능시간은</span><br>
 								<span class="font ps-1">평일(월~금) 9:00~18:00</span><br>
 								<span class="fs-4 ps-1">1234-5678</span><br>
+								<span class="font ps-1"><input type="button" class="btn-3 px-4 py-0 my-2" id="chatBtn" value="GALAGO채팅 시작하기 "></span>
 							</div>
 						</div>
 						
@@ -148,8 +173,7 @@ div table tbody td {
 							<div class="">
 								<span class="font ps-1">채팅상담 가능시간은</span><br>
 								<span class="font ps-1">평일(월~금) 9:00~18:00</span><br>
-								<span class="font ps-1">주말 및 공휴일 휴무</span><br>
-								<span class="font ps-1"><input type="button" class="btn-3 px-5 py-0 my-2" id="chatBtn" value="채팅 시작"></span>
+								<span class="font ps-1">주말 및 공휴일 휴무</span><br>								
 							</div>
 						</div>
 											

@@ -30,7 +30,7 @@ ul {
 					<th class="col">축제</th>
 					<th class="col">이벤트</th>
 					<th class="col">고객센터</th>
-					<th class="col">관리 페이지</th>
+					<th class="col"><a class="" href="manageMain">관리 페이지</a></th>
 
 				</tr>
 			</thead>
@@ -55,9 +55,10 @@ ul {
 					<td>
 
 						<ul class="">
-							<li class=""><a class="" href="#">공지 사항</a></li>
-							<li class=""><a class="" href="#">상품 문의</a></li>
-							<li class=""><a class="" href="#">1:1 문의</a></li>
+							<li class=""><a class="" href="customerMain">고객 센터</a></li>
+							<li class=""><a class="" href="noticeMain">공지 사항</a></li>
+							<li class=""><a class="" href="inquiryWrite">상품 문의</a></li>
+							<li class=""><a class="" href="informationUseMain">이용 안내</a></li>
 						</ul>
 					</td>
 					<td></td>

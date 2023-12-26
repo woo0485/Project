@@ -18,6 +18,30 @@ div table tbody td {
 	color: #333333;
 	
 }
+.table {
+  border-collapse: collapse;
+  border-top: 3px solid #168;
+}  
+.table th {
+  color: #168;
+  background: #f0f6f9;
+  text-align: center;
+}
+.table th, .table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+.table th:first-child, .table td:first-child {
+  border-left: 0;
+}
+.table th:last-child, .table td:last-child {
+  border-right: 0;
+}
+.table tr td:first-child{
+  text-align: center;
+}
+.table caption{caption-side: bottom; display: none;
+}
 </style>
 
 	<!-- content -->
@@ -39,13 +63,13 @@ div table tbody td {
 			</div>
 
 			<div class="row">
-				<div class="col-8 text-center">
+				<div class="col-10 text-center">
 					<div class="col-2 offset-10 mt-3">
 						<a href="informationUseWrite"
-							class="text-decoration-none text-danger link-secondary border border-danger rounded p-2">안내 
+							class="text-decoration-none text-danger link-secondary border border-danger rounded px-4 py-0">안내 
 							작성</a>
 					</div>
-					<table class="table">
+					<table class="table mt-3">
 						<thead>
 							<tr>
 								<th class="py-3">NO</th>
@@ -56,7 +80,7 @@ div table tbody td {
 						<tbody>
 							<c:forEach var="i" items="${iList}">
 								<tr class="text-start">
-									<td class="py-3 text-start">${i.informationUseNo}</td>
+									<td class="py-3 text-center">${i.informationUseNo}</td>
 									<td class="py-3 px-5 text-start"><a
 										href="informationUseDetail?informationUseNo=${i.informationUseNo}&pageNum=${currentPage}"
 										class="text-decoration-none link-black fontblack fw-bold">${ i.informationUseTitle }</a></td>

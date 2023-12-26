@@ -54,10 +54,10 @@ div table tbody td {
 							<table class="table table-hover">
 								<thead>
 									<tr class="table-secondary text-center">
-										<th class="px-4">아이디</th>
-										<th class="px-2">문의 제목</th>
-										<th class="ps-5">이메일</th>
-										<th class="">문의 날짜</th>
+										<th class="px-4" style="width:100px;">아이디</th>
+										<th class="" style="width:350px;">문의 제목</th>
+										<th class="" style="width:150px;">이메일</th>
+										<th class="" style="width:150px;">문의 날짜</th>
 									</tr>
 								</thead>
 								<tbody class="text-secondary">								
@@ -67,7 +67,7 @@ div table tbody td {
 											<td class="text-center">${ i.id }</td>
 											<td class="px-4"><a href="manageProductDetail?questionNo=${i.questionNo}&pageNum=${currentPage}" 
 												class="text-decoration-none" style="color:black;">${ i.questionTitle }</a></td>
-											<td class="ps-5 text-center">${ i.email }</td>
+											<td class="text-center">${ i.email }</td>
 											<td class="text-center">${ i.questionDate }</td>										
 										</tr>
 									</c:forEach>							

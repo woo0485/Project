@@ -75,25 +75,20 @@
 									
 						
 						<div class="row my-5">
-							<div class="col-6 offset-2 text-center">
+							<div class="col-6 offset-3 text-center">
 								<div class="row">
 									<div class="col">
-										<input type="submit" value="수정하기" class="btn btn-outline-secondary">												
+										<input type="submit" value="수정하기" class="btn-3 px-3">												
 									</div>
 									<div class="col">
-										<input type="button" value="뒤로가기" class="btn btn-outline-secondary"
+										<input type="button" value="뒤로가기" class="btn-3 px-3"
 											onclick="javascript:history.back();">												
 									</div>					
 								</div>
 							</div>
 						</div>
 					</form>
-							
-					<div class="row my-3">
-						<div class="col-10 border-top pt-3 text-end">
-						</div>
-					</div>	
-							
+
 												
 				</div>	
 			</div>			

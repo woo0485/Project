@@ -58,11 +58,11 @@ div table tbody td {
 						<table class="table table-hover">
 							<thead>
 								<tr class="table-secondary text-center">
-									<th class="px-4">아이디</th>
-									<th class="fontblack px-2">문의 제목</th>
-									<th class="ps-5">이메일</th>
-									<th class="">문의 날짜</th>
-								</tr>
+										<th class="px-4" style="width:100px;">아이디</th>
+										<th class="" style="width:350px;">문의 제목</th>
+										<th class="" style="width:150px;">이메일</th>
+										<th class="" style="width:150px;">문의 날짜</th>
+									</tr>
 							</thead>
 							<tbody class="text-secondary">								
 								
@@ -73,8 +73,8 @@ div table tbody td {
 											<a href="manageIndividualDetail?questionNo=${i.questionNo}&pageNum=${currentPage}" 
 											class="text-decoration-none manageIndividualFont">${ i.questionTitle }</a>
 										</td>
-										<td class="manageIndividualFont ps-5 text-center">${ i.email }</td>
-										<td class="manageIndividualFont">${ i.questionDate }</td>
+										<td class="manageIndividualFont text-center">${ i.email }</td>
+										<td class="manageIndividualFont text-center">${ i.questionDate }</td>
 									</tr>
 								</c:forEach>							
 								
