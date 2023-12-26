@@ -296,14 +296,14 @@ $(function(){
 	});
  
  	
- 	
+ 	/*
  	$("#").on("click", function(){
     	$(this).addClass('fontchange');
     	$(this).removeClass('fontblack');
     	
 		return false;
 	});
-	
+	*/
 	
  
  
