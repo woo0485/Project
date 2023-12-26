@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link href="resources/css/donggyun.css" rel="stylesheet">
- <style>
+<style>
 .table {
   border-collapse: collapse;
   border-top: 3px solid #168;
@@ -28,9 +28,7 @@
 }
 .table caption{caption-side: bottom; display: none;
 }
-</style>  
- 
-
+</style>
 
 <div class="row">
 	<div class="col">
@@ -39,55 +37,41 @@
 			<div class="col-4">
 				<jsp:include page="/WEB-INF/views/manage/manageSide.jsp"/>
 			</div>
+			
 			<div class="col-8 text-start mt-5">
-				<span class="font-bold p-4"><h3>매출 관리</h3></span>				
+				<span class="font-bold p-4"><h3>이벤트 관리</h3></span>				
 				<div class="row">
-					<div class="col-5 me-5">
-						<table class="table table-hover text-center">
+					<div class="col">
+						<table class="table table-hover">
 							<thead>
 								<tr class="table-secondary">
-									<th>날짜</th>
-									<th>매출</th>								
+									<th>아이디</th>
+									<th>이름</th>
+									<th>휴대폰 번호</th>
+									<th>이메일</th>
+									<th>쿠폰 번호</th>
+									<th>쿠폰 기한</th>
 								</tr>
 							</thead>
-							<tbody class="text-secondary">	
+							<tbody class="text-secondary">								
 								
-								<c:forEach var="r" items="${rList}">
+								<c:forEach var="m" items="${Member}">
 									<tr>
-										<td>${ r.reservationdate }</td>
-										<td>${ r.reservationprice }원</td>								
+										<td>${ m.id }</td>
+										<td>${ m.password }</td>
+										<td>${ m.name }</td>
+										<td>${ b.phoneNember }</td>
+										<td>${ b.totalPay }</td>
+										<td>${ b.memberGrade }</td>
 									</tr>
 								</c:forEach>							
 								
 							</tbody>
 						</table>
 					</div>
-					
-					<div class="col-5 ms-5">	
-						<table class="table table-hover text-center">
-							<thead>
-								<tr class="table-secondary">
-									<th>날짜</th>
-									<th>총 매출</th>								
-								</tr>
-							</thead>
-							<tbody class="text-secondary">							
-								
-								<c:forEach var="s" items="${sList}">
-									
-										<td>${ s.salesDate }</td>
-										<td>${ s.salesTotalPrice }원</td>									
-									
-								</c:forEach>
-															
-								
-							</tbody>
-						</table>
-					</div>	
-						
-					</div>
 				</div>
-			</div>
+			</div>		
+			
 		</div>
 
 	</div>
