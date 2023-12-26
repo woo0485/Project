@@ -8,22 +8,12 @@ a:link{text-decoration:none;}
 a:visited{text-decoration:none;}
 a:hover{ text-decoration:none;}
 
-/*
-#categoryBar{
-	position: relative;
-	z-index: 1;
-}
-#categoryBarDetail{
-	position: absolute;
-	z-index: 2;
-}
-*/
 </style>
 
 	<div class="row mt-5">	
 		<div class="col">
 			
-			<div class="row row-cols-6 text-end d-flex-top align-items-end position-relative"  id="categoryBar" >
+			<div class="row row-cols-6 text-end align-items-end"  id="categoryBar" >
 				<span class="col"><a href="main" class="col"> <img alt=""src="resources/img/logo.png" style="width: 200px;"></a></span>
 				<span class="col pe-0"><strong><a href="festivalMap">축제 지도</a></strong></span>
 				<span class="col"><strong>축제</strong></span>
@@ -41,7 +31,7 @@ a:hover{ text-decoration:none;}
 				</c:if>
 			</div>
 			
-			<div class="row row-cols-6 z-3 position-absolute top-0 start-100" id="categoryBarDetail" style="display: none; ">
+			<div class="row row-cols-6" id="categoryBarDetail" style="display: none; ">
 				<div class="col offset-5">
 					<div class="row"><a class="" href="news">축제 기사</a></div>
 					<div class="row"><a class="" href="productList">축제 정보</a></div>
