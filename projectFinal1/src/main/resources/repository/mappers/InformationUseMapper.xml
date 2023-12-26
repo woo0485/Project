@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.finalproject.festival.mapper.InformationUseMapper" >
+
+	<select id="customerInformationUse" resultType="Manage" parameterType="hashmap">
+		SELECT
+			* 
+		FROM informationUse
+		ORDER BY informationUseNo DESC
+		LIMIT 5
+	</select>
+
+	<resultMap id="informationUseMap" type="Manage" >
+		<id property="informationUseNo" column="informationUseNo" />
+		<result property="informationUseTitle" column="informationUseTitle" />
+		<result property="informationUseContent" column="informationUseContent" />		
+		<result property="informationUseDate" column="informationUseDate" />
+		<result property="informationUseCategory" column="informationUseCategory" />
+		<result property="informationUseImage" column="informationUseImage" />
+	</resultMap>
+	
+	<select id="getBoardCount" resultType="int">
+		SELECT 
+			COUNT(informationUseNo) 
+		FROM informationUse
+	</select>
+	
+	<delete id="deleteInformationUse">
+		DELETE FROM informationUse
+		WHERE informationUseNo = #{informationUseNo}
+	</delete>
+	
+	<update id="updateInformationUse" parameterType="Manage">
+		UPDATE informationUse
+			SET informationUseTitle = #{informationUseTitle},
+				informationUseContent = #{informationUseContent},
+				informationUseDate = SYSDATE(),
+				informationUseCategory = #{informationUseCategory},
+				informationUseImage = #{informationUseImage}
+		WHERE informationUseNo = #{informationUseNo}		
+	</update>
+	
+	<insert id="insertInformationUse" parameterType="Manage" useGeneratedKeys="true" keyProperty="noticeNo">
+		INSERT INTO informationUse 
+		(informationUseTitle, informationUseContent,informationUseDate,informationUseCategory, informationUseImage )
+		VALUES 
+		( #{informationUseTitle}, #{informationUseContent}, SYSDATE(), #{informationUseCategory}, #{informationUseImage} )
+	</insert>
+	
+	<select id="getInformationUse" resultType="Manage">
+		SELECT 
+			* 
+		FROM informationUse 
+		WHERE informationUseNo = #{informationUseNo}
+	</select>
+	
+	<select id="informationUse" resultType="Manage" parameterType="hashmap">
+		SELECT
+			* 
+		FROM informationUse
+		ORDER BY informationUseNo DESC
+		LIMIT #{startRow}, #{num}
+	</select>
+	
+</mapper>	

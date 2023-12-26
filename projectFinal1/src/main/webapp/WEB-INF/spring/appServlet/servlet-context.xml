@@ -28,6 +28,20 @@
 
 	<context:component-scan
 		base-package="com.finalproject.festival" />
+		
+	<view-controller path="/noticeMain"	view-name="redirect:/manage/notice/noticeMain" />
+	<view-controller path="/noticeWrite" view-name="manage/notice/noticeWrite" />	
+	<view-controller path="/inquiryWrite" view-name="manage/inquiry/inquiryWrite" />
+	<view-controller path="/customerMain" view-name="manage/customer/customerMain" />
+	<view-controller path="/customerMain" view-name="redirect:/manage/customer/customerMain" />
+	<view-controller path="/manageMain" view-name="redirect:/manage/manageMain" />
+	<view-controller path="/informationUseMain" view-name="redirect:/manage/informationUse/informationUseMain" />
+	<view-controller path="/informationUseWrite" view-name="manage/informationUse/informationUseWrite" />
+	<view-controller path="/manageMember" view-name="redirect:/manage/manageMember" />
+	<view-controller path="/manageReservation" view-name="redirect:/manage/manageReservation" />
+	
+
+		
 
 
 </beans:beans>
