@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<link href="resources/css/hyunju.css" rel="stylesheet">
 
 <!-- content -->
 <div class="row my-5" id="global-content">
@@ -24,7 +25,7 @@
 		</form>
 <!--  검색 폼 -->			
 <!--  캐러셀 -->
-	<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+	<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" >
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="2000">
       <img src="resources/img/4.jpg" class="d-block w-10" alt="...">
@@ -45,12 +46,12 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-<!--  캐러셀 -->	 		
+<!--  캐러셀  끝-->	 		
 <!-- 축제정보 등록 -->
 		<div class="col-12 text-end">
 				<a href="writeForm" class="btn btn-outline-success">축제정보 등록</a>
 		</div>
-<!-- 축제정보 등록 -->
+<!-- 축제정보 등록 끝-->
 		<!-- 검색 요청일 경우 아래를 화면에 표시 -->	
 		<c:if test="${ searchOption }">			
 			<div class="row my-3">
@@ -62,7 +63,7 @@
 			<%-- 검색 요청일 경우 일반 게시 글 리스트로 이동할 수 있도록 링크를 설정했다. --%>
 			<div class="row my-3">
 				<div class="col-6">
-					<a href="productList" class="btn btn-outline-success">리스트</a>
+					<a href="productList" class="btn btn-outline-success">목록 보기</a>
 				</div>
 			</div>
 		</c:if>
@@ -77,20 +78,29 @@
 				<table class="table table-hover">
 					<tbody class="text-secondary">
 						
+		<c:set var="i" value="0" />
+			<c:set var="j" value="4" />
 					<c:if test="${ searchOption and not empty productList }">
 						<c:forEach var="p" items="${productList}" varStatus="status">
+						<c:if test="${i%j == 0 }">
 						<tr>
-							<td>
-							<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}
-								&type=${ type }&keyword=${ keyword }" 
-								class="text-decoration-none link-secondary"><img src="${p.productimage}"  width="200" height="200" /></a>
-								<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}
-								&type=${ type }&keyword=${ keyword }" 
-								class="text-decoration-none link-secondary">${ p.productname }</a>
-							</td>
-							<td>${ p.productname }</td>
-							<td>${ p.productcontent }</td>
-						</tr>
+						</c:if>
+						
+					<td><a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
+								class="text-decoration-none link-secondary">
+								<img src="${p.productimage}"  width="300" height="200" /></a> <br>
+	
+					지역 : ${ p.productlocation } <br>
+					북마크 수 : ${ p.productbookmarkcount } <br>
+					<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
+								class="text-decoration-none link-secondary">${ p.productname }</a> <br>
+					이름 : ${ p.productname } <br>
+					가격: ${ p.productprice } <br>
+					</td>
+			
+							<c:if test="${i%j == j-1 }">		
+						</c:if>
+						 <c:set var="i" value="${i+1 }" />
 						</c:forEach>
 					</c:if>
 					
@@ -102,20 +112,26 @@
 						 	<c:if test="${i%j == 0 }">
 						<tr>
 						</c:if>
-							<td><a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
+						
+					<td><a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
 								class="text-decoration-none link-secondary">
-								<img src="${p.productimage}"  width="200" height="200" /></a></td>
-							<td>${ p.productlocation }</td>
-							<td>${ p.productbookmarkcount }</td>
-							<td><a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
-								class="text-decoration-none link-secondary">${ p.productname }</a></td>
-							<td>${ p.productname }</td>
-							<td>${ p.productprice }</td>
+								<img src="${p.productimage}"  width="300" height="200" /></a> <br>
+	
+					
+					지역 : ${ p.productlocation } <br>
+					북마크 수 : ${ p.productbookmarkcount } <br>
+					<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
+								class="text-decoration-none link-secondary">${ p.productname }</a> <br>
+					이름 : ${ p.productname } <br>
+					가격: ${ p.productprice } <br>
+					</td>
+			
 							<c:if test="${i%j == j-1 }">		
 						</c:if>
 						 <c:set var="i" value="${i+1 }" />
 						</c:forEach>
 					</c:if>
+					
 <%--/////////////////////////// 검색 요청이면서 검색된 리스트가 존재하지 않을 경우////////////////////////////////////// --%>
 					<c:if test="${ searchOption and empty productList }">
 						<tr>
@@ -146,7 +162,7 @@
 					  	<c:if test="${ startPage > pageGroup }">
 						    <li class="page-item">
 						      <a class="page-link" href="productList?pageNum=${ startPage - pageGroup }
-						      &type=${ type }&keyword=${ keyword }">Pre</a>
+						      &type=${ type }&keyword=${ keyword }">〈</a>
 						    </li>
 					    </c:if>
 		
@@ -163,17 +179,11 @@
 						    </c:if>					    
 					    </c:forEach>
 					    
-					    <%-- 
-						/* 현재 페이지 그룹의 마지막 페이지가 전체 페이지 보다 작다는 것은
-						 * 다음 페이지 그룹이 존재한다는 것으로 현재 페이지 그룹의 시작 페이지에
-						 * pageGroup을 플러스 하여 링크를 설정하면 다음 페이지 그룹의
-						 * startPage로 이동할 수 있다.
-					 	 **/
-					 	 --%>
+					    <%--  ///////////////////////////////////// --%>
 						<c:if test="${ endPage < pageCount }">
 						    <li class="page-item">
 						      <a class="page-link" href="productList?pageNum=${ startPage + pageGroup }
-						      &type=${ type }&keyword=${ keyword }">Next</a>
+						      &type=${ type }&keyword=${ keyword }"> 〉</a>
 						    </li>
 					  	</c:if>
 					  </ul>
@@ -191,7 +201,7 @@
 			
 					  	<c:if test="${ startPage > pageGroup }">
 						    <li class="page-item">
-						      <a class="page-link" href="productList?pageNum=${ startPage - pageGroup }">Pre</a>
+						      <a class="page-link" href="productList?pageNum=${ startPage - pageGroup }">〈</a>
 						    </li>
 					    </c:if>
 			
@@ -208,7 +218,7 @@
 					    
 						<c:if test="${ endPage < pageCount }">
 						    <li class="page-item">
-						      <a class="page-link" href="productList?pageNum=${ startPage + pageGroup }">Next</a>
+						      <a class="page-link" href="productList?pageNum=${ startPage + pageGroup }"> 〉</a>
 						    </li>
 					  	</c:if>
 					  </ul>
