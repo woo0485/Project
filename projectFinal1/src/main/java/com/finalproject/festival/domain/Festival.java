@@ -2,8 +2,7 @@ package com.finalproject.festival.domain;
 
 public class Festival {
 
-<<<<<<< HEAD
-=======
+
 
 	public String id;
 	public String password;
@@ -93,12 +92,4 @@ public class Festival {
 		this.joindate = joindate;
 	}
 
-	
-	
-	
-	
-	
-	
-	
->>>>>>> 7d038a7d4e7d148ec5cdb3ae6d75594aa9292d25
 }

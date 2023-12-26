@@ -2,8 +2,7 @@ package com.finalproject.festival.domain;
 
 public class Reservation {
 
-<<<<<<< HEAD
-=======
+
 	private int reservationno;
 	private String id;
 	private int productno;
@@ -72,8 +71,5 @@ public class Reservation {
 		this.reservationdate = reservationdate;
 	}
 	
-	
-	
-	
->>>>>>> 7d038a7d4e7d148ec5cdb3ae6d75594aa9292d25
+
 }
