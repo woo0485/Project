@@ -8,7 +8,7 @@
 	<select id="customerInformationUse" resultType="Manage" parameterType="hashmap">
 		SELECT
 			* 
-		FROM informationUse
+		FROM InformationUse
 		ORDER BY informationUseNo DESC
 		LIMIT 5
 	</select>
@@ -25,16 +25,16 @@
 	<select id="getBoardCount" resultType="int">
 		SELECT 
 			COUNT(informationUseNo) 
-		FROM informationUse
+		FROM InformationUse
 	</select>
 	
 	<delete id="deleteInformationUse">
-		DELETE FROM informationUse
+		DELETE FROM InformationUse
 		WHERE informationUseNo = #{informationUseNo}
 	</delete>
 	
 	<update id="updateInformationUse" parameterType="Manage">
-		UPDATE informationUse
+		UPDATE InformationUse
 			SET informationUseTitle = #{informationUseTitle},
 				informationUseContent = #{informationUseContent},
 				informationUseDate = SYSDATE(),
@@ -44,7 +44,7 @@
 	</update>
 	
 	<insert id="insertInformationUse" parameterType="Manage" useGeneratedKeys="true" keyProperty="noticeNo">
-		INSERT INTO informationUse 
+		INSERT INTO InformationUse 
 		(informationUseTitle, informationUseContent,informationUseDate,informationUseCategory, informationUseImage )
 		VALUES 
 		( #{informationUseTitle}, #{informationUseContent}, SYSDATE(), #{informationUseCategory}, #{informationUseImage} )
@@ -53,14 +53,14 @@
 	<select id="getInformationUse" resultType="Manage">
 		SELECT 
 			* 
-		FROM informationUse 
+		FROM InformationUse 
 		WHERE informationUseNo = #{informationUseNo}
 	</select>
 	
 	<select id="informationUse" resultType="Manage" parameterType="hashmap">
 		SELECT
 			* 
-		FROM informationUse
+		FROM InformationUse
 		ORDER BY informationUseNo DESC
 		LIMIT #{startRow}, #{num}
 	</select>
