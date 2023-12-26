@@ -85,6 +85,7 @@
 			  const month = (date.getMonth() + 1).toString().padStart(2, '0');
 			  const day = date.getDate().toString().padStart(2, '0');
 
+			  
 			  return year + "." + month + "." + day;
 			}
 		
@@ -124,11 +125,11 @@
 		                	productOpenDate.innerHTML = formatDate(startDate);
 		                	var productCloseDate = document.querySelector('.productclosedate');
 		                	productCloseDate.innerHTML = formatDate(endDate);
-							var productLocation = document.querySelector('.productLocation');
+		                	var productLocation = document.querySelector('.productLocation');
 		                	productLocation.innerHTML = location.productlocation;
 		                	var productPrice = document.querySelector('.productPrice');
 		                	productPrice.innerHTML = location.productprice;
-    
+		                    
 		                });
 		            }
 		            

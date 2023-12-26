@@ -1,53 +1,69 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <style type="text/css">
-
-a:link{text-decoration:none;}
-a:visited{text-decoration:none;}
-a:hover{ text-decoration:none;}
+ul {
+	list-style: none;
+	padding-left: 0px;
+}
 </style>
 
-	<div class="row mt-5">	
-		<div class="col">
-			
-			<div class="row row-cols-6 text-end d-flex-top align-items-end" id="categoryBar" >
-				<span class="col"><a href="main" class="col"> <img alt=""src="resources/img/logo.png" style="width: 200px;"></a></span>
-				<span class="col pe-0"><strong><a href="festivalMap">축제 지도</a></strong></span>
-				<span class="col"><strong>축제</strong></span>
-				<span class="col"><strong>이벤트</strong></span>
-				<span class="col"><strong>고객센터</strong></span>
-				<c:if test="${empty sessionScope.id}">
-					<span class="col">
-						<a href="login" class="row"><i class="bi bi-person-circle" style="font-size: 3em;"></i></a>
-					</span>
-				</c:if>
-				<c:if test="${not empty sessionScope.id}">
-					<span class="col">
-						<i class="bi bi-person-lines-fill" style="font-size: 3em;"></i>
-					</span>
-				</c:if>
-			</div>
-			
-			<div class="row row-cols-6" id="categoryBarDetail" style="display: none; ">
-				<div class="col offset-5">
-					<div class="row"><a class="" href="news">축제 기사</a></div>
-					<div class="row"><a class="" href="productList">축제 정보</a></div>
-					<div class="row"><a class="" href="#">갤러리</a></div>
-				</div>
-				<div class="col">
-					<div class="row"><a class="" href="#">진행중 이벤트</a></div>
-					<div class="row"><a class="" href="#">종료된 이벤트</a></div>
-					<div class="row"><a class="" href="#">당첨자</a></div>
-				</div>
-				<div class="col">
-					<div class="row"><a class="" href="#">공지 사항</a></div>
-					<div class="row"><a class="" href="#">상품 문의</a></div>
-					<div class="row"><a class="" href="#">1:1 문의</a></div>
-				</div>
-			</div>
-			
-		</div>
+<div class="row">
+	
+	
+	<div class="col text-end ">
+		<a href="login">로그인</a>
+		<a href="memberJoin">회원 가입</a>
 	</div>
-						
+
+</div>
+
+<div class="col p-5">
+	<div class="container row" id="categoryBar">
+		<table>
+			<thead>
+				<tr class="test-bottom">
+					<th class=""><a href="main" class="col"> <img alt=""
+							src="resources/img/logo.png" style="width: 200px;">
+					</a></th>
+					<th class="col"><a href="festivalMap">축제 지도</a></th>
+					<th class="col">축제</th>
+					<th class="col">이벤트</th>
+					<th class="col">고객센터</th>
+					<th class="col">관리 페이지</th>
+
+				</tr>
+			</thead>
+			<tbody hidden="" id="categoryBarDetail" class="bg-light">
+				<tr>
+					<td></td>
+					<td></td>
+					<td>
+						<ul class="">
+							<li class=""><a class="" href="news">축제 기사</a></li>
+							<li class=""><a class="" href="productList">축제 정보</a></li>
+							<li class=""><a class="" href="#">갤러리</a></li>
+						</ul>
+					</td>
+					<td>
+						<ul class="">
+							<li class=""><a class="" href="#">진행중 이벤트</a></li>
+							<li class=""><a class="" href="#">종료된 이벤트</a></li>
+							<li class=""><a class="" href="#">당첨자</a></li>
+						</ul>
+					</td>
+					<td>
+
+						<ul class="">
+							<li class=""><a class="" href="#">공지 사항</a></li>
+							<li class=""><a class="" href="#">상품 문의</a></li>
+							<li class=""><a class="" href="#">1:1 문의</a></li>
+						</ul>
+					</td>
+					<td></td>
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+</div>
