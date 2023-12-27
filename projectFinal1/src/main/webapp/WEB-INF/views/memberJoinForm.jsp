@@ -37,29 +37,47 @@
 					<div class="row">
 						<div class="col-2 offset-md-1"><p>비밀번호*</p></div>
 						<div class="col-7 border-bottom">
-							<input type="password" id="joinPassword" class="form-control border-0"aria-describedby="joinPassword">
+							<input type="password" id="joinPassword" class="form-control border-0"aria-describedby="joinPassword" data-code="false">
 						</div> 
 					</div>
 					<div class="row">
-						<div class="offset-1 col-7">
+						<div class="offset-1 col-9 fw-bold"">
 							<span id="passwordMsg1" class="form-text offset-md-3">
-							 	<i class="bi bi-exclamation-triangle"></i>영문 8자이상16자 이하  
+							 	<i class="bi bi-check-circle"></i>영문  
 							</span>
 							<span id="passwordMsg2" class="form-text">
-							 	<i class="bi bi-exclamation-triangle"></i>숫자 
+							 	<i class="bi bi-check-circle"></i>숫자 
 							</span>
 							<span id="passwordMsg3" class="form-text">
-								<i class="bi bi-exclamation-triangle"></i> 특수문자
+								<i class="bi bi-check-circle"></i> 특수문자
+							</span>
+							<span id="passwordMsg4" class="form-text">
+								<i class="bi bi-check-circle"></i> 8자이상16자 이하 
 							</span>
 						</div>
-						
 					</div>
 					
 					
 					<div class="row">
 						<div class="col-2 offset-md-1"><p>비밀번호 확인*</p></div>
 						<div class="col-7 border-bottom">
-							<input type="password" id="PasswordCheck" class="form-control border-0"aria-describedby="PasswordCheck">
+							<input type="password" id="PasswordCheck" class="form-control border-0"aria-describedby="PasswordCheck" >
+						</div>
+					</div>
+					<div class="row">
+						<div class="offset-1 col-9 fw-bold"">
+							<span id="passwordCheckMsg1" class="form-text offset-md-3">
+							 	<i class="bi bi-check-circle"></i>영문  
+							</span>
+							<span id="passwordCheckMsg2" class="form-text">
+							 	<i class="bi bi-check-circle"></i>숫자 
+							</span>
+							<span id="passwordCheckMsg3" class="form-text">
+								<i class="bi bi-check-circle"></i> 특수문자
+							</span>
+							<span id="passwordCheckMsg4" class="form-text">
+								<i class="bi bi-check-circle"></i> 8자이상16자 이하 
+							</span>
 						</div>
 					</div>
 					<div class="row">
