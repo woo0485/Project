@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div class="row">
+<div class="row mt-5">
 	<div class="col-4 border border-primary" id="festivalMapDetail"
 		style="display: none;">
 		<div class="row">
