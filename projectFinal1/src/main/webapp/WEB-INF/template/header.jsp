@@ -20,9 +20,9 @@ a:hover{ text-decoration:none;}
 */
 </style>
 
+			<a href="">관리자 페이지</a>
 	<div class="row mt-5">	
 		<div class="col">
-			
 			<div class="row row-cols-6 text-end d-flex-top align-items-end position-relative"  id="categoryBar" >
 				<span class="col"><a href="main" class="col"> <img alt=""src="resources/img/logo.png" style="width: 200px;"></a></span>
 				<span class="col pe-0"><strong><a href="festivalMap">축제 지도</a></strong></span>
@@ -68,4 +68,4 @@ a:hover{ text-decoration:none;}
 			
 		</div>
 	</div>
-						
+		

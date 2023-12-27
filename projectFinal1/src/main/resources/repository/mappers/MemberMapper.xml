@@ -5,6 +5,17 @@
 
 <mapper namespace="com.finalproject.festival.mapper.MemberMapper" >
 
+	<select id="userCheck" resultType="Member"  >
+		SELECT * From Member WHERE id = #{id}
+	</select>
+	<select id="overlapCheck" resultType="Integer"  >
+		SELECT COUNT(*)  From Member WHERE id = #{id} OR email = #{email}
+	</select>
+
+
+	<insert id="joinMember">
+		INSERT INTO Member () VALUSE()
+	</insert>
 	
 </mapper>	
 
