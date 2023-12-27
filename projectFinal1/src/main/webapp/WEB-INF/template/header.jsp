@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style type="text/css">
@@ -13,10 +13,11 @@ a:hover{ text-decoration:none;}
 		<div class="col">
 		
 			<a href="#" class="align-items-end">관리자 페이지</a>
-			<div class="row text-end align-items-end"  id="categoryBar" >
-				<span class="col-3"><a href="main" class="col"> <img alt=""src="resources/img/logo.png" style="width: 80%"></a></span>
+			
+			<div class="row text-end align-items-end "   >
+				<span class="col-3"><a href="main" class="col"> <img alt=""src="resources/img/logo.png" style="width: 70%"></a></span>
 				
-				<span class="col-8 text-center">
+				<span class="col-8 text-center" id="categoryBar">
 					<strong class="m-5"><a href="festivalMap">축제 지도</a></strong>
 					<strong class="m-5">축제</strong>
 					<strong class="m-5">이벤트</strong>
@@ -37,7 +38,7 @@ a:hover{ text-decoration:none;}
 			
 			<div class="row" id="categoryBarDetail" style="display: none; ">
 			
-				<div class="col categoryDetail text-start me-1">
+				<div class="col text-start me-1">
 					<div class="row-rows-col-4 offset-5">
 						<a class="col m-5" href="news">축제 기사</a>
 						<a class="col me-3" href="#">진행중 이벤트</a>
