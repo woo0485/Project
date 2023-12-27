@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style type="text/css">
@@ -8,27 +7,22 @@ a:link{text-decoration:none;}
 a:visited{text-decoration:none;}
 a:hover{ text-decoration:none;}
 
-/*
-#categoryBar{
-	position: relative;
-	z-index: 1;
-}
-#categoryBarDetail{
-	position: absolute;
-	z-index: 2;
-}
-*/
 </style>
 
-			<a href="">관리자 페이지</a>
 	<div class="row mt-5">	
 		<div class="col">
-			<div class="row row-cols-6 text-end d-flex-top align-items-end position-relative"  id="categoryBar" >
-				<span class="col"><a href="main" class="col"> <img alt=""src="resources/img/logo.png" style="width: 200px;"></a></span>
-				<span class="col pe-0"><strong><a href="festivalMap">축제 지도</a></strong></span>
-				<span class="col"><strong>축제</strong></span>
-				<span class="col"><strong>이벤트</strong></span>
-				<span class="col"><a href="customerMain" class="col"><strong>고객센터</strong></a></span>
+		
+			<a href="#" class="align-items-end">관리자 페이지</a>
+			<div class="row text-end align-items-end"  id="categoryBar" >
+				<span class="col-3"><a href="main" class="col"> <img alt=""src="resources/img/logo.png" style="width: 80%"></a></span>
+				
+				<span class="col-8 text-center">
+					<strong class="m-5"><a href="festivalMap">축제 지도</a></strong>
+					<strong class="m-5">축제</strong>
+					<strong class="m-5">이벤트</strong>
+					<a href="customerMain" class="col m-5"><strong>고객센터</strong></a>
+				</span>
+				
 				<c:if test="${empty sessionScope.id}">
 					<span class="col">
 						<a href="login" class="row"><i class="bi bi-person-circle" style="font-size: 3em;"></i></a>
@@ -41,31 +35,40 @@ a:hover{ text-decoration:none;}
 				</c:if>
 			</div>
 			
-			<div class="row row-cols-6 z-3 position-absolute top-0 start-100" id="categoryBarDetail" style="display: none; ">
-				<div class="col offset-5">
-					<div class="row"><a class="" href="news">축제 기사</a></div>
-					<div class="row"><a class="" href="productList">축제 정보</a></div>
-					<div class="row"><a class="" href="#">갤러리</a></div>
-				</div>
-				<div class="col">
-					<div class="row"><a class="" href="#">진행중 이벤트</a></div>
-					<div class="row"><a class="" href="#">종료된 이벤트</a></div>
-					<div class="row"><a class="" href="#">당첨자</a></div>
-				</div>
-				<div class="col">
-					<div class="row"><a class="" href="#">공지 사항</a></div>
-					<div class="row"><a class="" href="#">상품 문의</a></div>
-					<div class="row"><a class="" href="#">1:1 문의</a></div>
-				</div>
-				<c:if test="${not empty sesstionScope.id }">
-					<div class="col">
-						<div class="row"><a class="" href="noticeMain">공지 사항</a></div>
-						<div class="row"><a class="" href="inquiryWrite">상품 문의</a></div>
-						<div class="row"><a class="" href="informationUseMain">이용 안내</a></div>
+			<div class="row" id="categoryBarDetail" style="display: none; ">
+			
+				<div class="col categoryDetail text-start me-1">
+					<div class="row-rows-col-4 offset-5">
+						<a class="col m-5" href="news">축제 기사</a>
+						<a class="col me-3" href="#">진행중 이벤트</a>
+						<a class="col m-5" href="noticeMain">공지 사항</a>
+							<c:if test="${not empty sessionScope.id}">
+						<a class="col" href="#">마이페이지</a>
+						</c:if>
 					</div>
-				</c:if>
+				
+				
+					<div class="row-8 offset-5">
+					<a class="col m-5" href="productList">축제 정보</a>
+					<a class="col me-3" href="#">종료된 이벤트</a>
+					<a class="col m-5" href="inquiryWrite">상품 문의</a>	
+					<c:if test="${not empty sessionScope.id}">
+						<a class="col" href="#">2</a>
+					</c:if>
+					</div>
+				 
+					<div class="row-8 offset-5">
+						<a class="col m-5" href="gallery">갤러리</a>
+						<a class="col m-5" href="#">당첨자</a>
+						<a class="col m-5" href="informationUseMain">이용  안내</a>
+						<c:if test="${not empty sessionScope.id}">
+							<a class="col" href="logout">로그아웃</a>
+						</c:if>
+					</div>
+				</div>
+				
 			</div>
 			
 		</div>
 	</div>
-		
+									
