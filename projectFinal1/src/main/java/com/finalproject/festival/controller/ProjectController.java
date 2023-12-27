@@ -8,18 +8,17 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
-
+import com.finalproject.festival.domain.Member;
+import com.finalproject.festival.service.MailService;
 import com.finalproject.festival.service.MemberService;
-
-
-
 
 
 
@@ -30,7 +29,8 @@ public class ProjectController {
 	
 	@Autowired
 	private MemberService memberService;
-
+	@Autowired
+	private MailService mailService;
 	
 	@RequestMapping("/main")//메인페이지로 이동
 	public String main () {
@@ -65,8 +65,6 @@ public class ProjectController {
 		
 		boolean result = memberService.loginCheck(id, password);
 		
-		System.out.println(result);
-		
 		try {
 			if(result) {
 				session.setAttribute("id", id);
@@ -94,14 +92,15 @@ public class ProjectController {
 	    System.out.println("idCheck"+idCheck);
 	    return idCheck;
 	};
-	
-	
-	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
-		session.removeAttribute("id");
-		
-		return "main";
-	}
+
+	//이메일 인증
+		@ResponseBody
+		@RequestMapping(value = "/mailCheck", method = RequestMethod.POST)
+		public String mailCheck(String email) {
+			System.out.println("이메일 인증 요청이 들어옴!");
+			System.out.println("이메일 인증 이메일 : " + email);
+			return mailService.joinEmail(email);
+		}
 	
 	
 }

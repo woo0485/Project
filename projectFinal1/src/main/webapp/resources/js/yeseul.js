@@ -3,14 +3,13 @@
  */
   $(function(){
  	
-	 	$("#categoryBar").mouseover(function(){
+	 	$("#categoryBar").mouseenter(function(){
 	 		$("#categoryBarDetail").slideDown('slow');
 	 	});
-	 	$(".categoryDetail").mouseout(function(){
+	 	$("#categoryBarDetail").mouseleave(function(){
 	 		$("#categoryBarDetail").slideUp('slow');
 	 	});
- 	
- 
+ 		
  
  
  
@@ -169,6 +168,41 @@
     
 });
  		
+ 		
+ 		//이메일 인증
+ 	$('#eMailCheckBtn').click(function() {
+		const email = $('#eMailId').val() +"@"+ $('#eMailDomain').val(); // 이메일 주소값 얻어오기!
+		console.log('js완성된 이메일 : ' + email); // 이메일 오는지 확인
+		
+		$("#eMailCheckLi").slideDown('slow');
+		const eMailCodeCheck = $('#eMailCodeCheck') // 인증번호 입력하는곳 
+		
+		$.ajax({
+			type : 'post',
+			url : "mailCheck",
+			data : {"email" :email},
+			datatype :"text",
+			success : function (data) {
+				console.log("data : " +  data);
+				$("#eMailCheckMsg").text("인증번호가 전송되었습니다.").css("color", "green");
+				
+				if(eMailCodeCheck == data){
+				$("#eMailCheckNumMsg").text("인증 되었습니다.").css("color","green");
+				$("#eMailCodeCheck").attr({disabled:"true", "data-code": "ture"});
+				
+				}else{
+				$("#eMailCheckNumMsg").text("인증번호를 다시 입력해 주세요.").css("color","red");
+				$("#eMailCodeCheck").attr({disabled:"false", "data-code": "false"});
+				}
+				
+			}		
+			
+		}); // end ajax
+		
+	}); // end send eamil
+ 
+ 
+ 	//회원가입 end
  	
  
  
