@@ -8,14 +8,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.finalproject.festival.domain.Member;
+
+
 import com.finalproject.festival.service.MemberService;
 
 
@@ -30,7 +30,8 @@ public class ProjectController {
 	
 	@Autowired
 	private MemberService memberService;
-		
+
+	
 	@RequestMapping("/main")//메인페이지로 이동
 	public String main () {
 		return "main";
@@ -64,6 +65,8 @@ public class ProjectController {
 		
 		boolean result = memberService.loginCheck(id, password);
 		
+		System.out.println(result);
+		
 		try {
 			if(result) {
 				session.setAttribute("id", id);
@@ -78,19 +81,27 @@ public class ProjectController {
 		 }
 		
 		};
+	
+	// 아이디 중복확인 
+	@ResponseBody
+	@RequestMapping(value = "/joinIdCheck", method = RequestMethod.POST)
+	public int joinIdCheck(String id) {
+	    
+	    System.out.println("controller-id- "+ id);
+   
+	    int idCheck = memberService.joinIdCheck(id);
+	    
+	    System.out.println("idCheck"+idCheck);
+	    return idCheck;
+	};
+	
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("id");
 		
-		
-		// 아이디 중복확인 
-		@ResponseBody
-		@RequestMapping(value = "/joinIdCheck", method = RequestMethod.POST)
-		public int joinIdCheck(String id) {
-		    
-		    System.out.println("controller-id- "+ id);
-	   
-		    int idCheck = memberService.joinIdCheck(id);
-		    
-		    System.out.println("idCheck"+idCheck);
-		    return idCheck;
-		};
+		return "main";
+	}
+	
 	
 }
