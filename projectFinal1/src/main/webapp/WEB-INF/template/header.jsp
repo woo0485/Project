@@ -35,7 +35,7 @@ a:hover{ text-decoration:none;}
 				<div class="col offset-5">
 					<div class="row"><a class="" href="news">축제 기사</a></div>
 					<div class="row"><a class="" href="productList">축제 정보</a></div>
-					<div class="row"><a class="" href="#">갤러리</a></div>
+					<div class="row"><a class="" href="gallery">갤러리</a></div>
 				</div>
 				<div class="col">
 					<div class="row"><a class="" href="#">진행중 이벤트</a></div>
