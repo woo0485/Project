@@ -35,7 +35,7 @@
 						<span id="loginMag"></span>
 						
 					<div class="d-grid col-3 offset-4 ">
-						<input type="button" id="loginBtn" value="로그인"/>
+						<input type="button" id="loginBtn" class="btn btn-outline-dark" value="로그인"/>
 					</div>
 				</form>
 				<div class="row mt-5">

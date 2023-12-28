@@ -24,7 +24,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		Member member =  memberDao.loginCheck(id);
 		System.out.println("매개변수 "+id+password);
-		System.out.println("service - loginCheck"+member.getId()+member.getPassword());
+		System.out.println("service - loginCheck"+member.getId()+passwordEncoder.matches(password, member.getPassword()));
 		
 		if(member.getId().equals(id) && passwordEncoder.matches(password, member.getPassword())) {
 			result = true;
