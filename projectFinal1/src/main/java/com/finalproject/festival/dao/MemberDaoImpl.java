@@ -33,6 +33,12 @@ public class MemberDaoImpl implements MemberDao {
 	public int joinEmailCheck(String email) {
 		int emailCheck = st.selectOne(NAME_SPACE+".overlapCheck",email);
 		return emailCheck;
+	}
+
+	@Override
+	public void joinMember(Member m) {
+		st.insert(NAME_SPACE+".joinMember",m);
+		
 	} 
 
 
