@@ -83,11 +83,12 @@
  		updateValidation("joinNameMsg",hasName);
  	
  		function updateValidation(elementId , isValid){
- 			const color = isValid ? "" : "red";
+ 
+ 			const color = isValid ? "inherit" : "red";
  			
  			$("#joinNameMsg").text(isValid ? "" : "영문또는 한글 ,2자이상 15자 이하로만 입력해주세요.");
+ 			$("#joinName").attr("data-code", isValid ? "true" : "false");
  			$(elementId).css("color",color);
- 			$("#name").attr("data-code", isValid ? "true" : "false");
  			
  			}
  	});
@@ -170,10 +171,24 @@
 	    }else{
 	    	 $("#joinPasswordCheckMsg").text("비밀번호가 일치하지 않습니다.");
 	    }
-
-     
-    
-});
+	
+   });
+   
+   //비밀번호 보기
+	$("#seeJoinPassword").click(function(){
+		if($("#joinPassword").attr("type") == "password"){
+			$("#joinPassword").attr("type","text");
+		}else{
+			$("#joinPassword").attr("type","password");
+		}
+	});
+	$("#seeJoinPasswordCheck").click(function(){
+		if($("#joinPasswordCheck").attr("type") == "password"){
+			$("#joinPasswordCheck").attr("type","text");
+		}else{
+			$("#joinPasswordCheck").attr("type","password");
+		}
+	});
  		
  	
  		
@@ -228,10 +243,8 @@
 				
 				
 				
-				if($("joinPassword").attr("data-code") == "false"){
-					$("#joinLastCheckMsg").text("비밀번호를  다시 확인해 주세요").css("color","red");
-					return false;
-				}
+			
+				
 				if($("joinPasswordCheck").attr("data-code") == "false"){
 					$("#joinLastCheckMsg").text("비밀번호 확인을 다시 확인해 주세요").css("color","red");
 					return false;

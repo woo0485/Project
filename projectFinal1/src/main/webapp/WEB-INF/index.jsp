@@ -9,11 +9,7 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <script src="resources/js/jquery-3.2.1.min.js"></script>
-<<<<<<< HEAD
 <script src="resources/js/yeseul.js?ver=1"></script>
-=======
-<script src="resources/js/yeseul.js?ver=2"></script>
->>>>>>> yeseul
 <script src="resources/js/seongjin.js"></script>
 <script src="resources/js/wooseong.js"></script>
 <script src="resources/js/hyunju.js"></script>
