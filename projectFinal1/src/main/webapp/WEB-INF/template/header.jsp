@@ -14,7 +14,7 @@ a:hover{ text-decoration:none;}
 		
 			<a href="#" class="align-items-end">관리자 페이지</a>
 			
-			<div class="row text-end align-items-end "   >
+			<div class="row text-end align-items-end" >
 				<span class="col-3"><a href="main" class="col"> <img alt=""src="resources/img/logo.png" style="width: 70%"></a></span>
 				
 				<span class="col-8 text-center" id="categoryBar">
