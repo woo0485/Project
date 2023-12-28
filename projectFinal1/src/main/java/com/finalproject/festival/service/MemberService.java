@@ -7,5 +7,6 @@ public interface MemberService {
 	public boolean loginCheck(String id,String password);
 	public int joinIdCheck (String id);
 	public int joinEmailCheck (String email);
+	public void joinMember (Member m);
 
 }
