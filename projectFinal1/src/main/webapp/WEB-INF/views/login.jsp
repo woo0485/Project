@@ -40,7 +40,7 @@
 				</form>
 				<div class="row mt-5">
 					<div class="offset-3 col-2">
-						<a href="memberJoin">회원 가입</a> 
+						<a href="memberJoinPage">회원 가입</a> 
 					</div>
 					<div class="col-3">
 						<a href="#">아이디/비밀번호 찾기</a>
