@@ -12,7 +12,7 @@ a:hover{ text-decoration:none;}
 	<div class="row mt-5">	
 		<div class="col">
 		
-			<a href="#" class="align-items-end">관리자 페이지</a>
+			<a href="manageMain" class="align-items-end">관리자 페이지</a>
 			
 			<div class="row text-end align-items-end "   >
 				<span class="col-3"><a href="main" class="col"> <img alt=""src="resources/img/logo.png" style="width: 70%"></a></span>
