@@ -1,6 +1,8 @@
 package com.finalproject.festival.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.finalproject.festival.dao.MemberDao;
@@ -11,7 +13,9 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberDao memberDao;
-
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@Override
 	public boolean loginCheck(String id, String password) {
@@ -22,7 +26,7 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println("매개변수 "+id+password);
 		System.out.println("service - loginCheck"+member.getId()+member.getPassword());
 		
-		if(member.getId().equals(id) && member.getPassword().equals(password)) {
+		if(member.getId().equals(id) && passwordEncoder.matches(password, member.getPassword())) {
 			result = true;
 		}
 		
@@ -41,6 +45,13 @@ public class MemberServiceImpl implements MemberService {
 	public int joinEmailCheck(String email) {
 		int emailCheck = memberDao.joinEmailCheck(email);
 		return emailCheck;
+	}
+
+
+	@Override
+	public void joinMember(Member m) {
+		memberDao.joinMember(m);
+		
 	};
 
 
