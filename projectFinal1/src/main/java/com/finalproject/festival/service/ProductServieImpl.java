@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.finalproject.festival.dao.ProductDao;
+import com.finalproject.festival.domain.Basket;
 import com.finalproject.festival.domain.Product;
 
 @Service
@@ -89,11 +90,13 @@ public class ProductServieImpl implements ProductService {
 
 	@Override
 	public void insertProduct(Product p) {
+		System.out.println("서비스에서 prodcutticketcount"+p.getProductticketcount() );
 		PD.insertProduct(p);
 	}
 
 	@Override
 	public boolean isPassCheck(int productno, String adminpassword) {
+		System.out.println("서비스에서 프로덕트넘버"+productno );
 		return PD.isPassCheck(productno, adminpassword);
 	}
 
@@ -106,5 +109,10 @@ public class ProductServieImpl implements ProductService {
 	public void deleteProduct(int productno) {
 		PD.deleteProduct(productno);
 	}
+//////////////////// 여기서부터는 장바구니
+	//@Override
+	//public Basket basketList(int basketno) {
+	//	return PD.basketList(basketno);
+//	}
 
 }

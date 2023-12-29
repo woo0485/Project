@@ -1,11 +1,10 @@
 $(function() {
 
-
 	$("#detailUpdate").on("click", function() {
 			
 		var pass = $("#adminpassword").val();
 		if(pass.length <= 0) {
-			alert("게시 글을 수정하려면 비밀번호를 입력해주세요");
+			alert("JS게시 글을 수정하려면 비밀번호를 입력해주세요");
 			return false;
 		}		
 		
@@ -14,15 +13,12 @@ $(function() {
 		$("#checkForm").submit();
 	});
 	
-	
 	$("#detailDelete").on("click", function() {
-			
 		var pass = $("#adminpassword").val();
 		if(pass.length <= 0) {
 			alert("게시 글을 삭제하려면 비밀번호를 입력해주세요");
 			return false;
 		}
-		
 		$("#rPass").val(pass);
 		$("#checkForm").attr("action", "delete");
 		$("#checkForm").attr("method", "post");
@@ -78,26 +74,16 @@ $(function() {
 		}
 	});
 
-	// 게시 글 수정 폼 유효성 검사
+	//////////////////////// 게시 글 수정 폼 유효성 검사
 	$("#updateForm").on("submit", function() {
 		if($("#productname").val().length <= 0) {
 			alert("제목이 입력되지 않았습니다.\n제목을 입력해주세요");
 			$("#productname").focus();
 			return false;
 		}
-		if($("#adminpassword").val().length <= 0) {
-			alert("비밀번호가 입력되지 않았습니다.\n비밀번호를 입력해주세요");
-			$("#adminpassword").focus();
-			return false;
-		}
 		if($("#productprice").val().length <= 0) {
 			alert("가격이 입력되지 않았습니다.\n내용을 입력해주세요");
 			$("#productprice").focus();
-			return false;
-		}
-		if($("#productimage").val().length <= 0) {
-			alert("사진이 입력되지 않았습니다.\n내용을 입력해주세요");
-			$("#productimage").focus();
 			return false;
 		}
 		if($("#productlocation").val().length <= 0) {

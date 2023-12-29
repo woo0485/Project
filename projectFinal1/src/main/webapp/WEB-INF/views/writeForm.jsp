@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<link href="resources/css/hyunju.css" rel="stylesheet">
+<script src="resources/js/jquery-3.2.1.min.js"></script>
+<script src="resources/js/HyunJu.js"></script>
+
 	<!-- content 영역 -->
 	<div class="row my-5" id="global-content">		
 		<div class="offset-1 col-10">
@@ -9,8 +13,10 @@
 					<h2 class="fs-3 fw-bold text-center">축제 정보 글 쓰기</h2>
 				</div>
 			</div>
-			<form name="writeForm" id="writeForm" action="writeProcess"
-				class="row g-3" method="post">
+			
+		<form name="writeForm" action="writeProcess" id="writeForm" 
+			class="row g-3 border-primary" method="post" enctype="multipart/form-data">
+			
 				  <div class="col-5 offset-1">
 				    <label for="productprice" class="form-label">가격</label>
 				    <input type="text" class="form-control" name="productprice" id="productprice">
@@ -27,9 +33,9 @@
 				    <label for="productcontent" class="form-label">내 용</label>
 				    <textarea name="productcontent" id="productcontent" class="form-control" rows="10"></textarea>
 				  </div>
-				  <div class="col-10 offset-1">
-				    <label for="#" class="form-label">사진 </label>
-				    <textarea name="#" id="#" class="form-control" rows="10"></textarea>
+				  <div class="col-8 offset-md-2">
+				    <label for="productimage" class="form-label">사진 </label>
+				      <input type="file" class="form-control" name="productimage"  id="productimage" >
 				  </div>
 				  <div class="col-10 offset-1">
 				    <label for="productlocation" class="form-label">위치 </label>
@@ -45,11 +51,11 @@
 				  </div>
 				  <div class="col-10 offset-1">
 				    <label for="productticketcount" class="form-label">티켓 수</label>
-				    <textarea name="text" id="productticketcount" class="form-control" rows="10"></textarea>
+				     <input type="text" class="form-control" name="productticketcount" id="productticketcount">
 				  </div>
 				  <div class="col-10 offset-1">
 				    <label for="productremainticketcount" class="form-label">남은 티켓 수</label>
-				    <textarea name="text" id="productremainticketcount" class="form-control" rows="10"></textarea>
+				    <input type="text" class="form-control" name="productremainticketcount" id="productremainticketcount">
 				  </div>
 				  
 				  <div class="col-10 offset-1 mt-5 text-center">
