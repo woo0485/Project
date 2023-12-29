@@ -141,7 +141,7 @@ public class ProjectController {
 						memberService.joinMember(member);
 		
 		
-		return "";
+		return "joinSuccess";
 	}
 
 	
