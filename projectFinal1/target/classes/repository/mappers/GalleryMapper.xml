@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.finalproject.festival.mapper.GalleryMapper" >
+
+	<insert id="insertGallery" parameterType="java.util.HashMap">
+		INSERT INTO Gallery (id,gallerytitle,gallerycontent,galleryimage,gallerywriter,galleryuploaddate,gallerygoodcount) VALUES (#{gallery.id}, #{gallery.gallerytitle}, #{gallery.gallerycontent}, #{sqlimage}, #{gallery.gallerywriter}, SYSDATE(),0)
+	</insert>
+	
+</mapper>	
+
+
+

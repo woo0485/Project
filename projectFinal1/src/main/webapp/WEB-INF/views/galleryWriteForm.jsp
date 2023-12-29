@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ page import="javax.servlet.http.HttpServletRequest"%>
+
+<%
+	HttpSession se = request.getSession();
+
+String id = (String) se.getAttribute("id");
+%>
+
+<c:set var="id" value="${sessionScope.id}" />
 
 <div class="row">
 	<div class="col-10 offset-1">
@@ -15,13 +25,24 @@
 		</div>
 		<form action="galleryUpload" method="post"
 			enctype="multipart/form-data">
+			<input type="hidden" name="id" value="${id}">
 			<div class="row mt-5">
+				<div class="col-8 offset-2">
+					<select class="form-select form-select-lg mb-3"
+						aria-label="Large select example" name="gallerywriter">
+						<option selected>작성자(ID 또는 이름)를 선택하세요</option>
+						<option value="${id}">${id}</option>
+						<option value="name">이름</option>
+					</select>
+				</div>
+			</div>
+			<div class="row mt-3">
 				<div class="col-8 offset-2">
 					<div class="input-group input-group-lg">
 						<span class="input-group-text" id="inputGroup-sizing-lg">제목</span>
 						<input type="text" class="form-control"
 							aria-label="Sizing example input"
-							aria-describedby="inputGroup-sizing-lg" name="title">
+							aria-describedby="inputGroup-sizing-lg" name="gallerytitle">
 					</div>
 				</div>
 			</div>
@@ -29,17 +50,17 @@
 				<div class="col-8 offset-2">
 					<label for="exampleFormControlTextarea1" class="form-label fs-5">내용</label>
 					<textarea class="form-control" id="exampleFormControlTextarea1"
-						rows="10" name="content"></textarea>
+						rows="10" name="gallerycontent"></textarea>
 				</div>
 			</div>
 			<div class="row mt-5" style="display: none;" id="galleryImageDetail">
-			<div class="col-8 offset-2" id="previewContainer"></div>
+				<div class="col-8 offset-2" id="previewContainer"></div>
 			</div>
 			<div class="row mt-3">
 				<div class="col-8 offset-2 form-group">
 					<label for="imageInput" class="form-label"><span
-						class="fs-5">사진을 선택하세요.</span><br>
-					<span style="font-size: 15px;">(이미지 업로드는 최대 4개로 제한됩니다.)</span> </label> <input
+						class="fs-5">사진을 선택하세요.</span><br> <span
+						style="font-size: 15px;">(이미지 업로드는 최대 4개로 제한됩니다.)</span> </label> <input
 						class="form-control form-control-lg" id="imageInput" type="file"
 						name="images" multiple>
 				</div>
@@ -76,27 +97,27 @@
 							selectedImagesContainer
 									.removeChild(selectedImagesContainer.firstChild);
 						}
-						
+
 						if (selectedFiles.length > 4) {
 
-					        previewContainer.innerHTML = '';
-					        selectedImagesContainer.innerHTML = '';
+							previewContainer.innerHTML = '';
+							selectedImagesContainer.innerHTML = '';
 
-					        var imageTitleDiv = document.createElement('div');
-					        imageTitleDiv.textContent = "최대 4개의 파일까지만 선택 가능합니다.";
-					        imageTitleDiv.style.fontSize = '20px';
-					        imageTitleDiv.style.color = 'red';
-					        selectedImagesContainer.appendChild(imageTitleDiv);
+							var imageTitleDiv = document.createElement('div');
+							imageTitleDiv.textContent = "최대 4개의 파일까지만 선택 가능합니다.";
+							imageTitleDiv.style.fontSize = '20px';
+							imageTitleDiv.style.color = 'red';
+							selectedImagesContainer.appendChild(imageTitleDiv);
 
-					        document.getElementById('imageInput').value = '';
-							
+							document.getElementById('imageInput').value = '';
+
 							return;
 						}
 
 						for (var i = 0; i < selectedFiles.length; i++) {
 
 							var fileName = selectedFiles[i].name;
-							
+
 							var file = selectedFiles[i];
 
 							var imageTitleDiv = document.createElement('div');
@@ -104,23 +125,23 @@
 									+ " : " + fileName;
 
 							selectedImagesContainer.appendChild(imageTitleDiv);
-							
+
 							if (file.type.startsWith('image/')) {
-								
-				                var reader = new FileReader();
 
-				                reader.onload = function (e) {
-				                    var img = document.createElement('img');
-				                    img.src = e.target.result;
-				                    img.style.maxWidth = '25%';
-				                    img.style.maxHeight = '100%';
-				                    previewContainer.appendChild(img);
-				                };
+								var reader = new FileReader();
 
-				                reader.readAsDataURL(file);
-				            }
+								reader.onload = function(e) {
+									var img = document.createElement('img');
+									img.src = e.target.result;
+									img.style.maxWidth = '25%';
+									img.style.maxHeight = '100%';
+									previewContainer.appendChild(img);
+								};
+
+								reader.readAsDataURL(file);
+							}
 						}
-						
+
 						document.getElementById('galleryImageDetail').style.display = 'block';
 
 					});

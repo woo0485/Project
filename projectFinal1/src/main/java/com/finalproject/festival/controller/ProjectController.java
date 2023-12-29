@@ -61,11 +61,32 @@ public class ProjectController {
 		return"memberJoinForm";
 	}
 	
+	@RequestMapping("/privacyPolicyPage")//정보처리방침
+	public String privacyPolicyPage() {
+		return "privacyPolicyPage";
+	}
+	
+	@RequestMapping("/termsOfUse")//정보처리방침
+	public String termsOfUsePage() {
+		return "termsOfUsePage";
+	}
+	
+	@RequestMapping("/copyrightPolicy")//정보처리방침
+	public String copyrightPolicyPage() {
+		return "copyrightPolicyPage";
+	}
+	
+	@RequestMapping("/idAndPasswordFind")//아이디비번찾기페이지
+	public String idAndPasswordFindPage() {
+		return "idAndPasswordFindPage";
+	}
+	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("id");
 		return "main";
 	}
+	
 	
 	//로그인 
 	@ResponseBody
@@ -73,16 +94,22 @@ public class ProjectController {
 	public int loginCheck(HttpSession session, @RequestBody Map<String, String> param)
 				throws ServletException, IOException{
 		
+		
 		String id = (String)param.get("id");
 		String password = (String)param.get("password");
 		
+		Member member = memberService.loginCheck(id);
+		boolean result = false;
+		System.out.println(member.getName());
+		if(member.getId().equals(id) && passwordEncoder.matches(password, member.getPassword())) {
+			result = true;
+		}
 		
-		
-		boolean result = memberService.loginCheck(id, password);
 		
 		try {
 			if(result) {
 				session.setAttribute("id", id);
+				session.setAttribute("name", member.getName());
 				return 1;
 			}
 			else {

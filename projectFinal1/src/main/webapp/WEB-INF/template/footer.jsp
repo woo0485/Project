@@ -1,18 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<style type="text/css">
+	a:link{text-decoration:none;}
+	a:visited{text-decoration:none;}
+	a:hover{ text-decoration:none;}
+</style>
 <div class="row">
 	<div class="col">
 		 
 		 <div class="row mt-5 py-4 border-top border-bottom">
 			<div class="col-2">
-				<a href="#">개인정보처리방침</a>
+				<a href="privacyPolicyPage">개인정보처리방침</a>
 			</div>
 			<div class="col-1">
-				<a href="#">이용약관</a>
+				<a href="termsOfUse">이용약관</a>
 			</div>
 			<div class="col-1">
-				<a href="#">저작권정책</a>
+				<a href="copyrightPolicy">저작권정책</a>
 			</div>
 		</div>
 		 
