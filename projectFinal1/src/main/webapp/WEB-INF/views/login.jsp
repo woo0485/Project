@@ -35,7 +35,7 @@
 						<span id="loginMag"></span>
 						
 					<div class="d-grid col-3 offset-4 ">
-						<input type="button" id="loginBtn" value="로그인"/>
+						<input type="button" id="loginBtn" class="btn btn-outline-dark" value="로그인"/>
 					</div>
 				</form>
 				<div class="row mt-5">
@@ -43,7 +43,7 @@
 						<a href="memberJoinPage">회원 가입</a> 
 					</div>
 					<div class="col-3">
-						<a href="#">아이디/비밀번호 찾기</a>
+						<a href="idAndPasswordFind">아이디/비밀번호 찾기</a>
 					</div>
 				</div>
 				

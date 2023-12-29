@@ -15,7 +15,7 @@
 
 	<insert id="joinMember" parameterType="Member">
 		INSERT INTO Member (name, id, phonenumber, password, zipcode,address1,address2,email,joindate) 
-					VALUSE(#{name},#{id},#{phonenumber},#{password},#{zipcode},
+					VALUES(#{name},#{id},#{phonenumber},#{password},#{zipcode},
 									#{address1},#{address2},#{email},SYSDATE())
 	</insert>
 	

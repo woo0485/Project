@@ -1,9 +1,11 @@
 package com.finalproject.festival.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.finalproject.festival.domain.Product;
@@ -21,6 +25,9 @@ import com.finalproject.festival.service.ProductService;
 
 @Controller
 public class ProductController {
+	
+	// 업로드한 파일 저장할 위치
+	private final static String DEFAULT_PATH = "/resources/upload/";	
 	
 	@Autowired
 	private ProductService sv;
@@ -72,14 +79,15 @@ public class ProductController {
 	
 	// 1) 게시글 쓰기폼에서 들어오는....
 	@RequestMapping(value="/writeProcess", method=RequestMethod.POST)
-	public String insertProduct(HttpServletRequest request,
-			String productprice, String productname, String productcontent, String adminpassword,
-			String productimage, String productlocation, Timestamp productopendate, Timestamp productclosedate,
-			String productticketcount, String productremainticketcount) 
+	public String insertProduct(
+			HttpServletRequest request,
+			int productprice, String productname, String productcontent, String adminpassword,
+			@RequestParam(value="productimage", required=false) MultipartFile multipartFile, 
+			String productlocation, Timestamp productopendate, Timestamp productclosedate,
+			int productticketcount, int productremainticketcount) 
 					throws IOException {	
 		
 		Product p = new Product();
-		p.setProductimage(productimage);
 		p.setProductprice(productprice);
 		p.setProductname(productname);
 		p.setProductcontent(productcontent);
@@ -90,6 +98,25 @@ public class ProductController {
 		p.setProductticketcount(productticketcount);
 		p.setProductremainticketcount(productremainticketcount);
 		
+		System.out.println("컨트롤러글쓰기 폼에서 -productticketcount : " + p.getProductticketcount());	
+		System.out.println("컨트롤러글쓰기 폼에서 -productremainticketcount : " + p.getProductremainticketcount());				
+		
+		if(!multipartFile.isEmpty()) { // 업로드된 파일 데이터가 존재하면 Request 객체를 이용해 파일이 저장될 실제 경로를 구한다.
+			String filePath = 
+					request.getServletContext().getRealPath(DEFAULT_PATH);
+			
+			UUID uid = UUID.randomUUID();
+			String saveName = 
+					uid.toString() + "_" + multipartFile.getOriginalFilename();
+			
+			File file = new File(filePath, saveName);
+			System.out.println("insertBoard - newName : " + file.getName());			
+			
+			multipartFile.transferTo(file);
+			// 업로드된 파일 명을 Board 객체에 저장한다.
+			p.setProductimage(saveName);
+		}
+		
 		// 서비스에서 게시 글 정보를 게시 글 테이블에 추가한다.
 		sv.insertProduct(p);
 
@@ -98,18 +125,72 @@ public class ProductController {
 		return "redirect:productList";
 	}
 	
+	// 게시 글 쓰기 폼에서 글쓰기 요청에서 이미지파일 -multiparthttpservletrequest 이용함
+	@RequestMapping(value="/addProcess", method=RequestMethod.POST)
+	public String addProduct (MultipartHttpServletRequest request) 
+			throws IOException {
+		
+		MultipartFile multipartFile = request.getFile("productimage");
+		System.out.println("originName : " + multipartFile.getOriginalFilename());
+		System.out.println("name : " + multipartFile.getName());
+		
+		Product p = new Product();
+		p.setProductname(request.getParameter("productname"));
+		p.setProductcontent(request.getParameter("productcontent"));
+		p.setAdminpassword(request.getParameter("adminpassword"));
+		p.setProductlocation(request.getParameter("productlocation"));
+		p.setProductprice(Integer.parseInt(request.getParameter("productprice")));
+		p.setProductticketcount(Integer.parseInt(request.getParameter("productticketcount")));
+		p.setProductremainticketcount(Integer.parseInt(request.getParameter("productremainticketcount")));
+	
+		java.sql.Timestamp t = java.sql.Timestamp.valueOf(request.getParameter("productopendate"));
+		p.setProductopendate(t);
+		
+		java.sql.Timestamp tt = java.sql.Timestamp.valueOf(request.getParameter("productclosedate"));
+		p.setProductclosedate(tt);
+
+		
+		System.out.println("컨트롤러글쓰기 폼에서 들어오는 글쓰기 요청에서-productticketcount : " + p.getProductticketcount());	
+		System.out.println("컨트롤러글쓰기 폼에서 들어오는 글쓰기 요청에서-productremainticketcount : " + p.getProductremainticketcount());			
+		
+		if(!multipartFile.isEmpty()) { // 업로드된 파일 데이터가 존재하면
+			
+			// Request 객체를 이용해 파일이 저장될 실제 경로를 구한다.
+			String filePath = 
+					request.getServletContext().getRealPath(DEFAULT_PATH);	
+		
+			UUID uid = UUID.randomUUID();
+			String saveName = 
+					uid.toString() + "_" + multipartFile.getOriginalFilename(); 
+			
+			File file = new File(filePath, saveName);
+			System.out.println("addBoard - newName : " + file.getName());
+			
+			// 업로드한 파일을 upload 폴더로 저장한다.
+			multipartFile.transferTo(file);
+			
+			// 업로드된 파일 명을 product 객체에 저장한다.
+			p.setProductimage(saveName);
+		}		
+			sv.insertProduct(p);
+		
+		return "redirect:boardList";
+	}	
+	// multipart 끝
+	
+	/////////////////////////////  여기서부터는 수정하기  //////////////////////
 	@RequestMapping(value = "/update")
-	public String updateProduct(Model m, HttpServletResponse response, PrintWriter out, int productno, String adminpassword,
+	public String updateProduct(Model m, HttpServletResponse response, PrintWriter out, 
+			int productno,  String adminpassword,
 			@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum, 
 			@RequestParam(value = "type", required = false, defaultValue = "null") String type,
 			@RequestParam(value = "keyword", required = false, defaultValue = "null") String keyword) throws Exception {
 		
 		boolean result = sv.isPassCheck(productno, adminpassword);
-		
 		if(! result) {
 			response.setContentType("text/html; charset=utf-8");				
 			out.println("<script>");
-			out.println("	alert('비밀번호가 맞지 않습니다.');");
+			out.println("	alert('컨트롤러 get - 비밀번호가 맞지 않습니다.');");
 			out.println("	history.back();");
 			out.println("</script>");
 
@@ -133,7 +214,8 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updateProduct(Model m, HttpServletResponse response, PrintWriter out, Product p,
+	public String updateProduct(Model m, HttpServletResponse response, PrintWriter out, 
+			Product p,
 			RedirectAttributes reAttrs, 
 			@RequestParam(value = "pageNum", required = false, defaultValue = "1") int pageNum, 
 			@RequestParam(value = "type", required = false, defaultValue = "null") String type,
@@ -144,7 +226,7 @@ public class ProductController {
 		if(! result) {
 			response.setContentType("text/html; charset=utf-8");				
 			out.println("<script>");
-			out.println("	alert('비밀번호가 맞지 않습니다.');");
+			out.println("	alert(' 컨트롤러 post -비밀번호가 맞지 않습니다.');");
 			out.println("	history.back();");
 			out.println("</script>");
 
@@ -166,8 +248,9 @@ public class ProductController {
 		return "redirect:productList";	
 	}
 
+	@RequestMapping({"/delete", "deleteProduct"})
 	public String deleteProduct (HttpServletResponse response, 
-			PrintWriter out, int productno, String adminpassword,
+			PrintWriter out, int productno,
 			RedirectAttributes reAttrs, 
 			@RequestParam(value="pageNum", required=false, 
 				defaultValue="1") int pageNum,
@@ -175,18 +258,7 @@ public class ProductController {
 				defaultValue="null") String type,
 			@RequestParam(value="keyword", required=false,
 				defaultValue="null") String keyword) throws Exception {
-		
-		boolean result = sv.isPassCheck(productno, adminpassword);
-		
-		if(! result) {
-			response.setContentType("text/html; charset=utf-8");				
-			out.println("<script>");
-			out.println("	alert('비밀번호가 맞지 않습니다.');");
-			out.println("	history.back();");
-			out.println("</script>");
-
-			return null;
-		}
+	
 		boolean searchOption = (type.equals("null")	|| keyword.equals("null")) ? false : true; 
 		sv.deleteProduct(productno);
 		
