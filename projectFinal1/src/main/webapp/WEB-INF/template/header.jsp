@@ -6,42 +6,13 @@
 	a:hover{ text-decoration:none;}
 </style>
 
-<<<<<<< HEAD
-	<div class="row mt-5">	
-		<div class="col">
-		
-			<a href="manageMain" class="align-items-end">관리자 페이지</a>
-			
-			<div class="row text-end align-items-end "   >
-				<span class="col-3"><a href="main" class="col"> <img alt=""src="resources/img/logo.png" style="width: 70%"></a></span>
-				
-				<span class="col-8 text-center" id="categoryBar">
-					<strong class="m-5"><a href="festivalMap">축제 지도</a></strong>
-					<strong class="m-5">축제</strong>
-					<strong class="m-5">이벤트</strong>
-					<a href="customerMain" class="col m-5"><strong>고객센터</strong></a>
-				</span>
-				
-				<c:if test="${empty sessionScope.id}">
-					<span class="col">
-						<a href="login" class="row"><i class="bi bi-person-circle" style="font-size: 3em;"></i></a>
-					</span>
-				</c:if>
-				<c:if test="${not empty sessionScope.id}">
-					<span class="col">
-						<i class="bi bi-person-lines-fill" style="font-size: 3em;"></i>
-					</span>
-				</c:if>
-=======
-
-	<div class="row my-3 pt-5">
+<div class="row my-3 pt-5">
 		<div class="col-10 offset-1 ">
 			<div class="row offset-8">
 		 	<form class="d-flex" role="search">
 		        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 		        <button class="btn btn-outline-success" type="submit">Search</button>
 		      </form>
->>>>>>> 49c4979d818baf55afd43c17f27473f4cb239620
 			</div>
 			
 			<div class="row my-3">
