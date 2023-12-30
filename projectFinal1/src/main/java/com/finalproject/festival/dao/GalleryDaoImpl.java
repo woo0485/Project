@@ -1,6 +1,7 @@
 package com.finalproject.festival.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -29,6 +30,12 @@ public class GalleryDaoImpl implements GalleryDao {
 		
 		st.insert(NAME_SPACE + ".insertGallery", map);
 
+	}
+
+	@Override
+	public List<Gallery> gallery() {
+		
+		return st.selectList(NAME_SPACE + ".Gallery");
 	}
 
 }
