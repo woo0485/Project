@@ -49,12 +49,11 @@
 	</select>
 	
 		<insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="productno">
-
-		INSERT INTO Product(productname, productcontent,
+		INSERT INTO Product(productname, productcontent, 
 				productimage, productlocation, productprice, productopendate, productclosedate, 
 				productticketcount,productremainticketcount,adminpassword)
 				
-			VALUES(#{productname}, #{productcontent}, #{productbookmarkcount}, 
+			VALUES(#{productname}, #{productcontent}, 
 				 #{productimage}, #{productlocation}, #{productprice}, #{productopendate}, #{productclosedate},
 				  #{productticketcount}, #{productremainticketcount}, #{adminpassword})
 	</insert>
@@ -68,7 +67,7 @@
 	
 	<update id="updateProduct" parameterType="Product">
 		UPDATE Product 
-			SET productname = #{productname}, productcontent = #{productcontent}, productimage=#{productimage},
+			SET productname = #{productname}, productcontent = #{productcontent}, 
 			productlocation=#{productlocation}, productprice=#{productprice}, 
 			productopendate=#{productopendate}, productclosedate=#{productclosedate},
 			productticketcount=#{productticketcount}, productremainticketcount=#{productremainticketcount}
