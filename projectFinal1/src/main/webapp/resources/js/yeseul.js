@@ -461,7 +461,7 @@
 		
 	}); // end 
  		
- 	$("#findPasswordChangeTab").on("click"function(){
+ 	$("#findPasswordChangeTab").on("click",function(){
  		$("#findPasswordTab").css("display","none");
  	});//비밀번호 변경tab
  	

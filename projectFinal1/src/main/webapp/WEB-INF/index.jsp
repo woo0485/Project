@@ -12,7 +12,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="resources/js/jquery-3.2.1.min.js"></script>
-<script src="resources/js/yeseul.js?ver=1"></script>
+<script src="resources/js/yeseul.js?ver=2"></script>
 <script src="resources/js/seongjin.js"></script>
 <script src="resources/js/wooseong.js"></script>
 <script src="resources/js/hyunju.js"></script>
