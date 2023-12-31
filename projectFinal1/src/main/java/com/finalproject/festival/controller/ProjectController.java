@@ -2,6 +2,7 @@ package com.finalproject.festival.controller;
 
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -76,9 +77,9 @@ public class ProjectController {
 		return "copyrightPolicyPage";
 	}
 	
-	@RequestMapping("/idAndPasswordFind")//아이디비번찾기페이지
+	@RequestMapping("/idPasswordFind")//아이디비번찾기페이지
 	public String idAndPasswordFindPage() {
-		return "idAndPasswordFindPage";
+		return "idPasswordFindPage";
 	}
 	
 	@RequestMapping("/logout")
@@ -127,7 +128,7 @@ public class ProjectController {
 	@RequestMapping(value = "/joinIdCheck", method = RequestMethod.POST)
 	public int joinIdCheck(String id) {
 	    
-	    System.out.println("controller-id- "+ id);
+	    System.out.println("아이디 중복확인 controller-id-"+ id);
    
 	    int idCheck = memberService.joinIdCheck(id);
 	    
@@ -170,8 +171,38 @@ public class ProjectController {
 		
 		return "joinSuccess";
 	}
+	
 
+	//아이디 찾기
+	@ResponseBody
+	@RequestMapping(value = "/userFindId", method = RequestMethod.POST)
+	public String userFindId (@RequestBody Map<String, Object>param) {
+	String email = (String)param.get("email");
+	String findId =	memberService.userFindId(email);
+	
+	return findId;
+	}
 	
 	
+	
+	//비밀번호 찾기
+	@ResponseBody
+	@RequestMapping(value = "/userFindPassword" ,method = RequestMethod.POST)
+	public String userFindPassword(@RequestBody Map<String, Object> param) {
+		String findEmailCheckCode ="";
+		Map< String , Object> map =new HashMap<>();
+		map.put("id", param.get("id"));
+		map.put("email", param.get("email"));
+		
+		int memberCherck = memberService.userFindPassword(map);
+		
+		if(memberCherck == 1) {
+			findEmailCheckCode = mailService.findeMailCheck((String) param.get("email"));
+		}
+		
+		
+		return findEmailCheckCode;
+				
+	}
 	
 }

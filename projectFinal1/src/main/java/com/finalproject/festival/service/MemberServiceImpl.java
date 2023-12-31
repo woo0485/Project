@@ -1,5 +1,8 @@
 package com.finalproject.festival.service;
 
+
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -32,7 +35,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int joinEmailCheck(String email) {
-		int emailCheck = memberDao.joinEmailCheck(email);
+		int emailCheck = memberDao.emailUserCount(email);
 		return emailCheck;
 	}
 
@@ -41,6 +44,19 @@ public class MemberServiceImpl implements MemberService {
 	public void joinMember(Member m) {
 		memberDao.joinMember(m);
 		
+	}
+
+
+	@Override
+	public String userFindId(String email) {
+		return memberDao.userFindId(email);
+	}
+
+
+	@Override
+	public int userFindPassword(Map<String, Object> map) {
+		
+		return memberDao.userFindPassword(map);
 	};
 
 

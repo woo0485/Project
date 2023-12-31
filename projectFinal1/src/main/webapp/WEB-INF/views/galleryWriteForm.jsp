@@ -4,13 +4,8 @@
 <%@ page import="javax.servlet.http.HttpSession"%>
 <%@ page import="javax.servlet.http.HttpServletRequest"%>
 
-<%
-	HttpSession se = request.getSession();
-
-String id = (String) se.getAttribute("id");
-%>
-
 <c:set var="id" value="${sessionScope.id}" />
+<c:set var="name" value="${sessionScope.name}" />
 
 <div class="row">
 	<div class="col-10 offset-1">
@@ -32,7 +27,7 @@ String id = (String) se.getAttribute("id");
 						aria-label="Large select example" name="gallerywriter">
 						<option selected>작성자(ID 또는 이름)를 선택하세요</option>
 						<option value="${id}">${id}</option>
-						<option value="name">이름</option>
+						<option value="${name}">${name}</option>
 					</select>
 				</div>
 			</div>

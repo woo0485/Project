@@ -1,5 +1,8 @@
 package com.finalproject.festival.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,16 @@ public class GalleryServiceImpl implements GalleryService {
 		
 		gd.insertGallery(gallery);
 
+	}
+
+	@Override
+	public List<Gallery> gallery() {
+		
+		List<Gallery> galleryList = new ArrayList<Gallery>();
+		
+		galleryList = gd.gallery();
+		
+		return galleryList;
 	}
 
 }
