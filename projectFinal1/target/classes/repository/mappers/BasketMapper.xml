@@ -4,11 +4,21 @@
 
 <mapper namespace="com.finalproject.festival.mapper.BasketMapper" >
 	
-	<select id="basketList" resultType="Basket" resultMap="basketResultMap">
+	<select id="basketList" resultType="Basket" >
 		SELECT 
-		*
-		FROM ShoppintBasket
-		WHERE basketno = #{basketno}
+		b.basketno AS basketno,
+		m.id AS id,
+		p.productno AS productno,
+		b.basketproductcount,
+		p.productprice AS productprice,
+		(productprice * basketproductcount ) productprice
+		
+		FROM ShoppingBasket b, Product p, Member m
+		
+		WHERE b.productno = p.productno
+		AND b.id = m.id
+		ORDER BY
+		b.basketno
 	</select>
 	
 	<resultMap id="basketResultMap" type="Basket" >
