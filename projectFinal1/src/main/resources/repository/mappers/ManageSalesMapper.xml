@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.finalproject.festival.mapper.ManageSalesMapper" >
+
+	<resultMap id="ManageSalesMap" type="Sales" >
+		<id property="salesDate" column="salesDate" />	
+		<result property="salesTotalPrice" column="salesTotalPrice" />
+	</resultMap>
+	
+	<delete id="deleteSalesTotalPrice" parameterType="List">
+		TRUNCATE Sales		
+	</delete>
+	
+	<insert id="salesTotalPriceWrite" parameterType="Sales" useGeneratedKeys="true" keyProperty="salesYear">
+		INSERT INTO Sales ( salesDate, salesTotalPrice)
+		VALUES ( #{salesDate}, #{salesTotalPrice})		
+	</insert>
+	
+	<select id="salesList" resultType="Sales" resultMap="ManageSalesMap">
+		SELECT
+			 * 
+		 FROM Sales
+	</select>
+	
+</mapper>	
+
+
+

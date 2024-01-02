@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
 <link href="resources/css/donggyun.css" rel="stylesheet">
+<script src="resources/js/donggyun.js"></script>
 <style>
 .table {
   border-collapse: collapse;
@@ -43,47 +44,54 @@
 				<span class="fw-bold p-2"><h3>관리페이지</h3></span>
 				
 				<div class="row">
-					<div class="col border mb-4">		
+					<div class="col border-end text-center mb-2">		
 						<div class="row">
-							<div class="col my-2 p-2">
-								<span>조회수가 높은  상품</span>
+							<div class="col mt-2 p-2">
+								<span><h4>조회수가 높은  상품</h4></span>
 							</div>
 						</div>
 						<div class="row">
-							<div class="col p-2">
-								상품1
+							<div class="col offset-md-2">
+								<ol class="text-start">
+									<c:forEach var="pp" items="${manageProductCountList}">										
+										<li class="ps-2">${pp.productname }</li>
+									</c:forEach>
+								</ol>				
+							</div>
+						</div>
+					</div>
+				
+					<div class="col text-center mb-5">		
+						<div class="row">
+							<div class="col mt-2 pt-3">
+								<span><h4>DB 총 매출</h4></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col p-3">
+								<c:if test="${ empty salesList }">									
+										<span>월 매출을 DB로 넣어주세요.</span>
+								</c:if>
+								
+								<c:set var = "total" value = "0" />
+								<c:if test="${ not empty salesList }">
+									<c:forEach var="s" items="${salesList}">										
+										<c:set var= "total" value="${total + s.salesTotalPrice}"/>
+									</c:forEach>
+									<c:out value="${total}원"/>
+								</c:if>				
 							</div>
 						</div>
 					</div>
 				</div>
 				
-				<div class="row">
-					<div class="col border mb-5">		
-						<div class="row">
-							<div class="col my-2 p-2">
-								<span>총 매출</span>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col p-2">
-								123213123123원
-							</div>
-						</div>
-					</div>
-				</div>
 
-
-
-
-
-				
-
-				<div class="row">
+				<!-- 차트 -->
+				<div class="row mt-5">
 					<div class="col" style="width:10px; height:10px;">
 						<canvas id="myChart"></canvas>
 					</div>
 				</div>
-
 				<script>
 					// 차트를 그럴 영역을 dom요소로 가져온다.
 					var chartArea = document.getElementById('myChart')
@@ -95,23 +103,42 @@
 						// ②차트의 데이터(Object)
 						data : {
 							// ③x축에 들어갈 이름들(Array)
-							labels : [ '1월', '2월', '3월', '4월', '5월',
-									'6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+							labels : [ 
+								
+								<c:forEach var="s2" items="${salesList}">
+									'${ s2.salesDate }',
+								</c:forEach>
+								
+							],
 							// ④실제 차트에 표시할 데이터들(Array), dataset객체들을 담고 있다.
 							datasets : [ {
 								// ⑤dataset의 이름(String)
 								label : '월 매출 그래프',
 								// ⑥dataset값(Array)
-								data : [ 12, 19, 3, 5, 2, 3 ,12, 19, 3, 5, 2, 3 ],
+																							
+								data : [ 
+									<c:if test="${ empty salesList }">	
+										0,0,0,0,0,0,0,0,0,0,0,0
+									</c:if>
+									<c:if test="${ not empty salesList }">	
+										<c:forEach var="s" items="${salesList}">
+											${ s.salesTotalPrice },
+										</c:forEach>
+									</c:if>
+									
+									],
+							
 								// ⑦dataset의 배경색(rgba값을 String으로 표현)
 								backgroundColor: [
 	                                //색상
-	                                'rgba(255, 99, 132, 0.2)',
+
+								      'rgba(75, 192, 192, 0.2)',
 
 	                            ],
 	                            borderColor: [
 	                                //경계선 색상
-	                                'rgba(255, 99, 132, 1)',
+
+	                                'rgb(75, 192, 192)',    
 	
 	                            ],
 								// ⑨dataset의 선 두께(Number)
@@ -133,15 +160,7 @@
 				</script>
 
 
-
-
-
-
-
-
-
 			</div>
 		</div>
-
 	</div>
 </div>

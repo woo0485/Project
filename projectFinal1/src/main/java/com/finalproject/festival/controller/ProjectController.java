@@ -2,6 +2,7 @@ package com.finalproject.festival.controller;
 
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -61,11 +62,32 @@ public class ProjectController {
 		return"memberJoinForm";
 	}
 	
+	@RequestMapping("/privacyPolicyPage")//정보처리방침
+	public String privacyPolicyPage() {
+		return "privacyPolicyPage";
+	}
+	
+	@RequestMapping("/termsOfUse")//정보처리방침
+	public String termsOfUsePage() {
+		return "termsOfUsePage";
+	}
+	
+	@RequestMapping("/copyrightPolicy")//정보처리방침
+	public String copyrightPolicyPage() {
+		return "copyrightPolicyPage";
+	}
+	
+	@RequestMapping("/idPasswordFind")//아이디비번찾기페이지
+	public String idAndPasswordFindPage() {
+		return "idPasswordFindPage";
+	}
+	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("id");
 		return "main";
 	}
+	
 	
 	//로그인 
 	@ResponseBody
@@ -73,16 +95,22 @@ public class ProjectController {
 	public int loginCheck(HttpSession session, @RequestBody Map<String, String> param)
 				throws ServletException, IOException{
 		
+		
 		String id = (String)param.get("id");
 		String password = (String)param.get("password");
 		
+		Member member = memberService.loginCheck(id);
+		boolean result = false;
+		System.out.println(member.getName());
+		if(member.getId().equals(id) && passwordEncoder.matches(password, member.getPassword())) {
+			result = true;
+		}
 		
-		
-		boolean result = memberService.loginCheck(id, password);
 		
 		try {
 			if(result) {
 				session.setAttribute("id", id);
+				session.setAttribute("name", member.getName());
 				return 1;
 			}
 			else {
@@ -100,7 +128,7 @@ public class ProjectController {
 	@RequestMapping(value = "/joinIdCheck", method = RequestMethod.POST)
 	public int joinIdCheck(String id) {
 	    
-	    System.out.println("controller-id- "+ id);
+	    System.out.println("아이디 중복확인 controller-id-"+ id);
    
 	    int idCheck = memberService.joinIdCheck(id);
 	    
@@ -143,8 +171,38 @@ public class ProjectController {
 		
 		return "joinSuccess";
 	}
+	
 
+	//아이디 찾기
+	@ResponseBody
+	@RequestMapping(value = "/userFindId", method = RequestMethod.POST)
+	public String userFindId (@RequestBody Map<String, Object>param) {
+	String email = (String)param.get("email");
+	String findId =	memberService.userFindId(email);
+	
+	return findId;
+	}
 	
 	
+	
+	//비밀번호 찾기
+	@ResponseBody
+	@RequestMapping(value = "/userFindPassword" ,method = RequestMethod.POST)
+	public String userFindPassword(@RequestBody Map<String, Object> param) {
+		String findEmailCheckCode ="";
+		Map< String , Object> map =new HashMap<>();
+		map.put("id", param.get("id"));
+		map.put("email", param.get("email"));
+		
+		int memberCherck = memberService.userFindPassword(map);
+		
+		if(memberCherck == 1) {
+			findEmailCheckCode = mailService.findeMailCheck((String) param.get("email"));
+		}
+		
+		
+		return findEmailCheckCode;
+				
+	}
 	
 }

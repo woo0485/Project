@@ -7,22 +7,22 @@ public class Product {
 	private int productno;
 	private String productname;
 	private String productcontent;
-	private String productprice;
+	private int productprice;
 	private String productimage;
 	private String productlocation;
 	private Timestamp productopendate;
 	private Timestamp productclosedate;
 	private int productbookmarkcount;
 	private int productreadcount;
-	private String productticketcount;
-	private String productremainticketcount;
+	private int productticketcount;
+	private int productremainticketcount;
 	private String adminpassword;
 	
 	public Product() {}
 	
-	public Product(int productno,  String productname, String productcontent,  String productprice, String productimage, String productlocation, 
+	public Product(int productno,  String productname, String productcontent,  int productprice, String productimage, String productlocation, 
 			Timestamp productopendate, Timestamp productclosedate, 
-			int productbookmarkcount, int productreadcount, String productticketcount,  String productremainticketcount,
+			int productbookmarkcount, int productreadcount, int productticketcount,  int productremainticketcount,
 			String adminpassword) {
 		
 		this.productno = productno;
@@ -64,11 +64,11 @@ public class Product {
 		this.productcontent = productcontent;
 	}
 
-	public String getProductprice() {
+	public int getProductprice() {
 		return productprice;
 	}
 
-	public void setProductprice(String productprice) {
+	public void setProductprice(int productprice) {
 		this.productprice = productprice;
 	}
 
@@ -120,19 +120,19 @@ public class Product {
 		this.productreadcount = productreadcount;
 	}
 
-	public String getProductticketcount() {
+	public int getProductticketcount() {
 		return productticketcount;
 	}
 
-	public void setProductticketcount(String productticketcount) {
+	public void setProductticketcount(int productticketcount) {
 		this.productticketcount = productticketcount;
 	}
 
-	public String getProductremainticketcount() {
+	public int getProductremainticketcount() {
 		return productremainticketcount;
 	}
 
-	public void setProductremainticketcount(String productremainticketcount) {
+	public void setProductremainticketcount(int productremainticketcount) {
 		this.productremainticketcount = productremainticketcount;
 	}
 

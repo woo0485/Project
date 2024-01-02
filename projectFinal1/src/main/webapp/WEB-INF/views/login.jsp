@@ -3,11 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<div class="row mt-5">
+<div class="row mt-5 border-top" style="height: 500px;">
 	<div class="col-10 offset-1 mt-5">
 
 		<div class="row mt-5 container text-center">
-			<div class="col align-items-center">
+			<div class="col offset-1 mt-5 align-items-center">
 
 				<form action="loginFrom" method="post" id="loginFrom">
 					<div class="row offset-3">
@@ -40,10 +40,10 @@
 				</form>
 				<div class="row mt-5">
 					<div class="offset-3 col-2">
-						<a href="memberJoinPage">회원 가입</a> 
+						<a href="memberJoinPage" class="text-decoration-none link-dark fw-bold">회원 가입</a> 
 					</div>
-					<div class="col-3">
-						<a href="#">아이디/비밀번호 찾기</a>
+					<div class="col-4">
+						<a href="idPasswordFind" class="text-decoration-none link-dark fw-bold">아이디/비밀번호 찾기</a>
 					</div>
 				</div>
 				

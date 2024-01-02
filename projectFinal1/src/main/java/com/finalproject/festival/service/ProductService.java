@@ -3,6 +3,7 @@ package com.finalproject.festival.service;
 import java.util.List;
 import java.util.Map;
 
+import com.finalproject.festival.domain.Basket;
 import com.finalproject.festival.domain.Product;
 
 public interface ProductService {
@@ -24,5 +25,10 @@ public interface ProductService {
 	public abstract void updateProduct(Product p);
 	
 	public abstract void deleteProduct(int productno);
+	
+	///////////// 여기서부터는 장바구니 ///////////////
+	// 장바구니 페이지 상세보기
+	//public abstract Basket basketList(int basketno);
+	
 	
 }

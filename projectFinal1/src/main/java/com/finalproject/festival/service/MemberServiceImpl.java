@@ -1,8 +1,10 @@
 package com.finalproject.festival.service;
 
+
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.stereotype.Service;
 
 import com.finalproject.festival.dao.MemberDao;
@@ -14,23 +16,13 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDao memberDao;
 	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
 	
-	@Override
-	public boolean loginCheck(String id, String password) {
-		boolean result = false;
-		
-		
+	
+	
+	@Override//로그인확인
+	public Member loginCheck(String id) {
 		Member member =  memberDao.loginCheck(id);
-		System.out.println("매개변수 "+id+password);
-		System.out.println("service - loginCheck"+member.getId()+passwordEncoder.matches(password, member.getPassword()));
-		
-		if(member.getId().equals(id) && passwordEncoder.matches(password, member.getPassword())) {
-			result = true;
-		}
-		
-		return result;
+		return member;
 	}
 
 
@@ -43,7 +35,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int joinEmailCheck(String email) {
-		int emailCheck = memberDao.joinEmailCheck(email);
+		int emailCheck = memberDao.emailUserCount(email);
 		return emailCheck;
 	}
 
@@ -52,6 +44,19 @@ public class MemberServiceImpl implements MemberService {
 	public void joinMember(Member m) {
 		memberDao.joinMember(m);
 		
+	}
+
+
+	@Override
+	public String userFindId(String email) {
+		return memberDao.userFindId(email);
+	}
+
+
+	@Override
+	public int userFindPassword(Map<String, Object> map) {
+		
+		return memberDao.userFindPassword(map);
 	};
 
 
