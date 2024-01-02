@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.finalproject.festival.mapper.InquiryMapper">
+
+	<select id="getBoardCount" parameterType="hashmap" resultType="int">
+		SELECT
+			COUNT(questionNo)
+		FROM Question	
+		<where>
+			<if test="questionCategory != 'null'">
+				questionCategory = #{ questionCategory }
+			</if>
+		</where>
+	</select>
+
+	<resultMap id="inquiryMap" type="Manage" >
+		<id property="questionNo" column="questionNo" />
+		<result property="id" column="id" />
+		<result property="questionTitle" column="questionTitle" />
+		<result property="questionContent" column="questionContent" />
+		<result property="questionDate" column="questionDate" />
+		<result property="questionCategory" column="questionCategory" />
+		<result property="email" column="email" />
+	</resultMap>
+	
+	<select id="inquiry" resultType="Manage" resultMap="inquiryMap">
+		SELECT  * FROM Question 
+		<where>
+			<if test="questionCategory != 'null'">
+				questionCategory = #{ questionCategory }
+			</if>
+		</where>				
+		ORDER BY questionNo DESC
+		LIMIT #{start}, #{num}
+	</select>
+	
+	<insert id="insertInquiry" parameterType="Manage" useGeneratedKeys="true" keyProperty="questionNo">
+		INSERT INTO Question(id, questionTitle, questionContent, questionDate, questionCategory, email)
+		VALUES (#{id}, #{questionTitle}, #{questionContent}, SYSDATE(), #{questionCategory}, #{email} )
+	</insert>
+	
+	<select id="getInquiry" resultType="Manage" resultMap="inquiryMap">
+		SELECT * FROM Question
+		WHERE questionNo = #{questionNo}
+	</select>
+
+
+</mapper>	
+
+
+

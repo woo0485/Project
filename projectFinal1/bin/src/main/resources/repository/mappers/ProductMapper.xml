@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.finalproject.festival.mapper.ProductMapper" >
+	
+	<select id="productList" resultType="Product" parameterType="hashmap">
+		SELECT 
+			*
+		FROM Product 
+	<where>	
+			<if test="type == 'productname'">
+				productname LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'productlocation'">
+				productlocation LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'productcontent'">
+				productcontent LIKE CONCAT('%', #{keyword}, '%')
+			</if>	
+		</where>
+		ORDER BY productno DESC
+		LIMIT #{startRow}, #{num}
+	</select>
+	
+	<select id="getProductCount" parameterType="hashmap" resultType="int">
+		SELECT 
+			COUNT(productno) 
+		FROM Product
+		
+		<where>	
+			<if test="type == 'productname'">
+				productname LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'productlocation'">
+				productlocation LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'productcontent'">
+				productcontent LIKE CONCAT('%', #{keyword}, '%')
+			</if>	
+		</where>
+	</select>
+	
+	<select id="getProduct" resultType="Product" resultMap="productResultMap">
+		SELECT 
+		*
+		FROM Product
+		WHERE productno = #{productno}
+	</select>
+	
+		<insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="productno">
+		INSERT INTO Product(productname, productcontent, 
+				productimage, productlocation, productprice, productopendate, productclosedate, 
+				productticketcount,productremainticketcount,adminpassword)
+				
+			VALUES(#{productname}, #{productcontent}, 
+				 #{productimage}, #{productlocation}, #{productprice}, #{productopendate}, #{productclosedate},
+				  #{productticketcount}, #{productremainticketcount}, #{adminpassword})
+	</insert>
+	
+	<select id="isPassCheck" resultType="String">
+		SELECT 
+			adminpassword
+		FROM Product
+		WHERE productno = #{productno}
+	</select>
+	
+	<update id="updateProduct" parameterType="Product">
+		UPDATE Product 
+			SET productname = #{productname}, productcontent = #{productcontent}, 
+			productlocation=#{productlocation}, productprice=#{productprice}, 
+			productopendate=#{productopendate}, productclosedate=#{productclosedate},
+			productticketcount=#{productticketcount}, productremainticketcount=#{productremainticketcount}
+		WHERE productno = #{productno}
+	</update>
+	
+	<delete id="deleteProduct">
+		DELETE FROM Product
+		WHERE productno = #{productno}
+	</delete>
+	
+	<update id="readCount">
+		UPDATE Product
+			SET productreadcount = productreadcount + 1
+		WHERE productno = #{productno}
+	</update>
+	
+	<resultMap id="productResultMap" type="Product" >
+		<id property="productno" column="productno" />
+		<result property="productname" column="productname" />
+		<result property="productcontent" column="productcontent" />
+		<result property="productprice" column="productprice" />
+		<result property="productimage" column="productimage" />
+		<result property="productlocation" column="productlocation" />
+		<result property="productopendate" column="productopendate" />
+		<result property="productclosedate" column="productclosedate" />
+		<result property="productbookmarkcount" column="productbookmarkcount" />
+		<result property="productreadcount" column="productreadcount" />
+		<result property="productticketcount" column="productticketcount" />
+		<result property="productremainticketcount" column="productremainticketcount" />
+		<result property="adminpassword" column="adminpassword" />
+	</resultMap>
+	
+	
+</mapper>	
+
+
+

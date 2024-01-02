@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+	xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.1.xsd
+		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<annotation-driven />
+
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix"
+			value="/WEB-INF/index.jsp?bodydata=views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<view-controller path="/writeForm" view-name="writeForm" />
+		<view-controller path="/productWrite" view-name="writeForm" />
+		
+		<redirect-view-controller path="/write" redirect-url="/writeForm"/>
+
+	<context:component-scan
+		base-package="com.finalproject.festival" />
+		
+	<view-controller path="/noticeMain"	view-name="redirect:/manage/notice/noticeMain" />
+	<view-controller path="/noticeWrite" view-name="manage/notice/noticeWrite" />	
+	<view-controller path="/inquiryWrite" view-name="manage/inquiry/inquiryWrite" />
+	<view-controller path="/customerMain" view-name="manage/customer/customerMain" />
+	<view-controller path="/customerMain" view-name="redirect:/manage/customer/customerMain" />
+	<view-controller path="/manageMain" view-name="redirect:/manage/manageMain" />
+	<view-controller path="/informationUseMain" view-name="redirect:/manage/informationUse/informationUseMain" />
+	<view-controller path="/informationUseWrite" view-name="manage/informationUse/informationUseWrite" />
+	<view-controller path="/manageMember" view-name="redirect:/manage/manageMember" />
+	<view-controller path="/manageReservation" view-name="redirect:/manage/manageReservation" />
+	
+
+		
+
+
+</beans:beans>

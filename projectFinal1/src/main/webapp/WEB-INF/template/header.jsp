@@ -6,8 +6,7 @@
 	a:hover{ text-decoration:none;}
 </style>
 
-
-	<div class="row my-3 pt-5">
+<div class="row my-3 pt-5">
 		<div class="col-10 offset-1 ">
 			<div class="row offset-8">
 		 	<form class="d-flex" role="search">
@@ -83,7 +82,7 @@
 						          		</a>
 						           
 							          <ul class="dropdown-menu">
-							            <li><a class="dropdown-item" href="#">마이페이지</a></li>
+							            <li><a class="dropdown-item" href="myPageMain">마이페이지</a></li>
 							            <li><a class="dropdown-item" href="#">문의 하기</a></li>
 							           	<li><a class="dropdown-item" href="logout">로그아웃</a></li>
 							          </ul>
