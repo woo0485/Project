@@ -2,18 +2,46 @@
  * 
  */
   $(function(){
- 	
-	 	$("#categoryBar").mouseenter(function(){
-	 		$("#categoryBarDetail").slideDown('slow');
-	 	});
-	 	$("#categoryBarDetail").mouseleave(function(){
-	 		$("#categoryBarDetail").slideUp('slow');
-	 	});
- 		
+  
+ /*-----------------------main.js----------------------------------*/	
+	 	
+ 	// 선택자
+ 	/*
+	const sliderWrap = document.querySelector(".slider__wrap");
+	const sliderImg = sliderWrap.querySelector(".slider__img");             // 보여지는 영역
+	const sliderInner = sliderWrap.querySelector(".slider__inner");         // 움직이는 영역
+	const slider = sliderWrap.querySelectorAll(".slider");                  // 개별 이미지
+	
+	let currentIndex = 0;                                                   // 현재 보이는 이미지
+	let sliderCount = slider.length;                                        // 이미지 갯수
+	let sliderInterval = 3000;                                              // 이미지 변경 간격 시간
+	let sliderWidth = slider[0].clientWidth;                                // 이미지 가로값 구하기
+	let sliderClone = sliderInner.firstElementChild.cloneNode(true);        // 첫 번째 이미지 복사	
  
- 
- 
- /*---------------------member.js----------------------------------*/
+ sliderInner.append(sliderClone);
+
+        function sliderEffect(){
+            currentIndex++;
+
+            $(".slider__inner").css({
+                'transition': 'all 0.6s',
+                'transform': `translateX(-${sliderWidth * currentIndex}px)`
+            });
+
+            if(currentIndex == sliderCount){
+                setTimeout(() => {
+                    $(".slider__inner").css({
+                        'transition': '0s',
+                        'transform': 'translateX(0px)'
+                    });
+                }, 700);
+                currentIndex = 0;
+            }
+        };
+
+        setInterval(sliderEffect, sliderInterval);
+        */
+ /*-----------------------member.js--------------------------------*/
  
  
     
@@ -72,6 +100,8 @@
     	const regName = /[가-힣a-zA-Z]{2,15}$/;
  	// id
     	const regId = /[a-zA-Z0-9]{4,16}$/;
+    //email
+   		const regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
     	
  	//이름 유효성
  	$("#joinName").keyup(function(){
@@ -112,6 +142,7 @@
 	            url: "joinIdCheck",
 	            data: {"id" : id}, // JSON.stringify를 사용하여 객체 형태로 전달
 	            dataType : "text",
+	            async    : false,
 	            success: function (result) {
 	                if (result == 0) {
 	                    $("#joinIdMsg").text("사용가능한 아이디 입니다").css("color", "blue");
@@ -204,6 +235,7 @@
 			url : "mailCheck",
 			data : {"email" :email},
 			datatype :"text",
+			async    : false,
 			success : function (data) {
 				console.log("data : " +  data);
 				$("#eMailCheckMsg").text("인증번호가 전송되었습니다.").css("color", "green");
@@ -232,11 +264,11 @@
 			//회원가입 최종 유효검사
 			$("#memberJoinBtn").click(function(){
 				
-				if($("#joinName").attr("data-code") == "false"){
+				if($("#joinName").attr("data-code") === "false"){
 					$("#joinLastCheckMsg").text("이름을 다시 확인해 주세요").css("color","red");
 					return false;
 				}
-				if($("joinId").attr("data-code") == "false"){
+				if($("#joinId").attr("data-code") === "false"){
 				 	$("#joinLastCheckMsg").text("아이디를 다시 확인해 주세요").css("color","red");
 					return false;
 				}
@@ -245,15 +277,15 @@
 				
 			
 				
-				if($("joinPasswordCheck").attr("data-code") == "false"){
+				if($("#joinPasswordCheck").attr("data-code") === "false"){
 					$("#joinLastCheckMsg").text("비밀번호 확인을 다시 확인해 주세요").css("color","red");
 					return false;
 				}
-				if($("zipcode").attr("data-code") == "false"){
+				if($("#zipcode").attr("data-code") === "false"){
 					$("#joinLastCheckMsg").text("주소를 다시 확인해 주세요").css("color","red");
 					return false;
 				}
-				if($("eMailCodeCheck").attr("data-code") == "false"){
+				if($("#eMailCodeCheck").attr("data-code") === "false"){
 					$("#joinLastCheckMsg").text("이메일을 다시 확인해 주세요").css("color","red");
 					return false;
 				}
@@ -267,18 +299,9 @@
  	
  
  
+
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+ /*-------------------------login.js--------------------------------*/ 
  
  
  //로그인 
@@ -320,7 +343,7 @@
 		        "id": id,
 		        "password": password
 		    }),
-	        
+	        async    : false,
 	        success: function (result) {
 	            console.log("ajax-result" + result);
 	            if (result === 1) {
@@ -340,10 +363,138 @@
 
 });////로그인 end
  
+  /*-------------------------idPasswordFind.js--------------------------------*/
+  
+  
+  //아이디찾기
+  $("#FindIdBtn").click(function(){
+  	
+  	const email = $("#findIdEmail").val();
+  	
+  	if(! regEmail.test(email)){
+  		$("#findIdEmailMsg").text("이메일을 다시 확인해주세요.").css("color","red");
+  		return;
+  	}else{
+  	
+  	$.ajax({
+  		url : "userFindId",
+  		type : "post",
+  		data : JSON.stringify({"email" : email}),
+  		contentType: "application/json", // JSON 데이터 전송 시 필요
+  		dataType : "text",
+  		async    : false,
+  		success : function(data){
+  			if(data == ""){
+  				$("#findIdEmailMsg").text("아이디가 존재하지 않습니다.").css("color","red");
+  			}else{
+  				$("#findIdLavalEmail").text("회원 아이디 :");
+  				$("#findIdEmail").val(data).attr("readonly",true);
+  				$("#FindIdBtn").css("display","none");
+  				$("#moveLogin").removeAttr("hidden");
+  			}
+  		},
+  		error: function (jqXHR, textStatus, errorThrown) {
+	            console.log("login err"+"jqXHR "+jqXHR +"textStatus"+ textStatus + "errorThrown"+errorThrown);
+	        }
+  	
+	  	});//ajax end
+	  	
+	  	}
+	  	
+	  });
+	   
+  
+ 	//비번찾기 이동
+ 	$("#profile-tab").click(function(){
+ 		$("#findIdLavalEmail").text("이메일 :");
+		$("#findIdEmail").val("").attr("readonly",false);
+		$("#FindIdBtn").css("display","");
+		$("#moveLogin").attr("hidden",true);
+ 	});
+ 	
+ 	
+ 	//비밀번호 찾기(변경)
+ 	$("#FindPasswordBtn").click(function(){
+ 		
+ 		const id = $("#findPasswordId").val();
+ 		const email = $("#findPasswordEmail").val();
+ 		const findEmailCodeCheck = $('#findEmailCodeCheck').val() // 인증번호 입력하는곳 
+		const findEmailCheckCodeHidden = $("#findEmailCheckCodeHidden").val()
+		
+		if(! regId.test(id)){
+ 			$("#findPasswordMsg").text("아이디를 다시 확인해 주세요").css("color","red");
+ 			return;
+ 		}
+ 		if(! regEmail.test(email)){
+ 			$("#findPasswordMsg").text("이메일을 다시 확인해 주세요").css("color","red");
+ 			return;
+ 		}
+		
+		 	
+		
+		
+			$.ajax({
+		 			url: "userFindPassword",
+		 			type: "post",
+		 			data: JSON.stringify({"id": id, "email":email}),
+		 			contentType: "application/json",
+		 			async: false,
+		 			success:function(result){
+		 					console.log(result);
+		 				if(result != ""){
+		 					$("#findEmailCheckCodeHidden").val(result);
+		 					$("#findPasswordEmailCheck").css("display","block");
+		 					$("#findPasswordMsg").text("인증번호가 전송되었습니다").css("color","green");
+		 					$("#FindPasswordBtn").val("재전송");
+		 				}else{
+		 					$("#findPasswordMsg").text("아이디를 또는 이메일을 다시 확인해 주세요").css("color","red");
+		 				}
+		 				
+		 				
+		 			},
+		 			error(){
+		 			
+		 			}
+		 		
+		 		});//ajax end
+		
+		
+	}); // end 
+ 		
+ 	$("#findPasswordChangeTab").on("click",function(){
+ 		$("#findPasswordTab").css("display","none");
+ 	});//비밀번호 변경tab
+ 	
+ 	//비밀번호 변경탭
+ 	$('#findeMailCheckNumBtn').click(function() {
+ 		const findEmailCodeCheck = $('#findEmailCodeCheck').val() // 인증번호 입력하는곳 
+		const findEmailCheckCodeHidden = $("#findEmailCheckCodeHidden").val()
+		
+			if(findEmailCodeCheck != findEmailCheckCodeHidden){
+				$("#findPasswordMsg").text("인증번호가 일치하지않습니다.").css("color","red");
+				
+			}else{
+				$("#findPasswordChangeTab").css("display","block");
+				$("#findPasswordChangeTab").trigger("click");//비밀번호 변경tab
+				
+				
+				
+			}
+		
+ 		});//end	
+ 		
+ 	
+ 	
+ });//function end
+ 	
  
- });
  
- //js함수
+ /*-------------------------method.js--------------------------------*/
+ 
+ 
+ 
+ 
+ //우편번호
    function findAddr() {
         new daum.Postcode({
             oncomplete: function(data) {

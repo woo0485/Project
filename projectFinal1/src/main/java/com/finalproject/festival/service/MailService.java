@@ -10,5 +10,6 @@ public interface MailService {
 	
 	public void mailSend(String setFrom, String toMail, String title, String content);
 	
+	public String findeMailCheck(String email);
 
 }

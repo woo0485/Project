@@ -20,13 +20,11 @@ public class Manage {
 	private String questionDate;
 	private String questionCategory;
 	private String email;
-	
-	private int answerNo;
+	private String answerProgress;
 	private String answerTitle;
 	private String answerContent;
 	private String answerDate;
-	private String answerCategory;
-	private String answerProgress;
+	private String answerCategory;	
 	private String toEmail;
 	
 	private int informationUseNo;
@@ -41,7 +39,7 @@ public class Manage {
 	public Manage(String adminId, String adminPassword, String adminName, int noticeNo, String noticeTitle,
 			String noticeContent, String noticeImage, String noticeUploadDate, int questionNo, String id,
 			String questionTitle, String questionContent, String questionDate, String questionCategory, String email,
-			int answerNo, String answerTitle, String answerContent, String answerDate, String answerCategory,
+			String answerTitle, String answerContent, String answerDate, String answerCategory,
 			String answerProgress, String toEmail, int informationUseNo, String informationUseTitle,
 			String informationUseContent, String informationUseDate, String informationUseCategory,
 			String informationUseImage) {
@@ -61,7 +59,6 @@ public class Manage {
 		this.questionDate = questionDate;
 		this.questionCategory = questionCategory;
 		this.email = email;
-		this.answerNo = answerNo;
 		this.answerTitle = answerTitle;
 		this.answerContent = answerContent;
 		this.answerDate = answerDate;
@@ -196,14 +193,6 @@ public class Manage {
 		this.email = email;
 	}
 
-	public int getAnswerNo() {
-		return answerNo;
-	}
-
-	public void setAnswerNo(int answerNo) {
-		this.answerNo = answerNo;
-	}
-
 	public String getAnswerTitle() {
 		return answerTitle;
 	}
@@ -299,6 +288,9 @@ public class Manage {
 	public void setInformationUseImage(String informationUseImage) {
 		this.informationUseImage = informationUseImage;
 	}
+
+	
+	
 
 	
 

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.finalproject.festival.mapper.NoticeMapper" >
+
+	<select id="customerNotice" resultType="Manage" parameterType="hashmap">
+		SELECT
+			* 
+		FROM notice
+		ORDER BY noticeNo DESC
+		LIMIT 5
+	</select>
+
+
+	<resultMap id="noticeMap" type="Manage" >
+		<id property="noticeNo" column="noticeNo" />
+		<result property="noticeTitle" column="noticeTitle" />
+		<result property="noticeContent" column="noticeContent" />
+		<result property="noticeImage" column="noticeImage" />
+		<result property="noticeUploadDate" column="noticeUploadDate" />
+	</resultMap>
+	
+	<delete id="deleteNotice">
+		DELETE FROM notice
+		WHERE noticeNo = #{noticeNo}
+	</delete>
+	
+	<select id="getBoardCount" resultType="int">
+		SELECT 
+			COUNT(noticeNo) 
+		FROM notice
+	</select>
+	
+	<update id="updateNotice" parameterType="Manage">
+		UPDATE notice
+			SET noticeTitle = #{noticeTitle},
+				noticeContent = #{noticeContent},
+				noticeImage = #{noticeImage},
+				noticeUploadDate = SYSDATE()
+		WHERE noticeNo = #{noticeNo}		
+	</update>
+	
+	<insert id="insertNotice" parameterType="Manage" useGeneratedKeys="true" keyProperty="noticeNo">
+		INSERT INTO notice 
+		(noticeTitle, noticeContent, noticeImage, noticeUploadDate)
+		VALUES 
+		( #{noticeTitle}, #{noticeContent}, #{noticeImage}, SYSDATE() )
+	</insert>
+	
+	<select id="getNotice" resultType="Manage">
+		SELECT 
+			* 
+		FROM notice 
+		WHERE noticeNo = #{noticeNo}
+	</select>
+	
+	<select id="noticeList" resultType="Manage" parameterType="hashmap">
+		SELECT
+			* 
+		FROM notice
+		ORDER BY noticeNo DESC
+		LIMIT #{startRow}, #{num}
+	</select>
+	
+</mapper>	

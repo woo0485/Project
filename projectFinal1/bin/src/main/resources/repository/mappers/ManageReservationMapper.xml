@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.finalproject.festival.mapper.ManageReservationMapper" >
+
+	<select id="getBoardCount" resultType="int">
+		SELECT
+			COUNT(reservationno)
+		FROM Reservation
+		
+		<where>
+			<if test="type == 'reservationno'">
+				reservationno LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'id'">
+				id LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'reservationdate'">
+				reservationdate LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+		</where>
+	
+	</select>
+
+	<resultMap id="ManageReservationMap" type="Reservation" >
+		<id property="reservationno" column="reservationno" />
+		<result property="id" column="id" />
+		<result property="productno" column="productno" />
+		<result property="reservationprice" column="reservationprice" />
+		<result property="reservationticketcount" column="reservationticketcount" />
+		<result property="reservationdate" column="reservationdate" />
+	</resultMap>
+	
+	<select id="manageReservation" resultType="Reservation" resultMap="ManageReservationMap">
+		SELECT
+			*
+		FROM Reservation
+		
+		<where>
+			<if test="type == 'reservationno'">
+				reservationno LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'id'">
+				id LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'reservationdate'">
+				reservationdate LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+		</where>
+		
+		ORDER BY reservationno DESC
+		LIMIT #{start}, #{num}
+	</select>
+	
+	<select id="getManageReservation" resultType="Reservation" resultMap="ManageReservationMap">
+		SELECT
+			*
+		FROM Reservation
+		WHERE reservationno = #{reservationno}
+	</select>
+	
+	<update id="updateManageReservation" parameterType="Reservation">
+		UPDATE Reservation
+		SET reservationno = #{reservationno} , id = #{id} , 
+			productno = #{productno}, reservationprice = #{reservationprice}, 
+			reservationticketcount = #{reservationticketcount}, reservationdate = #{reservationdate} 
+		WHERE reservationno = #{reservationno}
+	</update>
+	
+	<delete id="deleteManageReservation" parameterType="int">
+		DELETE FROM Reservation
+		WHERE reservationno = #{reservationno}
+	</delete>
+
+</mapper>	
+
+
+

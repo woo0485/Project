@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.finalproject.festival.mapper.MemberMapper" >
+
+	<select id="userCheck" resultType="Member"  >
+		SELECT * From Member WHERE id = #{id}
+	</select>
+	<select id="overlapCheck" resultType="Integer"  >
+		SELECT COUNT(*)  From Member WHERE id = #{id} OR email = #{email}
+	</select>
+
+
+	<insert id="joinMember" parameterType="Member">
+		INSERT INTO Member (name, id, phonenumber, password, zipcode,address1,address2,email,joindate) 
+					VALUES(#{name},#{id},#{phonenumber},#{password},#{zipcode},
+									#{address1},#{address2},#{email},SYSDATE())
+	</insert>
+	
+</mapper>	
+
+
+

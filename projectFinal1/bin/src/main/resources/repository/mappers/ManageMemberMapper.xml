@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.finalproject.festival.mapper.ManageMemberMapper" >
+
+
+	<select id="getBoardCount" parameterType="hashmap" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM Member	
+		
+		<where>
+			<if test="type == 'id'">
+				id LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'name'">
+				name LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'grade'">
+				grade LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+		</where>
+		
+	</select>
+
+	<resultMap id="ManageMemberMap" type="Festival" >
+		<id property="id" column="id" />
+		<result property="password" column="password" />
+		<result property="name" column="name" />
+		<result property="phonenumber" column="phonenumber" />
+		<result property="email" column="email" />
+		<result property="totalpay" column="totalpay" />
+		<result property="grade" column="grade" />
+		<result property="joindate" column="joindate" />
+	</resultMap>
+	
+	<select id="manageMember" resultType="Festival" parameterType="hashmap">
+		SELECT
+			*
+		FROM Member
+		
+		<where>
+			<if test="type == 'id'">
+				id LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'name'">
+				name LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'grade'">
+				grade LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+		</where>
+		
+		ORDER BY joindate DESC
+		LIMIT #{start}, #{num}
+	</select>
+	
+	<select id="getManageMember" resultType="Festival" resultMap="ManageMemberMap">
+		SELECT
+			*
+		FROM Member
+		WHERE id = #{id}
+	</select>
+	
+	<update id="updateManageMember" parameterType="Festival">
+		UPDATE Member
+		SET id = #{id}, name = #{name}, phonenumber = #{phonenumber},
+			email = #{email}, totalpay = #{totalpay}, grade = #{grade}
+		WHERE id = #{id}
+	</update>
+	
+	<delete id="deleteManageMember">
+		DELETE FROM Member
+		WHERE id = #{id}
+	</delete>
+	
+	
+
+	
+</mapper>	
+
+
+

@@ -10,40 +10,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.finalproject.festival.domain.Festival;
+import com.finalproject.festival.domain.Product;
+import com.finalproject.festival.domain.Sales;
 import com.finalproject.festival.manage.service.ManageMemberService;
+import com.finalproject.festival.manage.service.ManageProductCountService;
+import com.finalproject.festival.manage.service.ManageSalesService;
 import com.finalproject.festival.manage.service.NoticeService;
 
 @Controller
 public class ManageController {
 	
 	@Autowired
-	private ManageMemberService manageMemberService;
+	private ManageSalesService manageSalesService;
 	
-	// 이벤트 관리 페이지
-	@RequestMapping("/manageEvent")
-	public String manageEvent(){
-		
-		return "manage/manageEvent";
-	}
-	
-	// 축제 관리 페이지
-	@RequestMapping("/manageFestival")
-	public String manageFestival(){
-		
-		return "manage/manageFestival";
-	}
-	
-	
-	// 매출 관리 페이지
-	@RequestMapping("/manageSales")
-	public String manageSales(){
-		
-		return "manage/manageSales";
-	}
+	@Autowired
+	private ManageProductCountService manageProductCountService;
 	
 	//관리자 메인 페이지
 	@RequestMapping("/manageMain")
-	public String manageMain(){
+	public String manageMain(Model model){
+		
+		List<Sales> salesList = manageSalesService.salesList();
+		List<Product> manageProductCountList = manageProductCountService.manageProductCount5();
+		
+		model.addAttribute("salesList", salesList);
+		model.addAttribute("manageProductCountList", manageProductCountList);
 		
 		return "manage/manageMain";
 	}

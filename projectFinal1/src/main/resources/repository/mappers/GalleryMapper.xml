@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.finalproject.festival.mapper.GalleryMapper" >
+
+	<insert id="insertGallery" parameterType="java.util.HashMap">
+		INSERT INTO Gallery (id,gallerytitle,gallerycontent,galleryimage,gallerywriter,galleryuploaddate,gallerygoodcount) VALUES (#{gallery.id}, #{gallery.gallerytitle}, #{gallery.gallerycontent}, #{sqlimage}, #{gallery.gallerywriter}, SYSDATE(),0)
+	</insert>
+	
+	<select id="Gallery" resultMap="galleryResultMap">
+		SELECT * FROM Gallery
+	</select>
+	
+	<resultMap id="galleryResultMap" type="Gallery">
+		<result property="id" column="id"/>
+		<result property="gallerytitle" column="gallerytitle"/>
+		<result property="gallerycontent" column="gallerycontent"/>
+		<result property="gallerywriter" column="gallerywriter"/>
+		<result property="gallerygoodcount" column="gallerygoodcount"/>
+		<result property="galleryuploaddate" column="galleryuploaddate"/>
+		<result property="galleryno" column="galleryno"/>
+        <result property="galleryimage" column="galleryimage" jdbcType="VARCHAR" javaType="java.lang.String" typeHandler="com.finalproject.typeHandler.StringArrayTypeHandler"/>
+    </resultMap>
+	
+</mapper>	
+
+
+
