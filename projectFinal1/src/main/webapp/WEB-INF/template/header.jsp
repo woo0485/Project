@@ -62,6 +62,7 @@
 					          	</a>
 					           
 					          <ul class="dropdown-menu">
+					          <li><a class="dropdown-item" href="customerMain">고객 센터</a></li>
 					            <li><a class="dropdown-item" href="noticeMain">공지 사항</a></li>
 					            <li><a class="dropdown-item" href="inquiryWrite">문의 하기</a></li>
 					           	<li><a class="dropdown-item" href="informationUseMain">이용  안내</a></li>
@@ -82,7 +83,7 @@
 						          		</a>
 						           
 							          <ul class="dropdown-menu">
-							            <li><a class="dropdown-item" href="myPageMain">마이페이지</a></li>
+							            <li><a class="dropdown-item" href="myPageMain?id=${sessionScope.id}">마이페이지</a></li>
 							            <li><a class="dropdown-item" href="#">문의 하기</a></li>
 							           	<li><a class="dropdown-item" href="logout">로그아웃</a></li>
 							          </ul>
