@@ -104,8 +104,10 @@ public class ProjectController {
 		boolean result = false;
 		
 		System.out.println("login-map:::::"+user);
+		String userId = (String)user.get("id");
+		String userPassword =(String)user.get("password");
 		
-		if(user.get("id").equals(id) && passwordEncoder.matches(password, (String)user.get("password"))) {
+		if(userId.equals(id) && passwordEncoder.matches(password,userPassword )) {
 			result = true;
 		}
 		
