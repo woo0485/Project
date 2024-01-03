@@ -28,9 +28,5 @@ public interface ProductDao {
 	
 	public abstract void deleteProduct(int productno);
 	
-	///////////// 여기서부터는 장바구니 ///////////////
-	// 장바구니에서 담은 목록 보기
-	//public abstract Basket basketList(int basketno);
-	
 	
 }

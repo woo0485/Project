@@ -84,7 +84,7 @@
 			SET productreadcount = productreadcount + 1
 		WHERE productno = #{productno}
 	</update>
-	
+
 	<resultMap id="productResultMap" type="Product" >
 		<id property="productno" column="productno" />
 		<result property="productname" column="productname" />

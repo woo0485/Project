@@ -26,9 +26,5 @@ public interface ProductService {
 	
 	public abstract void deleteProduct(int productno);
 	
-	///////////// 여기서부터는 장바구니 ///////////////
-	// 장바구니 페이지 상세보기
-	//public abstract Basket basketList(int basketno);
-	
 	
 }

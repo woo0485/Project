@@ -75,7 +75,6 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public void updateProduct(Product p) {
 		sqlSession.update(NAME_SPACE + ".updateProduct", p);
-		
 	}
 
 	@Override
@@ -83,7 +82,6 @@ public class ProductDaoImpl implements ProductDao {
 		sqlSession.delete(NAME_SPACE + ".deleteProduct", productno);
 		
 	}
-	
-	
 
+	
 }

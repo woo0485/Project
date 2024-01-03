@@ -13,7 +13,7 @@ public interface BasketService {
 	
 	// 장바구니 목록 보기 - 1월 3일
 		//public List<Basket> basketList(String id);
-		public abstract Map<String, Object> basketList(String id);
+		public abstract List<Map<String,Object>> basketList(String id, int productno);
 		
 		/*
 	// 장바구니 확인 - 1월 3일

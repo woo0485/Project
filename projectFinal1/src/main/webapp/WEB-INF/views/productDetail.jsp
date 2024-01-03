@@ -40,9 +40,9 @@
 			<input type="hidden" name="productno" id="productno" value="${product.productno}"> 
 			<input type="hidden" name="basketproductcount"  id="basketproductcount">
 			 -->
-			 <input type="hidden" name="id" id="rId"> 
+			 <input type="hidden" name="id" id="rId" value="${sessionScope.id}">
 			<input type="hidden" name="basketno"  id="basketno"  value="${basket.basketno}"> 
-			<input type="hidden" name="productno" id="productno" value="${product.productno}"> 
+			<input type="hidden" name="productno" id="productno01" value="${product.productno}"> 
 <!-- @@@@@@@@ 게시 글 상세보기 영역  @@@@@@@@@@-->
 		<table>
 		<tr>

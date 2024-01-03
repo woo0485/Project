@@ -1,6 +1,5 @@
 package com.finalproject.festival.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,14 +35,9 @@ public class BasketServiceImpl implements BasketService {
 		return basketList;
 	} */
 	@Override
-	public Map<String, Object> basketList(String id) {
-		Map<String, Object> modelMap = new HashMap<String, Object>();
-		List<Basket> basketList = BD.basketList(id);
-		
-		modelMap.put("id", id);
-		modelMap.put("basketList", basketList);
-		System.out.println("장바구니서비스 -아이디 : "+ id );	
-		return modelMap;
+	public 	List<Map<String,Object>> basketList(String id, int productno) {
+
+		return BD.basketList(id, productno);
 	}
 	
 	/*

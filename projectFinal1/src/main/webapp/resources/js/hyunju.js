@@ -1,13 +1,6 @@
 $(function() {
 ////////////////  여기는 장바구니   ///////////////////////
-$("#productDetail").on("submit", function() {
-		if($("#basketproductcount").val().length <= 0) {
-			alert("티켓 수량이 입력되지 않았습니다.\n수량을 입력해주세요");
-			$("#basketproductcount").focus();
-			return false;
-		}
-	});
-	
+
 	$("#basket").on("submit", function() {
 		var keyword = $("#keyword").val();
 		if(keyword.length <= 0) {

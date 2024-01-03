@@ -5,20 +5,39 @@
 <mapper namespace="com.finalproject.festival.mapper.BasketMapper" >
 	
 	<!--  장바구니 목록보기 mysql OK -->
-	<select id="basketList" resultType="Basket" >
-		SELECT 
-		b.basketno AS basketno,
-		m.id AS id,
-		p.productno AS productno,
-		b.basketproductcount,
-		p.productprice AS productprice
-		
-		FROM ShoppingBasket b, Product p, Member m
-		
-		WHERE b.productno = p.productno
-		AND b.id = m.id
-		ORDER BY
-		b.basketno
+	<select id="basketList" resultType="hashmap"  parameterType="Map">
+	SELECT 
+    sb.basketno AS basketno,
+    sb.productno AS basketProductNo,
+    sb.id AS memberId,
+    sb.basketproductcount AS basketProductCount,
+    m.name AS memberName,
+    m.phonenumber AS memberPhoneNumber,
+    m.email AS memberEmail,
+    m.totalpay AS memberTotalPay,
+    m.grade AS memberGrade,
+    m.joindate AS memberJoinDate,
+    m.address1 AS memberAddress1,
+    m.address2 AS memberAddress2,
+    m.zipcode AS memberZipcode,
+    p.productno AS productNo,
+    p.productname AS productName,
+    p.productcontent AS productContent,
+    p.productimage AS productImage,
+    p.productlocation AS productLocation,
+    p.productopendate AS productOpenDate,
+    p.productclosedate AS productCloseDate,
+    p.productbookmarkcount AS productBookmarkCount,
+    p.productreadcount AS productReadCount,
+    p.productticketcount AS productTicketCount,
+    p.productremainticketcount AS productRemainTicketCount,
+    p.productprice AS productPrice
+    
+FROM ShoppingBasket sb
+JOIN Member m ON sb.id = m.id
+JOIN Product p ON sb.productno = p.productno
+WHERE sb.id = #{id}
+ORDER BY sb.basketno
 	</select>
 	
 	<!-- 장바구니 확인하기 mysql OK -->

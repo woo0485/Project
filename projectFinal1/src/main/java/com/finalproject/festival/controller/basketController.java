@@ -45,16 +45,15 @@ public class basketController {
 	
 	// 장바구니 목록 보여지는 것 - 1월 3일 ) 회원 아이디로
 	@RequestMapping(value = {"/basket"}, method= RequestMethod.POST)
-	public String basketList ( HttpSession session, Model m,
-			@RequestParam(value =  "id") String id) {
+	public String basketList (Model m, String id, int productno	) {
+	//	System.out.println("장바구니컨트롤러 세션 아이디" + session.getAttribute("id"));
 		
-		System.out.println("장바구니컨트롤러 세션 아이디" + session.getAttribute("id"));
+		List<Map<String,Object>> basketList = bs.basketList(id, productno);
+			
+		System.out.println(basketList.get(0).get(""));
 		
-		Map<String, Object> modelMap = bs.basketList(id);
-		//List<Basket> bList  = (List<Basket>) session.getAttribute("id");
-		System.out.println("장바구니컨트롤러 -회원아이디 : " + id);	
+		m.addAttribute("basketList",basketList);
 		
-		m.addAllAttributes(modelMap);
 		return "basket";
 	}
 	

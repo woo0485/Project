@@ -109,10 +109,6 @@ public class ProductServieImpl implements ProductService {
 	public void deleteProduct(int productno) {
 		PD.deleteProduct(productno);
 	}
-//////////////////// 여기서부터는 장바구니
-	//@Override
-	//public Basket basketList(int basketno) {
-	//	return PD.basketList(basketno);
-//	}
+
 
 }

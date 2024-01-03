@@ -36,8 +36,13 @@ public void setSqlSession(SqlSessionTemplate sqlSession) {
 
 // 회원 장바구니 목록보기 - 1월 3일 추가
 @Override
-public List<Basket> basketList(String id) {
-	return sqlSession.selectList(NAME_SPACE + ".basketList", id);
+public List<Map<String,Object>> basketList(String id, int productno) {
+	
+	Map<String, Object> map = new HashMap<>();
+	map.put("id", id);
+	map.put("productno",productno);
+	
+	return sqlSession.selectList(NAME_SPACE + ".basketList",map);
 }
 
 /*

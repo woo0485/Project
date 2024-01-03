@@ -5,8 +5,10 @@
 <link href="resources/css/hyunju.css" rel="stylesheet" >
 <script src="resources/js/jquery-3.2.1.min.js"></script>
 <script src="resources/js/hyunju.js"></script>
-<c:forEach var="p" items="${productList}" varStatus="status">
-${p.productname }
+
+<c:forEach var="p" items="${productList}" >
+<c:forEach var="b" items="${dsasds}">
+</c:forEach>
 </c:forEach>
 
 <!-- https://doublesprogramming.tistory.com/137 -->
@@ -24,20 +26,26 @@ ${p.productname }
 			</tr>		
 			</thead>
 			
+		<!-- @@@@@@@@@@@  상품 주문으로 가는 폼  @@@@@@@@@@@@@@@ -->
+		<form name="basketOrder" id="basketOrder" action="post" >
 		<tbody>
-		<c:forEach var="b" items="${basketList}" varStatus="status">
+		<c:forEach var="b" items="${basketList}" >
 			<tr>
 				<td>
 					<input type="checkbox"  name="checkbox">
 				</td>
-				
-				<td>
-					${ p.productname }
+			<td>
+					<img src="${b.productImage}"  width="50" height="50" />
 				</td>
 				
 				<td>
-					<img src="${p.productimage}"  width="50" height="50" />
+					${ b.productName }
 				</td>
+				
+				<td>
+					${ b.productPrice }
+				</td>
+		
 				<td><span>0</span>원</td>
 				
 				<td>
@@ -52,8 +60,8 @@ ${p.productname }
 			</tr>
 			</c:forEach>
 		</tbody>
+		</form>
 		</table>
-		
 		<!--  여기까지 상품정보테이블이였다. -->
 		<br><br>
 		<div>
@@ -78,10 +86,13 @@ ${p.productname }
 			<td>0 원</td>
 		</tr>
 		</table>
-	<!--  결제예정금액 테이블 끝--><br>
+	
+	<!-- @@@@@@@@@@@  상품 주문으로 가는 폼  @@@@@@@@@@@@@@@ -->
+	<br>
+	<!--  상품 주문으로 가는 폼 -->
 		
 		<div>
-			<button>전체상품주문</button>
+			<input type="submit" value="전체상품주문테스트" class="btn btn-primary">
 			<button>선택상품주문</button>
 		</div>
 	
