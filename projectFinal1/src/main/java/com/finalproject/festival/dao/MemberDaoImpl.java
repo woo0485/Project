@@ -45,12 +45,12 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public String userFindId(String email) {
+	public String userFindId(Map<String, Object> userfind) {
 		String findId ="";
-		int result = st.selectOne(NAME_SPACE+".userCount",email);
+		int result = st.selectOne(NAME_SPACE+".userFindId",userfind);
 		
 		if(result == 1) {
-			Member m = st.selectOne(NAME_SPACE+".userCheck", email);
+			Member m = st.selectOne(NAME_SPACE+".userCheck", userfind.get("email"));
 			findId = m.getId();
 		}
 		return findId;
@@ -60,6 +60,12 @@ public class MemberDaoImpl implements MemberDao {
 	public int userFindPassword(Map<String, Object> map) {
 		
 		return st.selectOne(NAME_SPACE+".userFindPassword", map);
+	}
+
+	@Override
+	public int userNewPassword(Map<String, Object> newPassword) {
+		
+		return  st.update(NAME_SPACE+".UserNewPassword"+newPassword);
 	} 
 
 

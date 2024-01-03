@@ -11,6 +11,7 @@ public interface MemberService {
 	public int joinIdCheck (String id);
 	public int joinEmailCheck (String email);
 	public void joinMember (Member m);
-	public String userFindId (String email);
+	public String userFindId (Map<String, Object> userfind);
 	public int userFindPassword (Map<String , Object> map);
+	public int userNewPassword(Map<String, Object> newPassword);
 }

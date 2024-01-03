@@ -48,8 +48,8 @@ public class MemberServiceImpl implements MemberService {
 
 
 	@Override
-	public String userFindId(String email) {
-		return memberDao.userFindId(email);
+	public String userFindId(Map<String, Object> userfind) {
+		return memberDao.userFindId(userfind);
 	}
 
 
@@ -57,6 +57,13 @@ public class MemberServiceImpl implements MemberService {
 	public int userFindPassword(Map<String, Object> map) {
 		
 		return memberDao.userFindPassword(map);
+	}
+
+
+	@Override
+	public int userNewPassword(Map<String, Object> newPassword) {
+		
+		return memberDao.userNewPassword(newPassword);
 	};
 
 
