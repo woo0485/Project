@@ -76,9 +76,9 @@ public class MailServiceImpl implements MailService {
 		makeRandomNumber();
 		String setFrom = ".com";
 		String toMail = email;
-		String title = "GALAGO 비밀번호 찾기 인증 메일 입니다.";
+		String title = "GALAGO 인증 메일 입니다.";
 		String content =
-				"GALAGO 홈페이지 비밀번호 찾기 인증 메일 입니다." + 	//html 형식으로 작성 ! 
+				"GALAGO 홈페이지  인증 메일 입니다." + 	//html 형식으로 작성 ! 
 		                "<br><br>" + 
 					    "인증 번호는 " + authNumber + "입니다." + 
 					    "<br>" + 

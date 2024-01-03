@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link href="resources/css/hyunju.css" rel="stylesheet">
+<link href="resources/css/hyunju.css" rel="stylesheet" >
 <script src="resources/js/jquery-3.2.1.min.js"></script>
-<script src="resources/js/HyunJu.js"></script>
+<script src="resources/js/hyunju.js"></script>
 
 <!-- content -->
 <div class="row my-5" id="global-content">
@@ -27,6 +27,7 @@
 		</form>
 <!--  검색 폼 -->			
 <!--  캐러셀 -->
+<div class="carousel">
 	<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" >
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="2000">
@@ -48,12 +49,24 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-<!--  캐러셀  끝-->	 		
-<!-- 축제정보 등록 -->
+</div>
+<!--  캐러셀  끝-->	 	
+	
+<!--/////////////      축제정보 등록      /////////////-->
+<!-- 관리자 로그인 XXXXXX  (임시로 관리자 로그인되었을 때 안되었을 때 둘 다 보이게 함 최종때는 수정할 것임)-->	
+	 <c:if test="${empty sessionScope.adminid}">
 		<div class="col-12 text-end">
 				<a href="writeForm" class="btn btn-outline-success">축제정보 등록</a>
 		</div>
-<!-- 축제정보 등록 끝-->
+		</c:if>
+<!-- 관리자 로그인되었을 때  OOOOO-->							
+	<c:if test="${not empty sessionScope.adminid}">
+	<div class="col-12 text-end">
+				<a href="writeForm" class="btn btn-outline-success">축제정보 등록</a>
+		</div>
+	</c:if>
+<!-- ///////////////     축제정보 등록 끝      //////////////-->
+
 		<!-- 검색 요청일 경우 아래를 화면에 표시 -->	
 		<c:if test="${ searchOption }">			
 			<div class="row my-3">

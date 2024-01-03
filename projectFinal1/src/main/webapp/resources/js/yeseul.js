@@ -102,7 +102,9 @@
     	const regId = /[a-zA-Z0-9]{4,16}$/;
     //email
    		const regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    	
+    //password
+    	const regPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/;
+    		
  	//이름 유효성
  	$("#joinName").keyup(function(){
  		const name = $("#joinName").val();
@@ -229,21 +231,46 @@
 		console.log('js완성된 이메일 : ' + email); // 이메일 오는지 확인
 		
 		
-		
-		$.ajax({
-			type : 'post',
-			url : "mailCheck",
-			data : {"email" :email},
-			datatype :"text",
-			async    : false,
-			success : function (data) {
-				console.log("data : " +  data);
-				$("#eMailCheckMsg").text("인증번호가 전송되었습니다.").css("color", "green");
-				$("#eMailCheckLi").slideDown('slow');
-				$("#eMailCheckCode").val(data);
-			}		
-		}); // end ajax
-		
+			    $.ajax({
+					type : 'post',
+					url : "joinEmailCheck",
+					data : {"email" :email},
+					datatype :"text",
+					
+					async    : false,
+					success : function (data) {
+					    
+						console.log("join이메일 ajax 첫번째 성공"+data); // 성공하면
+						if(data == 1){
+						$("#eMailCheckMsg").text("사용중인 이메일입니다.").css("color", "red");
+						return;
+						}else{
+						$.ajax({
+							type : 'post',
+							url : "mailCheck",
+							data : {"email" :email},
+							datatype :"text",
+							async    : false,
+							success : function (data2) {
+								console.log("ajax2-data2 : " +  data2);
+								$("#eMailCheckMsg").text("인증번호가 전송되었습니다.").css("color", "green");
+								$("#eMailCheckLi").slideDown('slow');
+								$("#eMailCheckBtn").val("재전송");
+								$("#eMailCheckCode").val(data);
+							   
+							},
+					            error: function(xhr, status, error) {
+					              
+					                console.log(xhr.responseText); // 실패하면
+					            }
+					        });
+						}
+			        },
+			        error: function(xhr, status, error) {
+			      
+			            console.log("ajax1"+xhr.responseText); // ajax1-실패하면
+			        }
+			    });//ajax  end
 		
 	}); // end send eamil
 	
@@ -370,27 +397,54 @@
   $("#FindIdBtn").click(function(){
   	
   	const email = $("#findIdEmail").val();
+  	const name = $("#findIdName").val();
   	
+ 
+  	
+  	if(! regName.test(name)){
+  	$("#findIdEmailMsg").text("이름을 다시 확인해주세요.").css("color","red");
+  		return;
+  	}
   	if(! regEmail.test(email)){
   		$("#findIdEmailMsg").text("이메일을 다시 확인해주세요.").css("color","red");
   		return;
-  	}else{
+  	}
   	
   	$.ajax({
   		url : "userFindId",
   		type : "post",
-  		data : JSON.stringify({"email" : email}),
+  		data : JSON.stringify({"email" : email, "name":name}),
   		contentType: "application/json", // JSON 데이터 전송 시 필요
   		dataType : "text",
   		async    : false,
   		success : function(data){
   			if(data == ""){
-  				$("#findIdEmailMsg").text("아이디가 존재하지 않습니다.").css("color","red");
+  				$("#findIdEmailMsg").text("이름 또는 이메일을 다시 확인해주세요.").css("color","red");
   			}else{
-  				$("#findIdLavalEmail").text("회원 아이디 :");
-  				$("#findIdEmail").val(data).attr("readonly",true);
-  				$("#FindIdBtn").css("display","none");
-  				$("#moveLogin").removeAttr("hidden");
+  			$("#findId").val(data);
+  			
+  			$.ajax({
+							type : 'post',
+							url : "userFindCoed",
+							data : JSON.stringify({"email" :email}),
+							contentType: "application/json",
+							datatype :"text",
+							async    : false,
+							success : function (data2) {
+								
+								console.log("ajax2-data2 : " +  data2);
+  								$("#findIdEmailCheck").removeAttr("hidden");
+								$("#findIdEmailCheck").slideDown('slow');
+								$("#findIdEmailMsg").text("인증번호가 전송되었습니다.").css("color", "green");
+								$("#FindIdBtn").val("재전송");
+								$("#findIdEmailCheckCodeHidden").val(data2);
+							   
+							},
+					            error: function(xhr, status, error) {
+					              
+					                console.log(xhr.responseText); // 실패하면
+					            }
+					        });
   			}
   		},
   		error: function (jqXHR, textStatus, errorThrown) {
@@ -399,18 +453,63 @@
   	
 	  	});//ajax end
 	  	
-	  	}
+  				
 	  	
 	  });
 	   
+  $("#findIdEmailCheckNumBtn").click(function(){
+  
+  	if($("#findIdEmailCheckCodeHidden").val() == $("#findIdEmailCodeCheck").val()){
+  				$("#home-tab-pane1").attr("hidden",true);
+  				$("#home-tab").attr("data-bs-target","#home-tab-pane2");
+  				$("#home-tab-pane2").removeAttr("hidden");
+	  	
+  	}else{
+  		$("#findIdEmailMsg").text("인증번호가 일치하지않습니다.").css("color","red");
+  	}
+  
+  
+  });
+  
+  
+  
+  
   
  	//비번찾기 이동
  	$("#profile-tab").click(function(){
- 		$("#findIdLavalEmail").text("이메일 :");
-		$("#findIdEmail").val("").attr("readonly",false);
-		$("#FindIdBtn").css("display","");
-		$("#moveLogin").attr("hidden",true);
+ 			$("#findIdDiv").attr("hidden","");
+	  		$("#home-tab").attr("data-bs-target","#home-tab-pane1");
+	  		$("#profile-tab-pane1").removeAttr("hidden");
+	  		$("#findIdName").val("");
+	  		$("#findIdEmail").val("");
+	  		$("#findIdEmailCodeCheck").val("");
+	  		$("#home-tab-pane1").removeAttr("hidden");
+	  	
+	  		$("#findIdEmailMsg").text("");
+	  		$("#FindIdBtn").val("이메일 인증하기");
+ 			$("#findIdEmailCheck").attr("hidden","")
+ 			
+	 	
  	});
+ 	
+ 	
+ 		//아이디찾기 이동
+ 		$("#home-tab").click(function(){
+ 		$("#findIdDiv").removeAttr("hidden");
+ 		$("#profile-tab-pane2").attr("hidden","");
+ 		$("#findPasswordId").val("");
+ 		$("#findPasswordEmail").val("");
+ 		$('#findEmailCodeCheck').val("");
+ 		$("#profile-tab").attr("data-bs-target","#profile-tab-pane1");
+ 		$("#profile-tab-pane1").attr("hidden","");
+ 		
+ 		$("#profile-tab-pane3").attr("hidden","");
+ 		$("#findPasswordEmailCheckDiv").attr("hidden","");
+ 		$("#profile-tab").text("비밀번호 찾기");
+ 		$("#FindPasswordBtn").val("이메일 인증하기");
+ 	});
+ 	
+ 
  	
  	
  	//비밀번호 찾기(변경)
@@ -421,6 +520,8 @@
  		const findEmailCodeCheck = $('#findEmailCodeCheck').val() // 인증번호 입력하는곳 
 		const findEmailCheckCodeHidden = $("#findEmailCheckCodeHidden").val()
 		
+		
+		
 		if(! regId.test(id)){
  			$("#findPasswordMsg").text("아이디를 다시 확인해 주세요").css("color","red");
  			return;
@@ -430,59 +531,102 @@
  			return;
  		}
 		
-		 	
-		
-		
-			$.ajax({
+		 	$.ajax({
 		 			url: "userFindPassword",
 		 			type: "post",
 		 			data: JSON.stringify({"id": id, "email":email}),
 		 			contentType: "application/json",
 		 			async: false,
 		 			success:function(result){
-		 					console.log(result);
+		 					
 		 				if(result != ""){
 		 					$("#findEmailCheckCodeHidden").val(result);
-		 					$("#findPasswordEmailCheck").css("display","block");
-		 					$("#findPasswordMsg").text("인증번호가 전송되었습니다").css("color","green");
+		 					$("#findPasswordEmailCheckDiv").removeAttr("hidden");
+		 					$("#findPasswordMsg1").text("인증번호가 전송되었습니다").css("color","green");
 		 					$("#FindPasswordBtn").val("재전송");
 		 				}else{
-		 					$("#findPasswordMsg").text("아이디를 또는 이메일을 다시 확인해 주세요").css("color","red");
+		 					$("#findPasswordMsg1").text("아이디를 또는 이메일을 다시 확인해 주세요").css("color","red");
+		 					$("#findPasswordEmailCheck").css("display","");
 		 				}
 		 				
 		 				
 		 			},
-		 			error(){
-		 			
-		 			}
+		 			error: function(xhr, status, error) {
+					              
+		                console.log(xhr.responseText); // 실패하면
+		            }
 		 		
 		 		});//ajax end
 		
 		
 	}); // end 
  		
- 	$("#findPasswordChangeTab").on("click",function(){
- 		$("#findPasswordTab").css("display","none");
- 	});//비밀번호 변경tab
+ 
  	
- 	//비밀번호 변경탭
- 	$('#findeMailCheckNumBtn').click(function() {
+ 	//비밀번호찾기 인증확인
+ 	$('#findPasswordEmailCheckNumBtn').click(function() {
  		const findEmailCodeCheck = $('#findEmailCodeCheck').val() // 인증번호 입력하는곳 
 		const findEmailCheckCodeHidden = $("#findEmailCheckCodeHidden").val()
 		
-			if(findEmailCodeCheck != findEmailCheckCodeHidden){
-				$("#findPasswordMsg").text("인증번호가 일치하지않습니다.").css("color","red");
-				
+			if(findEmailCodeCheck === findEmailCheckCodeHidden){
+				$("#profile-tab-pane1").attr("hidden",true);
+				$("#profile-tab").attr("data-bs-target","#profile-tab-pane2");
+				$("#profile-tab-pane2").removeClass("fade");
+				$("#profile-tab-pane2").addClass("show active");
+				$("#profile-tab").text("비밀번호 재설정");
+				$("#findNewPasswordIdHidden").val($("#findPasswordId").val());
 			}else{
-				$("#findPasswordChangeTab").css("display","block");
-				$("#findPasswordChangeTab").trigger("click");//비밀번호 변경tab
-				
-				
-				
+				$("#findPasswordMsg1").text("인증번호가 일치하지않습니다.").css("color","red");
 			}
 		
  		});//end	
  		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		//새로운비밀번호 
+ 		$("#findNewPasswordBtn").click(function(){
+ 			const newPassword = $("#findNewPassword").val();
+ 			
+ 			if(! regPassword.test(newPassword)){
+ 				$("#findPasswordMsg2").text("비밀번호를 다시작성해주세요").css("color","red");
+ 			}
+ 			if($("#findNewPassword").val() != $("#findNewPasswordCheck").val()){
+ 				$("#findPasswordMsg2").text("비밀번호가 일치하지 않습니다.").css("color","red");
+ 			}
+ 			if(newPassword === $("#findNewPasswordCheck").val()){
+ 			
+ 				$.ajax({
+ 					url: "UserNewPassword",
+ 					type: "post",
+ 					data: JSON.stringify({
+ 						"password":$("#findNewPasswordCheck").val(),
+ 						"id":$("#findNewPasswordIdHidden").val()
+ 					}),
+ 					contentType: "application/json",
+ 					async: false,
+ 					success: function(result){
+ 					if(result == 1){
+ 					$("#profile-tab-pane1").attr("hidden",true);
+ 					$("#profile-tab-pane2").attr("hidden",true);
+					$("#profile-tab").attr("data-bs-target","#profile-tab-pane3");
+					$("#profile-tab-pane3").removeAttr("hidden");
+					$("#findNewPassword").val("");
+					$("#findNewPasswordCheck").val("");
+					}
+ 					},
+ 					error: function(xhr, status, error) {
+		              
+		                console.log(xhr.responseText); // 실패하면
+		            }
+ 				
+ 				
+ 				
+ 				})
+ 			}
+ 		});
  	
  	
  });//function end

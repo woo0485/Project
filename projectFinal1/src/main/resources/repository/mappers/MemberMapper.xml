@@ -13,10 +13,15 @@
 		SELECT COUNT(*)  From Member WHERE id = #{id} OR email = #{email}
 	</select>
 	
+	<select id="userFindId" resultType="Integer" parameterType="hashMap">
+		SELECT COUNT(*) FROM Member WHERE name = #{name} AND email = #{email}	
+	</select>
+	
 	<select id="userFindPassword" resultType="Integer" parameterType="hashMap">
 		SELECT COUNT(*) FROM Member WHERE id = #{id} AND email = #{email}	
 	</select>
-
+	
+	
 
 	<insert id="joinMember" parameterType="Member">
 		INSERT INTO Member (name, id, phonenumber, password, zipcode,address1,address2,email,joindate,totalpay,grade) 
@@ -24,6 +29,9 @@
 									#{address1},#{address2},#{email},SYSDATE(),0,0)
 	</insert>
 	
+	<update id="userNewPassword" parameterType="hashMap">
+		UPDATE Member SET password = #{password} WHERE id = #{id}
+	</update>
 </mapper>	
 
 
