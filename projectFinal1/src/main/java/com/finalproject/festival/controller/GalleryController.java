@@ -30,6 +30,10 @@ public class GalleryController {
 		
 		m.addAttribute("galleryList",gs.gallery());
 		
+		for( Gallery g : gs.gallery() ) {
+			System.out.println(g.getGalleryimage());
+		}
+		
 		return "gallery";
 	}
 	
@@ -50,13 +54,20 @@ public class GalleryController {
 		
 		for (MultipartFile image : images) {
 			
-			String originalFilename = StringUtils.cleanPath(image.getOriginalFilename());
-            String fileName = UUID.randomUUID().toString() + "_" + originalFilename;
+			String original = image.getOriginalFilename();
+			
+			String extension = original.substring(original.length()-4, original.length());
+			
+			System.out.println(extension);
+			
+            String fileName = UUID.randomUUID().toString() + extension; 
             
             String filePath = realPath + java.io.File.separator;
             
             try {
 				image.transferTo(new java.io.File(filePath + fileName));
+				System.out.println(filePath);
+				System.out.println("저장완료");
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -65,12 +76,12 @@ public class GalleryController {
 
 	        imageNames.add(fileName);
 	    }
-
+		
 	    gallery.setGalleryimage(imageNames.toArray(new String[0]));
 	    
 	    gs.insertGallery(gallery);
 	    
-		return "gallery";
+		return "redirect:gallery";
 	}
 	
 }
