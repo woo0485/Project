@@ -26,9 +26,9 @@ public class ManageSalesServiceImpl implements ManageSalesService {
 	private ManageReservationDao managerReservationDao;
 	
 	@Override
-	public void deleteSalesTotalPrice(String salesDate) {
+	public void deleteSalesTotalPrice(int salesNo) {
 		
-		manageSalesDao.deleteSalesTotalPrice(salesDate);
+		manageSalesDao.deleteSalesTotalPrice(salesNo);
 	}
 	
 	@Override
@@ -118,6 +118,18 @@ public class ManageSalesServiceImpl implements ManageSalesService {
 	public List<Sales> salesList(){
 		
 		return manageSalesDao.salesList();
+	}
+	
+	@Override
+	public List<Sales> lastYearSalesList(){
+		
+		return manageSalesDao.lastYearSalesList();
+	}
+	
+	@Override
+	public List<Sales> yearBeforeLastSalesList2(){
+		
+		return manageSalesDao.yearBeforeLastSalesList2();
 	}
 	
 	

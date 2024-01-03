@@ -6,17 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
-
 
 import com.finalproject.festival.domain.Product;
 import com.finalproject.festival.domain.Sales;
-import com.finalproject.festival.manage.service.ManageMemberService;
 import com.finalproject.festival.manage.service.ManageProductCountService;
 import com.finalproject.festival.manage.service.ManageSalesService;
-import com.finalproject.festival.manage.service.NoticeService;
 
 @Controller
 public class ManageController {
@@ -32,9 +26,13 @@ public class ManageController {
 	public String manageMain(Model model){
 		
 		List<Sales> salesList = manageSalesService.salesList();
+		List<Sales> lastYearSalesList = manageSalesService.lastYearSalesList();
+		List<Sales> yearBeforeLastSalesList2 = manageSalesService.yearBeforeLastSalesList2();
 		List<Product> manageProductCountList = manageProductCountService.manageProductCount5();
 		
 		model.addAttribute("salesList", salesList);
+		model.addAttribute("lastYearSalesList", lastYearSalesList);
+		model.addAttribute("yearBeforeLastSalesList2", yearBeforeLastSalesList2);
 		model.addAttribute("manageProductCountList", manageProductCountList);
 		
 		return "manage/manageMain";

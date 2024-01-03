@@ -22,9 +22,9 @@ public class ManageSalesController {
 	
 	// 매출 데이터 삭제
 	@RequestMapping("/deleteSalesTotalPrice.ajax")
-	public String deleteSalesTotalPrice(String salesDate) {
+	public String deleteSalesTotalPrice(int salesNo) {
 		
-		manageSalesService.deleteSalesTotalPrice(salesDate);
+		manageSalesService.deleteSalesTotalPrice(salesNo);
 		
 		return "redirect:manageSales";
 	}
