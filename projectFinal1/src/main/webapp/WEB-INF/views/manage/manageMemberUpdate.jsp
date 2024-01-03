@@ -115,7 +115,9 @@ td input:focus {
 										<div>
 											<input type="text" class="form-control" name="totalpay"
 												id="totalpay" placeholder="누적구매금액"
-												value="${member.totalpay }원" style="border-width: 0;">
+
+												value="${member.totalpay }" style="border-width: 0;">
+
 										</div>
 									</td>
 								</tr>
@@ -127,14 +129,15 @@ td input:focus {
 										<div>
 											<select class="form-select" name="grade"
 												style="border-width: 0;">
-												<option ${member.grade == '1' ? 'selected' : ''}>BLACK</option>
-												<option ${member.grade == '2' ? 'selected' : ''}>SILVER</option>
-												<option ${member.grade == '3' ? 'selected' : ''}>GOLD</option>
-												<option ${member.grade == '4' ? 'selected' : ''}>VIP</option>
+
+												<option ${member.grade == 'SILVER' ? 'selected' : ''}>SILVER</option>
+												<option ${member.grade == 'GOLD' ? 'selected' : ''}>GOLD</option>
+
 											</select>
 										</div>
 									</td>
 								</tr>
+
 								<tr class="">
 									<td>
 										<div class="pt-2">우편 번호</div>
@@ -171,6 +174,7 @@ td input:focus {
 										</div>
 									</td>
 								</tr>
+
 							</table>
 						</div>
 					</div>
@@ -193,4 +197,6 @@ td input:focus {
 					</div>
 				</div>
 			</div>
+
 		</div>
+

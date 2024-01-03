@@ -85,7 +85,7 @@
 				</c:if>
 
 				<div class="row">
-					<div class="col text-center mb-2 pe-2">
+					<div class="col text-center mb-2">
 						<div class="row">
 							<div class="col mt-2 p-2">
 								<span><h4>조회수가 높은 상품</h4></span>
@@ -256,7 +256,7 @@
 				<div class="row">
 					<div class="col-10">
 
-						<div class="row my-3">
+						<div class="row my-3 mb-5">
 							<div class="col" style="width: 200px; height: 200px;">
 								<canvas id="myChart2"></canvas>
 							</div>

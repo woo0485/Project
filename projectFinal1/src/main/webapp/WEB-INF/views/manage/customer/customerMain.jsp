@@ -161,8 +161,8 @@ div table tbody td {
 					<div class="row ps-5">
 					
 						<div class="col ">
-							<div class="">								
-								<span class="font ps-1">채팅상담 가능시간은</span><br>
+							<div class="">
+								<span class="font ps-1">전화상담 가능시간은</span><br>
 								<span class="font ps-1">평일(월~금) 9:00~18:00</span><br>
 								<span class="fs-4 ps-1">1234-5678</span><br>
 								<span class="font ps-1"><input type="button" class="btn-3 px-4 py-0 my-2" id="chatBtn" value="GALAGO채팅 시작하기 "></span>
@@ -171,7 +171,7 @@ div table tbody td {
 						
 						<div class="col">
 							<div class="">
-								<span class="font ps-1">전화상담 가능시간은</span><br>
+								<span class="font ps-1">채팅상담 가능시간은</span><br>
 								<span class="font ps-1">평일(월~금) 9:00~18:00</span><br>
 								<span class="font ps-1">주말 및 공휴일 휴무</span><br>								
 							</div>

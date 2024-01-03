@@ -125,7 +125,8 @@
 											<td>${ m.phonenumber }</td>
 											<td>${ m.email }</td>
 											<td>${ m.totalpay }</td>
-											<td><c:if test="${m.grade == 1}">BLACK</c:if>
+											<td><c:if test="${m.grade == 0}">일반</c:if>
+												<c:if test="${m.grade == 1}">BLACK</c:if>
 												<c:if test="${m.grade == 2}">SILVER</c:if>
 												<c:if test="${m.grade == 3}">GOLD</c:if>
 												<c:if test="${m.grade == 4}">VIP</c:if></td>
