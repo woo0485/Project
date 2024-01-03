@@ -108,7 +108,11 @@
 								</select>
 							</div>
 							<div class="col-7">
+<<<<<<< HEAD
 								<input type="text" name="keyword" class="form-control" placeholder="검색할 날짜" style="border-color:#168;">
+=======
+								<input type="text" name="keyword" class="form-control" placeholder="검색할 날짜"/ style="border-color:#168;">
+>>>>>>> 4b390fdf7ef23691660228e7b763ab4b85e79921
 							</div>
 							<div class="col-2">
 								<input type="submit" value="검 색" class="custom-btn btn-3 px-3" />
@@ -119,6 +123,7 @@
 					
 				</div>
 					
+<<<<<<< HEAD
 					<div class="col-5">
 						<table class="table table-hover text-center">
 							<thead>
@@ -126,6 +131,19 @@
 									<th class="px-2">올해 년도</th>
 									<th class="px-5">월 매출</th>								
 									<th></th>
+=======
+					<div class="col-5 me-5">
+						<table class="table table-hover text-center">
+							<thead>
+								<tr class="table-secondary">
+									<th class="px-4">2023년</th>
+									<th class="px-5">매출</th>								
+									<th>
+										<c:if test="${ not empty dbSalesTotalPrice }">
+											<button type="button" class="btn py-0" id="dbAllDelete" style="font-size:small; color:red;">초기화</button>
+										</c:if>
+									</th>
+>>>>>>> 4b390fdf7ef23691660228e7b763ab4b85e79921
 								
 								</tr>
 							</thead>

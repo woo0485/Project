@@ -78,7 +78,13 @@
 						<div class="row">
 							<div class="col offset-md-2">
 								<ol class="text-start">
+<<<<<<< HEAD
 									<c:forEach var="pp" items="${manageProductCountList}">																		
+										<li class="ps-2">${pp.productname }</li>
+									</c:forEach>
+								</ol>				
+=======
+									<c:forEach var="pp" items="${manageProductCountList}">										
 										<li class="ps-2">${pp.productname }</li>
 									</c:forEach>
 								</ol>				
@@ -86,6 +92,31 @@
 						</div>
 					</div>
 				
+					<div class="col text-center mb-5">		
+						<div class="row">
+							<div class="col mt-2 pt-3">
+								<span><h4>DB 총 매출</h4></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col p-3">
+								<c:if test="${ empty salesList }">									
+										<span>월 매출을 DB로 넣어주세요.</span>
+								</c:if>
+								
+								<c:set var = "total" value = "0" />
+								<c:if test="${ not empty salesList }">
+									<c:forEach var="s" items="${salesList}">										
+										<c:set var= "total" value="${total + s.salesTotalPrice}"/>
+									</c:forEach>
+									<c:out value="${total}원"/>
+								</c:if>				
+>>>>>>> 4b390fdf7ef23691660228e7b763ab4b85e79921
+							</div>
+						</div>
+					</div>
+				
+<<<<<<< HEAD
 					<div class="col text-center mb-5">		
 						<div class="row">
 							<div class="col mt-2 pt-2">
@@ -120,6 +151,9 @@
 				</div>
 				
 <c:set var="currentYear" value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />
+=======
+
+>>>>>>> 4b390fdf7ef23691660228e7b763ab4b85e79921
 				<!-- 차트 -->
 				<div class="row mt-5">
 					<div class="col" style="width:10px; height:10px;">
@@ -138,12 +172,20 @@
 						data : {
 							// ③x축에 들어갈 이름들(Array)
 							labels : [ 
+<<<<<<< HEAD
 								<c:set var="currentYear" value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />			
 								<c:forEach var="sales" items="${salesList}">
 							        <c:if test="${sales.salesYear == currentYear}">
 							        '${ sales.salesYear }년 ${ sales.salesDate }', 
 							        </c:if>
 							    </c:forEach>									
+=======
+								
+								<c:forEach var="s2" items="${salesList}">
+									'${ s2.salesDate }',
+								</c:forEach>
+								
+>>>>>>> 4b390fdf7ef23691660228e7b763ab4b85e79921
 							],
 							// ④실제 차트에 표시할 데이터들(Array), dataset객체들을 담고 있다.
 							datasets : [ {
@@ -152,6 +194,7 @@
 								// ⑥dataset값(Array)
 																							
 								data : [ 
+<<<<<<< HEAD
 									<c:set var="currentYear" value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />
 									<c:if test="${ empty salesList }">	
 										0,0,0,0,0,0,0,0,0,0,0,0
@@ -164,6 +207,17 @@
 									        </c:if>
 									    </c:forEach>
 									</c:if>									
+=======
+									<c:if test="${ empty salesList }">	
+										0,0,0,0,0,0,0,0,0,0,0,0
+									</c:if>
+									<c:if test="${ not empty salesList }">	
+										<c:forEach var="s" items="${salesList}">
+											${ s.salesTotalPrice },
+										</c:forEach>
+									</c:if>
+									
+>>>>>>> 4b390fdf7ef23691660228e7b763ab4b85e79921
 									],
 							
 								// ⑦dataset의 배경색(rgba값을 String으로 표현)
