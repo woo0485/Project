@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-<<<<<<< HEAD
-=======
-import com.finalproject.festival.domain.Festival;
->>>>>>> 4b390fdf7ef23691660228e7b763ab4b85e79921
+
+
 import com.finalproject.festival.domain.Product;
 import com.finalproject.festival.domain.Sales;
 import com.finalproject.festival.manage.service.ManageMemberService;

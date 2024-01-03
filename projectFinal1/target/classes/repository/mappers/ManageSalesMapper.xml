@@ -6,22 +6,7 @@
 <mapper namespace="com.finalproject.festival.mapper.ManageSalesMapper" >
 
 	<resultMap id="ManageSalesMap" type="Sales" >
-<<<<<<< HEAD
-		<id property="salesNo" column="salesNo" />	
-		<result property="salesDate" column="salesDate" />
-		<result property="salesTotalPrice" column="salesTotalPrice" />
-		<result property="salesYear" column="salesYear" />
-	</resultMap>
-	
-	<delete id="deleteSalesTotalPrice" parameterType="List">
-		DELETE FROM Sales
-		WHERE salesNo = #{salesNo} AND salesYear = YEAR(NOW())
-	</delete>
-	
-	<insert id="salesTotalPriceWrite" parameterType="Sales" useGeneratedKeys="true" keyProperty="salesYear">
-		INSERT INTO Sales (salesDate, salesTotalPrice, salesYear)
-   		VALUES (#{salesDate}, #{salesTotalPrice}, YEAR(CURDATE()))	
-=======
+
 		<id property="salesDate" column="salesDate" />	
 		<result property="salesTotalPrice" column="salesTotalPrice" />
 	</resultMap>
@@ -33,24 +18,17 @@
 	<insert id="salesTotalPriceWrite" parameterType="Sales" useGeneratedKeys="true" keyProperty="salesYear">
 		INSERT INTO Sales ( salesDate, salesTotalPrice)
 		VALUES ( #{salesDate}, #{salesTotalPrice})		
->>>>>>> 4b390fdf7ef23691660228e7b763ab4b85e79921
+
 	</insert>
 	
 	<select id="salesList" resultType="Sales" resultMap="ManageSalesMap">
 		SELECT
 			 * 
 		 FROM Sales
-<<<<<<< HEAD
-		 WHERE salesYear = YEAR(NOW())	
-	</select>
-	
-	
-</mapper>		
-=======
+
 	</select>
 	
 </mapper>	
 
 
 
->>>>>>> 4b390fdf7ef23691660228e7b763ab4b85e79921
