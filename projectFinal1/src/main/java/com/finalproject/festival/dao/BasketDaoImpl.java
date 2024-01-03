@@ -15,22 +15,40 @@ public class BasketDaoImpl implements BasketDao {
 	
 private final String NAME_SPACE = "com.finalproject.festival.mapper.BasketMapper";
 	
-	private SqlSessionTemplate sqlSession;
-	
-	@Autowired
-	public void setSqlSession(SqlSessionTemplate sqlSession) {
-		this.sqlSession = sqlSession;
-	}	
+private SqlSessionTemplate sqlSession;
 
-	@Override
-	public List<Basket> basketList(int productno, int basketno, int basketproductcount, String id) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("productno", productno);
-		params.put("basketno", basketno);
-		params.put("basketproductcount", basketproductcount);
-		params.put("id", id);
-		
-		return sqlSession.selectList(NAME_SPACE + ".basketList", params);
-	}
+@Autowired
+public void setSqlSession(SqlSessionTemplate sqlSession) {
+	this.sqlSession = sqlSession;
+}	
+
+//@Override
+/*public List<Basket> basketList(int productno, int basketno, int basketproductcount, String id) {
+	Map<String, Object> params = new HashMap<String, Object>();
+	params.put("productno", productno);
+	params.put("basketno", basketno);
+	params.put("basketproductcount", basketproductcount);
+	params.put("id", id);
+	
+	return sqlSession.selectList(NAME_SPACE + ".basketList", params);
+}
+*/
+
+// 회원 장바구니 목록보기 - 1월 3일 추가
+@Override
+public List<Basket> basketList(String id) {
+	return sqlSession.selectList(NAME_SPACE + ".basketList", id);
+}
+
+//장바구니 확인 - 1월 3일
+@Override
+public Basket checkBasket(Basket b) {
+	return sqlSession.selectOne(NAME_SPACE + ".checkBasket", b);
+}
+
+@Override
+public void insertBasket(Basket b) {
+	sqlSession.insert(NAME_SPACE + ".insertBasket", b);
+}
 
 }
