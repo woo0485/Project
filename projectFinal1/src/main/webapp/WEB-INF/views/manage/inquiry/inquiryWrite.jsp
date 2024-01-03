@@ -39,7 +39,7 @@
 						</div>
 					</div>				
 					<form name="inquiryWriteForm" id="inquiryWriteForm" action="inquiryWriteProcess"
-						class="row g-3" method="post">
+						class="row g-3" method="post" onsubmit="alert('답변은 이메일로 전송되고 2~3일 정도걸립니다.');">
 						
 	
 						<div class="row">
@@ -53,12 +53,8 @@
 						<div class="row">
 							<div class="col-6 offset-2 mb-3">
 								<input type="hidden" name="answerProgress" value="답변 대기">
-								
-								
 								아이디<input type="text" class="form-control" id="id" name="id">
 								이메일<input type="text" class="form-control" name="email" value="woo0485@naver.com">
-								
-								
 								<label class="fw-bold mb-2">제목</label> 
 								<input type="text" class="form-control" id="questionTitle" name="questionTitle">
 							</div>
@@ -82,3 +78,8 @@
 			
 		</div>
 	</div>
+	
+	
+	
+	
+	

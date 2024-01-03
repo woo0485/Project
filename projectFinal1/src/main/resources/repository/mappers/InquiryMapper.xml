@@ -8,7 +8,7 @@
 	<select id="getBoardCount" parameterType="hashmap" resultType="int">
 		SELECT
 			COUNT(questionNo)
-		FROM question	
+		FROM Question	
 		<where>
 			<if test="questionCategory != 'null'">
 				questionCategory = #{ questionCategory }
@@ -33,7 +33,7 @@
 	</resultMap>
 	
 	<select id="inquiry" resultType="Manage" resultMap="inquiryMap">
-		SELECT  * FROM question 
+		SELECT  * FROM Question 
 		<where>
 			<if test="questionCategory != 'null'">
 				questionCategory = #{ questionCategory }
@@ -44,17 +44,17 @@
 	</select>
 	
 	<insert id="insertInquiry" parameterType="Manage" useGeneratedKeys="true" keyProperty="questionNo">
-		INSERT INTO question(id, questionTitle, questionContent, questionDate, questionCategory, email, answerProgress)
+		INSERT INTO Question(id, questionTitle, questionContent, questionDate, questionCategory, email, answerProgress)
 		VALUES (#{id}, #{questionTitle}, #{questionContent}, SYSDATE(), #{questionCategory}, #{email}, #{answerProgress} )
 	</insert>
 	
 	<select id="getInquiry" resultType="Manage" resultMap="inquiryMap">
-		SELECT * FROM question
+		SELECT * FROM Question
 		WHERE questionNo = #{questionNo}
 	</select>
 	
 	<update id="insertAnswer" parameterType="Manage">
-		UPDATE question
+		UPDATE Question
 			SET answerTitle = #{answerTitle},
 				answerContent = #{answerContent},
 				answerDate = SYSDATE(),
@@ -63,7 +63,4 @@
 		WHERE questionNo = #{questionNo}	
 	</update>
 
-</mapper>	
-
-
-
+</mapper>

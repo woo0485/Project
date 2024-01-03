@@ -66,10 +66,10 @@ div table tbody td {
 				<div class="col-10 text-center">
 					<div class="col-2 offset-10 mt-3">
 						<a href="informationUseWrite"
-							class="text-decoration-none text-danger link-secondary border border-danger rounded px-4 py-0">안내 
+							class="text-decoration-none text-danger link-secondary border border-danger rounded px-4 py-2">안내 
 							작성</a>
 					</div>
-					<table class="table mt-3" style="font-size:small;">
+					<table class="table mt-4">
 						<thead>
 							<tr>
 								<th class="py-3">NO</th>
@@ -84,7 +84,7 @@ div table tbody td {
 									<td class="py-3 px-5 text-start"><a
 										href="informationUseDetail?informationUseNo=${i.informationUseNo}&pageNum=${currentPage}"
 										class="text-decoration-none link-black fontblack fw-bold">${ i.informationUseTitle }</a></td>
-									<td class="py-3 text-center"><span class="font">${i.informationUseDate}</span></td>
+									<td class="py-3 text-end"><span class="font">${i.informationUseDate}</span></td>
 								</tr>
 							</c:forEach>
 						</tbody>

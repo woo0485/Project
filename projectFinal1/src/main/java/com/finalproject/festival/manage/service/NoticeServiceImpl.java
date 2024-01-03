@@ -18,7 +18,9 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	private static final int PAGE_SIZE = 10;
 	private static final int PAGE_GROUP = 10;
-
+	
+	
+	
 	@Override
 	public Map<String, Object> notice(int pageNum) {
 		

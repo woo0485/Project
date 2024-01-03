@@ -78,5 +78,8 @@
 		DELETE FROM Member
 		WHERE id = #{id}
 	</delete>
+	
+	
 
+	
 </mapper>	
