@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.finalproject.festival.domain.Basket;
+import com.finalproject.festival.domain.Member;
 import com.finalproject.festival.service.BasketService;
 import com.finalproject.festival.service.ProductService;
 
@@ -44,11 +45,16 @@ public class basketController {
 	
 	// 장바구니 목록 보여지는 것 - 1월 3일 ) 회원 아이디로
 	@RequestMapping(value = {"/basket"}, method= RequestMethod.POST)
-	public String basketList ( HttpSession session, 
+	public String basketList ( HttpSession session, Model m,
 			@RequestParam(value =  "id") String id) {
 		
-		List<Basket> bList  = (List<Basket>) session.getAttribute(id);
+		System.out.println("장바구니컨트롤러 세션 아이디" + session.getAttribute("id"));
 		
+		Map<String, Object> modelMap = bs.basketList(id);
+		//List<Basket> bList  = (List<Basket>) session.getAttribute("id");
+		System.out.println("장바구니컨트롤러 -회원아이디 : " + id);	
+		
+		m.addAllAttributes(modelMap);
 		return "basket";
 	}
 	

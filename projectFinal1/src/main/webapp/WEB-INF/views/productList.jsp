@@ -5,6 +5,28 @@
 <link href="resources/css/hyunju.css" rel="stylesheet" >
 <script src="resources/js/jquery-3.2.1.min.js"></script>
 <script src="resources/js/hyunju.js"></script>
+<style>
+  .productimage {
+    position: relative;
+  }
+  .productbookmarkcount {
+    position: absolute;
+    top: 10%;
+    left: 80%;
+    transform: translate( -50%, -50% );
+    color: black;
+    border: 5px solid red;
+    background-color: white;
+  }
+  .carousel{
+  border: 1px solid blue;
+  padding: auto;
+  }
+  .d-block w-10{
+  width: 100px;
+  height: 100px;
+  }
+  </style>
 
 <!-- content -->
 <div class="row my-5" id="global-content">
@@ -101,12 +123,17 @@
 						<tr>
 						</c:if>
 						
-					<td><a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
+					<td class="productimage">
+					<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
 								class="text-decoration-none link-secondary">
-								<img src="${p.productimage}"  width="300" height="200" /></a> <br>
-	
+								
+					<img src="${p.productimage}"  width="300" height="200" /></a> <br>
+<!--  %%%%%%%%%%%%%    북마크 이미지 위에 출력    %%%%%%%%%%%%%%-->			
+					<div class="productbookmarkcount" style="font-size:15px">
+						북마크 수 : ${ p.productbookmarkcount } 
+					</div>
+					
 					지역 : ${ p.productlocation } <br>
-					북마크 수 : ${ p.productbookmarkcount } <br>
 					<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
 								class="text-decoration-none link-secondary">${ p.productname }</a> <br>
 					이름 : ${ p.productname } <br>
@@ -128,13 +155,15 @@
 						<tr>
 						</c:if>
 						
-					<td><a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
+					<td class="productimage">
+							<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
 								class="text-decoration-none link-secondary">
-								<img src="${p.productimage}"  width="300" height="200" /></a> <br>
-	
-					
+							<img src="${p.productimage}"  class="productimage"  width="300" height="200" /></a> <br>
+<!--  %%%%%%%%%%%%%    북마크 이미지 위에 출력    %%%%%%%%%%%%%%-->			
+					<div class="productbookmarkcount" style="font-size:15px">
+							북마크 수 : ${ p.productbookmarkcount } 
+					</div>
 					지역 : ${ p.productlocation } <br>
-					북마크 수 : ${ p.productbookmarkcount } <br>
 					<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
 								class="text-decoration-none link-secondary">${ p.productname }</a> <br>
 					이름 : ${ p.productname } <br>

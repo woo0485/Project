@@ -4,8 +4,18 @@
 <link href="resources/css/hyunju.css" rel="stylesheet">
 <script src="resources/js/jquery-3.2.1.min.js"></script>
 <script src="resources/js/hyunju.js"></script>
-<!--  로그인 테스트 -->
-<a href="login" class="text-decoration-none link-secondary">로그인 테스트</a>
+<style>
+  .contentiamge {
+    position: relative;
+  }
+  .productcontent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50% );
+    color: white;
+  }
+  </style>
 
 <!-- content 영역 ~~~~~~~~~~~~~  -->
 <div class="row my-5" id="global-content">
@@ -24,11 +34,15 @@
 	<!--  ########## 장바구니에 담을 때  js로 넘겨지는 form #############-->
 		<form name="basketForm" id="basketForm"  action="basket"
 				method="post" >
+			<!-- 
 			<input type="hidden" name="id" id="rId"> 
 			<input type="hidden" name="basketno"  id="basketno"  value="${basket.basketno}"> 
 			<input type="hidden" name="productno" id="productno" value="${product.productno}"> 
 			<input type="hidden" name="basketproductcount"  id="basketproductcount">
-
+			 -->
+			 <input type="hidden" name="id" id="rId"> 
+			<input type="hidden" name="basketno"  id="basketno"  value="${basket.basketno}"> 
+			<input type="hidden" name="productno" id="productno" value="${product.productno}"> 
 <!-- @@@@@@@@ 게시 글 상세보기 영역  @@@@@@@@@@-->
 		<table>
 		<tr>
@@ -42,14 +56,9 @@
 		<!--  ############ 여기서부터는 회원 아이디 로그인했을 때만 구매버튼 보이게 한다 (장바구니) ############## -->	
 		<c:if test="${not empty sessionScope.id}">	
 		<!--  수량 선택 -->
-		<label for="basketproductcount" class="form-label">수량을 선택하시오 테스트1</label>
-		<input type="text" class="form-control" name="basketproductcount" id="basketproductcount">
-			
-		<!--<h5><label>수량을 선택하세요 테스트2
-			<input type="number" name="basketproductcount"  id="basketproductcount" min="1" max="4" value="1">
-		</label></h5>   -->
+		<label for="basketproductcount" class="form-label">수량을 선택하시오 테스트</label>
+				<input type="number"  value="1" name="basketproductcount"  id="basketproductcount" min="1" max="4" >
 		<!--  수량 선택 끝--> <br><br>
-				<!-- <input type="submit" value="바로 구매" class="btn btn-primary"> -->
 				<input type="submit" value="장바구니" class="btn btn-primary">	
 		</c:if>	
 				<br><br>
@@ -65,8 +74,11 @@
 		<!--  ############ 여기서부터는 회원 아이디 로그인했을 때만 구매버튼 보이게 한다 (장바구니) 끝 ############## -->	
 		
 		<!-- ///////////  축제 정보 이미지와 내용  //////////// -->
-				<img src="http://via.placeholder.com/800x1000" alt="">
-				<pre>${ product.productcontent }</pre>
+		<div class="contentiamge">
+				<img src="http://via.placeholder.com/800x1000" alt=""><br>
+				<div class="productcontent" style="font-size:20px">${ product.productcontent }</div>
+		</div>
+		
 			</div>
 		</div>
 		

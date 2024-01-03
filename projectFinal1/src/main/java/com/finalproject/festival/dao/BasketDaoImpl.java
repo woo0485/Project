@@ -40,11 +40,12 @@ public List<Basket> basketList(String id) {
 	return sqlSession.selectList(NAME_SPACE + ".basketList", id);
 }
 
+/*
 //장바구니 확인 - 1월 3일
 @Override
 public Basket checkBasket(Basket b) {
 	return sqlSession.selectOne(NAME_SPACE + ".checkBasket", b);
-}
+} */
 
 @Override
 public void insertBasket(Basket b) {
