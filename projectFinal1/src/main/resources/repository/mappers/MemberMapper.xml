@@ -21,7 +21,16 @@
 		SELECT COUNT(*) FROM Member WHERE id = #{id} AND email = #{email}	
 	</select>
 	
-	
+	<select id="userLogin" resultType="hashMap" >
+		 SELECT 'Member' AS userType, id, name, phonenumber, email, totalpay, grade, password
+	    FROM Member
+	    WHERE id = #{id}
+	    UNION ALL
+	    SELECT 'Admin' AS userType, adminid AS id, adminname AS name, NULL AS phonenumber, NULL AS email, NULL AS totalpay, NULL AS grade, adminpassword AS password
+	    FROM Admin
+	    WHERE adminid = #{id}
+		
+	</select>
 
 	<insert id="joinMember" parameterType="Member">
 		INSERT INTO Member (name, id, phonenumber, password, zipcode,address1,address2,email,joindate,totalpay,grade) 

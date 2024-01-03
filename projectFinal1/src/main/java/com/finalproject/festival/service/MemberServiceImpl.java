@@ -20,9 +20,9 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override//로그인확인
-	public Member loginCheck(String id) {
-		Member member =  memberDao.loginCheck(id);
-		return member;
+	public Map<String, Object> loginCheck(String id) {
+		
+		return memberDao.loginCheck(id);
 	}
 
 

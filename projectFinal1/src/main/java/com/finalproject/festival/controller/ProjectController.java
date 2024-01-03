@@ -99,11 +99,13 @@ public class ProjectController {
 		
 		String id = (String)param.get("id");
 		String password = (String)param.get("password");
-		
-		Member member = memberService.loginCheck(id);
+		Map<String, Object> user = new  HashMap<>();
+		user = memberService.loginCheck(id);
 		boolean result = false;
-		System.out.println(member.getName());
-		if(member.getId().equals(id) && passwordEncoder.matches(password, member.getPassword())) {
+		
+		System.out.println("login-map:::::"+user);
+		
+		if(user.get("id").equals(id) && passwordEncoder.matches(password, (String)user.get("password"))) {
 			result = true;
 		}
 		
@@ -111,7 +113,8 @@ public class ProjectController {
 		try {
 			if(result) {
 				session.setAttribute("id", id);
-				session.setAttribute("name", member.getName());
+				session.setAttribute("name", (String)user.get("name"));
+				session.setAttribute("userType", (String)user.get("userType"));
 				return 1;
 			}
 			else {
