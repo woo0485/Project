@@ -1,5 +1,7 @@
 package com.finalproject.festival.controller;
 
+import java.text.DecimalFormat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,7 +44,17 @@ public class MypageController {
 	
 	// 마이페이지 혜택
 	@RequestMapping("/myPageBenefit")
-	public String myPageBenefit() {
+	public String myPageBenefit(@RequestParam("id")String id, Model model) {
+		Member member = service.MyInfo(id);
+		int totalpay = member.getTotalpay();
+		
+		DecimalFormat decimalFormat = new DecimalFormat("###,###");
+		String formattedNumber = decimalFormat.format(totalpay);
+		
+		
+		model.addAttribute("member" ,member);
+		model.addAttribute("formattedNumber", formattedNumber);
+		
 		return "myPageBenefit";
 	}
 	
