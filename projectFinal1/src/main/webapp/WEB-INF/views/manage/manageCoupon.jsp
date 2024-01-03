@@ -220,9 +220,6 @@ input:focus {
 						</div>
 					</div>
 				</c:if>
-			
-			
+						
 		</div>				
 	</div>
-	
-	

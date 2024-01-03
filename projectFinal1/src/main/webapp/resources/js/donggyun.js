@@ -9,44 +9,22 @@ $(function(){
 
 //#####################################쿠폰 JS########################################
 
-	$(document).on("click", "#manageMemberCouponUpdate", function() {
-
-		let membercouponno = $(this).attr("data-no3");
-		console.log("membercouponno : " + membercouponno);
+	
+	$(document).on("click", ".manageMemberCouponUpdate", function() {
 		
-		let params = {
-			        "membercouponno": membercouponno
-			  	  	};
+		let cnt = $(this).attr("data-no");
+		let membercouponno = $("#memberCouponId_" + cnt).val();
+		let couponno = $("#couponno_" + cnt).val();
+		let couponopendate = $("#couponopendate_" + cnt).val();
+		let couponclosedate = $("#couponclosedate_" + cnt).val();
 		
-		if(result) {			
-			$.ajax({		
-				url: "manageMemberCouponUpdate1.ajax",
-				data: params,
-				//dataType: "json",
-				success: function(resData, status, xhr) { 
-				alert("전송완료");
-
-				},
-				error: function(xhr, status, error) {
-				
-				alert("ajax 실패 : " + status + " - " + xhr.status);			
-				}
-			});		
-		}
+		console.log("membercouponno = " + membercouponno);
+		console.log("couponno = " + couponno);
+		console.log("couponopendate = " + couponopendate);
+		console.log("couponclosedate = " + couponclosedate);
 		
-	});
-
-	$(document).on("click", "#manageMemberCouponUpdate2", function() {
 		
-		let membercouponno = $(this).attr("data-no3");
-		let couponno = $("#couponno").val();
-		let couponopendate = $("#couponopendate").val();
-		let couponclosedate = $("#couponclosedate").val();
-		
-		console.log("membercouponno : " + membercouponno);	
-		console.log("couponno : " + couponno);	
-		console.log("couponopendate : " + couponopendate);	
-		console.log("couponclosedate : " + couponclosedate);	
+		let result = confirm("쿠폰을 수정 하시겠습니까?");
 		
 		let params = {
 			        "membercouponno": membercouponno,
@@ -54,11 +32,11 @@ $(function(){
 			        "couponopendate": couponopendate,
 			        "couponclosedate": couponclosedate
 			  	  	};
-
+		
 		
 		if(result) {			
 			$.ajax({		
-				url: "manageMemberCouponUpdate.ajax2",
+				url: "manageMemberCouponUpdate.ajax",
 				type: "post",
 				data: params,
 				//dataType: "json",
@@ -79,7 +57,7 @@ $(function(){
 
 	$(document).on("click", "#manageMemberCouponDelete", function() {
 	
-		let membercouponno = $(this).attr("data-no4");	
+		let membercouponno = $(this).attr("data-no");	
 		let params = "membercouponno=" + membercouponno	
 		let result = confirm("쿠폰을 삭제 하시겠습니까?");
 		
@@ -122,11 +100,11 @@ $(function(){
 	
 
 	
-	$("#dbAllDelete").off().on("click",function(){
+	$(".dbAllDelete").off().on("click",function(){
 	
-		let salesDate = $(this).attr("data-date");
-		let params = "salesDate=" + salesDate;	
-		let result = confirm("데이터를 초기화 하시겠습니까?");
+		let salesNo = $(this).attr("data-salesNo");
+		let params = "salesNo=" + salesNo;	
+		let result = confirm("데이터를 초기화 하시겠습니까?\n다음에는 확인 부탁드려요");
 		
 		if(result) {			
 			$.ajax({		
@@ -435,13 +413,6 @@ $(function(){
 	});
  
  	
- 	
- 	$("#").on("click", function(){
-    	$(this).addClass('fontchange');
-    	$(this).removeClass('fontblack');
-    	
-		return false;
-	});
-	
+
 
  });

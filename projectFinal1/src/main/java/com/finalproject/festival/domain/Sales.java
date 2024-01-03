@@ -2,18 +2,29 @@ package com.finalproject.festival.domain;
 
 public class Sales {
 
-
+	private int salesNo;
 	private String salesDate;
 	private int salesTotalPrice;
+	private int salesYear;
 	
 	public Sales() {
 		
 	}
 
-	public Sales(int salesNo, String salesYear, String salesDate, int salesTotalPrice) {
+	public Sales(int salesNo, String salesDate, int salesTotalPrice, int salesYear) {
 		super();
+		this.salesNo = salesNo;
 		this.salesDate = salesDate;
 		this.salesTotalPrice = salesTotalPrice;
+		this.salesYear = salesYear;
+	}
+
+	public int getSalesNo() {
+		return salesNo;
+	}
+
+	public void setSalesNo(int salesNo) {
+		this.salesNo = salesNo;
 	}
 
 	public String getSalesDate() {
@@ -32,6 +43,16 @@ public class Sales {
 		this.salesTotalPrice = salesTotalPrice;
 	}
 
+	public int getSalesYear() {
+		return salesYear;
+	}
+
+	public void setSalesYear(int salesYear) {
+		this.salesYear = salesYear;
+	}
+
+	
+	
 	
 	
 	

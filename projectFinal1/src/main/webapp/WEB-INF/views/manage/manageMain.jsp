@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.Calendar" %>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
 <link href="resources/css/donggyun.css" rel="stylesheet">
 <script src="resources/js/donggyun.js"></script>
@@ -30,6 +31,19 @@
 }
 .table caption{caption-side: bottom; display: none;
 }
+.button99 {
+    top:50%;
+    background-color:white;
+    border-color:#168;
+    color: red;
+    border-radius:10px; 
+    padding:15px;
+    min-height:10px; 
+    min-width: 60px;
+  } 
+.button99:hover {
+      border-color:red;
+  } 
 </style>
 
 
@@ -40,20 +54,31 @@
 			<div class="col-4">
 				<jsp:include page="/WEB-INF/views/manage/manageSide.jsp" />
 			</div>
-			<div class="col-6 text-start mt-5">
-				<span class="fw-bold p-2"><h3>관리페이지</h3></span>
+			<div class="col-6 text-start mt-5">				
+				<h3>관리페이지</h3>		
+	
+				
+				<c:if test="${ not empty salesList }">
+					<div class="row">
+						<div class="col text-end">
+							<button type="button" class="button99 py-1 mt-4" data-bs-toggle="modal" 
+						         data-bs-target="#myModal">매출 초기화
+							</button>
+						</div>	
+					</div>
+				</c:if>
 				
 				<div class="row">
-					<div class="col border-end text-center mb-2 pe-5">		
+					<div class="col border-end text-center mb-2">		
 						<div class="row">
 							<div class="col mt-2 p-2">
 								<span><h4>조회수가 높은  상품</h4></span>
 							</div>
 						</div>
 						<div class="row">
-							<div class="col">
-								<ol class="text-start" >
-									<c:forEach var="pp" items="${manageProductCountList}">										
+							<div class="col offset-md-2">
+								<ol class="text-start">
+									<c:forEach var="pp" items="${manageProductCountList}">																		
 										<li class="ps-2">${pp.productname }</li>
 									</c:forEach>
 								</ol>				
@@ -63,16 +88,24 @@
 				
 					<div class="col text-center mb-5">		
 						<div class="row">
-							<div class="col mt-2 p-2">
-								<span><h4>DB 총 매출</h4></span>
+							<div class="col mt-2 pt-2">
+								<div class="row">
+									<div class="col">
+										<span><h4>올해 총 매출</h4></span>
+									</div>																		
+								</div>
+								
+								
 							</div>
+	
 						</div>
 						<div class="row">
 							<div class="col p-3">
-								<c:if test="${ empty salesList }">									
-										<span>월 매출을 DB로 넣어주세요.</span>
-								</c:if>
 								
+								<c:if test="${ empty salesList }">									
+										<span>올해 년도 월 매출을 DB로 넣어주세요.</span>
+								</c:if>								
+						
 								<c:set var = "total" value = "0" />
 								<c:if test="${ not empty salesList }">
 									<c:forEach var="s" items="${salesList}">										
@@ -82,10 +115,11 @@
 								</c:if>				
 							</div>
 						</div>
+						
 					</div>
 				</div>
 				
-
+<c:set var="currentYear" value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />
 				<!-- 차트 -->
 				<div class="row mt-5">
 					<div class="col" style="width:10px; height:10px;">
@@ -104,11 +138,12 @@
 						data : {
 							// ③x축에 들어갈 이름들(Array)
 							labels : [ 
-								
-								<c:forEach var="s2" items="${salesList}">
-									'${ s2.salesDate }',
-								</c:forEach>
-								
+								<c:set var="currentYear" value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />			
+								<c:forEach var="sales" items="${salesList}">
+							        <c:if test="${sales.salesYear == currentYear}">
+							        '${ sales.salesYear }년 ${ sales.salesDate }', 
+							        </c:if>
+							    </c:forEach>									
 							],
 							// ④실제 차트에 표시할 데이터들(Array), dataset객체들을 담고 있다.
 							datasets : [ {
@@ -117,15 +152,18 @@
 								// ⑥dataset값(Array)
 																							
 								data : [ 
+									<c:set var="currentYear" value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />
 									<c:if test="${ empty salesList }">	
 										0,0,0,0,0,0,0,0,0,0,0,0
 									</c:if>
-									<c:if test="${ not empty salesList }">	
-										<c:forEach var="s" items="${salesList}">
-											${ s.salesTotalPrice },
-										</c:forEach>
-									</c:if>
-									
+
+									<c:if test="${not empty salesList}">
+									    <c:forEach var="sales" items="${salesList}">
+									        <c:if test="${sales.salesYear == currentYear}">
+									            ${sales.salesTotalPrice},
+									        </c:if>
+									    </c:forEach>
+									</c:if>									
 									],
 							
 								// ⑦dataset의 배경색(rgba값을 String으로 표현)
@@ -164,3 +202,42 @@
 		</div>
 	</div>
 </div>
+
+
+	<!-- 버튼 클릭시 모달 생김 -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <!-- modal-sm modal-lg modal-xl 모달 사이즈 -->
+            <!-- modal-dialog-centered 화면 가운데 -->
+            <!-- modal-dialog-scrollable 스크롤 기능 -->
+            <div class="modal-content">
+                <div class="modal-header">
+               		<span class=""><h4>매출 초기화</h4></span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    
+                    <c:set var="currentYear" value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />
+					<c:if test="${not empty salesList}">
+					    <table>
+					    	<tr class="text-center">
+					    		<td>
+								    <c:forEach var="sales" items="${salesList}">
+								        <c:if test="${sales.salesYear == currentYear}">
+								            <button type="button" data-salesNo="${sales.salesNo}" class="dbAllDelete btn99 py-0" style="font-size:small; color:red;">
+								                 ${sales.salesDate} 초기화
+								            </button>
+								        </c:if>
+								    </c:forEach>
+							    </td>
+						   </tr> 
+					    </table>
+					</c:if>       
+                </div>             
+                <div class="modal-footer">
+		        	<button type="button" class="button99 px-4 py-1 ms-5" data-bs-dismiss="modal" style="color:black;">닫기</button>
+	        	</div>
+            </div>
+
+    	</div>
+   	</div> 

@@ -102,7 +102,10 @@
 											<td>${ m.phonenumber }</td>
 											<td>${ m.email }</td>
 											<td>${ m.totalpay }</td>
-											<td>${ m.grade }</td>
+											<td><c:if test="${m.grade == 1}">BLACK</c:if>
+												<c:if test="${m.grade == 2}">SILVER</c:if>
+												<c:if test="${m.grade == 3}">GOLD</c:if>
+												<c:if test="${m.grade == 4}">VIP</c:if></td>
 											<td><a href="manageMemberUpdate?id=${ m.id }&pageNum=${currentPage}"
 												class="btn btn-outline-warning py-0" role="button">회원 관리</a></td>
 											<td><button type="button" class="btn btn-outline-danger py-0" 
@@ -122,7 +125,11 @@
 											<td>${ m.phonenumber }</td>
 											<td>${ m.email }</td>
 											<td>${ m.totalpay }</td>
-											<td>${ m.grade }</td>
+											<td><c:if test="${m.grade == 0}">일반</c:if>
+												<c:if test="${m.grade == 1}">BLACK</c:if>
+												<c:if test="${m.grade == 2}">SILVER</c:if>
+												<c:if test="${m.grade == 3}">GOLD</c:if>
+												<c:if test="${m.grade == 4}">VIP</c:if></td>
 											<td><a href="manageMemberUpdate?id=${ m.id }&pageNum=${currentPage}"
 												class="btn btn-outline-warning py-0" role="button" style="font-size:small;">회원 관리</a></td>
 											<td><button type="button" class="btn btn-outline-danger py-0" 

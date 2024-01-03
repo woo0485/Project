@@ -108,7 +108,7 @@
 								</select>
 							</div>
 							<div class="col-7">
-								<input type="text" name="keyword" class="form-control" placeholder="검색할 날짜"/ style="border-color:#168;">
+								<input type="text" name="keyword" class="form-control" placeholder="검색할 날짜" style="border-color:#168;">
 							</div>
 							<div class="col-2">
 								<input type="submit" value="검 색" class="custom-btn btn-3 px-3" />
@@ -119,17 +119,13 @@
 					
 				</div>
 					
-					<div class="col-5 me-5">
+					<div class="col-5">
 						<table class="table table-hover text-center">
 							<thead>
 								<tr class="table-secondary">
-									<th class="px-4">2023년</th>
-									<th class="px-5">매출</th>								
-									<th>
-										<c:if test="${ not empty dbSalesTotalPrice }">
-											<button type="button" class="btn py-0" id="dbAllDelete" style="font-size:small; color:red;">초기화</button>
-										</c:if>
-									</th>
+									<th class="px-2">올해 년도</th>
+									<th class="px-5">월 매출</th>								
+									<th></th>
 								
 								</tr>
 							</thead>

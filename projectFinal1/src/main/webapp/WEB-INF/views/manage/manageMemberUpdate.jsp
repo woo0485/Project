@@ -115,7 +115,7 @@ td input:focus {
 										<div>
 											<input type="text" class="form-control" name="totalpay"
 												id="totalpay" placeholder="누적구매금액"
-												value="${member.totalpay }" style="border-width: 0;">
+												value="${member.totalpay }원" style="border-width: 0;">
 										</div>
 									</td>
 								</tr>
@@ -127,10 +127,48 @@ td input:focus {
 										<div>
 											<select class="form-select" name="grade"
 												style="border-width: 0;">
-												<option ${member.grade == 'SILVER' ? 'selected' : ''}>SILVER</option>
-												<option ${member.grade == 'GOLD' ? 'selected' : ''}>GOLD</option>
-												<option ${member.grade == 'DIA' ? 'selected' : ''}>DIA</option>
+												<option ${member.grade == '0' ? 'selected' : ''}>일반</option>
+												<option ${member.grade == '1' ? 'selected' : ''}>BLACK</option>
+												<option ${member.grade == '2' ? 'selected' : ''}>SILVER</option>
+												<option ${member.grade == '3' ? 'selected' : ''}>GOLD</option>
+												<option ${member.grade == '4' ? 'selected' : ''}>VIP</option>
 											</select>
+										</div>
+									</td>
+								</tr>
+								<tr class="">
+									<td>
+										<div class="pt-2">우편 번호</div>
+									</td>
+									<td>
+										<div>
+											<input type="text" class="form-control" name="zipcode"
+												id="zipcode" placeholder="우편 번호"
+												value="${member.zipcode }" style="border-width: 0;">
+										</div>
+									</td>
+								</tr>
+								<tr class="">
+									<td>
+										<div class="pt-2">주소</div>
+									</td>
+									<td>
+										<div>
+											<input type="text" class="form-control" name="address1"
+												id="address1" placeholder="주소"
+												value="${member.address1 }" style="border-width: 0;">
+										</div>
+									</td>
+								</tr>
+								<tr class="">
+									<td>
+										<div class="pt-2">상세 주소</div>
+									</td>
+									<td>
+										<div>
+											<input type="text" class="form-control" name="address2"
+												id="address2" placeholder="상세 주소"
+												value="${member.address2 }" style="border-width: 0;">
 										</div>
 									</td>
 								</tr>
@@ -157,3 +195,4 @@ td input:focus {
 				</div>
 			</div>
 		</div>
+
