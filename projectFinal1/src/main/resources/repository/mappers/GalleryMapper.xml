@@ -10,7 +10,7 @@
 	</insert>
 	
 	<select id="Gallery" resultMap="galleryResultMap">
-		SELECT * FROM Gallery
+		SELECT * FROM Gallery ORDER BY galleryuploaddate DESC
 	</select>
 	
 	<resultMap id="galleryResultMap" type="Gallery">

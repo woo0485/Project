@@ -30,35 +30,37 @@
 								<c:if test="${sessionScope.id eq my.id}">	
 									<tr>
 										<th style="border:none;">회원등급</th>
-										<td>${my.grade}</td>
+										<td style="border:none;">${my.grade}</td>
 										
 									</tr>
 									<tr>
 										<th style="border:none;">아이디</th>
-										<td>${my.id}</td>
+										<td style="border:none;">${my.id}</td>
 									</tr>
 									<tr>
 										<th style="border:none;">비밀번호</th>
-										<td>${my.password}</td>
+										<td style="border:none;">*****</td>
 									</tr>
 									<tr>
 										<th style="border:none;">이름</th>
-										<td>${my.name}</td>
+										<td style="border:none;">${my.name}</td>
 									</tr>
 									<tr>
 										<th style="border:none;">이메일</th>
-										<td>${my.email}</td>
+										<td style="border:none;">${my.email}</td>
 									</tr>
 									<tr>
 										<th style="border:none;">휴대전화</th>
-										<td>${my.phonenumber}</td>
+											<c:if test="${my.phonenumber eq null}">
+												<td style="border:none;">010 - 0000 - 0000</td>
+											</c:if>
+												<td style="border:none;">${my.phonenumber}</td>
 									</tr>
 								</c:if>
 							</tbody>
 						</table>
-					</div>			
-	 	 
-	 	 
-	 </div>	
+					</div>			 	 
+	 	</div>
+	 </div>		
 </body>
 </html>

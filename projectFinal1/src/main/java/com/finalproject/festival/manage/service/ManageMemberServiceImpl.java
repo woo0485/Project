@@ -7,7 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.finalproject.festival.domain.Festival;
+import com.finalproject.festival.domain.Member;
 import com.finalproject.festival.manage.dao.ManageMemberDao;
 
 @Service
@@ -29,7 +29,7 @@ public class ManageMemberServiceImpl implements ManageMemberService {
 		
 		int listCount = managerMemberDao.getBoardCount(type, keyword);
 		
-		List<Festival> mList = managerMemberDao.manageMember(start, PAGE_SIZE, type, keyword);
+		List<Member> mList = managerMemberDao.manageMember(start, PAGE_SIZE, type, keyword);
 		
 		int pageCount = listCount / PAGE_SIZE + (listCount % PAGE_SIZE == 0? 0 : 1);
 		
@@ -63,13 +63,13 @@ public class ManageMemberServiceImpl implements ManageMemberService {
 
 	
 	@Override
-	public Festival getManageMember(String id) {
+	public Member getManageMember(String id) {
 
 		return managerMemberDao.getManageMember(id);
 	}
 
 	@Override
-	public void updateManageMember(Festival festival) {
+	public void updateManageMember(Member festival) {
 
 		managerMemberDao.updateManageMember(festival);
 	}

@@ -14,5 +14,7 @@
 		
 		</c:choose>
 		
+		<h5>장바구니 수량 ${ basket.basketproductcount }  </h5><br>
+		<img src="${product.productimage}"  width="400" height="450" />
 		</div>
 	</div>	

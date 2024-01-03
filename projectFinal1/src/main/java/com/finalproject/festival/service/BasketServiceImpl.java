@@ -19,7 +19,7 @@ public class BasketServiceImpl implements BasketService {
 	public void setBasketDao (BasketDao bd) {
 		this.BD = bd;
 	}
-
+/*
 	@Override
 	public Map<String, Object> basketList (String id, int productno, int basketno, int basketproductcount) {
 		
@@ -27,6 +27,23 @@ public class BasketServiceImpl implements BasketService {
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		modelMap.put("basketList", basketList);
 	return modelMap;
+	} */
+	
+	// 장바구니 목록 보기 - 1월 3일
+	@Override
+	public List<Basket> baskList(String id) {
+		return BD.basketList(id);
+	}
+	
+	// 장바구니 확인 - 1월 3일
+	@Override
+	public Basket checkBasket(Basket b) {
+		return BD.checkBasket(b);
+	}
+
+	@Override
+	public void insertBasket(Basket b) {
+		BD.insertBasket(b);
 	}
 
 }

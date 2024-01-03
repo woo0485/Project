@@ -64,10 +64,10 @@ div table tbody td {
 				<div class="col-10 text-center">
 					<div class="col-2 offset-10 mt-3">
 						<a href="noticeWrite"
-							class="text-decoration-none text-danger link-secondary border border-danger rounded px-4 py-0">공지
+							class="text-decoration-none text-danger link-secondary border border-danger rounded px-4 py-2">공지
 							작성</a>
 					</div>
-					<table class="table mt-3">
+					<table class="table mt-4" style="font-size:small;">
 						<thead>
 							<tr>
 								<th class="py-3">NO</th>
@@ -82,7 +82,7 @@ div table tbody td {
 									<td class="py-3 px-5 text-start"><a
 										href="noticeDetail?noticeNo=${n.noticeNo}&pageNum=${currentPage}"
 										class="text-decoration-none link-black fontbold">${ n.noticeTitle }</a></td>
-									<td class="py-3 text-end"><span class="font">${n.noticeUploadDate}</span></td>
+									<td class="py-3 text-center"><span class="font">${n.noticeUploadDate}</span></td>
 								</tr>
 							</c:forEach>
 						</tbody>

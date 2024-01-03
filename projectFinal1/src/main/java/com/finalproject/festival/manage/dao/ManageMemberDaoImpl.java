@@ -8,7 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.finalproject.festival.domain.Festival;
+import com.finalproject.festival.domain.Member;
 
 @Repository
 public class ManageMemberDaoImpl implements ManageMemberDao {
@@ -29,7 +29,7 @@ public class ManageMemberDaoImpl implements ManageMemberDao {
 	}
 
 	@Override
-	public List<Festival> manageMember(int start, int num, String type, String keyword) {
+	public List<Member> manageMember(int start, int num, String type, String keyword) {
 		
 		Map<String, Object> params = new HashMap<>();
 		params.put("start", start);
@@ -41,13 +41,13 @@ public class ManageMemberDaoImpl implements ManageMemberDao {
 	}
 
 	@Override
-	public Festival getManageMember(String id) {
+	public Member getManageMember(String id) {
 
 		return sqlSession.selectOne(NAME_SPACE + ".getManageMember", id);
 	}
 
 	@Override
-	public void updateManageMember(Festival festival) {
+	public void updateManageMember(Member festival) {
 
 		sqlSession.update(NAME_SPACE + ".updateManageMember", festival);
 	}

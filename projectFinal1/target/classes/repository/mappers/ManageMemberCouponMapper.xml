@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.finalproject.festival.mapper.ManageMemberCouponMapper">
+
+	<resultMap id="manageCouponMap" type="MemberCoupon" >
+		<id property="membercouponno" column="membercouponno" />
+		<result property="couponno" column="couponno" />
+		<result property="id" column="id" />
+		<result property="couponopendate" column="couponopendate" />
+		<result property="couponclosedate" column="couponclosedate" />		
+	</resultMap>
+	
+	<select id="getBoardCount" resultType="int">
+		SELECT 
+			COUNT(membercouponno) 
+		FROM MemberCoupon
+		<where>
+			<if test="type == 'id'">
+				id LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'couponno'">
+				couponno LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'couponopendate'">
+				couponopendate LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'couponclosedate'">
+				couponclosedate LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+		</where>
+	</select>
+
+	<select id="manageMemberCoupon" parameterType="hashmap" resultType="MemberCoupon">
+		SELECT *
+		FROM MemberCoupon
+		
+		<where>
+			<if test="type == 'id'">
+				id LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'couponno'">
+				couponno LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'couponopendate'">
+				couponopendate LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'couponclosedate'">
+				couponclosedate LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+		</where>
+		
+		ORDER BY id DESC
+		LIMIT #{startRow}, #{num}
+	</select>
+	
+	<update id="updateManageMemberCoupon" parameterType="MemberCoupon">
+		UPDATE MemberCoupon
+			SET couponno = #{couponno}, 
+				couponopendate = #{couponopendate},
+				couponclosedate = #{couponclosedate}
+			
+		WHERE membercouponno = #{membercouponno}
+	</update>
+	
+	<delete id="deleteManageMemberCoupon">
+		DELETE FROM MemberCoupon
+		WHERE membercouponno = #{membercouponno}
+	</delete>
+	
+	<select id="getMemberCoupon" resultMap="manageCouponMap" resultType="MemberCoupon">
+		SELECT * FROM MemberCoupon
+		WHERE membercouponno = #{membercouponno}
+	</select>
+	
+</mapper>
