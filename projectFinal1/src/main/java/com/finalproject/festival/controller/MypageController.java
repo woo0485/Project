@@ -1,16 +1,20 @@
 package com.finalproject.festival.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.finalproject.festival.service.MyPageMemberService;
+import com.finalproject.festival.domain.Member;
 
 @Controller
 public class MypageController {
 	
-	// 마이페이지 메인 및 회원정보
-	@RequestMapping("/myPageMain")
-	public String myPageMain() {
-		return "myPageMain";
-	}
+	@Autowired
+	private MyPageMemberService service;
+	
 	
 	// 마이페이지 예약
 	@RequestMapping("/myPageReservation")
@@ -40,6 +44,20 @@ public class MypageController {
 	@RequestMapping("/myPageBenefit")
 	public String myPageBenefit() {
 		return "myPageBenefit";
+	}
+	
+	
+	// 마이페이지 회원정보
+	@RequestMapping("/myPageMain")
+	public String MyInfo(@RequestParam("id")String id, Model model) {
+		Member member = service.MyInfo(id);
+		
+		System.out.print("ddd"+member.getGrade());
+		
+		model.addAttribute("member", member);
+		return "myPageMain";
+		
+		
 	}
 	
 	
