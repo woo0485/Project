@@ -25,7 +25,7 @@
 		
 	</select>
 
-	<resultMap id="ManageMemberMap" type="Festival" >
+	<resultMap id="ManageMemberMap" type="Member" >
 		<id property="id" column="id" />
 		<result property="password" column="password" />
 		<result property="name" column="name" />
@@ -34,9 +34,12 @@
 		<result property="totalpay" column="totalpay" />
 		<result property="grade" column="grade" />
 		<result property="joindate" column="joindate" />
+		<result property="zipcode" column="zipcode" />
+		<result property="address1" column="address1" />
+		<result property="address2" column="address2" />
 	</resultMap>
 	
-	<select id="manageMember" resultType="Festival" parameterType="hashmap">
+	<select id="manageMember" resultType="Member" parameterType="hashmap">
 		SELECT
 			*
 		FROM Member
@@ -57,14 +60,14 @@
 		LIMIT #{start}, #{num}
 	</select>
 	
-	<select id="getManageMember" resultType="Festival" resultMap="ManageMemberMap">
+	<select id="getManageMember" resultType="Member" resultMap="ManageMemberMap">
 		SELECT
 			*
 		FROM Member
 		WHERE id = #{id}
 	</select>
 	
-	<update id="updateManageMember" parameterType="Festival">
+	<update id="updateManageMember" parameterType="Member">
 		UPDATE Member
 		SET id = #{id}, name = #{name}, phonenumber = #{phonenumber},
 			email = #{email}, totalpay = #{totalpay}, grade = #{grade}
@@ -75,11 +78,5 @@
 		DELETE FROM Member
 		WHERE id = #{id}
 	</delete>
-	
-	
 
-	
 </mapper>	
-
-
-

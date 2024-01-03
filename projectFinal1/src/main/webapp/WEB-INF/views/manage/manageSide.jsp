@@ -51,7 +51,7 @@
 						<i class="bi bi-basket"></i>
 					</div>	
 					<div class="col-8 text-start">						  	
-					    <a class="text-decoration-none fontblack" href="manageEvent">이벤트 관리</a>
+					    <a class="text-decoration-none fontblack" href="manageCoupon">쿠폰 관리</a>
 					</div>
 				</div>
 				<div class="row pt-5">

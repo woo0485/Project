@@ -1,9 +1,194 @@
+function dbSubmit(){
+	if(!confirm('DB로 전송하시겠습니까?')){
+            return false;
+        }  
+}
+
+
 $(function(){
+
+//#####################################쿠폰 JS########################################
+
+<<<<<<< HEAD
+	
+	$(document).on("click", ".manageMemberCouponUpdate", function() {
+		
+		let cnt = $(this).attr("data-no");
+		let membercouponno = $("#memberCouponId_" + cnt).val();
+		let couponno = $("#couponno_" + cnt).val();
+		let couponopendate = $("#couponopendate_" + cnt).val();
+		let couponclosedate = $("#couponclosedate_" + cnt).val();
+		
+		console.log("membercouponno = " + membercouponno);
+		console.log("couponno = " + couponno);
+		console.log("couponopendate = " + couponopendate);
+		console.log("couponclosedate = " + couponclosedate);
+		
+		
+		let result = confirm("쿠폰을 수정 하시겠습니까?");
+=======
+	$(document).on("click", "#manageMemberCouponUpdate", function() {
+
+		let membercouponno = $(this).attr("data-no3");
+		console.log("membercouponno : " + membercouponno);
+		
+		let params = {
+			        "membercouponno": membercouponno
+			  	  	};
+		
+		if(result) {			
+			$.ajax({		
+				url: "manageMemberCouponUpdate1.ajax",
+				data: params,
+				//dataType: "json",
+				success: function(resData, status, xhr) { 
+				alert("전송완료");
+
+				},
+				error: function(xhr, status, error) {
+				
+				alert("ajax 실패 : " + status + " - " + xhr.status);			
+				}
+			});		
+		}
+		
+	});
+
+	$(document).on("click", "#manageMemberCouponUpdate2", function() {
+		
+		let membercouponno = $(this).attr("data-no3");
+		let couponno = $("#couponno").val();
+		let couponopendate = $("#couponopendate").val();
+		let couponclosedate = $("#couponclosedate").val();
+		
+		console.log("membercouponno : " + membercouponno);	
+		console.log("couponno : " + couponno);	
+		console.log("couponopendate : " + couponopendate);	
+		console.log("couponclosedate : " + couponclosedate);	
+>>>>>>> 4b390fdf7ef23691660228e7b763ab4b85e79921
+		
+		let params = {
+			        "membercouponno": membercouponno,
+			        "couponno": couponno,
+			        "couponopendate": couponopendate,
+			        "couponclosedate": couponclosedate
+			  	  	};
+<<<<<<< HEAD
+		
+		
+		if(result) {			
+			$.ajax({		
+				url: "manageMemberCouponUpdate.ajax",
+=======
+
+		
+		if(result) {			
+			$.ajax({		
+				url: "manageMemberCouponUpdate.ajax2",
+>>>>>>> 4b390fdf7ef23691660228e7b763ab4b85e79921
+				type: "post",
+				data: params,
+				//dataType: "json",
+				success: function(resData, status, xhr) { 
+					
+				document.location.href = document.location.href;
+				alert("수정 되었습니다.");		
+				},
+				error: function(xhr, status, error) {
+				
+				alert("ajax 실패 : " + status + " - " + xhr.status);			
+				}
+			});		
+		}
+		
+	});
+	
+
+	$(document).on("click", "#manageMemberCouponDelete", function() {
+	
+<<<<<<< HEAD
+		let membercouponno = $(this).attr("data-no");	
+=======
+		let membercouponno = $(this).attr("data-no4");	
+>>>>>>> 4b390fdf7ef23691660228e7b763ab4b85e79921
+		let params = "membercouponno=" + membercouponno	
+		let result = confirm("쿠폰을 삭제 하시겠습니까?");
+		
+	
+		
+		if(result) {			
+			$.ajax({		
+				url: "manageMemberCouponDelete.ajax",
+				type: "post",
+				data: params,
+				//dataType: "json",
+				success: function(resData, status, xhr) { 
+					
+				document.location.href = document.location.href;
+				alert("삭제 되었습니다.");		
+				},
+				error: function(xhr, status, error) {
+				
+				alert("ajax 실패 : " + status + " - " + xhr.status);			
+				}
+			});		
+		}
+		
+	});
+
+//#####################################매출 관리 JS########################################
+
+	$("#dbsubmit1").on("click", dbSubmit);
+	$("#dbsubmit2").on("click", dbSubmit);
+	$("#dbsubmit3").on("click", dbSubmit);
+	$("#dbsubmit4").on("click", dbSubmit);
+	$("#dbsubmit5").on("click", dbSubmit);
+	$("#dbsubmit6").on("click", dbSubmit);
+	$("#dbsubmit7").on("click", dbSubmit);
+	$("#dbsubmit8").on("click", dbSubmit);
+	$("#dbsubmit9").on("click", dbSubmit);
+	$("#dbsubmit10").on("click", dbSubmit);
+	$("#dbsubmit11").on("click", dbSubmit);
+	$("#dbsubmit12").on("click", dbSubmit);
+	
+
+	
+<<<<<<< HEAD
+	$(".dbAllDelete").off().on("click",function(){
+	
+		let salesNo = $(this).attr("data-salesNo");
+		let params = "salesNo=" + salesNo;	
+		let result = confirm("데이터를 초기화 하시겠습니까?\n다음에는 확인 부탁드려요");
+=======
+	$("#dbAllDelete").off().on("click",function(){
+	
+		let salesDate = $(this).attr("data-date");
+		let params = "salesDate=" + salesDate;	
+		let result = confirm("데이터를 초기화 하시겠습니까?");
+>>>>>>> 4b390fdf7ef23691660228e7b763ab4b85e79921
+		
+		if(result) {			
+			$.ajax({		
+				url: "deleteSalesTotalPrice.ajax",
+				type: "post",
+				data: params,
+				//dataType: "json",
+				success: function(resData, status, xhr) { 
+					
+				document.location.href = document.location.href;
+				alert("초기화 되었습니다.");		
+				},
+				error: function(xhr, status, error) {
+				
+				alert("ajax 실패 : " + status + " - " + xhr.status);			
+				}
+			});		
+		}
+	});
+
 
 
 //#####################################관리 페이지 ajax #####################################
-
-
 
 	$(document).on("click", "#manageIdDelete", function() {
 		let id = $(this).attr("data-id");
@@ -45,7 +230,7 @@ $(function(){
 				success: function(resData, status, xhr) { 
 				
 				document.location.href = document.location.href;				
-				alert("취소 되었습니다");
+				alert("취소 되었습니다.");
 				
 				},
 				error: function(xhr, status, error) {
@@ -57,10 +242,7 @@ $(function(){
 		
 	});
 
-	
-
 //#####################################채팅 JS#####################################
-
 
 	$("#chatBtn").on("click", function() {
 
@@ -78,8 +260,6 @@ $(function(){
 
 	});
 
-
-
 //#####################################회원 관리 JS#####################################
 
 	$("#manageMemberDelete").on("click", function() {
@@ -92,8 +272,7 @@ $(function(){
 		
 			return false;
 		} 
-	});
-	
+	});	
 	
 //#####################################이용 안내 JS#####################################
 
@@ -185,11 +364,11 @@ $(function(){
     	});
     });
 
-
 //#####################################문의 하기 JS#####################################	
 
- 
 	$("#inquiryWriteForm").on("submit", function() {
+	
+	$("#questionContent").val($("#contenteditable").html().trim());
 	
 		if($("#questionTitle").val().length <= 0 ) {
 			alert("제목을 입력해 주세요");
@@ -202,8 +381,7 @@ $(function(){
 			return false;
 		}
 		
-	});	
-	
+	});		
 	
 //#####################################공지 사항 JS#####################################	
 	
@@ -296,16 +474,17 @@ $(function(){
 	});
  
  	
- 	/*
+<<<<<<< HEAD
+
+=======
+ 	
  	$("#").on("click", function(){
     	$(this).addClass('fontchange');
     	$(this).removeClass('fontblack');
     	
 		return false;
 	});
-	*/
 	
- 
- 
- 
+>>>>>>> 4b390fdf7ef23691660228e7b763ab4b85e79921
+
  });

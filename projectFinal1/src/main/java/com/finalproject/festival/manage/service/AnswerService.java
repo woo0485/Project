@@ -6,4 +6,6 @@ public interface AnswerService {
 
 	public abstract void insertAnswer(Manage mange);
 	
+	public void sendAnswerMail(Manage mange);
+	
 }
