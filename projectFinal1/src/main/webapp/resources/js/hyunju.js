@@ -1,5 +1,14 @@
 $(function() {
+////////////////  여기는 장바구니   ///////////////////////
+$("#productDetail").on("submit", function() {
+		if($("#basketproductcount").val().length <= 0) {
+			alert("티켓 수량이 입력되지 않았습니다.\n수량을 입력해주세요");
+			$("#basketproductcount").focus();
+			return false;
+		}
+	});
 
+///////////////여기서부터는 product CRUD /////////////////
 	$("#detailUpdate").on("click", function() {
 			
 		var pass = $("#adminpassword").val();
