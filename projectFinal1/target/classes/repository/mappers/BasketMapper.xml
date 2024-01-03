@@ -4,14 +4,14 @@
 
 <mapper namespace="com.finalproject.festival.mapper.BasketMapper" >
 	
+	<!--  장바구니 목록보기 mysql OK -->
 	<select id="basketList" resultType="Basket" >
 		SELECT 
 		b.basketno AS basketno,
 		m.id AS id,
 		p.productno AS productno,
 		b.basketproductcount,
-		p.productprice AS productprice,
-		(productprice * basketproductcount ) productprice
+		p.productprice AS productprice
 		
 		FROM ShoppingBasket b, Product p, Member m
 		
@@ -20,6 +20,21 @@
 		ORDER BY
 		b.basketno
 	</select>
+	
+	<!-- 장바구니 확인하기 mysql OK -->
+	<select id="checkBasket" resultType="Basket" >
+			SELECT * FROM
+			ShoppingBasket
+			WHERE id=#{id} 
+			AND productno =#{productno}
+	</select>
+	
+	<insert id="insertBasket" >
+		INSERT INTO ShoppingBasket
+				(id, productno, basketproductcount)
+		
+			VALUES( #{id}, #{productno}, #{basketproductcount})
+	</insert>
 	
 	<resultMap id="basketResultMap" type="Basket" >
 		<id property="basketno" column="basketno" />

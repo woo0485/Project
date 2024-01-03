@@ -1,6 +1,11 @@
 package com.finalproject.festival.controller;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,8 +29,8 @@ public class basketController {
 		this.bs = bs;
 	}
 	
-	// 회원 장바구니
-	@RequestMapping(value = {"/basket"}, method= RequestMethod.GET)
+	// 회원 장바구니 목록 보여지는 것
+/*	@RequestMapping(value = {"/basket"}, method= RequestMethod.POST)
 	public String basketList (Model m, 
 			@RequestParam(value = "basketno", required=false, defaultValue="1") int basketno, 
 			@RequestParam(value = "productno", required=false, defaultValue="1") int productno,   
@@ -35,6 +40,31 @@ public class basketController {
 		Map<String, Object> modelMap = bs.basketList(id, productno, basketno, basketproductcount) ;
 		m.addAttribute(modelMap);
 		return "basket";
+	} */
+	
+	// 장바구니 목록 보여지는 것 - 1월 3일 ) 회원 아이디로
+	@RequestMapping(value = {"/basket"}, method= RequestMethod.POST)
+	public String basketList ( HttpSession session, 
+			@RequestParam(value =  "id") String id) {
+		
+		List<Basket> bList  = (List<Basket>) session.getAttribute(id);
+		
+		return "basket";
 	}
 	
+	
+	//회원 장바구니 추가"redirect:productList";
+	public String insertBasket(
+			HttpServletRequest request,
+			int basketproductcount) 	throws IOException {	
+		
+		Basket b = new Basket();
+		b.setBasketproductcount(basketproductcount);
+		System.out.println("basketcontroller에서 티켓 수량 입력 숫자:" + b.getBasketproductcount());
+		
+		bs.insertBasket(b);
+		System.out.println("basket insert에서 basketno: " + b.getBasketno());
+		
+		return "redirect:basket";
+	}
 }

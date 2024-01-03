@@ -22,12 +22,12 @@
 		</form>
 		
 	<!--  ########## 장바구니에 담을 때  js로 넘겨지는 form #############-->
-		<form name="basketForm" id="basketForm" method="post" >
+		<form name="basketForm" id="basketForm"  action="basket"
+				method="post" >
 			<input type="hidden" name="id" id="rId"> 
 			<input type="hidden" name="basketno"  id="basketno"  value="${basket.basketno}"> 
 			<input type="hidden" name="productno" id="productno" value="${product.productno}"> 
 			<input type="hidden" name="basketproductcount"  id="basketproductcount">
-<!--  ########## 장바구니에 담을 때  js로 넘겨지는 form  끝 #############-->		
 
 <!-- @@@@@@@@ 게시 글 상세보기 영역  @@@@@@@@@@-->
 		<table>
