@@ -45,6 +45,16 @@ public class Sales {
 	}
 
 
+	public int getSalesYear() {
+		return salesYear;
+	}
+
+
+	public void setSalesYear(int salesYear) {
+		this.salesYear = salesYear;
+	}
+
+
 	
 	
 	
