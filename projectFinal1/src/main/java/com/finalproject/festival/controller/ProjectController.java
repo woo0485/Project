@@ -33,6 +33,7 @@ public class ProjectController {
 	
 	
 	
+	private static final int HashMap = 0;
 	@Autowired
 	private MemberService memberService;
 	@Autowired
@@ -135,15 +136,25 @@ public class ProjectController {
 	    System.out.println("idCheck"+idCheck);
 	    return idCheck;
 	};
+	//이메일 중복확인
+	/* String email = (String)param.get("email"); */
+	@ResponseBody
+	@RequestMapping(value = "/joinEmailCheck",method = RequestMethod.POST)
+	public int joinEmailCheck(String email) {
+		int result = 0;
+		result =memberService.joinEmailCheck(email);
+		return result;
+	}
+	
 
 	//이메일 인증
-		@ResponseBody
-		@RequestMapping(value = "/mailCheck", method = RequestMethod.POST)
-		public String mailCheck(String email) {
-			System.out.println("이메일 인증 요청이 들어옴!");
-			System.out.println("이메일 인증 이메일 : " + email);
-			return mailService.joinEmail(email);
-		}
+	@ResponseBody
+	@RequestMapping(value = "/mailCheck", method = RequestMethod.POST)
+	public String mailCheck(String email) {
+		System.out.println("이메일 인증 요청이 들어옴!");
+		System.out.println("이메일 인증 이메일 : " + email);
+		return mailService.joinEmail(email);
+	}
 		
 		
 	//회원가입 
@@ -177,12 +188,21 @@ public class ProjectController {
 	@ResponseBody
 	@RequestMapping(value = "/userFindId", method = RequestMethod.POST)
 	public String userFindId (@RequestBody Map<String, Object>param) {
-	String email = (String)param.get("email");
-	String findId =	memberService.userFindId(email);
+		Map<String, Object> userfind = new HashMap<>();
+		userfind.put("email", (String)param.get("email"));
+		userfind.put("name", (String)param.get("name"));
+	
+	String findId =	memberService.userFindId(userfind);
 	
 	return findId;
 	}
 	
+	//인증번호만
+	@ResponseBody
+	@RequestMapping(value = "/userFindCoed" ,method = RequestMethod.POST)
+	public String userFindCoed(@RequestBody Map<String, Object> param){
+	return 	mailService.findeMailCheck((String)param.get("email"));
+	}
 	
 	
 	//비밀번호 찾기
@@ -199,10 +219,22 @@ public class ProjectController {
 		if(memberCherck == 1) {
 			findEmailCheckCode = mailService.findeMailCheck((String) param.get("email"));
 		}
-		
-		
 		return findEmailCheckCode;
-				
 	}
+	
+	
+	//새로운비밀번호
+	@ResponseBody
+	@RequestMapping(value = "/UserNewPassword",method = RequestMethod.POST)
+	public int UserNewPassword(@RequestBody Map<String, Object> param) {
+		Map<String, Object>newPassword = new HashMap<String, Object>();
+		String password = passwordEncoder.encode((String)param.get("password"));
+		newPassword.put("password", password);
+		newPassword.put("id", param.get("id"));
+	
+		
+		return memberService.userNewPassword(newPassword);
+	}
+	
 	
 }
