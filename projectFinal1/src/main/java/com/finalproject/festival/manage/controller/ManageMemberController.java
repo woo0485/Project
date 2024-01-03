@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.finalproject.festival.domain.Festival;
 import com.finalproject.festival.domain.Manage;
+import com.finalproject.festival.domain.Member;
 import com.finalproject.festival.manage.service.ManageMemberService;
 
 @Controller
@@ -40,7 +40,7 @@ public class ManageMemberController {
 	
 	// 회원 관리 페이지 회원정보 수정
 	@RequestMapping(value="updateManageMemberProcess", method=RequestMethod.POST)
-	public String updateManageMember(Model model, Festival festival) {
+	public String updateManageMember(Model model, Member festival) {
 		
 		manageMemberService.updateManageMember(festival);
 		
@@ -51,7 +51,7 @@ public class ManageMemberController {
 	@RequestMapping(value="/manageMemberUpdate")
 	public String updateManageMember(Model model, String id) {
 		
-		Festival m = manageMemberService.getManageMember(id);
+		Member m = manageMemberService.getManageMember(id);
 		
 		model.addAttribute("member", m);
 		

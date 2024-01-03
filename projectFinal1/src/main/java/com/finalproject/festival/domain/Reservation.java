@@ -2,18 +2,19 @@ package com.finalproject.festival.domain;
 
 public class Reservation {
 
-
 	private int reservationno;
 	private String id;
 	private int productno;
 	private int reservationprice;
 	private int reservationticketcount;
 	private String reservationdate;
+	private int totalReservationPrice;
+	private int salesTotalPrice;
 	
 	public Reservation() {}
 
 	public Reservation(int reservationno, String id, int productno, int reservationprice, int reservationticketcount,
-			String reservationdate) {
+			String reservationdate, int totalReservationPrice, int salesTotalPrice) {
 		super();
 		this.reservationno = reservationno;
 		this.id = id;
@@ -21,6 +22,8 @@ public class Reservation {
 		this.reservationprice = reservationprice;
 		this.reservationticketcount = reservationticketcount;
 		this.reservationdate = reservationdate;
+		this.totalReservationPrice = totalReservationPrice;
+		this.salesTotalPrice = salesTotalPrice;
 	}
 
 	public int getReservationno() {
@@ -70,6 +73,23 @@ public class Reservation {
 	public void setReservationdate(String reservationdate) {
 		this.reservationdate = reservationdate;
 	}
-	
 
+	public int getTotalReservationPrice() {
+		return totalReservationPrice;
+	}
+
+	public void setTotalReservationPrice(int totalReservationPrice) {
+		this.totalReservationPrice = totalReservationPrice;
+	}
+
+	public int getSalesTotalPrice() {
+		return salesTotalPrice;
+	}
+
+	public void setSalesTotalPrice(int salesTotalPrice) {
+		this.salesTotalPrice = salesTotalPrice;
+	}
+
+	
+	
 }

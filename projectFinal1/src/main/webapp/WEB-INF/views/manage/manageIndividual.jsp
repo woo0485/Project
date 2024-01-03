@@ -29,10 +29,6 @@
 .table caption{caption-side: bottom; display: none;
 }
 
-.manageIndividualFont{
-	color: #333333;
-
-}
 div table tbody td {
 	max-width: 300px;
 	text-overflow: ellipsis;
@@ -62,19 +58,26 @@ div table tbody td {
 										<th class="" style="width:350px;">문의 제목</th>
 										<th class="" style="width:150px;">이메일</th>
 										<th class="" style="width:150px;">문의 날짜</th>
+										<th class="">답변 여부</th>
 									</tr>
 							</thead>
 							<tbody class="text-secondary">								
 								
 								<c:forEach var="i" items="${iList}">
-									<tr>
-										<td class="manageIndividualFont text-center">${ i.id }</td>
-										<td class="px-4">
+									<tr style="font-size:small; color:black;" class="text-center">
+										<td>${ i.id }</td>
+										<td class="px-4 text-start">
 											<a href="manageIndividualDetail?questionNo=${i.questionNo}&pageNum=${currentPage}" 
-											class="text-decoration-none manageIndividualFont">${ i.questionTitle }</a>
+											class="text-decoration-none" style="color:black;">${ i.questionTitle }</a>
 										</td>
-										<td class="manageIndividualFont text-center">${ i.email }</td>
-										<td class="manageIndividualFont text-center">${ i.questionDate }</td>
+										<td>${ i.email }</td>
+										<td>${ i.questionDate }</td>
+										<c:if test="${ i.answerProgress != '답변 완료' }">
+												<td class="text-center">${ i.answerProgress }</td>	
+											</c:if>		
+											<c:if test="${ i.answerProgress == '답변 완료' }">
+												<td class="text-center" style="color:red;">${ i.answerProgress }</td>	
+											</c:if>						
 									</tr>
 								</c:forEach>							
 								
@@ -85,7 +88,7 @@ div table tbody td {
 				
 				<!-- 페이지네이션 -->
 				<div class="row">
-						<div class="col offset-1 text-center my-5">
+						<div class="col text-center my-5">
 							<nav aria-label="Page navigation example">
 								<ul class="pagination justify-content-center">
 

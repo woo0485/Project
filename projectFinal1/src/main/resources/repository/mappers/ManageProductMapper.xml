@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.finalproject.festival.mapper.ManageProductMapper">
+
+	<resultMap id="manageProductMap" type="Product" >
+		<id property="productno" column="productno" />
+		<result property="productname" column="productname" />
+		<result property="productcontent" column="productcontent" />
+		<result property="productreadcount" column="productreadcount" />		
+	</resultMap>
+
+	<select id="productReadCount5" resultMap="manageProductMap" resultType="Product">
+		SELECT * FROM Product
+		ORDER BY productreadcount DESC
+		LIMIT 5
+	</select>
+	
+</mapper>	
