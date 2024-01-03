@@ -19,11 +19,9 @@ public class MemberDaoImpl implements MemberDao {
 	private SqlSessionTemplate st;
 	
 	@Override
-	public Member loginCheck(String id) {
-			
-		Member m =st.selectOne(NAME_SPACE+".userCheck", id);
+	public Map<String, Object> loginCheck(String id) {
 		
-		return m;
+		return st.selectOne(NAME_SPACE+".userLogin", id);
 	}
 
 	@Override
