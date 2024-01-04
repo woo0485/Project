@@ -16,12 +16,14 @@
 <script src="resources/js/seongjin.js?ver=1"></script>
 <script src="resources/js/wooseong.js"></script>
 <script src="resources/js/hyunju.js"></script>
-<script src="resources/js/donggyun.js"></script>
+<script src="resources/js/donggyun.js?var=1"></script>
 <link rel="stylesheet" href="resources/css/seongjin.css?ver=1">
 <link rel="stylesheet" href="resources/css/donggyun.css">
 <link rel="stylesheet" href="resources/css/wooseong.css">
 <link rel="stylesheet" href="resources/css/hyunju.css">
-<link rel="stylesheet" href="resources/css/yeseul.css?ver=2">
+<link rel="stylesheet" href="resources/css/yeseul.css?ver=0">
+
+
 </head>
 <body>
 	<div class="container">

@@ -103,7 +103,8 @@
     //email
    		const regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
     //password
-    	const regPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/;
+    	const regPassword = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,16}$/;
+
     		
  	//이름 유효성
  	$("#joinName").keyup(function(){
@@ -484,7 +485,6 @@
 	  		$("#findIdEmail").val("");
 	  		$("#findIdEmailCodeCheck").val("");
 	  		$("#home-tab-pane1").removeAttr("hidden");
-	  	
 	  		$("#findIdEmailMsg").text("");
 	  		$("#FindIdBtn").val("이메일 인증하기");
  			$("#findIdEmailCheck").attr("hidden","")
@@ -496,14 +496,15 @@
  		//아이디찾기 이동
  		$("#home-tab").click(function(){
  		$("#findIdDiv").removeAttr("hidden");
- 		$("#profile-tab-pane2").attr("hidden","");
+ 		$("#profile-tab-pane1").attr("hidden",true);
  		$("#findPasswordId").val("");
  		$("#findPasswordEmail").val("");
  		$('#findEmailCodeCheck').val("");
  		$("#profile-tab").attr("data-bs-target","#profile-tab-pane1");
- 		$("#profile-tab-pane1").attr("hidden","");
- 		
- 		$("#profile-tab-pane3").attr("hidden","");
+ 		$("#profile-tab-pane1").addClass("show active");
+		$("#profile-tab-pane3").addClass("fade");
+		$("#profile-tab-pane1").removeClass("fade");
+		$("#profile-tab-pane3").removeClass("show active");
  		$("#findPasswordEmailCheckDiv").attr("hidden","");
  		$("#profile-tab").text("비밀번호 찾기");
  		$("#FindPasswordBtn").val("이메일 인증하기");
@@ -530,6 +531,7 @@
  			$("#findPasswordMsg").text("이메일을 다시 확인해 주세요").css("color","red");
  			return;
  		}
+		$("#findPasswordLoading").css("display","block");
 		
 		 	$.ajax({
 		 			url: "userFindPassword",
@@ -540,6 +542,7 @@
 		 			success:function(result){
 		 					
 		 				if(result != ""){
+		 					$("#findPasswordLoading").css("display","none");
 		 					$("#findEmailCheckCodeHidden").val(result);
 		 					$("#findPasswordEmailCheckDiv").removeAttr("hidden");
 		 					$("#findPasswordMsg1").text("인증번호가 전송되었습니다").css("color","green");
@@ -569,7 +572,8 @@
 		const findEmailCheckCodeHidden = $("#findEmailCheckCodeHidden").val()
 		
 			if(findEmailCodeCheck === findEmailCheckCodeHidden){
-				$("#profile-tab-pane1").attr("hidden",true);
+				$("#profile-tab-pane1").removeClass("show active");
+				$("#profile-tab-pane1").addClass("fade");
 				$("#profile-tab").attr("data-bs-target","#profile-tab-pane2");
 				$("#profile-tab-pane2").removeClass("fade");
 				$("#profile-tab-pane2").addClass("show active");
@@ -583,36 +587,45 @@
  		
  		
  		
+ 		$("#findNewPassword").blur(function(){
+ 			if(! regPassword.test($("#findNewPassword").val())){
+ 				$("#findPasswordMsg2").text("영문소문자,숫자,특수문자를 조합해 8자이상 16자이하로 작성해 주세요").css("color","red");
+ 				return;
+ 			}else{
+ 				$("#findPasswordMsg2").text("");
+ 			}
+ 		});
  		
  		
  		
  		//새로운비밀번호 
  		$("#findNewPasswordBtn").click(function(){
  			const newPassword = $("#findNewPassword").val();
+ 			const passwordCheck = $("#findNewPasswordCheck").val()
+ 			const id = $("#findNewPasswordIdHidden").val()
  			
- 			if(! regPassword.test(newPassword)){
- 				$("#findPasswordMsg2").text("비밀번호를 다시작성해주세요").css("color","red");
- 			}
- 			if($("#findNewPassword").val() != $("#findNewPasswordCheck").val()){
+ 			
+ 			if(newPassword != passwordCheck){
  				$("#findPasswordMsg2").text("비밀번호가 일치하지 않습니다.").css("color","red");
+ 				return;
  			}
- 			if(newPassword === $("#findNewPasswordCheck").val()){
+ 			if(newPassword === passwordCheck){
  			
  				$.ajax({
- 					url: "UserNewPassword",
+ 					url: "userNewPassword",
  					type: "post",
  					data: JSON.stringify({
- 						"password":$("#findNewPasswordCheck").val(),
- 						"id":$("#findNewPasswordIdHidden").val()
+ 						"password": passwordCheck,
+ 						"id":id 
  					}),
  					contentType: "application/json",
- 					async: false,
  					success: function(result){
  					if(result == 1){
- 					$("#profile-tab-pane1").attr("hidden",true);
- 					$("#profile-tab-pane2").attr("hidden",true);
+ 					$("#profile-tab-pane2").addClass("fade");
+ 					$("#profile-tab-pane2").removeClass("show active");
+					$("#profile-tab-pane3").removeClass("fade");
+					$("#profile-tab-pane3").addClass("show active");
 					$("#profile-tab").attr("data-bs-target","#profile-tab-pane3");
-					$("#profile-tab-pane3").removeAttr("hidden");
 					$("#findNewPassword").val("");
 					$("#findNewPasswordCheck").val("");
 					}
@@ -678,4 +691,9 @@
             }
         }).open();
     };
- 
+    
+    
+    
+    //////////////////////////////Main////////////////////////////////
+
+

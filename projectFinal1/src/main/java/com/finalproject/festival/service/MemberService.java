@@ -1,8 +1,10 @@
 package com.finalproject.festival.service;
 
 
+import java.util.List;
 import java.util.Map;
 
+import com.finalproject.festival.domain.Admin;
 import com.finalproject.festival.domain.Member;
 
 public interface MemberService {
@@ -14,4 +16,8 @@ public interface MemberService {
 	public String userFindId (Map<String, Object> userfind);
 	public int userFindPassword (Map<String , Object> map);
 	public int userNewPassword(Map<String, Object> newPassword);
+	/**********************Admin***************************/
+	
+	public void adminUserAdd(Map<String, Object>adminUserAdd);
+	public List<Admin> adminUserSelect ();
 }
