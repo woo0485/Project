@@ -15,7 +15,8 @@
 		</select>
 	
 		<select id="Coupon" resultType="Coupon">
-			SELECT * FROM Coupon INNER JOIN COUPON WHERE couponno = #{couponno} 
+			SELECT c.couponname, c.couponno, c.coupondiscountrate FROM coupon c JOIN membercoupon mc ON c.couponno = mc.couponno
+            WHERE mc.id = #{id}
 		</select>
 		
 	
