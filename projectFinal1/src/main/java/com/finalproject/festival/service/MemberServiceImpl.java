@@ -1,6 +1,7 @@
 package com.finalproject.festival.service;
 
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.finalproject.festival.dao.MemberDao;
+import com.finalproject.festival.domain.Admin;
 import com.finalproject.festival.domain.Member;
 
 @Service
@@ -64,6 +66,19 @@ public class MemberServiceImpl implements MemberService {
 	public int userNewPassword(Map<String, Object> newPassword) {
 		
 		return memberDao.userNewPassword(newPassword);
+	}
+		////////////////////////////////////////////////////////
+
+	@Override
+	public void adminUserAdd(Map<String, Object> adminUserAdd) {
+		memberDao.adminUserAdd(adminUserAdd);
+	}
+
+
+	@Override
+	public List<Admin> adminUserSelect() {
+		
+		return memberDao.adminUserSelect();
 	};
 
 

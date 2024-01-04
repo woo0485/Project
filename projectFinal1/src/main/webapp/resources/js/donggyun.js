@@ -26,6 +26,47 @@ $(function(){
 		
 		let result = confirm("쿠폰을 수정 하시겠습니까?");
 
+
+	$(document).on("click", "#manageMemberCouponUpdate", function() {
+
+		let membercouponno = $(this).attr("data-no3");
+		console.log("membercouponno : " + membercouponno);
+		
+		let params = {
+			        "membercouponno": membercouponno
+			  	  	};
+		
+		if(result) {			
+			$.ajax({		
+				url: "manageMemberCouponUpdate1.ajax",
+				data: params,
+				//dataType: "json",
+				success: function(resData, status, xhr) { 
+				alert("전송완료");
+
+				},
+				error: function(xhr, status, error) {
+				
+				alert("ajax 실패 : " + status + " - " + xhr.status);			
+				}
+			});		
+		}
+		
+	});
+
+	$(document).on("click", "#manageMemberCouponUpdate2", function() {
+		
+		let membercouponno = $(this).attr("data-no3");
+		let couponno = $("#couponno").val();
+		let couponopendate = $("#couponopendate").val();
+		let couponclosedate = $("#couponclosedate").val();
+		
+		console.log("membercouponno : " + membercouponno);	
+		console.log("couponno : " + couponno);	
+		console.log("couponopendate : " + couponopendate);	
+		console.log("couponclosedate : " + couponclosedate);	
+
+
 		
 		let params = {
 			        "membercouponno": membercouponno,
@@ -33,8 +74,6 @@ $(function(){
 			        "couponopendate": couponopendate,
 			        "couponclosedate": couponclosedate
 			  	  	};
-
-
 
 		
 		if(result) {			
@@ -104,8 +143,6 @@ $(function(){
 	$("#dbsubmit11").on("click", dbSubmit);
 	$("#dbsubmit12").on("click", dbSubmit);
 	
-
-
 
 	$("#dbAllDelete").off().on("click",function(){
 	
@@ -419,7 +456,6 @@ $(function(){
 		}
 
 	});
-
 
 
  });

@@ -69,14 +69,14 @@
 					          </ul>
 					        </li>
 					        
-					        
 							    <c:if test="${empty sessionScope.id}">
 										<li class="nav-item ms-5">
 								          <a href="login" class="row nav-link active" aria-current="page"><i class="bi bi-person-circle" style="font-size: 2em;"></i></a>
 								        </li>
 								</c:if>
 								
-								<c:if test="${not empty sessionScope.id}">
+					        <c:if test="${sessionScope.userType == 'Member' }">
+								
 									<li class="nav-item dropdown ms-5">
 										<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						            		<i class="bi bi-person-lines-fill" style="font-size: 2em;"></i>
@@ -84,15 +84,20 @@
 						           
 							          <ul class="dropdown-menu">
 							            <li><a class="dropdown-item" href="myPageMain?id=${sessionScope.id}">마이페이지</a></li>
-							            <li><a class="dropdown-item" href="#">문의 하기</a></li>
+							           	<li><a class="dropdown-item" href="moveBasket">장바구니</a></li>
 							           	<li><a class="dropdown-item" href="logout">로그아웃</a></li>
 							          </ul>
 							        </li>
 								
-								</c:if>
+					        </c:if>
+					        
+							<c:if test="${sessionScope.userType =='Admin' }">	
 								<li class="nav-item ">
 						          <a href="manageMain" class="row nav-link active" aria-current="page">관리자 페이지</a>
-						        </li>
+						          <a href="logout" class="row nav-link active" aria-current="page">로그아웃</a>
+						       </li>
+						     </c:if>  
+						      
 					     	</ul>
 					    </div>
 					  </div>

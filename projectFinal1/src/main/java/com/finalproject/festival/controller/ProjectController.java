@@ -3,6 +3,7 @@ package com.finalproject.festival.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.finalproject.festival.domain.Admin;
 import com.finalproject.festival.domain.Member;
 import com.finalproject.festival.service.MailService;
 import com.finalproject.festival.service.MemberService;
@@ -32,8 +34,6 @@ import com.finalproject.festival.service.MemberService;
 public class ProjectController {
 	
 	
-	
-	private static final int HashMap = 0;
 	@Autowired
 	private MemberService memberService;
 	@Autowired
@@ -86,8 +86,35 @@ public class ProjectController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("id");
+		session.removeAttribute("userType");
 		return "main";
 	}
+	
+	
+	//adminUser
+	@RequestMapping("/addAdministrator")
+	public String adminUser(Model model) {
+		
+		
+		model.addAttribute("adminList",memberService.adminUserSelect());
+		
+		return "adminUser";
+	}
+	
+	//adminAdd
+	@RequestMapping(value = "/adminUserAdd",method = RequestMethod.POST )
+	public String adminUserAdd(String adminname,String adminid,String adminpassword) {
+		Map<String, Object> adminUserAdd = new HashMap<>();
+		String password = passwordEncoder.encode(adminpassword);
+		
+		adminUserAdd.put("adminname", adminname);
+		adminUserAdd.put("adminid", adminid);
+		adminUserAdd.put("adminpassword", password);
+		
+		memberService.adminUserAdd(adminUserAdd);
+		return "redirect:addAdministrator";
+	}
+	
 	
 	
 	//로그인 
@@ -230,15 +257,21 @@ public class ProjectController {
 	
 	//새로운비밀번호
 	@ResponseBody
-	@RequestMapping(value = "/UserNewPassword",method = RequestMethod.POST)
-	public int UserNewPassword(@RequestBody Map<String, Object> param) {
-		Map<String, Object>newPassword = new HashMap<String, Object>();
-		String password = passwordEncoder.encode((String)param.get("password"));
-		newPassword.put("password", password);
-		newPassword.put("id", param.get("id"));
-	
+	@RequestMapping(value = "/userNewPassword",method = RequestMethod.POST)
+	public int userNewPassword(@RequestBody Map<String, Object> param) {
 		
-		return memberService.userNewPassword(newPassword);
+		Map<String, Object>newPassword = new HashMap<String, Object>();
+		String newPasswordString =(String)param.get("password");
+		String id = (String)param.get("id");
+		String password = passwordEncoder.encode(newPasswordString);
+		
+		newPassword.put("password", password);
+		newPassword.put("id", id);
+	
+		System.out.println("newPassword----"+newPassword);
+		 int result =  memberService.userNewPassword(newPassword);
+		
+		return result;
 	}
 	
 	

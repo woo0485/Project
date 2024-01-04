@@ -1,6 +1,7 @@
 package com.finalproject.festival.dao;
 
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -8,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.finalproject.festival.domain.Admin;
 import com.finalproject.festival.domain.Member;
 
 @Repository
@@ -63,7 +65,19 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int userNewPassword(Map<String, Object> newPassword) {
 		
-		return  st.update(NAME_SPACE+".UserNewPassword"+newPassword);
+		return  st.update(NAME_SPACE+".userNewPassword" ,newPassword);
+	}
+
+	@Override
+	public void adminUserAdd(Map<String, Object> adminUserAdd) {
+		st.insert(NAME_SPACE+".adminUserAdd", adminUserAdd);
+		
+	}
+
+	@Override
+	public List<Admin> adminUserSelect() {
+		
+		return st.selectList(NAME_SPACE+".adminUserSelect");
 	} 
 
 

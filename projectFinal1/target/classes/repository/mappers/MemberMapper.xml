@@ -38,9 +38,21 @@
 									#{address1},#{address2},#{email},SYSDATE(),0,0)
 	</insert>
 	
-	<update id="userNewPassword" parameterType="hashMap">
-		UPDATE Member SET password = #{password} WHERE id = #{id}
+	<update id="userNewPassword"  parameterType="hashMap" >
+    	UPDATE Member SET password = #{password} WHERE id = #{id}
 	</update>
+	
+				<!--************** admin ****************-->
+	
+	<insert id="adminUserAdd" parameterType="hashMap">
+	INSERT INTO Admin (adminname,adminid,adminpassword) 
+					VALUES(#{adminname},#{adminid},#{adminpassword})
+	</insert>
+	<select id="adminUserSelect" resultType="Admin">
+		SELECT * FROM Admin;
+	</select>
+	
+	
 </mapper>	
 
 

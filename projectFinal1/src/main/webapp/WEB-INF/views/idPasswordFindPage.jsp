@@ -16,11 +16,7 @@
 			   		 비밀번호 찾기
 			    </button>
 			  </li>
-			  <!-- <li class="nav-item" role="presentation  fw-bold"  style="display: none;" id="findPasswordChangeTab" >
-			    <button class="nav-link  py-3" id="profile-tab2"  data-bs-toggle="tab" data-bs-target="#profile-tab2-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
-			   		 비밀번호 변경
-			    </button>
-			  </li> -->
+			 
 			  
 			</ul>
 			<div class="tab-content mt-5" id="myTabContent">
@@ -117,6 +113,9 @@
 									</div>
 								</div>
 							</div>
+							<div class="spinner-border text-success" id="findPasswordLoading" role="status" style="display: none;">
+							  <span class="visually-hidden">Loading...</span>
+							</div>
 							
 							<div class="row" id="findPasswordEmailCheckDiv" hidden="" >
 								<input type="hidden" id="findEmailCheckCodeHidden"><!-- 보낸 인증번호 -->
@@ -143,7 +142,7 @@
 							<input type="hidden" id="findNewPasswordIdHidden">
 							<div class="row"><h4>인증되었습니다 .<br>새로운 비밀번호를 입력해 주세요.<br>영문소문자,숫자,특수문자를 조합해 8자이상 16자이하로 작성해 주세요</h4></div>
 							<div class="row offset-3 mt-5">
-								<div class="col-2 my-4 fw-bold"><p>새로운 비밀번호:<p></div>
+								<div class="col-3 my-4 fw-bold"><p>새로운 비밀번호:<p></div>
 								<div class="col-6">
 									<div class="my-4 border-bottom">
 										<input type="password" class="form-control border-0" id="findNewPassword" placeholder="새로운 비밀번호를 적어주세요">
@@ -151,7 +150,7 @@
 								</div>
 							</div>
 							<div class="row offset-3">
-								<div class="col-2 mt-2 fw-bold"><p>새로운 비밀번호 확인:<p></div>
+								<div class="col-3 mt-2 fw-bold"><p>새로운 비밀번호 확인:<p></div>
 								<div class="col-6">
 									<div class="mb-5 border-bottom">
 										<input type="password" class="form-control border-0" id="findNewPasswordCheck" placeholder="새로운 비밀번호를 적어주세요">
@@ -167,13 +166,13 @@
 					</div>
 				</div>
 			  </div> 
-			  <div class="tab-pane fade" id="profile-tab-pane3" role="tabpanel" aria-labelledby="profile-tab" tabindex="0" hidden="">
+			  <div class="tab-pane fade" id="profile-tab-pane3" role="tabpanel" aria-labelledby="profile-tab" tabindex="0" >
 				<div class="row my-5 container text-center">
 					<div class="col align-items-center">
 						
-						<div class="row"><h3> 비밀번호가 변경되었습니다.<br>새로운 비밀번호로 로그인해주세요.</h3></div>
+						<div class="row"><h3> 비밀번호가 변경되었습니다.<br><br>새로운 비밀번호로 로그인해주세요.</h3></div>
 						<div class="row">
-							<div class="col-3 offset-5 " id="moveLogin"><a href="login">로그인</a></div>
+							<div class="col-2 offset-5 mt-5 " id="moveLogin"><a href="login">로그인</a></div>
 							
 						</div>
 					</div>
