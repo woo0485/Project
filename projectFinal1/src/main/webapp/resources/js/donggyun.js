@@ -1,5 +1,5 @@
 function dbSubmit(){
-	if(!confirm('DB로 전송하시겠습니까?')){
+	if(!confirm('DB로 전송하시겠습니까??')){
             return false;
         }  
 }
