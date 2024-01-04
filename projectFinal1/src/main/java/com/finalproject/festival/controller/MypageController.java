@@ -5,11 +5,14 @@ import java.text.DecimalFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.finalproject.festival.service.MyPageMemberService;
+import com.finalproject.festival.domain.Coupon;
 import com.finalproject.festival.domain.Member;
+import com.finalproject.festival.domain.MemberCoupon;
 
 @Controller
 public class MypageController {
@@ -38,23 +41,49 @@ public class MypageController {
 	
 	// 마이페이지 쿠폰
 	@RequestMapping("/myPageCoupon")
-	public String myPageCoupon() {
+	public String myPageCoupon(@RequestParam("id")String id, Model model) {
+		MemberCoupon membercoupon = service.MyCoupon(id);
+		model.addAttribute("membercoupon", membercoupon);
 		return "myPageCoupon";
 	}
+	
+	
+	
+	
+	@RequestMapping("/Coupon")
+	public String Coupon(Model model, @RequestParam("couponno")int couponno) {
+		Coupon coupon = service.Coupon(couponno);
+		model.addAttribute("coupon",coupon);
+		
+		return "myPageCoupon";
+	}
+	
+	// 마이페이지 기존쿠폰
 	
 	// 마이페이지 혜택
 	@RequestMapping("/myPageBenefit")
 	public String myPageBenefit(@RequestParam("id")String id, Model model) {
 		Member member = service.MyInfo(id);
 		int totalpay = member.getTotalpay();
+		int mp = 0;
 		
 		DecimalFormat decimalFormat = new DecimalFormat("###,###");
 		String formattedNumber = decimalFormat.format(totalpay);
 		
+		if(member.getGrade() == 0) {
+			mp = 500000 - totalpay;
+		} else if (member.getGrade() == 1) {
+			mp = 799999 - totalpay;
+		} else if (member.getGrade() == 2) {
+			mp = 2999999 - totalpay;
+		} else if (member.getGrade() == 3) {
+			mp = 4999999 - totalpay;
+		}
 		
+		String fmp = decimalFormat.format(mp);
 		model.addAttribute("member" ,member);
 		model.addAttribute("formattedNumber", formattedNumber);
-		
+		model.addAttribute("fmp", fmp);
 		return "myPageBenefit";
 	}
 	
@@ -68,8 +97,6 @@ public class MypageController {
 		
 		model.addAttribute("member", member);
 		return "myPageMain";
-		
-		
 	}
 	
 	

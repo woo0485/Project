@@ -30,7 +30,21 @@
 								<c:if test="${sessionScope.id eq my.id}">	
 									<tr>
 										<th style="border:none;">회원등급</th>
-										<td style="border:none;">${my.grade}</td>
+										<c:if test ="${my.grade eq 0 }">
+										<td style="border:none;"><span style="font-weight: bold;">일반</span></td>
+										</c:if>
+										<c:if test ="${my.grade eq 1 }">
+										<td style="border:none;"><span style="font-weight: bold;">BLACK</span></td>
+										</c:if>
+										<c:if test ="${my.grade eq 2 }">
+										<td style="border:none;"><span style="font-weight: bold;">SILVER</span></td>
+										</c:if>
+										<c:if test ="${my.grade eq 3 }">
+										<td style="border:none;"><span style="font-weight: bold;">GOLD</span></td>
+										</c:if>
+										<c:if test ="${my.grade eq 4 }">
+										<td style="border:none;"><span style="font-weight: bold;">VIP</span></td>
+										</c:if>
 										
 									</tr>
 									<tr>
