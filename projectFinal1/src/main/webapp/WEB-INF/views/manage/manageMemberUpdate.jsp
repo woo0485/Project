@@ -56,7 +56,7 @@ td input:focus {
 					name="manageMemberUpdateForm" id="manageMemberUpdateForm"
 					method="post">
 					<div class="row">
-						<div class="col-6 text-start">
+						<div class="col-6 text-start" style="font-size:small;">
 
 							<table class="table table-hover">
 								<tr class="">
@@ -132,6 +132,18 @@ td input:focus {
 												<option ${member.grade == '3' ? 'selected' : ''}>GOLD</option>
 												<option ${member.grade == '4' ? 'selected' : ''}>VIP</option>
 											</select>
+										</div>
+									</td>
+								</tr>
+								<tr class="">
+									<td>
+										<div class="pt-2">생성일</div>
+									</td>
+									<td>
+										<div>
+											<input type="text" class="form-control" name="joindate"
+												id="joindate" placeholder="생성일"
+												value="${member.joindate }" style="border-width: 0;">
 										</div>
 									</td>
 								</tr>

@@ -22,7 +22,7 @@ public class ManageReservationServiceImpl implements ManageReservationService {
 	@Override
 	public Map<String, Object> manageReservation(int pageNum, String type, String keyword) {
 		
-int currentPage = pageNum;
+		int currentPage = pageNum;
 		
 		int start = (currentPage - 1) * PAGE_SIZE;		
 		
