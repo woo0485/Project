@@ -10,6 +10,13 @@
 		</select>
 	
 	
+		<select id="MyCoupon" resultType="MemberCoupon">
+			SELECT * FROM MemberCoupon WHERE id = #{id}
+		</select>
 	
+		<select id="Coupon" resultType="Coupon">
+			SELECT * FROM Coupon INNER JOIN COUPON WHERE couponno = #{couponno} 
+		</select>
+		
 	
 	</mapper>
