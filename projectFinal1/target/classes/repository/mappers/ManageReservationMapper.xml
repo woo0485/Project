@@ -195,4 +195,7 @@
 		WHERE reservationno = #{reservationno}
 	</delete>
 
-</mapper>
+</mapper>	
+
+
+

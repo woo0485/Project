@@ -9,5 +9,9 @@ public interface GalleryDao {
 	public abstract void insertGallery(Gallery gallery);
 	
 	public abstract List<Gallery> gallery();
+	
+	public abstract List<Gallery> orderGallery(String orderType);
+	
+	public abstract int galleryheart(int galleryno);
 
 }

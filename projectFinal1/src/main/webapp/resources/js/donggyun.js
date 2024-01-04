@@ -7,11 +7,11 @@ function dbSubmit(){
 
 $(function(){
 
-//#####################################쿠폰 JS########################################
 
 	
-	$(document).on("click", ".manageMemberCouponUpdate", function() {
+	
 		
+
 		let cnt = $(this).attr("data-no");
 		let membercouponno = $("#memberCouponId_" + cnt).val();
 		let couponno = $("#couponno_" + cnt).val();
@@ -25,6 +25,7 @@ $(function(){
 		
 		
 		let result = confirm("쿠폰을 수정 하시겠습니까?");
+
 		
 		let params = {
 			        "membercouponno": membercouponno,
@@ -32,11 +33,14 @@ $(function(){
 			        "couponopendate": couponopendate,
 			        "couponclosedate": couponclosedate
 			  	  	};
-		
+
+
+
 		
 		if(result) {			
 			$.ajax({		
-				url: "manageMemberCouponUpdate.ajax",
+				url: "manageMemberCouponUpdate.ajax2",
+
 				type: "post",
 				data: params,
 				//dataType: "json",
@@ -57,7 +61,9 @@ $(function(){
 
 	$(document).on("click", "#manageMemberCouponDelete", function() {
 	
-		let membercouponno = $(this).attr("data-no");	
+
+		let membercouponno = $(this).attr("data-no4");	
+
 		let params = "membercouponno=" + membercouponno	
 		let result = confirm("쿠폰을 삭제 하시겠습니까?");
 		
@@ -99,13 +105,15 @@ $(function(){
 	$("#dbsubmit12").on("click", dbSubmit);
 	
 
+
+
+	$("#dbAllDelete").off().on("click",function(){
 	
-	$(".dbAllDelete").off().on("click",function(){
-	
-		let salesNo = $(this).attr("data-salesNo");
-		let params = "salesNo=" + salesNo;	
-		let result = confirm("데이터를 초기화 하시겠습니까?\n다음에는 확인 부탁드려요");
-		
+		let salesDate = $(this).attr("data-date");
+		let params = "salesDate=" + salesDate;	
+		let result = confirm("데이터를 초기화 하시겠습니까?");
+
+
 		if(result) {			
 			$.ajax({		
 				url: "deleteSalesTotalPrice.ajax",
@@ -411,8 +419,7 @@ $(function(){
 		}
 
 	});
- 
- 	
+
 
 
  });
