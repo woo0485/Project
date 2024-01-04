@@ -1,49 +1,65 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.util.Calendar" %>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+<%@ page import="java.util.Calendar"%>
+<%
+    Calendar calendar = Calendar.getInstance();
+    int currentYear = calendar.get(Calendar.YEAR);
+    pageContext.setAttribute("currentYear", currentYear);
+%>
+<script
+	src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
 <link href="resources/css/donggyun.css" rel="stylesheet">
 <script src="resources/js/donggyun.js"></script>
 <style>
 .table {
-  border-collapse: collapse;
-  border-top: 3px solid #168;
-}  
+	border-collapse: collapse;
+	border-top: 3px solid #168;
+}
+
 .table th {
-  color: #168;
-  background: #f0f6f9;
-  text-align: center;
-  font-size: small;
+	color: #168;
+	background: #f0f6f9;
+	text-align: center;
+	font-size: small;
 }
+
 .table th, .table td {
-  padding: 10px;
-  border: 1px solid #ddd;
+	padding: 10px;
+	border: 1px solid #ddd;
 }
+
 .table th:first-child, .table td:first-child {
-  border-left: 0;
+	border-left: 0;
 }
+
 .table th:last-child, .table td:last-child {
-  border-right: 0;
+	border-right: 0;
 }
-.table tr td:first-child{
-  text-align: center;
+
+.table tr td:first-child {
+	text-align: center;
 }
-.table caption{caption-side: bottom; display: none;
+
+.table caption {
+	caption-side: bottom;
+	display: none;
 }
+
 .button99 {
-    top:50%;
-    background-color:white;
-    border-color:#168;
-    color: red;
-    border-radius:10px; 
-    padding:15px;
-    min-height:10px; 
-    min-width: 60px;
-  } 
+	top: 50%;
+	background-color: white;
+	border-color: #168;
+	color: red;
+	border-radius: 10px;
+	padding: 15px;
+	min-height: 10px;
+	min-width: 60px;
+}
+
 .button99:hover {
-      border-color:red;
-  } 
+	border-color: red;
+}
 </style>
 
 
@@ -54,101 +70,115 @@
 			<div class="col-4">
 				<jsp:include page="/WEB-INF/views/manage/manageSide.jsp" />
 			</div>
-			<div class="col-6 text-start mt-5">				
-				<h3>관리페이지</h3>		
-	
-				
+			<div class="col-6 text-start mt-5">
+				<h3>관리페이지</h3>
+
+
 				<c:if test="${ not empty salesList }">
 					<div class="row">
 						<div class="col text-end">
-							<button type="button" class="button99 py-1 mt-4" data-bs-toggle="modal" 
-						         data-bs-target="#myModal">매출 초기화
+							<button type="button" class="button99 py-1 mt-4"
+								data-bs-toggle="modal" data-bs-target="#myModal">매출 초기화
 							</button>
-						</div>	
+						</div>
 					</div>
 				</c:if>
-				
+
 				<div class="row">
-					<div class="col border-end text-center mb-2">		
+					<div class="col text-center mb-2">
 						<div class="row">
 							<div class="col mt-2 p-2">
-								<span><h4>조회수가 높은  상품</h4></span>
+								<span><h4>조회수가 높은 상품</h4></span>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col offset-md-2">
-								<ol class="text-start">
 
-									<c:forEach var="pp" items="${manageProductCountList}">										
-										<li class="ps-2">${pp.productname }</li>
+						<div class="row">
+							<div class="col" style="font-size: small;">
+								<table class="table">
+									<tr>
+										<th>순위</th>
+										<th>상품 이름</th>
+									</tr>
+									<c:forEach var="pp" items="${manageProductCountList}"
+										varStatus="loop">
+										<tr>
+											<td>${loop.index + 1}</td>
+											<td>${pp.productname}</td>
+										</tr>
 									</c:forEach>
-								</ol>				
+								</table>
 							</div>
 						</div>
 					</div>
-				
-					<div class="col text-center mb-5">		
-						<div class="row">
-							<div class="col mt-2 pt-3">
-								<span><h4>DB 총 매출</h4></span>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col p-3">
-								<c:if test="${ empty salesList }">									
-										<span>월 매출을 DB로 넣어주세요.</span>
-								</c:if>
-								
-								<c:set var = "total" value = "0" />
-								<c:if test="${ not empty salesList }">
-									<c:forEach var="s" items="${salesList}">										
-										<c:set var= "total" value="${total + s.salesTotalPrice}"/>
-									</c:forEach>
-									<c:out value="${total}원"/>
-								</c:if>				
 
-							</div>
-						</div>
-					</div>
-				
-				<div class="col text-center mb-5">		
+
+
+					<div class="col text-center ms-5">
 						<div class="row">
 							<div class="col mt-2 pt-2">
 								<div class="row">
 									<div class="col">
-										<span><h4>올해 총 매출</h4></span>
-									</div>																		
+										<span class=" fs-4">연도별 매출</span>
+									</div>
 								</div>
-								
-								
 							</div>
-	
+
 						</div>
+
 						<div class="row">
-							<div class="col p-3">
-								
-								<c:if test="${ empty salesList }">									
-										<span>올해 년도 월 매출을 DB로 넣어주세요.</span>
-								</c:if>								
-						
-								<c:set var = "total" value = "0" />
-								<c:if test="${ not empty salesList }">
-									<c:forEach var="s" items="${salesList}">										
-										<c:set var= "total" value="${total + s.salesTotalPrice}"/>
-									</c:forEach>
-									<c:out value="${total}원"/>
-								</c:if>				
+							<div class="col">
+								<table class="table text-center mt-2" style="font-size: small;">
+									<thead>
+										<tr>
+											<th>날짜</th>
+											<th>총 매출</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:if test="${empty salesList}">
+										<tr>
+											<td><c:out value="${currentYear}" />년</td>
+											<td>0원</td>
+										</tr>
+										</c:if>
+										<c:if test="${not empty salesList}">
+										<tr>
+											<td><c:out value="${currentYear}" />년</td>
+											<td><c:set var="total" value="0" /> <c:forEach var="s"
+													items="${salesList}">
+													<c:set var="total" value="${total + s.salesTotalPrice}" />
+												</c:forEach> <c:out value="${total}원" /></td>
+										</tr>
+										</c:if>
+										<tr>
+											<td><c:out value="${currentYear-1}" />년</td>
+											<td><c:set var="total" value="0" /> <c:forEach
+													var="last" items="${lastYearSalesList}">
+													<c:set var="total" value="${total + last.salesTotalPrice}" />
+												</c:forEach> <c:out value="${total}원" /></td>
+										</tr>
+										<tr>
+											<td><c:out value="${currentYear-2}" />년</td>
+											<td><c:set var="total" value="0" /> <c:forEach
+													var="lastYearBefore" items="${yearBeforeLastSalesList2}">
+													<c:set var="total"
+														value="${total + lastYearBefore.salesTotalPrice}" />
+												</c:forEach> <c:out value="${total}원" /></td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
-						
+
 					</div>
 				</div>
-				
-<c:set var="currentYear" value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />
 
+				<c:set var="currentYear"
+					value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />
 				<!-- 차트 -->
-				<div class="row mt-5">
-					<div class="col" style="width:10px; height:10px;">
+				<div class="row my-3">
+					<div class="col-10"
+						style="width: 480px; height: 480px; margin-bottom: -280px;">
 						<canvas id="myChart"></canvas>
 					</div>
 				</div>
@@ -164,32 +194,32 @@
 						data : {
 							// ③x축에 들어갈 이름들(Array)
 							labels : [ 
-
-								
-								<c:forEach var="s2" items="${salesList}">
-									'${ s2.salesDate }',
-								</c:forEach>
-								
-
+								<c:set var="currentYear" value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />			
+								<c:forEach var="sales" items="${salesList}">
+							        <c:if test="${sales.salesYear == currentYear}">
+							        '${ sales.salesYear }년 ${ sales.salesDate }', 
+							        </c:if>
+							    </c:forEach>									
 							],
 							// ④실제 차트에 표시할 데이터들(Array), dataset객체들을 담고 있다.
 							datasets : [ {
 								// ⑤dataset의 이름(String)
-								label : '월 매출 그래프',
+								label : '올해 월 매출',
 								// ⑥dataset값(Array)
 																							
 								data : [ 
-
+									<c:set var="currentYear" value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />
 									<c:if test="${ empty salesList }">	
 										0,0,0,0,0,0,0,0,0,0,0,0
 									</c:if>
-									<c:if test="${ not empty salesList }">	
-										<c:forEach var="s" items="${salesList}">
-											${ s.salesTotalPrice },
-										</c:forEach>
-									</c:if>
-									
 
+									<c:if test="${not empty salesList}">
+									    <c:forEach var="sales" items="${salesList}">
+									        <c:if test="${sales.salesYear == currentYear}">
+									            ${sales.salesTotalPrice},
+									        </c:if>
+									    </c:forEach>
+									</c:if>									
 									],
 							
 								// ⑦dataset의 배경색(rgba값을 String으로 표현)
@@ -223,47 +253,128 @@
 					});
 				</script>
 
+				<div class="row">
+					<div class="col-10">
+
+						<div class="row my-3 mb-5">
+							<div class="col" style="width: 200px; height: 200px;">
+								<canvas id="myChart2"></canvas>
+							</div>
+						</div>
+						<script>
+						// 차트를 그럴 영역을 dom요소로 가져온다.
+						var chartArea = document.getElementById('myChart2')
+								.getContext('2d');
+						// 차트를 생성한다. 
+						var myChart = new Chart(chartArea, {
+							// ①차트의 종류(String)
+							type : 'bar',
+							// ②차트의 데이터(Object)
+							data : {
+								// ③x축에 들어갈 이름들(Array)
+								labels : [ 
+									<c:set var="currentYear" value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />			
+									<c:forEach var="lastYear" items="${lastYearSalesList}">
+								        
+								        '${ lastYear.salesYear }년 ${ lastYear.salesDate }', 
+								        
+								    </c:forEach>									
+								],
+								// ④실제 차트에 표시할 데이터들(Array), dataset객체들을 담고 있다.
+								datasets : [ {
+									// ⑤dataset의 이름(String)
+									label : '작년 월 매출',
+									// ⑥dataset값(Array)
+																								
+									data : [ 
+										<c:set var="currentYear" value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />			
+										    <c:forEach var="lastYear" items="${lastYearSalesList}">									        
+										            ${lastYear.salesTotalPrice},									        
+										    </c:forEach>
+																		
+										],
+								
+									// ⑦dataset의 배경색(rgba값을 String으로 표현)
+									backgroundColor: [
+		                                //색상
+	
+										'rgba(54, 162, 235, 0.2)'
+	
+		                            ],
+		                            borderColor: [
+		                                //경계선 색상
+	
+		                            	'rgba(54, 162, 235, 0.2)'
+		
+		                            ],
+									// ⑨dataset의 선 두께(Number)
+									borderWidth : 1
+								} ]
+							},
+							// ⑩차트의 설정(Object)
+							options : {
+								// ⑪축에 관한 설정(Object)
+								scales : {
+									// ⑫y축에 대한 설정(Object)
+									y : {
+										// ⑬시작을 0부터 하게끔 설정(최소값이 0보다 크더라도)(boolean)
+										beginAtZero : true
+									}
+								}
+							}
+						});
+						</script>
+
+					</div>
+
+				</div>
+
 
 			</div>
+
 		</div>
 	</div>
 </div>
 
 
-	<!-- 버튼 클릭시 모달 생김 -->
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <!-- modal-sm modal-lg modal-xl 모달 사이즈 -->
-            <!-- modal-dialog-centered 화면 가운데 -->
-            <!-- modal-dialog-scrollable 스크롤 기능 -->
-            <div class="modal-content">
-                <div class="modal-header">
-               		<span class=""><h4>매출 초기화</h4></span>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body text-center">
-                    
-                    <c:set var="currentYear" value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />
-					<c:if test="${not empty salesList}">
-					    <table>
-					    	<tr class="text-center">
-					    		<td>
-								    <c:forEach var="sales" items="${salesList}">
-								        <c:if test="${sales.salesYear == currentYear}">
-								            <button type="button" data-salesNo="${sales.salesNo}" class="dbAllDelete btn99 py-0" style="font-size:small; color:red;">
-								                 ${sales.salesDate} 초기화
-								            </button>
-								        </c:if>
-								    </c:forEach>
-							    </td>
-						   </tr> 
-					    </table>
-					</c:if>       
-                </div>             
-                <div class="modal-footer">
-		        	<button type="button" class="button99 px-4 py-1 ms-5" data-bs-dismiss="modal" style="color:black;">닫기</button>
-	        	</div>
-            </div>
 
-    	</div>
-   	</div> 
+
+
+<!-- 버튼 클릭시 모달 생김 -->
+<div class="modal" id="myModal">
+	<div class="modal-dialog">
+		<!-- modal-sm modal-lg modal-xl 모달 사이즈 -->
+		<!-- modal-dialog-centered 화면 가운데 -->
+		<!-- modal-dialog-scrollable 스크롤 기능 -->
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class=""><h4>매출 초기화</h4></span>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+			</div>
+			<div class="modal-body text-center">
+
+				<c:set var="currentYear"
+					value="<%=Calendar.getInstance().get(Calendar.YEAR)%>" />
+				<c:if test="${not empty salesList}">
+					<table>
+						<tr class="text-center">
+							<td><c:forEach var="sales" items="${salesList}">
+									<c:if test="${sales.salesYear == currentYear}">
+										<button type="button" data-salesNo="${sales.salesNo}"
+											class="dbAllDelete btn99 py-0"
+											style="font-size: small; color: red;">
+											${sales.salesDate} 초기화</button>
+									</c:if>
+								</c:forEach></td>
+						</tr>
+					</table>
+				</c:if>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="button99 px-4 py-1 ms-5"
+					data-bs-dismiss="modal" style="color: black;">닫기</button>
+			</div>
+		</div>
+
+	</div>
+</div>

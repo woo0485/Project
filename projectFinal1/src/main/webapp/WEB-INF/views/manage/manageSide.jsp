@@ -73,8 +73,8 @@
 				
 				<div class="row">
 					<div class="col border-top my-5 pt-4">
-						<i class="bi bi-exclamation-circle"></i>
-						<span class="ps-3">관리자님</span>
+						<i class="bi bi-exclamation-circle"></i>						
+						<a href="addAdministrator" class="text-decoration-none fontblack ps-3">관리자 추가</a>
 					</div>
 				</div>
 			</div>	

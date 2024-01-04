@@ -22,9 +22,9 @@ public class ManageSalesDaoImpl implements ManageSalesDao {
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public void deleteSalesTotalPrice(String salesDate) {
+	public void deleteSalesTotalPrice(int salesNo) {
 		
-		sqlSession.delete(NAME_SPACE + ".deleteSalesTotalPrice", salesDate);
+		sqlSession.delete(NAME_SPACE + ".deleteSalesTotalPrice", salesNo);
 	}
 	
 	@Override
@@ -38,5 +38,16 @@ public class ManageSalesDaoImpl implements ManageSalesDao {
 	
 		return sqlSession.selectList(NAME_SPACE + ".salesList");
 	}
-
+	
+	@Override
+	public List<Sales> lastYearSalesList(){
+	
+		return sqlSession.selectList(NAME_SPACE + ".lastYearSalesList");
+	}
+	
+	@Override
+	public List<Sales> yearBeforeLastSalesList2(){
+	
+		return sqlSession.selectList(NAME_SPACE + ".yearBeforeLastSalesList2");
+	}
 }
