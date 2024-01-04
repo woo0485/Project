@@ -8,9 +8,10 @@ function dbSubmit(){
 $(function(){
 
 
+//#####################################쿠폰 JS########################################
+
 	
-	
-		
+	$(document).on("click", ".manageMemberCouponUpdate", function() {	
 
 		let cnt = $(this).attr("data-no");
 		let membercouponno = $("#memberCouponId_" + cnt).val();
