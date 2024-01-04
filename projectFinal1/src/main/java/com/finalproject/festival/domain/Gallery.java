@@ -3,6 +3,8 @@ package com.finalproject.festival.domain;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.finalproject.typeHandler.LocalDateSerializer;
 import com.google.protobuf.Timestamp;
 
 public class Gallery {
@@ -14,6 +16,7 @@ public class Gallery {
 	private String gallerywriter;
 	private String[] galleryimage;
 	private int gallerygoodcount;
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate galleryuploaddate;
 	
 	public String getId() {

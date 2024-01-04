@@ -7,26 +7,11 @@ function dbSubmit(){
 
 $(function(){
 
-//#####################################쿠폰 JS########################################
 
-<<<<<<< HEAD
 	
-	$(document).on("click", ".manageMemberCouponUpdate", function() {
+	
 		
-		let cnt = $(this).attr("data-no");
-		let membercouponno = $("#memberCouponId_" + cnt).val();
-		let couponno = $("#couponno_" + cnt).val();
-		let couponopendate = $("#couponopendate_" + cnt).val();
-		let couponclosedate = $("#couponclosedate_" + cnt).val();
-		
-		console.log("membercouponno = " + membercouponno);
-		console.log("couponno = " + couponno);
-		console.log("couponopendate = " + couponopendate);
-		console.log("couponclosedate = " + couponclosedate);
-		
-		
-		let result = confirm("쿠폰을 수정 하시겠습니까?");
-=======
+
 	$(document).on("click", "#manageMemberCouponUpdate", function() {
 
 		let membercouponno = $(this).attr("data-no3");
@@ -65,7 +50,7 @@ $(function(){
 		console.log("couponno : " + couponno);	
 		console.log("couponopendate : " + couponopendate);	
 		console.log("couponclosedate : " + couponclosedate);	
->>>>>>> 4b390fdf7ef23691660228e7b763ab4b85e79921
+
 		
 		let params = {
 			        "membercouponno": membercouponno,
@@ -73,19 +58,13 @@ $(function(){
 			        "couponopendate": couponopendate,
 			        "couponclosedate": couponclosedate
 			  	  	};
-<<<<<<< HEAD
-		
-		
-		if(result) {			
-			$.ajax({		
-				url: "manageMemberCouponUpdate.ajax",
-=======
+
 
 		
 		if(result) {			
 			$.ajax({		
 				url: "manageMemberCouponUpdate.ajax2",
->>>>>>> 4b390fdf7ef23691660228e7b763ab4b85e79921
+
 				type: "post",
 				data: params,
 				//dataType: "json",
@@ -106,11 +85,9 @@ $(function(){
 
 	$(document).on("click", "#manageMemberCouponDelete", function() {
 	
-<<<<<<< HEAD
-		let membercouponno = $(this).attr("data-no");	
-=======
+
 		let membercouponno = $(this).attr("data-no4");	
->>>>>>> 4b390fdf7ef23691660228e7b763ab4b85e79921
+
 		let params = "membercouponno=" + membercouponno	
 		let result = confirm("쿠폰을 삭제 하시겠습니까?");
 		
@@ -153,19 +130,13 @@ $(function(){
 	
 
 	
-<<<<<<< HEAD
-	$(".dbAllDelete").off().on("click",function(){
-	
-		let salesNo = $(this).attr("data-salesNo");
-		let params = "salesNo=" + salesNo;	
-		let result = confirm("데이터를 초기화 하시겠습니까?\n다음에는 확인 부탁드려요");
-=======
+
 	$("#dbAllDelete").off().on("click",function(){
 	
 		let salesDate = $(this).attr("data-date");
 		let params = "salesDate=" + salesDate;	
 		let result = confirm("데이터를 초기화 하시겠습니까?");
->>>>>>> 4b390fdf7ef23691660228e7b763ab4b85e79921
+
 		
 		if(result) {			
 			$.ajax({		
@@ -473,18 +444,6 @@ $(function(){
 
 	});
  
- 	
-<<<<<<< HEAD
 
-=======
- 	
- 	$("#").on("click", function(){
-    	$(this).addClass('fontchange');
-    	$(this).removeClass('fontblack');
-    	
-		return false;
-	});
-	
->>>>>>> 4b390fdf7ef23691660228e7b763ab4b85e79921
 
  });
