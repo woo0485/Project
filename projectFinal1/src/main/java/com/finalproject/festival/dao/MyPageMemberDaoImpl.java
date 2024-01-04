@@ -29,7 +29,7 @@ public class MyPageMemberDaoImpl implements MyPageMemberDao {
 	
 	@Override
 	public Coupon Coupon (int couponno) {
-		
+		 
 		return st.selectOne(NAME_SPACE + ".Coupon", couponno);
 	}
 }

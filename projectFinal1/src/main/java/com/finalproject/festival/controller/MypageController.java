@@ -48,18 +48,6 @@ public class MypageController {
 	}
 	
 	
-	
-	
-	@RequestMapping("/Coupon")
-	public String Coupon(Model model, @RequestParam("couponno")int couponno) {
-		Coupon coupon = service.Coupon(couponno);
-		model.addAttribute("coupon",coupon);
-		
-		return "myPageCoupon";
-	}
-	
-	// 마이페이지 기존쿠폰
-	
 	// 마이페이지 혜택
 	@RequestMapping("/myPageBenefit")
 	public String myPageBenefit(@RequestParam("id")String id, Model model) {

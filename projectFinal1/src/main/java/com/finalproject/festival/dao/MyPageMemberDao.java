@@ -13,8 +13,7 @@ public interface MyPageMemberDao {
 	public abstract MemberCoupon MyCoupon(String id);
 
 	// 기존쿠폰
-	public abstract Coupon Coupon(int couponno);
-
+	public abstract Coupon Coupon( int couponno);
 
 
 }

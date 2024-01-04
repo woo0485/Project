@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+		<div class="row col-auto">
+	 		<jsp:include page="/WEB-INF/views/myPageHeader.jsp"></jsp:include>
+	 	</div>
   여기는 즐겨찾기 목록 페이지
 </body>
 </html>
