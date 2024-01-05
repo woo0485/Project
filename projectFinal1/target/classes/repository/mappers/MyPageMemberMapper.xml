@@ -15,9 +15,12 @@
 		</select>
 	
 		<select id="Coupon" resultType="Coupon">
-			SELECT c.couponname, c.couponno, c.coupondiscountrate FROM coupon c JOIN membercoupon mc ON c.couponno = mc.couponno
+			SELECT c.couponname, c.couponno, c.coupondiscountrate FROM Coupon c JOIN MemberCoupon mc ON c.couponno = mc.couponno
             WHERE mc.id = #{id}
 		</select>
 		
+		<select id = "Question" resultType="Question">
+			SELECT * FROM Question WHERE id = #{id}
+		</select>
 	
 	</mapper>

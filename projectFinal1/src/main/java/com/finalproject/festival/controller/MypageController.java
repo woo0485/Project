@@ -1,6 +1,8 @@
 package com.finalproject.festival.controller;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import com.finalproject.festival.service.MyPageMemberService;
 import com.finalproject.festival.domain.Coupon;
 import com.finalproject.festival.domain.Member;
 import com.finalproject.festival.domain.MemberCoupon;
+import com.finalproject.festival.domain.Question;
 
 @Controller
 public class MypageController {
@@ -29,7 +32,12 @@ public class MypageController {
 	
 	// 마이페이지 문의
 	@RequestMapping("/myPageInquiry")
-	public String myPageInquiry() {
+	public String myPageInquiry(@RequestParam("id")String id, Model model) {
+		List<Question> Question = service.Question(id);
+		
+		model.addAttribute("Question",Question);
+
+		
 		return "myPageInquiry";
 	}
 	

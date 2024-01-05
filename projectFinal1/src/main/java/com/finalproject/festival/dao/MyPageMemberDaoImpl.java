@@ -1,5 +1,8 @@
 package com.finalproject.festival.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -7,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import com.finalproject.festival.domain.Member;
 import com.finalproject.festival.domain.MemberCoupon;
 import com.finalproject.festival.domain.Coupon;
+import com.finalproject.festival.domain.Question;
+
 @Repository
 public class MyPageMemberDaoImpl implements MyPageMemberDao {
 
@@ -29,7 +34,13 @@ public class MyPageMemberDaoImpl implements MyPageMemberDao {
 	
 	@Override
 	public Coupon Coupon (int couponno) {
-		 
+		
 		return st.selectOne(NAME_SPACE + ".Coupon", couponno);
+	}
+	
+	@Override
+	public List<Question> Question (String id) {
+	
+		return st.selectList(NAME_SPACE + ".Question", id); 
 	}
 }

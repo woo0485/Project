@@ -1,7 +1,5 @@
 package com.finalproject.festival.domain;
 
-import java.sql.Date;
-
 public class Coupon {
 		
 		private int couponno;
