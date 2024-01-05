@@ -1,5 +1,7 @@
 package com.finalproject.festival.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,6 +9,7 @@ import com.finalproject.festival.dao.MyPageMemberDao;
 import com.finalproject.festival.domain.Member;
 import com.finalproject.festival.domain.MemberCoupon;
 import com.finalproject.festival.domain.Coupon;
+import com.finalproject.festival.domain.Question;
 
 @Service
 public class MyPageMemberServiceImpl implements MyPageMemberService {
@@ -32,5 +35,11 @@ public class MyPageMemberServiceImpl implements MyPageMemberService {
 		return coupon;
 	}
 	
+	@Override
+	public List<Question> Question (String id) {
+		List<Question> Question = dao.Question(id);
+		
+		return Question;
+	}
 	
 }
