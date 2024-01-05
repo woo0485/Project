@@ -104,14 +104,25 @@
 	</select>
 	
 	
-	
+	<select id="bestDayManageReservation" resultType="Reservation" resultMap="ManageReservationMap">
+		SELECT 		
+		
+			reservationprice,
+	        DATE_FORMAT(reservationdate, '%Y-%m-%d') as reservationdate,
+	        SUM(reservationprice) as totalReservationPrice   
+	  
+		FROM Reservation	
+		GROUP BY reservationprice, reservationdate
+		ORDER BY totalReservationPrice DESC
+		LIMIT 5
+	</select>
 	
 	
 
 	<select id="manageReservation2" resultType="Reservation" resultMap="ManageReservationMap">
 		SELECT 		
 			reservationprice,
-	        reservationdate,
+	        DATE_FORMAT(reservationdate, '%Y-%m-%d') as reservationdate,
 	        SUM(reservationprice) as totalReservationPrice   
 		FROM Reservation	
 		<where>
@@ -195,7 +206,4 @@
 		WHERE reservationno = #{reservationno}
 	</delete>
 
-</mapper>	
-
-
-
+</mapper>
