@@ -36,10 +36,30 @@
 		WHERE galleryno = #{galleryno}
 	</update>
 	
+	<update id="gallerybad" parameterType="int">
+		UPDATE Gallery
+		SET gallerygoodcount = gallerygoodcount - 1
+		WHERE galleryno = #{galleryno}
+	</update>
+	
 	<select id="gallerySelectUpdateCount" parameterType="int" resultType="int">
 		SELECT gallerygoodcount
 		FROM Gallery
 		WHERE galleryno = #{galleryno}
+	</select>
+	
+	<insert id="insertGalleryBookmark" parameterType="HashMap">
+		INSERT INTO GalleryBookmark
+		(id,galleryno)
+		VALUES (#{id}, #{galleryno})
+	</insert>
+	
+	<delete id="deleteGalleryBookmark" parameterType="HashMap">
+		DELETE FROM GalleryBookmark WHERE id = #{id} AND galleryno = #{galleryno}
+	</delete>
+	
+	<select id="galleryBookmark" parameterType="String" resultType="GalleryBookMark">
+		SELECT * FROM GalleryBookmark WHERE id = #{id}
 	</select>
 
 	<resultMap id="galleryResultMap" type="Gallery">

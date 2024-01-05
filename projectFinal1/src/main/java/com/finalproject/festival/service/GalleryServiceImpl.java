@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.finalproject.festival.dao.GalleryDao;
 import com.finalproject.festival.domain.Gallery;
+import com.finalproject.festival.domain.GalleryBookMark;
 
 @Service
 public class GalleryServiceImpl implements GalleryService {
@@ -41,11 +42,25 @@ public class GalleryServiceImpl implements GalleryService {
 	}
 
 	@Override
-	public int galleryheart(int galleryno) {
+	public int galleryheart(int galleryno, String id) {
 		
-		return gd.galleryheart(galleryno);
+		return gd.galleryheart(galleryno, id);
 		
 		
+	}
+
+	@Override
+	public int gallerybad(int galleryno, String id) {
+		
+		return gd.gallerybad(galleryno, id);
+	}
+
+	@Override
+	public List<GalleryBookMark> galleryBookmark(String id) {
+		
+		
+		System.out.println(gd.galleryBookmark(id));
+		return gd.galleryBookmark(id);
 	}
 
 }

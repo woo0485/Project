@@ -23,7 +23,7 @@ public class NewsController {
 	}
 	
 	@RequestMapping("/newsdetail")
-	public String newsdatail(@RequestParam("no") int no, Model m) {
+	public String newsdetail(@RequestParam("no") int no, Model m) {
 		
 		m.addAttribute("newsdetail", ns.newsdetail(no));
 		

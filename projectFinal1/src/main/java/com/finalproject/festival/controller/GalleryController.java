@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.finalproject.festival.domain.Gallery;
+import com.finalproject.festival.domain.GalleryBookMark;
 import com.finalproject.festival.service.GalleryService;
 
 @Controller
@@ -32,10 +33,23 @@ public class GalleryController {
 	GalleryService gs;
 	
 	@RequestMapping("/gallery")
-	public String gallery (Model m) {
-
+	public String gallery (Model m, String id) {
+		
+		List<GalleryBookMark> gallerybookmark = new ArrayList<GalleryBookMark>();
+		
+		if( id == null ) {
 			m.addAttribute("galleryList",gs.orderGallery("galleryDateLatest"));
 			m.addAttribute("galleryList2",gs.orderGallery("galleryDatePopularity"));
+		} else {
+			List<GalleryBookMark> g = gs.galleryBookmark(id);
+			List<Integer> gno = new ArrayList<Integer>();
+			for( int i = 0; i < g.size(); i++) {
+				gno.add(g.get(i).getGalleryno());
+			}
+			m.addAttribute("gallerybookmarkListno", gno);
+			m.addAttribute("galleryList",gs.orderGallery("galleryDateLatest"));
+			m.addAttribute("galleryList2",gs.orderGallery("galleryDatePopularity"));
+		}
 			
 			return "gallery";
 			
@@ -100,9 +114,17 @@ public class GalleryController {
 	
 	@RequestMapping(value = "/galleryheart", method = RequestMethod.POST)
 	@ResponseBody
-	public int galleryheart( @RequestParam("galleryno") int galleryno) {
+	public int galleryheart( @RequestParam("galleryno") int galleryno, @RequestParam("id") String id) {
 		
-		return gs.galleryheart(galleryno);
+		return gs.galleryheart(galleryno, id);
+		
+	}
+	
+	@RequestMapping(value = "/gallerybad", method = RequestMethod.POST)
+	@ResponseBody
+	public int gallerybad( @RequestParam("galleryno") int galleryno, @RequestParam("id") String id){
+		
+		return gs.gallerybad(galleryno, id);
 		
 	}
 	
