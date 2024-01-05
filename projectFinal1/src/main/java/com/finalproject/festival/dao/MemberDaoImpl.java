@@ -20,6 +20,13 @@ public class MemberDaoImpl implements MemberDao {
 	@Autowired
 	private SqlSessionTemplate st;
 	
+	
+	@Override
+	public int userLoginCount(String id) {
+		
+		return st.selectOne(NAME_SPACE+".userLoginCount",id);
+	} 
+	
 	@Override
 	public Map<String, Object> loginCheck(String id) {
 		
@@ -78,7 +85,9 @@ public class MemberDaoImpl implements MemberDao {
 	public List<Admin> adminUserSelect() {
 		
 		return st.selectList(NAME_SPACE+".adminUserSelect");
-	} 
+	}
+
+	
 
 
 	

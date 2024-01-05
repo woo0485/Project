@@ -9,7 +9,7 @@
 		<div class="row">
 			<div class="col ">
 			
-				<form action="memberJoin" class="g-3 align-items-center">
+				<form action="memberJoin" class="g-3 align-items-center" method="post">
 				
 					<div class="row my-4">
 						<div class=" offset-md-1 col-2"><p>이름*</p></div>
@@ -43,13 +43,13 @@
 						</div>
 						<div class="col-7 border-bottom">
 					      <input type="text" class="form-control border-0" id="phoneNumber" name="phoneNumber" 
-					      			data-code="false"  placeholder="'-(하이픈)' 없이 입력해 주세요" style="height: 50px;">
+					      			data-code="false"  placeholder="'-(하이픈)' 없이 숫자 11자를 입력해 주세요" style="height: 50px;">
 					    </div>
 					    <div class="col-2 text-center">
 							<input type="button" id="phoneCheckBtn" class="form-control btn btn-outline-dark" value="인증하기">
 						</div>
+						<input type="hidden" id="phoneNumberCheckCode">
 					</div>
-					
 					<div class="row" id="phoneCheckLi" style="display: none;">
 						<div class="offset-md-3 col-7 border-bottom">
 							<input type="text" id="phoneCheck" class="form-control border-0"
@@ -59,6 +59,9 @@
 							<input type="button" id="phoneCheckNumBtn" class="form-control btn btn-outline-dark" value="인증확인">
 						</div>
 					</div>
+					<div class="row">
+						<span id="phoneNumberMsg" class="form-text offset-md-3"></span>
+					</div>	
 					
 					<div class="row">
 						 <span id="phoneCheck" class="form-text offset-md-3"></span>
@@ -160,7 +163,7 @@
 					 
 					<div class="row" id="eMailCheckLi" style="display: none;">
 						<div class="offset-3 col-7 border-bottom ">
-							<input type="hidden" id="eMailCheckNum">	
+								
 							<input type="text" id="eMailCodeCheck" class="form-control border-0"
 								aria-describedby="eMailCodeCheck" placeholder="인증번호를 입력해 주세요." data-code="false">
 						</div>

@@ -1,6 +1,7 @@
 package com.finalproject.festival.service;
 
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,12 +19,17 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDao memberDao;
 	
-	
-	
-	
+
+	@Override
+	public int userLoginCount(String id) {
+		
+		return memberDao.userLoginCount(id);
+	}
+
 	@Override//로그인확인
 	public Map<String, Object> loginCheck(String id) {
-		
+	
+	
 		return memberDao.loginCheck(id);
 	}
 
@@ -79,7 +85,12 @@ public class MemberServiceImpl implements MemberService {
 	public List<Admin> adminUserSelect() {
 		
 		return memberDao.adminUserSelect();
-	};
+	}
+
+
+
+
+	
 
 
 

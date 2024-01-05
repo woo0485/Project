@@ -104,7 +104,8 @@
    		const regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
     //password
     	const regPassword = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,16}$/;
-
+	//phoneNumber
+		const regphone = /[0-9]{11}/
     		
  	//이름 유효성
  	$("#joinName").keyup(function(){
@@ -163,7 +164,57 @@
 	        });//ajax end
 	    }
 	
-	})
+	});
+	 
+	 
+	 
+	 //핸드폰 유효검사
+	 
+	 $("#phoneCheckBtn").click(function(){
+	 	const phoneNumber = $("#phoneNumber").val();
+	 	console.log(phoneNumber);
+	 	if(! regphone.test(phoneNumber)){
+	 		$("#phoneNumberMsg").text("하이픈(-)없이 숫자만 11자 작성해주세요").css("color","red");
+	 		return false;
+	 	}else{
+	 		$.ajax({
+	 			url: "phoneCheckMessage",
+	 			type: "post",
+	 			data: {"phonenumber": phoneNumber},
+	 			success: function(result){
+	 				if(result != ""){
+	 					$("#phoneNumberCheckCode").val(result);
+	 					$("#phoneNumberMsg").text("인증번호가 전송되었습니다.").css("color","green");
+	 					$("#phoneCheckLi").css("display","block");
+	 					$("#phoneCheckBtn").val("재전송");
+	 				}else{
+	 					$("#phoneNumberMsg").text("핸드폰 번호를 다시 확인해 주세요").css("color","red");
+	 				}
+	 			}
+	 		});
+	 	}
+	 
+	 });
+	 
+	 $("#phoneCheckNumBtn").click(function(){
+	 
+		 const phoneCheck = $("#phoneCheck").val();
+		 const phoneNumberCheckCode = $("#phoneNumberCheckCode").val();
+		 
+		 if(phoneCheck == phoneNumberCheckCode){
+		 	$("#phoneCheck").attr("data-code","true");
+		 	$("#phoneNumberMsg").text("인증번호가 일치합니다.").css("color","green");
+	 					
+		 }
+	 });
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 	 
  	//비밀번호 유효성 		
  	$("#joinPassword").keyup(function(){
@@ -241,7 +292,7 @@
 					async    : false,
 					success : function (data) {
 					    
-						console.log("join이메일 ajax 첫번째 성공"+data); // 성공하면
+						console.log("join이메일 체크"+data); // 성공하면
 						if(data == 1){
 						$("#eMailCheckMsg").text("사용중인 이메일입니다.").css("color", "red");
 						return;
@@ -257,7 +308,7 @@
 								$("#eMailCheckMsg").text("인증번호가 전송되었습니다.").css("color", "green");
 								$("#eMailCheckLi").slideDown('slow');
 								$("#eMailCheckBtn").val("재전송");
-								$("#eMailCheckCode").val(data);
+								$("#eMailCheckCode").val(data2);
 							   
 							},
 					            error: function(xhr, status, error) {
@@ -300,11 +351,10 @@
 				 	$("#joinLastCheckMsg").text("아이디를 다시 확인해 주세요").css("color","red");
 					return false;
 				}
-				
-				
-				
-			
-				
+				/*if($("#phoneCheck").attr("data-code")=== "false"){
+					$("#joinLastCheckMsg").text("핸드폰번호를 다시 확인해 주세요").css("color","red");
+					return false;
+				}*/
 				if($("#joinPasswordCheck").attr("data-code") === "false"){
 					$("#joinLastCheckMsg").text("비밀번호 확인을 다시 확인해 주세요").css("color","red");
 					return false;
@@ -338,49 +388,48 @@
 		const id = $("#id").val();
  		const password = $("#password").val();
  		
- 		console.log($("#id").val()+$("#password").val());
- 		
  		console.log("id"+id+"password"+password);
  		
  		
-	 	if (id === "") {
+	 	if (id == "") {
 		 	$("#id").focus();
-	        $("#loginMsg").text("아이디를 입력해 주세요").css("color", "red");
+	        $("#loginMag1").text("아이디를 입력해 주세요").css("color", "red");
 	        return;
 	    } else {
 		    $("#id").blur();
-	    	$("#loginMsg").text("");
+	    	$("#loginMag1").text("");
+	    	
 	    }
 	
-	    if (password === "") {
+	    if (password == "") {
 	    	$("#password").focus();
-	        $("#loginMsg").text("비밀번호를 입력해 주세요").css("color", "red");
+	        $("#loginMag1").text("비밀번호를 입력해 주세요").css("color", "red");
 	        return;
 	    } else {
 	    	$("#password").blur();
-	        $("#loginMsg").text("");
+	        $("#loginMag1").text("");
+	        
 	    }
 	
 	    if (id !== "" && password !== ""){
  	  
 	    $.ajax({
 	        url: "loginForm",
-		    type: "POST",
+		    type: "post",
 		    contentType: "application/json; charset=UTF-8",
+		    async    : false,
 		    data: JSON.stringify({
 		        "id": id,
 		        "password": password
 		    }),
-	        async    : false,
+	        
 	        success: function (result) {
-	            console.log("ajax-result" + result);
+	         console.log("aaaaaaresult"+result);
 	            if (result === 1) {
 	                // 로그인 성공 시 main 페이지로 이동
 	                window.location.href = "main";
-	            } else if (result === -1) {
-	                $("#loginMsg").text("아이디 또는 비밀번호를 찾지 못했습니다. 다시 시도해 주세요").css("color", "red");
 	            } else {
-	                $("#loginMsg").text("아이디 또는 비밀번호가 맞지 않습니다.").css("color", "red");
+	                $("#loginMag1").text("아이디 또는 비밀번호를 찾지 못했습니다. 다시 시도해 주세요").css("color", "red");
 	            }
 	        },
 	        error: function (jqXHR, textStatus, errorThrown) {

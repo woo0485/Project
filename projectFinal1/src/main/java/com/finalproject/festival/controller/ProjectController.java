@@ -2,6 +2,7 @@ package com.finalproject.festival.controller;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,9 +25,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.finalproject.festival.domain.Admin;
+import com.finalproject.festival.domain.Gallery;
 import com.finalproject.festival.domain.Member;
+import com.finalproject.festival.domain.News;
+import com.finalproject.festival.service.GalleryService;
 import com.finalproject.festival.service.MailService;
 import com.finalproject.festival.service.MemberService;
+import com.finalproject.festival.service.MessageServiceImpl;
+import com.finalproject.festival.service.NewsService;
 
 
 
@@ -39,11 +45,24 @@ public class ProjectController {
 	@Autowired
 	private MailService mailService;
 	@Autowired
+	private MessageServiceImpl phoneMessageService;
+	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+	@Autowired
+	private GalleryService galleryService;
+	@Autowired
+	private NewsService newsService;
 	
 	@RequestMapping("/main")//메인페이지로 이동
-	public String main () {
+	public String main (Model model) {
+		List<Gallery>galleryList = new ArrayList<>();
+		List<News>newsList = new ArrayList<>();
+		galleryList = galleryService.gallery();
+		newsList = newsService.newslist(); 
+		
+		model.addAttribute("galleryList",galleryList);
+		model.addAttribute("newsList",newsList);
+		
 		return "main";
 	}
 	
@@ -90,9 +109,8 @@ public class ProjectController {
 		return "main";
 	}
 	
-	
 	//adminUser
-	@RequestMapping("/addAdministrator")
+	@RequestMapping("/adminUser")
 	public String adminUser(Model model) {
 		
 		
@@ -112,7 +130,7 @@ public class ProjectController {
 		adminUserAdd.put("adminpassword", password);
 		
 		memberService.adminUserAdd(adminUserAdd);
-		return "redirect:addAdministrator";
+		return "redirect:adminUser";
 	}
 	
 	
@@ -120,41 +138,52 @@ public class ProjectController {
 	//로그인 
 	@ResponseBody
 	@RequestMapping(value = "/loginForm", method = RequestMethod.POST, consumes = "application/json")
-	public int loginCheck(HttpSession session, @RequestBody Map<String, String> param)
-				throws ServletException, IOException{
-		
+	public int loginCheck(HttpSession session, @RequestBody Map<String, String> param) {
+			
 		
 		String id = (String)param.get("id");
 		String password = (String)param.get("password");
-		Map<String, Object> user = new  HashMap<>();
-		user = memberService.loginCheck(id);
-		boolean result = false;
+
+		int resultCount = memberService.userLoginCount(id);
+		int result = -1;
+
 		
-		System.out.println("login-map:::::"+user);
-		String userId = (String)user.get("id");
-		String userPassword =(String)user.get("password");
-		
-		if(userId.equals(id) && passwordEncoder.matches(password,userPassword )) {
-			result = true;
-		}
-		
-		
-		try {
-			if(result) {
+			
+		if(resultCount == 1) {
+			Map<String, Object> user = memberService.loginCheck(id);
+			
+			System.out.println("login-map:::::"+user);
+			String userId = (String)user.get("id");
+			String userPassword =(String)user.get("password");
+			
+			if(userId.equals(id) && passwordEncoder.matches(password,userPassword )) {
+
 				session.setAttribute("id", id);
 				session.setAttribute("name", (String)user.get("name"));
 				session.setAttribute("userType", (String)user.get("userType"));
-				return 1;
+				result = 1;
+			}
 			}
 			else {
-				return 0;
-			}
+					result = 0;
+				  }
+
+		return result;
 			
-		 } catch (Exception e) {
-				return -1;
-		 }
 		
-		};
+		};	
+	
+	//핸드폰인증번호 
+	@ResponseBody
+	@RequestMapping(value = "/phoneCheckMessage",method = RequestMethod.POST)
+	public String phoneCheckMessage(String phonenumber) {
+		
+		
+		String messageResult =phoneMessageService.phoneMessage(phonenumber);
+		
+		return messageResult;
+	}
+		
 	
 	// 아이디 중복확인 
 	@ResponseBody
@@ -188,10 +217,12 @@ public class ProjectController {
 		return mailService.joinEmail(email);
 	}
 		
+	
+	
 		
 	//회원가입 
 	@ResponseBody
-	@RequestMapping("/memberJoin")
+	@RequestMapping(value = "/memberJoin", method = RequestMethod.POST)
 	public String memberJoin(@RequestParam("joinName")String name,@RequestParam("joinId")String id,@RequestParam("phoneNumber")String phonenumber,
 							 @RequestParam("joinPasswordCheck")String password,@RequestParam("zipcode")String zipcode,
 							 @RequestParam("address1")String address1,@RequestParam("address2")String address2,

@@ -84,7 +84,6 @@
 						           
 							          <ul class="dropdown-menu">
 							            <li><a class="dropdown-item" href="myPageMain?id=${sessionScope.id}">마이페이지</a></li>
-							           	<li><a class="dropdown-item" href="moveBasket">장바구니</a></li>
 							           	<li><a class="dropdown-item" href="logout">로그아웃</a></li>
 							          </ul>
 							        </li>
@@ -95,7 +94,8 @@
 								<li class="nav-item ">
 						          <a href="manageMain" class="row nav-link active" aria-current="page">관리자 페이지</a>
 						          <a href="logout" class="row nav-link active" aria-current="page">로그아웃</a>
-						       </li>
+						          <a href="adminUser"> 관리자 추가</a>
+						        </li>
 						     </c:if>  
 						      
 					     	</ul>

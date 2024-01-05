@@ -21,6 +21,20 @@
 		SELECT COUNT(*) FROM Member WHERE id = #{id} AND email = #{email}	
 	</select>
 	
+	<select id="userLoginCount" resultType="Integer" >
+		SELECT COUNT(*) 
+    FROM (
+        SELECT 'Member' AS userType, id, name, phonenumber, email, totalpay, grade, password
+        FROM Member
+        WHERE id = #{id}
+        UNION ALL
+        SELECT 'Admin' AS userType, adminid AS id, adminname AS name, NULL AS phonenumber, NULL AS email, NULL AS totalpay, NULL AS grade, adminpassword AS password
+        FROM Admin
+        WHERE adminid = #{id}
+        ) AS UserCount;
+		
+	</select>
+	
 	<select id="userLogin" resultType="hashMap" >
 		 SELECT 'Member' AS userType, id, name, phonenumber, email, totalpay, grade, password
 	    FROM Member

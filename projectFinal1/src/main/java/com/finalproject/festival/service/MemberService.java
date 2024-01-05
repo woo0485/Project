@@ -9,6 +9,7 @@ import com.finalproject.festival.domain.Member;
 
 public interface MemberService {
 	
+	public int userLoginCount(String id);
 	public Map<String, Object> loginCheck(String id);
 	public int joinIdCheck (String id);
 	public int joinEmailCheck (String email);

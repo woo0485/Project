@@ -175,6 +175,13 @@
 			<artifactId>spring-security-crypto</artifactId>
 			<version>5.7.5</version>
 		</dependency>
+		<!-- 핸드폰 인증 -->
+		<dependency>
+		  <groupId>net.nurigo</groupId>
+		  <artifactId>sdk</artifactId>
+		  <version>4.2.7</version>
+		</dependency>
+		
 		
 		
 		 

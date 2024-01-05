@@ -5,10 +5,10 @@
 
 <div class="row mt-5 border-top" style="height: 500px;">
 	<div class="col-10 offset-1 mt-5">
-
+	
 		<div class="row mt-5 container text-center">
 			<div class="col offset-1 mt-5 align-items-center">
-
+			
 				<form action="loginFrom" method="post" id="loginFrom">
 					<div class="row offset-3">
 						<div class="col-2">
@@ -32,7 +32,7 @@
 							</div>
 						</div>
 					</div>
-						<span id="loginMag"></span>
+						<span id="loginMag1"></span>
 						
 					<div class="d-grid col-3 offset-4 ">
 						<input type="button" id="loginBtn" class="btn btn-outline-dark" value="로그인"/>
@@ -48,9 +48,9 @@
 				</div>
 				
 
+
 			</div>
 		</div>
-
 
 	</div>
 </div>
