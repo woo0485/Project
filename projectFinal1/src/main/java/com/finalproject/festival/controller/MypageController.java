@@ -89,8 +89,6 @@ public class MypageController {
 	public String MyInfo(@RequestParam("id")String id, Model model) {
 		Member member = service.MyInfo(id);
 		
-		System.out.print("ddd"+member.getGrade());
-		
 		model.addAttribute("member", member);
 		return "myPageMain";
 	}
