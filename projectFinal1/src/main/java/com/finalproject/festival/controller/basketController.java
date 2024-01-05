@@ -113,13 +113,9 @@ public class basketController {
 	@RequestMapping(value = {"/priceOrder"}, method= RequestMethod.POST)
 	public String priceOrder (Model m, String id, int productno	) {
 	//	System.out.println("장바구니컨트롤러 세션 아이디" + session.getAttribute("id"));
-		
 		List<Map<String,Object>> priceOrder = bs.basketList(id, productno);
-			
-		System.out.println(priceOrder.get(0).get(""));
-		
+		System.out.println(priceOrder.get(0).get("basketno"));
 		m.addAttribute("priceOrder",priceOrder);
-		
 		return "priceOrder";
 	}
 	
