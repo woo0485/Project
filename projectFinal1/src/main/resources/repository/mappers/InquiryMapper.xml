@@ -45,7 +45,7 @@
 	
 	<insert id="insertInquiry" parameterType="Manage" useGeneratedKeys="true" keyProperty="questionNo">
 		INSERT INTO Question(id, questionTitle, questionContent, questionDate, questionCategory, email, answerProgress)
-		VALUES (#{id}, #{questionTitle}, #{questionContent}, SYSDATE(), #{questionCategory}, #{email}, #{answerProgress} )
+		VALUES (#{id}, #{questionTitle}, #{questionContent}, #{questionDate, jdbcType=TIMESTAMP}, #{questionCategory}, #{email}, #{answerProgress} )
 	</insert>
 	
 	<select id="getInquiry" resultType="Manage" resultMap="inquiryMap">
@@ -57,7 +57,7 @@
 		UPDATE Question
 			SET answerTitle = #{answerTitle},
 				answerContent = #{answerContent},
-				answerDate = SYSDATE(),
+				answerDate = #{answerDate, jdbcType=TIMESTAMP},
 				answerProgress = #{answerProgress},
 				toEmail = #{toEmail}
 		WHERE questionNo = #{questionNo}	

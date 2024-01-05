@@ -13,11 +13,4 @@ public interface InquiryDao {
 	public abstract Manage getInquiry(int questionNo);
 	
 	public abstract void insertInquiry(Manage manage);
-
-	public abstract void updateInquiry(Manage manage);
-
-	public abstract void deleteInquiry(int questionNo);
-	
-	
-
 }

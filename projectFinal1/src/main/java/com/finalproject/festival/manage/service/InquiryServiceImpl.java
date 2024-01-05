@@ -1,5 +1,8 @@
 package com.finalproject.festival.manage.service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,20 +66,10 @@ public class InquiryServiceImpl implements InquiryService {
 
 	@Override
 	public void insertInquiry(Manage manage) {
-		
+		LocalDateTime questionDate = LocalDateTime.now(ZoneOffset.UTC).plusHours(9);
+	    manage.setQuestionDate(questionDate);
+
 		inquiryDao.insertInquiry(manage);
-	}
-
-	@Override
-	public void updateInquiry(Manage manage) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteInquiry(int questionNo) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

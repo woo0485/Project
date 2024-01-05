@@ -52,9 +52,7 @@ td input:focus {
 
 			<div class="col-8 text-start mt-5">
 				<span class="font-bold p-4"><h3>회원 수정</h3></span>
-				<form action="updateManageMemberProcess"
-					name="manageMemberUpdateForm" id="manageMemberUpdateForm"
-					method="post">
+				<form action="updateManageMemberProcess" name="manageMemberUpdateForm" id="manageMemberUpdateForm" method="post">
 					<div class="row">
 						<div class="col-6 text-start" style="font-size:small;">
 
@@ -89,8 +87,8 @@ td input:focus {
 									</td>
 									<td>
 										<div>
-											<input type="text" class="form-control" name="email" id=""
-												email"" placeholder="이메일" value="${member.email }"
+											<input type="text" class="form-control" name="email" id="email"
+												 placeholder="이메일" value="${member.email }"
 												style="border-width: 0;">
 										</div>
 									</td>
@@ -115,7 +113,7 @@ td input:focus {
 										<div>
 											<input type="text" class="form-control" name="totalpay"
 												id="totalpay" placeholder="누적구매금액"
-												value="${member.totalpay }원" style="border-width: 0;">
+												value="${member.totalpay }" style="border-width: 0;">
 										</div>
 									</td>
 								</tr>
@@ -126,11 +124,12 @@ td input:focus {
 									<td>
 										<div>
 											<select class="form-select" name="grade"
-												style="border-width: 0;">
-												<option ${member.grade == '1' ? 'selected' : ''}>BLACK</option>
-												<option ${member.grade == '2' ? 'selected' : ''}>SILVER</option>
-												<option ${member.grade == '3' ? 'selected' : ''}>GOLD</option>
-												<option ${member.grade == '4' ? 'selected' : ''}>VIP</option>
+												style="border-width: 0;">											
+												<option ${member.grade == '0' ? 'selected' : ''}>0</option>
+												<option ${member.grade == '1' ? 'selected' : ''}>1</option>
+												<option ${member.grade == '2' ? 'selected' : ''}>2</option>
+												<option ${member.grade == '3' ? 'selected' : ''}>3</option>
+												<option ${member.grade == '4' ? 'selected' : ''}>4</option>
 											</select>
 										</div>
 									</td>

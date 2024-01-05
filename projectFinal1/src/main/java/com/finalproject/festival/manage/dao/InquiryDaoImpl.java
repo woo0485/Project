@@ -50,17 +50,4 @@ public class InquiryDaoImpl implements InquiryDao {
 		
 		sqlSession.insert(NAME_SPACE + ".insertInquiry", manage);
 	}
-
-	@Override
-	public void updateInquiry(Manage manage) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteInquiry(int questionNo) {
-		// TODO Auto-generated method stub
-
-	}
-
 }

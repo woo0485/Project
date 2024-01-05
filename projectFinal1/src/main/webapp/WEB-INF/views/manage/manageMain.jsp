@@ -342,32 +342,34 @@
 
 <!-- 버튼 클릭시 모달 생김 -->
 <div class="modal" id="myModal">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-sm modal-dialog-centered">
 		<!-- modal-sm modal-lg modal-xl 모달 사이즈 -->
 		<!-- modal-dialog-centered 화면 가운데 -->
 		<!-- modal-dialog-scrollable 스크롤 기능 -->
 		<div class="modal-content">
 			<div class="modal-header">
-				<span class=""><h4>매출 초기화</h4></span>
+				<span class=""><h4>올해 매출 초기화</h4></span>
 				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 			</div>
 			<div class="modal-body text-center">
 
 				<c:set var="currentYear"
 					value="<%=Calendar.getInstance().get(Calendar.YEAR)%>" />
-				<c:if test="${not empty salesList}">
-					<table>
-						<tr class="text-center">
-							<td><c:forEach var="sales" items="${salesList}">
+				<c:if test="${not empty salesList}">				
+						<div class="row">
+							<div class="col text-center">
+								<c:forEach var="sales" items="${salesList}">
 									<c:if test="${sales.salesYear == currentYear}">
-										<button type="button" data-salesNo="${sales.salesNo}"
-											class="dbAllDelete btn99 py-0"
-											style="font-size: small; color: red;">
-											${sales.salesDate} 초기화</button>
+										<div class="my-2">
+											<button type="button" data-salesNo="${sales.salesNo}"
+												class="dbAllDelete button99 py-2 px-3 rounded"
+												style="font-size: small; color: black;">
+												${sales.salesYear}년 ${sales.salesDate} 초기화</button>
+										</div>	
 									</c:if>
-								</c:forEach></td>
-						</tr>
-					</table>
+								</c:forEach>
+							</div>
+						</div>					
 				</c:if>
 			</div>
 			<div class="modal-footer">

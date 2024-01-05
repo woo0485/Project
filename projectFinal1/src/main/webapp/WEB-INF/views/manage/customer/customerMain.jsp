@@ -92,10 +92,10 @@ div table tbody td {
 					
 			<div class="row my-5">
 				<div class="col-4 ">
-						<table class="table">
+						<table class="table" style="font-size:small;">
 						<thead>
 							<tr>
-								<th class="py-2 border-2 border-dark border-bottom"><h5>공지사항</h5></th>
+								<th class="py-2 border-2 border-dark border-bottom"><h6>공지사항</h6></th>
 								<th class="py-2 text-end border-2 border-dark border-bottom"><h4><a href="noticeMain" class="fontblack">
 								<i class="bi bi-plus-lg"></i></a></h4></th>
 							</tr>
@@ -115,7 +115,7 @@ div table tbody td {
 					
 					
 				<div class="col-4 offset-1">
-					<table class="table">
+					<table class="table" style="font-size:small;">
 						<thead>
 							<tr>
 								<th class="py-2 border-2 border-dark border-bottom"><h5>이용 안내</h5></th>

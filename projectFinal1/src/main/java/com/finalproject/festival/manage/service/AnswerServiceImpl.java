@@ -1,5 +1,8 @@
 package com.finalproject.festival.manage.service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -32,6 +35,8 @@ public class AnswerServiceImpl implements AnswerService {
 
 	@Override
 	public void insertAnswer(Manage manage) {
+		LocalDateTime answerDate = LocalDateTime.now(ZoneOffset.UTC).plusHours(9);
+	    manage.setAnswerDate(answerDate);
 		
 		answerDao.insertAnswer(manage);
 	}

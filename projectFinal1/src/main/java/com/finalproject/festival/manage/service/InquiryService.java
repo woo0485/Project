@@ -13,10 +13,4 @@ public interface InquiryService {
 	
 	public abstract void insertInquiry(Manage manage);
 
-	public abstract void updateInquiry(Manage manage);
-
-	public abstract void deleteInquiry(int questionNo);
-	
-	
-
 }

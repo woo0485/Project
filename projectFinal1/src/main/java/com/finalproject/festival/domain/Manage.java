@@ -1,5 +1,6 @@
 package com.finalproject.festival.domain;
 
+import java.time.LocalDateTime;
 
 public class Manage {
 	
@@ -17,14 +18,13 @@ public class Manage {
 	private String id;
 	private String questionTitle;
 	private String questionContent;
-	private String questionDate;
+	private LocalDateTime questionDate;
 	private String questionCategory;
 	private String email;
 	private String answerProgress;
 	private String answerTitle;
 	private String answerContent;
-	private String answerDate;
-	private String answerCategory;	
+	private LocalDateTime answerDate;
 	private String toEmail;
 	
 	private int informationUseNo;
@@ -38,11 +38,10 @@ public class Manage {
 
 	public Manage(String adminId, String adminPassword, String adminName, int noticeNo, String noticeTitle,
 			String noticeContent, String noticeImage, String noticeUploadDate, int questionNo, String id,
-			String questionTitle, String questionContent, String questionDate, String questionCategory, String email,
-			String answerTitle, String answerContent, String answerDate, String answerCategory,
-			String answerProgress, String toEmail, int informationUseNo, String informationUseTitle,
-			String informationUseContent, String informationUseDate, String informationUseCategory,
-			String informationUseImage) {
+			String questionTitle, String questionContent, LocalDateTime questionDate, String questionCategory,
+			String email, String answerProgress, String answerTitle, String answerContent, LocalDateTime answerDate,
+			String toEmail, int informationUseNo, String informationUseTitle, String informationUseContent,
+			String informationUseDate, String informationUseCategory, String informationUseImage) {
 		super();
 		this.adminId = adminId;
 		this.adminPassword = adminPassword;
@@ -59,11 +58,10 @@ public class Manage {
 		this.questionDate = questionDate;
 		this.questionCategory = questionCategory;
 		this.email = email;
+		this.answerProgress = answerProgress;
 		this.answerTitle = answerTitle;
 		this.answerContent = answerContent;
 		this.answerDate = answerDate;
-		this.answerCategory = answerCategory;
-		this.answerProgress = answerProgress;
 		this.toEmail = toEmail;
 		this.informationUseNo = informationUseNo;
 		this.informationUseTitle = informationUseTitle;
@@ -169,11 +167,11 @@ public class Manage {
 		this.questionContent = questionContent;
 	}
 
-	public String getQuestionDate() {
+	public LocalDateTime getQuestionDate() {
 		return questionDate;
 	}
 
-	public void setQuestionDate(String questionDate) {
+	public void setQuestionDate(LocalDateTime questionDate) {
 		this.questionDate = questionDate;
 	}
 
@@ -193,6 +191,14 @@ public class Manage {
 		this.email = email;
 	}
 
+	public String getAnswerProgress() {
+		return answerProgress;
+	}
+
+	public void setAnswerProgress(String answerProgress) {
+		this.answerProgress = answerProgress;
+	}
+
 	public String getAnswerTitle() {
 		return answerTitle;
 	}
@@ -209,28 +215,12 @@ public class Manage {
 		this.answerContent = answerContent;
 	}
 
-	public String getAnswerDate() {
+	public LocalDateTime getAnswerDate() {
 		return answerDate;
 	}
 
-	public void setAnswerDate(String answerDate) {
+	public void setAnswerDate(LocalDateTime answerDate) {
 		this.answerDate = answerDate;
-	}
-
-	public String getAnswerCategory() {
-		return answerCategory;
-	}
-
-	public void setAnswerCategory(String answerCategory) {
-		this.answerCategory = answerCategory;
-	}
-
-	public String getAnswerProgress() {
-		return answerProgress;
-	}
-
-	public void setAnswerProgress(String answerProgress) {
-		this.answerProgress = answerProgress;
 	}
 
 	public String getToEmail() {
@@ -289,11 +279,5 @@ public class Manage {
 		this.informationUseImage = informationUseImage;
 	}
 
-	
-	
-
-	
-
 		
-
 }
