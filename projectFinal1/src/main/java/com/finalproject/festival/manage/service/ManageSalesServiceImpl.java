@@ -49,6 +49,12 @@ public class ManageSalesServiceImpl implements ManageSalesService {
 		//DB Sales 매출 삭제할 떄
 		List<Sales> dbSalesTotalPrice = manageSalesDao.salesList();
 		
+		//월 매출 베스트
+		List<Sales> sListBest = manageSalesDao.bestMonth();
+		
+		//일 매출 베스트
+		List <Reservation> rListBest = managerReservationDao.bestDayManageReservation();
+		
 		//일매출
 		List <Reservation> rList = managerReservationDao.manageReservation2(start, PAGE_SIZE, type, keyword);
 		
@@ -76,7 +82,12 @@ public class ManageSalesServiceImpl implements ManageSalesService {
 			endPage = pageCount;
 		}	
 	
-		Map<String, Object> modelMap = new HashMap<>();		
+		Map<String, Object> modelMap = new HashMap<>();	
+		
+		// 월 매출 베스트
+		modelMap.put("sListBest", sListBest);
+		// 일 매출 베스트
+		modelMap.put("rListBest", rListBest);
 		// 일 매출
 		modelMap.put("rList", rList);
 		modelMap.put("pageCount", pageCount);

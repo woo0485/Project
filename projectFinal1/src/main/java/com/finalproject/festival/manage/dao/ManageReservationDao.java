@@ -42,6 +42,9 @@ public interface ManageReservationDao {
 	//1 월 매출
 	public abstract List<Reservation> saleTotalPrice1();
 	
+	//일 매출 베스트
+	public abstract List<Reservation> bestDayManageReservation();
+	
 	//일 매출
 	public abstract List<Reservation> manageReservation2(int start, int num, String type, String keyword);
 	

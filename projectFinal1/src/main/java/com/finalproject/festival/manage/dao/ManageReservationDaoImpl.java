@@ -105,6 +105,13 @@ public class ManageReservationDaoImpl implements ManageReservationDao {
 		return sqlSession.selectList(NAME_SPACE + ".saleTotalPrice1");
 	}
 	
+	//일 매출 베스트
+	@Override
+	public List<Reservation> bestDayManageReservation(){
+		
+		return sqlSession.selectList(NAME_SPACE + ".bestDayManageReservation");
+	}
+	
 	// 일 매출 카운트
 	public int getDateCount(String type, String keyword) {
 		

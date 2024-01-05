@@ -12,6 +12,15 @@
 		<result property="salesYear" column="salesYear" />
 	</resultMap>
 	
+	<select id="bestMonth" resultType="Sales" resultMap="ManageSalesMap">
+		SELECT			  
+			 salesDate,
+			 salesTotalPrice, salesYear
+		 FROM Sales
+		 ORDER BY salesTotalPrice DESC	
+		 LIMIT 5
+	</select>
+	
 	<delete id="deleteSalesTotalPrice" parameterType="List">
 		DELETE FROM Sales
 		WHERE salesNo = #{salesNo} AND salesYear = YEAR(NOW())

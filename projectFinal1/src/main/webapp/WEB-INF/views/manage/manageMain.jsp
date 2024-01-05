@@ -172,98 +172,24 @@
 
 					</div>
 				</div>
-
-				<c:set var="currentYear"
-					value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />
-				<!-- 차트 -->
-				<div class="row my-3">
-					<div class="col-10"
-						style="width: 480px; height: 480px; margin-bottom: -280px;">
-						<canvas id="myChart"></canvas>
-					</div>
-				</div>
-				<script>
-					// 차트를 그럴 영역을 dom요소로 가져온다.
-					var chartArea = document.getElementById('myChart')
-							.getContext('2d');
-					// 차트를 생성한다. 
-					var myChart = new Chart(chartArea, {
-						// ①차트의 종류(String)
-						type : 'bar',
-						// ②차트의 데이터(Object)
-						data : {
-							// ③x축에 들어갈 이름들(Array)
-							labels : [ 
-								<c:set var="currentYear" value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />			
-								<c:forEach var="sales" items="${salesList}">
-							        <c:if test="${sales.salesYear == currentYear}">
-							        '${ sales.salesYear }년 ${ sales.salesDate }', 
-							        </c:if>
-							    </c:forEach>									
-							],
-							// ④실제 차트에 표시할 데이터들(Array), dataset객체들을 담고 있다.
-							datasets : [ {
-								// ⑤dataset의 이름(String)
-								label : '올해 월 매출',
-								// ⑥dataset값(Array)
-																							
-								data : [ 
-									<c:set var="currentYear" value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />
-									<c:if test="${ empty salesList }">	
-										0,0,0,0,0,0,0,0,0,0,0,0
-									</c:if>
-
-									<c:if test="${not empty salesList}">
-									    <c:forEach var="sales" items="${salesList}">
-									        <c:if test="${sales.salesYear == currentYear}">
-									            ${sales.salesTotalPrice},
-									        </c:if>
-									    </c:forEach>
-									</c:if>									
-									],
-							
-								// ⑦dataset의 배경색(rgba값을 String으로 표현)
-								backgroundColor: [
-	                                //색상
-
-								      'rgba(75, 192, 192, 0.2)',
-
-	                            ],
-	                            borderColor: [
-	                                //경계선 색상
-
-	                                'rgb(75, 192, 192)',    
-	
-	                            ],
-								// ⑨dataset의 선 두께(Number)
-								borderWidth : 1
-							} ]
-						},
-						// ⑩차트의 설정(Object)
-						options : {
-							// ⑪축에 관한 설정(Object)
-							scales : {
-								// ⑫y축에 대한 설정(Object)
-								y : {
-									// ⑬시작을 0부터 하게끔 설정(최소값이 0보다 크더라도)(boolean)
-									beginAtZero : true
-								}
-							}
-						}
-					});
-				</script>
-
+				
+				
 				<div class="row">
-					<div class="col-10">
-
-						<div class="row my-3 mb-5">
-							<div class="col" style="width: 200px; height: 200px;">
-								<canvas id="myChart2"></canvas>
-							</div>
+					<div class="col border rounded-3 pt-4 mt-4 text-center" style="height:580px; width:400px; background-color:#F0FFFF;">		
+					<span class=" fs-4">연도별 매출 차트</span>
+					<c:set var="currentYear"
+						value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />
+											
+					<!-- 올해 매출 차트 -->
+					<div class="row my-3">
+						<div class="col-10 ps-5 ms-5 pt-4"
+							style="width: 480px; height: 480px; margin-bottom: -280px;">
+							<canvas id="myChart"></canvas>
 						</div>
-						<script>
+					</div>
+					<script>
 						// 차트를 그럴 영역을 dom요소로 가져온다.
-						var chartArea = document.getElementById('myChart2')
+						var chartArea = document.getElementById('myChart')
 								.getContext('2d');
 						// 차트를 생성한다. 
 						var myChart = new Chart(chartArea, {
@@ -274,37 +200,44 @@
 								// ③x축에 들어갈 이름들(Array)
 								labels : [ 
 									<c:set var="currentYear" value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />			
-									<c:forEach var="lastYear" items="${lastYearSalesList}">
-								        
-								        '${ lastYear.salesYear }년 ${ lastYear.salesDate }', 
-								        
+									<c:forEach var="sales" items="${salesList}">
+								        <c:if test="${sales.salesYear == currentYear}">
+								        '${ sales.salesYear }년 ${ sales.salesDate }', 
+								        </c:if>
 								    </c:forEach>									
 								],
 								// ④실제 차트에 표시할 데이터들(Array), dataset객체들을 담고 있다.
 								datasets : [ {
 									// ⑤dataset의 이름(String)
-									label : '작년 월 매출',
+									label : '올해 월 매출',
 									// ⑥dataset값(Array)
 																								
 									data : [ 
-										<c:set var="currentYear" value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />			
-										    <c:forEach var="lastYear" items="${lastYearSalesList}">									        
-										            ${lastYear.salesTotalPrice},									        
+										<c:set var="currentYear" value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />
+										<c:if test="${ empty salesList }">	
+											0,0,0,0,0,0,0,0,0,0,0,0
+										</c:if>
+	
+										<c:if test="${not empty salesList}">
+										    <c:forEach var="sales" items="${salesList}">
+										        <c:if test="${sales.salesYear == currentYear}">
+										            ${sales.salesTotalPrice},
+										        </c:if>
 										    </c:forEach>
-																		
+										</c:if>									
 										],
 								
 									// ⑦dataset의 배경색(rgba값을 String으로 표현)
 									backgroundColor: [
 		                                //색상
 	
-										'rgba(54, 162, 235, 0.2)'
+									      'rgba(75, 192, 192, 0.2)',
 	
 		                            ],
 		                            borderColor: [
 		                                //경계선 색상
 	
-		                            	'rgba(54, 162, 235, 0.2)'
+		                                'rgb(75, 192, 192)',    
 		
 		                            ],
 									// ⑨dataset의 선 두께(Number)
@@ -323,15 +256,88 @@
 								}
 							}
 						});
-						</script>
-
+					</script>
+	
+					<!-- 작년 매출 차트 -->
+					<div class="row">
+						<div class="col-10 ps-5 ms-5">
+	
+							<div class="row my-3 mb-5">
+								<div class="col" style="width: 200px; height: 200px;">
+									<canvas id="myChart2"></canvas>
+								</div>
+							</div>
+							<script>
+							// 차트를 그럴 영역을 dom요소로 가져온다.
+							var chartArea = document.getElementById('myChart2')
+									.getContext('2d');
+							// 차트를 생성한다. 
+							var myChart = new Chart(chartArea, {
+								// ①차트의 종류(String)
+								type : 'bar',
+								// ②차트의 데이터(Object)
+								data : {
+									// ③x축에 들어갈 이름들(Array)
+									labels : [ 
+										<c:set var="currentYear" value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />			
+										<c:forEach var="lastYear" items="${lastYearSalesList}">
+									        
+									        '${ lastYear.salesYear }년 ${ lastYear.salesDate }', 
+									        
+									    </c:forEach>									
+									],
+									// ④실제 차트에 표시할 데이터들(Array), dataset객체들을 담고 있다.
+									datasets : [ {
+										// ⑤dataset의 이름(String)
+										label : '작년 월 매출',
+										// ⑥dataset값(Array)
+																									
+										data : [ 
+											<c:set var="currentYear" value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />			
+											    <c:forEach var="lastYear" items="${lastYearSalesList}">									        
+											            ${lastYear.salesTotalPrice},									        
+											    </c:forEach>
+																			
+											],
+									
+										// ⑦dataset의 배경색(rgba값을 String으로 표현)
+										backgroundColor: [
+			                                //색상
+		
+											'rgba(54, 162, 235, 0.2)'
+		
+			                            ],
+			                            borderColor: [
+			                                //경계선 색상
+		
+			                            	'rgba(54, 162, 235, 0.2)'
+			
+			                            ],
+										// ⑨dataset의 선 두께(Number)
+										borderWidth : 1
+									} ]
+								},
+								// ⑩차트의 설정(Object)
+								options : {
+									// ⑪축에 관한 설정(Object)
+									scales : {
+										// ⑫y축에 대한 설정(Object)
+										y : {
+											// ⑬시작을 0부터 하게끔 설정(최소값이 0보다 크더라도)(boolean)
+											beginAtZero : true
+										}
+									}
+								}
+							});
+							</script>
+						</div>
 					</div>
-
+				
 				</div>
+			</div>
 
 
 			</div>
-
 		</div>
 	</div>
 </div>
