@@ -26,5 +26,8 @@ public interface ProductService {
 	
 	public abstract void deleteProduct(int productno);
 	
+	// 북마크 기능 - 1월 4일) 북마크 정보 업데이트하고 갱신된 북마크를 가져오는 메서드
+		public Map<String, Integer> Bookmark (int productno, int productbookmarkcount );
+	
 	
 }

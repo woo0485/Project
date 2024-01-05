@@ -7,16 +7,31 @@
 <script src="resources/js/hyunju.js"></script>
 <script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.1.min.js" type="application/javascript"></script>
 
+<!--  결제하기로 보낼 폼 -->
 <form name="priceForm" id="priceForm"  action="priceOrder" method="post" >
 	<input type="text" name="id" id="rId" value="${sessionScope.id}">
 	<c:forEach var="b" items="${basketList}" >
-		<input type="text" name="basketno"  id="basketno"  value="${b.basketno}"> 
-		<input type="text" name="productno" id="productno01" value="${b.basketProductNo}"> 
-		<input type="text" name="basketProductCount"  id="basketProductCount" value="${b.basketProductCount}">
-		<input type="text" name="productprice"  id="productprice"  value="${b.productPrice}">
-		<input type="text" name="productname"  id="productname"  value="${b.productName}">
+		basketno: <input type="text" name="basketno"  id="basketno"  value="${b.basketno}">  <br>
+		productno: <input type="text" name="productno" id="productno01" value="${b.basketProductNo}">  <br>
+		basketProductCount: <input type="text" name="basketProductCount"  id="basketProductCount" value="${b.basketProductCount}"> <br>
+		productprice: <input type="text" name="productprice"  id="productprice"  value="${b.productPrice}"> <br>
+		productname: <input type="text" name="productname"  id="productname"  value="${b.productName}"> <br>
 		</c:forEach>
+</form>
+<!--  결제하기로 보낼 폼  끝-->
 
+<!--  장바구니에서 제품 수정, 삭제 버튼 클릭시 쓸 폼 -->
+<form name="checkBasketForm" id="checkBasketForm"  action="checkBasketForm">
+			<input type="text" name="id" id="rId02" value="${sessionScope.id}">
+	<c:forEach var="b" items="${basketList}" >
+		basketno: <input type="text" name="basketno"  id="basketno02"  value="${b.basketno}">  <br>
+		productno: <input type="text" name="productno" id="productno02" value="${b.basketProductNo}">  <br>
+		basketProductCount: <input type="text" name="basketProductCount"  id="basketProductCount02" value="${b.basketProductCount}"> <br>
+		productprice: <input type="text" name="productprice"  id="productprice02"  value="${b.productPrice}"> <br>
+		productname: <input type="text" name="productname"  id="productname02"  value="${b.productName}"> <br>
+	</c:forEach>
+</form>
+<!--  장바구니에서 제품 수정, 삭제 버튼 클릭시 쓸 폼  끝-->
 	<!--  상품정보 테이블 -->
 	<div>
 		<table>
@@ -58,7 +73,7 @@
 				</td>
 				
 				<td>
-				<input class="btn btn-danger" type="button" id="deleteBasket" value="삭제">
+				<input class="btn btn-danger" type="button"  name="deleteBasket"  id="deleteBasket" value="삭제">
 				</td>
 				
 			</tr>
@@ -100,4 +115,3 @@
 			<button>선택상품주문</button>
 		</div>
 	<!--  결제예정금액 테이블 끝-->
-</form>

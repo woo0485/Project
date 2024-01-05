@@ -52,4 +52,10 @@ public class BasketServiceImpl implements BasketService {
 		BD.insertBasket(b);
 	}
 
+	@Override
+	public void deletdBasket(int basketno) {
+		BD.deleteBasket(basketno);
+		
+	}
+
 }

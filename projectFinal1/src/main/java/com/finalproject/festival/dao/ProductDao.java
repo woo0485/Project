@@ -28,5 +28,12 @@ public interface ProductDao {
 	
 	public abstract void deleteProduct(int productno);
 	
+	// 북마크 기능 - 1월 4일 ) 해당 productno에 해당하는 북마크 몇개인지 불러오기
+		public abstract Product getBookmark(int productno);
+		
+		// 북마크 업데이트- 1월 4일) productno에 해당하는 북마크 수를 업데이트한다.
+		public abstract void updateBookmark(int productno, int productbookmarkcount);
+		
+	
 	
 }
