@@ -21,7 +21,7 @@
 <div class="row my-5" id="global-content">
 	<div class="offset-1 col-10">
 		<form name="checkForm" id="checkForm">
-			<input type="hidden" name="productno" id="productno" value="${product.productno}"> 
+			<input type="text" name="productno" id="productno" value="${product.productno}"> 
 			<input type="hidden" name="adminpassword" id="rPass"> 
 			<input type="hidden" name="pageNum" value="${ pageNum }" />
 
@@ -32,22 +32,32 @@
 		</form>
 		
 	<!--  ########## 장바구니에 담을 때  js로 넘겨지는 form #############-->
-		<form name="basketForm" id="basketForm"  action="basket"
-				method="post" >
-			<!-- 
-			<input type="hidden" name="id" id="rId"> 
-			<input type="hidden" name="basketno"  id="basketno"  value="${basket.basketno}"> 
-			<input type="hidden" name="productno" id="productno" value="${product.productno}"> 
-			<input type="hidden" name="basketproductcount"  id="basketproductcount">
-			 -->
-			 <input type="hidden" name="id" id="rId" value="${sessionScope.id}">
-			<input type="hidden" name="basketno"  id="basketno"  value="${basket.basketno}"> 
-			<input type="hidden" name="productno" id="productno01" value="${product.productno}"> 
+		<form name="basketForm" id="basketForm"  action="basket" method="post" >
+		<br><br><br><br><br>
+			아이디: <input type="hidden" name="id" id="rId" value="${sessionScope.id}"> <br>
+			basketno: <input type="text" name="basketno"  id="basketno"  value="${basket.basketno}"> <br>
+			productno: <input type="text" name="productno" id="productno01" value="${product.productno}"> <br>
+			productcount: <input type="text" name="basketproductcount"  id="basketproductcount" value="${basket.basketproductcount}"><br>
+			productprice: <input type="text" name="productprice"  id="productprice"  value="${product.productprice}"><br>
+			productname: <input type="text" name="productname"  id="productname"  value="${product.productname}"><br>
+
 <!-- @@@@@@@@ 게시 글 상세보기 영역  @@@@@@@@@@-->
 		<table>
 		<tr>
 			<td><img src="${product.productimage}"  width="400" height="450" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> 
 		<td>
+		
+		<!--  북마크 비동기 테스트 -->
+		<div id="recommend" class="text-end">
+		<div id="bookmark" class="btnCommend text-primary"  style="cursor: pointer;">
+			<div class="productbookmarkcount" style="font-size:15px">
+					<img src="resources/img/bookmark.png"  width="40" height="35" />
+					북마크 수 : ${ product.productbookmarkcount } 
+			</div>
+		</div>
+		</div>
+		<!--  북마크 비동기 테스트 -->
+					
 		<!--  오른쪽에 뜨는 축제 정보 글 한묶음 -->
 				<h1>${ product.productname }</h1> <br><br>
 				<h5>기간 ${ product.productopendate } ~ ${ product.productclosedate } </h5><br>

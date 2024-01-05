@@ -5,20 +5,26 @@
 <link href="resources/css/hyunju.css" rel="stylesheet" >
 <script src="resources/js/jquery-3.2.1.min.js"></script>
 <script src="resources/js/hyunju.js"></script>
+<script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.1.min.js" type="application/javascript"></script>
 
-<c:forEach var="p" items="${productList}" >
-<c:forEach var="b" items="${dsasds}">
-</c:forEach>
-</c:forEach>
+<form name="priceForm" id="priceForm"  action="priceOrder" method="post" >
+	<input type="text" name="id" id="rId" value="${sessionScope.id}">
+	<c:forEach var="b" items="${basketList}" >
+		<input type="text" name="basketno"  id="basketno"  value="${b.basketno}"> 
+		<input type="text" name="productno" id="productno01" value="${b.basketProductNo}"> 
+		<input type="text" name="basketProductCount"  id="basketProductCount" value="${b.basketProductCount}">
+		<input type="text" name="productprice"  id="productprice"  value="${b.productPrice}">
+		<input type="text" name="productname"  id="productname"  value="${b.productName}">
+		</c:forEach>
 
-<!-- https://doublesprogramming.tistory.com/137 -->
 	<!--  상품정보 테이블 -->
 	<div>
 		<table>
 		<thead>
 			<tr>
-				<th>구매상품</th>
-				<th><span>이미지</span></th>
+				<th></th>
+				<th>상품</th>
+				<th>이미지</th>
 				<th>판매가</th>
 				<th>수량</th>
 				<th>합계</th>
@@ -27,7 +33,7 @@
 			</thead>
 			
 		<!-- @@@@@@@@@@@  상품 주문으로 가는 폼  @@@@@@@@@@@@@@@ -->
-		<form name="basketOrder" id="basketOrder" action="post" >
+	
 		<tbody>
 		<c:forEach var="b" items="${basketList}" >
 			<tr>
@@ -43,25 +49,24 @@
 				</td>
 				
 				<td>
-					${ b.productPrice }
+					${ b.productPrice }원 &nbsp;&nbsp;
 				</td>
-		
-				<td><span>0</span>원</td>
 				
 				<td>
-					<input type="number"  value="${b.basketproductcount }"  max="4" min="1" maxlength="3">
+					<input type="number"  value="${b.basketProductCount }"  max="4" min="1" maxlength="3">
 					<input type="submit" value="변경" class="btn btn-primary">		
 				</td>
 				
 				<td>
-					<button>삭제</button>
+				<input class="btn btn-danger" type="button" id="deleteBasket" value="삭제">
 				</td>
 				
 			</tr>
 			</c:forEach>
 		</tbody>
-		</form>
+
 		</table>
+		
 		<!--  여기까지 상품정보테이블이였다. -->
 		<br><br>
 		<div>
@@ -90,10 +95,9 @@
 	<!-- @@@@@@@@@@@  상품 주문으로 가는 폼  @@@@@@@@@@@@@@@ -->
 	<br>
 	<!--  상품 주문으로 가는 폼 -->
-		
 		<div>
 			<input type="submit" value="전체상품주문테스트" class="btn btn-primary">
 			<button>선택상품주문</button>
 		</div>
-	
 	<!--  결제예정금액 테이블 끝-->
+</form>
