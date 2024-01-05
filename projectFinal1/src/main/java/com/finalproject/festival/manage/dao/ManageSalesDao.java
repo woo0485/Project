@@ -7,6 +7,9 @@ import com.finalproject.festival.domain.Sales;
 
 public interface ManageSalesDao {
 	
+		//월 매출 베스트
+		public abstract List<Sales> bestMonth();
+	
 		public abstract void deleteSalesTotalPrice(int salesNo);
 	
 		public abstract void salesTotalPriceWrite(Sales sales);

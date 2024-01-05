@@ -161,6 +161,7 @@ public class ProjectController {
 				session.setAttribute("id", id);
 				session.setAttribute("name", (String)user.get("name"));
 				session.setAttribute("userType", (String)user.get("userType"));
+				session.setAttribute("email", (String)user.get("email"));
 				result = 1;
 			}
 			}
