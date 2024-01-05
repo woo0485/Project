@@ -21,6 +21,13 @@ public class ManageSalesDaoImpl implements ManageSalesDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	//월 매출 베스트
+	@Override
+	public List<Sales> bestMonth(){
+				
+		return sqlSession.selectList(NAME_SPACE + ".bestMonth");
+	}
+	
 	@Override
 	public void deleteSalesTotalPrice(int salesNo) {
 		

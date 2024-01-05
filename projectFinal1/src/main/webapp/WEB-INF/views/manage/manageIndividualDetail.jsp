@@ -75,7 +75,29 @@
 					<span style="font-family: 'Noto Sans KR', sans-serif;"></span>
 					${question.questionContent }
 				</div>
-			</div>		
+			</div>	
+			
+			<c:if test="${ question.answerContent != null }">
+			<div class="row " id="global-content ">
+				<div class="col text-start bordertop py-2 ps-4 mt-5" style="background: #f0f6f9; color: #168;">
+					<span style="font-size:large; font-weight: 500;">${question.answerTitle }</span>
+				</div>
+				<div class="col bordertop py-2 text-end mt-5" style="background: #f0f6f9; color: #168;">
+					<div class="EmailDate" style="font-size:small;">${question.toEmail}<span class="ps-3" style="font-size:small;">${question.answerDate }</span></div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-4 p-2 ps-4 border-bottom py-4" class="fontbold">
+					<span style="font-family: 'Noto Sans KR', sans-serif;"></span>
+					${question.answerContent }
+				</div>
+			</div>	
+			</c:if>
+			
+			<c:if test="${ question.answerContent == null }">
+				<div class="my-5 border" style="color:red;"><h4>현재 답변 대기중..</h4></div>
+			</c:if>	
 			
 			<div class="row">
 				<div class="col my-4 ms-2">
