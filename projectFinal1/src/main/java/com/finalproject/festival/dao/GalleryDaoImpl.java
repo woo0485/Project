@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.finalproject.festival.domain.Gallery;
+import com.finalproject.festival.domain.GalleryBookMark;
 
 @Repository
 public class GalleryDaoImpl implements GalleryDao {
@@ -47,12 +48,38 @@ public class GalleryDaoImpl implements GalleryDao {
 	}
 
 	@Override
-	public int galleryheart(int galleryno) {
+	public int galleryheart(int galleryno, String id) {
+		
+		Map<String, Object> params = new HashMap<>();
+		params.put("id", id);
+		params.put("galleryno", galleryno);
 		
 		st.update(NAME_SPACE + ".galleryheart", galleryno);
 		
+		st.insert(NAME_SPACE + ".insertGalleryBookmark", params);
+		
 		return st.selectOne(NAME_SPACE + ".gallerySelectUpdateCount", galleryno);
 		
+	}
+
+	@Override
+	public int gallerybad(int galleryno, String id) {
+		
+		Map<String, Object> params = new HashMap<>();
+		params.put("id", id);
+		params.put("galleryno", galleryno);
+		
+		st.update(NAME_SPACE + ".gallerybad", galleryno);
+		
+		st.delete(NAME_SPACE + ".deleteGalleryBookmark", params);
+		
+		return st.selectOne(NAME_SPACE + ".gallerySelectUpdateCount", galleryno);
+	}
+
+	@Override
+	public List<GalleryBookMark> galleryBookmark(String id) {
+		
+		return st.selectList(NAME_SPACE + ".galleryBookmark", id);
 	}
 
 }

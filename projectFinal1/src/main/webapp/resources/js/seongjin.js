@@ -52,17 +52,52 @@ $.ajax({
  event.stopPropagation();
  
  var galleryNo = $(this).attr("data-code");
+ var Id = $("#galleryId").val();
  
  $.ajax({
             url: "galleryheart",
             method: "POST",
-            data : { galleryno : galleryNo },
+            data : { galleryno : galleryNo, id : Id },
             dataType: "json",
             success: function(response) {
                 
             console.log("Ajax success:", response);
             
             $(".gallery-count[data-code='" + galleryNo + "']").text(response);
+            
+            $(".galleryheart[data-code='" + galleryNo + "']").hide();
+            $(".gallerybad[data-code='" + galleryNo + "']").show();
+            
+            },
+            
+            error: function(xhr, status, error) {
+                
+            console.error("Ajax error:", status, error);
+            }
+        });
+ 
+ });
+ 
+ $(".gallerybad").click(function(event){
+ 
+ event.stopPropagation();
+ 
+ var galleryNo = $(this).attr("data-code");
+ var Id = $("#galleryId").val();
+ 
+ $.ajax({
+            url: "gallerybad",
+            method: "POST",
+            data : { galleryno : galleryNo, id : Id },
+            dataType: "json",
+            success: function(response) {
+                
+            console.log("Ajax success:", response);
+            
+            $(".gallery-count[data-code='" + galleryNo + "']").text(response);
+            
+            $(".gallerybad[data-code='" + galleryNo + "']").hide();
+            $(".galleryheart[data-code='" + galleryNo + "']").show();
             
             },
             error: function(xhr, status, error) {

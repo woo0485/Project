@@ -1,11 +1,24 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="com.finalproject.festival.controller.GalleryController"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-
+<%
+	String id = (String) session.getAttribute("id");
+if (id != null) {
+%>
+<form action="gallery" method="get">
+	<input type="hidden" name="id" value="<%=id%>"> <input
+		type="submit" value="Send Id to Controller">
+</form>
+<%
+}
+%>
 <div class="row">
 	<div class="col-10 offset-1">
-
+		<input type="hidden" value="${sessionScope.id}" id="galleryId">
 		<div class="row border-bottom border-second border-4">
 			<div class="col">
 				<h1 class="mt-5 mb-4">갤러리</h1>
@@ -34,7 +47,7 @@
 				<div class="col-4 mt-5">
 					<div class="row">
 						<div class="col" data-bs-toggle="modal"
-					data-bs-target="#exampleModal${status.index}">
+							data-bs-target="#exampleModal${status.index}">
 							<img alt="" src='resources/upload/${gallery.galleryimage[0]}'
 								style="width: 100%; height: 270px;">
 						</div>
@@ -42,19 +55,29 @@
 					<div class="row">
 						<div class="col pe-4"
 							style="display: flex; align-items: center; justify-content: flex-end;">
-							<span class="fs-4 gallery-count" data-code="${gallery.galleryno}">${gallery.gallerygoodcount}</span> <span
-								class="fs-1 galleryheart" style="cursor: pointer;" data-code="${gallery.galleryno}">♡</span>
+							<span class="fs-4 gallery-count" data-code="${gallery.galleryno}">${gallery.gallerygoodcount}</span>
+							<c:choose>
+								<c:when
+									test="${gallerybookmarkListno.contains(gallery.galleryno)}">
+									<span class="fs-1 gallerybad" style="cursor: pointer;"
+										data-code="${gallery.galleryno}">♥︎</span>
+								</c:when>
+								<c:otherwise>
+									<span class="fs-1 galleryheart" style="cursor: pointer;"
+										data-code="${gallery.galleryno}">♡</span>
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col" data-bs-toggle="modal"
-					data-bs-target="#exampleModal${status.index}">
+							data-bs-target="#exampleModal${status.index}">
 							<span class="fs-2 fw-bolder ps-3">${gallery.gallerytitle}</span>
 						</div>
 					</div>
 					<div class="row mb-2 mt-3">
 						<div class="col text-center" data-bs-toggle="modal"
-					data-bs-target="#exampleModal${status.index}">
+							data-bs-target="#exampleModal${status.index}">
 							<span>${gallery.galleryuploaddate}</span>
 						</div>
 					</div>
@@ -115,9 +138,14 @@
 									</c:if>
 								</div>
 							</div>
-							<div class="modal-body text-end py-0">
-								<span class="fs-4">${gallery.gallerygoodcount}</span> <span
-									class="fs-4">♡</span>
+							<div class="modal-body text-end py-0"
+								style="display: flex; align-items: center; justify-content: flex-end;">
+								<span class="fs-4 gallery-count"
+									data-code="${gallery.galleryno}">${gallery.gallerygoodcount}</span>
+								<span class="fs-1 galleryheart" style="cursor: pointer;"
+									data-code="${gallery.galleryno}">♡</span> <span
+									class="fs-1 gallerybad" style="cursor: pointer; display: none;"
+									data-code="${gallery.galleryno}">♥︎</span>
 							</div>
 							<div class="modal-body text-end">작성자 :
 								${gallery.gallerywriter}</div>
@@ -135,10 +163,10 @@
 		<div class="row mt-2 mb-4" id="galleryContainer2"
 			style="display: none;">
 			<c:forEach var="gallery" items="${galleryList2}" varStatus="status">
-				<div class="col-4 mt-5" data-bs-toggle="modal"
-					data-bs-target="#exampleModal${status.index}_list2">
+				<div class="col-4 mt-5">
 					<div class="row">
-						<div class="col">
+						<div class="col" data-bs-toggle="modal"
+							data-bs-target="#exampleModal${status.index}_list2">
 							<img alt="" src='resources/upload/${gallery.galleryimage[0]}'
 								style="width: 100%; height: 270px;">
 						</div>
@@ -146,17 +174,22 @@
 					<div class="row">
 						<div class="col pe-4"
 							style="display: flex; align-items: center; justify-content: flex-end;">
-							<span class="fs-4">${gallery.gallerygoodcount}</span> <span
-								class="fs-1" style="cursor: pointer;">♡</span>
+							<span class="fs-4 gallery-count" data-code="${gallery.galleryno}">${gallery.gallerygoodcount}</span>
+							<span class="fs-1 galleryheart" style="cursor: pointer;"
+								data-code="${gallery.galleryno}">♡</span> <span
+								class="fs-1 gallerybad" style="cursor: pointer; display: none;"
+								data-code="${gallery.galleryno}">♥︎</span>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col">
+						<div class="col" data-bs-toggle="modal"
+							data-bs-target="#exampleModal${status.index}_list2">
 							<span class="fs-2 fw-bolder ps-3">${gallery.gallerytitle}</span>
 						</div>
 					</div>
 					<div class="row mb-2 mt-3">
-						<div class="col text-center">
+						<div class="col text-center" data-bs-toggle="modal"
+							data-bs-target="#exampleModal${status.index}_list2">
 							<span>${gallery.galleryuploaddate}</span>
 						</div>
 					</div>
@@ -217,9 +250,14 @@
 									</c:if>
 								</div>
 							</div>
-							<div class="modal-body text-end py-0">
-								<span class="fs-4">${gallery.gallerygoodcount}</span> <span
-									class="fs-4">♡</span>
+							<div class="modal-body text-end py-0"
+								style="display: flex; align-items: center; justify-content: flex-end;">
+								<span class="fs-4 gallery-count"
+									data-code="${gallery.galleryno}">${gallery.gallerygoodcount}</span>
+								<span class="fs-1 galleryheart" style="cursor: pointer;"
+									data-code="${gallery.galleryno}">♡</span> <span
+									class="fs-1 gallerybad" style="cursor: pointer; display: none;"
+									data-code="${gallery.galleryno}">♥︎</span>
 							</div>
 							<div class="modal-body text-end">작성자 :
 								${gallery.gallerywriter}</div>
