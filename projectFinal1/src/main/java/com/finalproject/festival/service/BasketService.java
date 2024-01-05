@@ -21,5 +21,8 @@ public interface BasketService {
 		
 		//회원 장바구니 추가
 		public abstract void insertBasket(Basket b);
+		
+		// 회원 장바구니 basketno에 해당하는 거 삭제함
+	public abstract void deletdBasket(int basketno);
 
 }

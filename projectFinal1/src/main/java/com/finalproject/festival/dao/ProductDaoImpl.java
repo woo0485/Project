@@ -82,6 +82,21 @@ public class ProductDaoImpl implements ProductDao {
 		sqlSession.delete(NAME_SPACE + ".deleteProduct", productno);
 		
 	}
+	
+///////////////// 여기서부터는 북마크 기능  /////////////////
+// 북마크기능 -1월 4일
+@Override
+public Product getBookmark(int productno) {
+return sqlSession.selectOne(NAME_SPACE + ".getBookmark", productno);
+}
+
+@Override
+public void updateBookmark(int productno, int productbookmarkcount) {
+Map<String, Object> params = new HashMap<String, Object>();
+params.put("productno", productno);
+params.put("productbookmarkcount", productbookmarkcount);
+sqlSession.update(NAME_SPACE + ".updateBookmark", params);
+}
 
 	
 }

@@ -18,6 +18,9 @@ public interface BasketDao {
 	// 회원 장바구니 추가
 		public abstract void insertBasket(Basket b);
 		
+	// 회원 장바구니 삭제 - 1월 5일
+		public abstract void deleteBasket(int basketno);
+		
 		
 
 }

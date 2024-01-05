@@ -128,11 +128,16 @@
 								class="text-decoration-none link-secondary">
 								
 					<img src="${p.productimage}"  width="300" height="200" /></a> <br>
-<!--  %%%%%%%%%%%%%    북마크 이미지 위에 출력    %%%%%%%%%%%%%%-->			
-					<div class="productbookmarkcount" style="font-size:15px">
-						북마크 수 : ${ p.productbookmarkcount } 
-					</div>
 					
+<!--  %%%%%%%%%%%%%    북마크 이미지 위에 출력    %%%%%%%%%%%%%%-->
+<!--  북마크 기능 - 1월 4일  https://www.flaticon.com/kr/free-icon/bookmark_5624111?term=%EB%B6%81%EB%A7%88%ED%81%AC&page=1&position=33&origin=search&related_id=5624111-->		
+				<div id="commend" class="btnCommend text-primary" style="cursor: pointer;"> 
+						<div class="productbookmarkcount" style="font-size:15px">
+							<img src="resources/img/bookmark.png"  width="40" height="35" />
+							북마크 수 : ${ p.productbookmarkcount } 
+					</div>
+				</div>
+				
 					지역 : ${ p.productlocation } <br>
 					<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
 								class="text-decoration-none link-secondary">${ p.productname }</a> <br>
@@ -160,9 +165,13 @@
 								class="text-decoration-none link-secondary">
 							<img src="${p.productimage}"  class="productimage"  width="300" height="200" /></a> <br>
 <!--  %%%%%%%%%%%%%    북마크 이미지 위에 출력    %%%%%%%%%%%%%%-->			
-					<div class="productbookmarkcount" style="font-size:15px">
-							북마크 수 : ${ p.productbookmarkcount } 
+					<div id="commend" class="btnCommend text-primary" style="cursor: pointer;"> 
+						<div class="productbookmarkcount" style="font-size:15px">
+						<img src="resources/img/bookmark.png"  width="40" height="35" />
+						북마크 수 : ${ p.productbookmarkcount } 
 					</div>
+				</div>
+					
 					지역 : ${ p.productlocation } <br>
 					<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
 								class="text-decoration-none link-secondary">${ p.productname }</a> <br>

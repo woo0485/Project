@@ -57,4 +57,11 @@ public void insertBasket(Basket b) {
 	sqlSession.insert(NAME_SPACE + ".insertBasket", b);
 }
 
+// 장바구니 삭제 - 1월 5일
+@Override
+public void deleteBasket(int basketno) {
+	sqlSession.insert(NAME_SPACE + ".deleteBasket", basketno);
+	
+}
+
 }

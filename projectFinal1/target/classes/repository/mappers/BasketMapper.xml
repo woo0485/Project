@@ -40,20 +40,26 @@ WHERE sb.id = #{id}
 ORDER BY sb.basketno
 	</select>
 	
-	<!-- 장바구니 확인하기 mysql OK -->
-	<select id="checkBasket" resultType="Basket" >
+	<!-- 장바구니 확인하기 mysql OK - 1월 5일 ) 지금은  필요없음-->
+	<!-- <select id="checkBasket" resultType="Basket" >
 			SELECT * FROM
 			ShoppingBasket
 			WHERE id=#{id} 
 			AND productno =#{productno}
-	</select>
+	</select> -->
 	
 	<insert id="insertBasket" >
 		INSERT INTO ShoppingBasket
-				(id, productno, basketproductcount)
+				(basketno, id, productno, basketproductcount)
 		
-			VALUES( #{id}, #{productno}, #{basketproductcount})
+			VALUES( #{basketno}, #{id}, #{productno}, #{basketproductcount})
 	</insert>
+	
+	<!--  장바구니에서 basketno에 해당하는 제품 삭제하기 1월 5일 -->
+	<delete id="deletdBasket">
+		DELETE FROM ShoppingBasket
+		WHERE basketno = #{basketno}
+	</delete>
 	
 	<resultMap id="basketResultMap" type="Basket" >
 		<id property="basketno" column="basketno" />

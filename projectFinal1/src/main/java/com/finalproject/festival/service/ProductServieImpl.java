@@ -109,6 +109,18 @@ public class ProductServieImpl implements ProductService {
 	public void deleteProduct(int productno) {
 		PD.deleteProduct(productno);
 	}
+	
+	// 북마크 기능 - 1월 4일) 북마크 정보 업데이트하고 갱신된 북마크를 가져오는 메서드
+		@Override
+		public Map<String, Integer> Bookmark(int productno, int productbookmarkcount) {
+			PD.updateBookmark(productno, productbookmarkcount);
+			Product p = PD.getBookmark(productno);
+			
+			Map<String, Integer> map = new HashMap<String, Integer>(); 
+			map.put("productbookmarkcount", p.getProductbookmarkcount());
+		
+			return map;
+		}
 
 
 }
