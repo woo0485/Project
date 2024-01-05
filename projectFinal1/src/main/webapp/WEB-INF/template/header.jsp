@@ -91,11 +91,20 @@
 					        </c:if>
 					        
 							<c:if test="${sessionScope.userType =='Admin' }">	
-								<li class="nav-item ">
-						          <a href="manageMain" class="row nav-link active" aria-current="page">관리자 페이지</a>
-						          <a href="logout" class="row nav-link active" aria-current="page">로그아웃</a>
-						          <a href="adminUser"> 관리자 추가</a>
+							
+								<li class="nav-item dropdown me-5">
+						        	<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						            	관리자
+						          	</a>
+						           
+						          <ul class="dropdown-menu">
+						         	 <li><a class="dropdown-item" href="manageMain">관리자 페이지</a></li>
+						            <li><a class="dropdown-item" href="logout">로그아웃</a></li>
+						            <li><a class="dropdown-item" href="adminUser">관리자 추가</a></li>
+						           
+						          </ul>
 						        </li>
+							
 						     </c:if>  
 						      
 					     	</ul>

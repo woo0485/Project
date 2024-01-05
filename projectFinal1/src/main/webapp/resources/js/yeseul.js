@@ -146,7 +146,6 @@
 	            url: "joinIdCheck",
 	            data: {"id" : id}, // JSON.stringify를 사용하여 객체 형태로 전달
 	            dataType : "text",
-	            async    : false,
 	            success: function (result) {
 	                if (result == 0) {
 	                    $("#joinIdMsg").text("사용가능한 아이디 입니다").css("color", "blue");
@@ -417,7 +416,6 @@
 	        url: "loginForm",
 		    type: "post",
 		    contentType: "application/json; charset=UTF-8",
-		    async    : false,
 		    data: JSON.stringify({
 		        "id": id,
 		        "password": password
@@ -429,7 +427,7 @@
 	                // 로그인 성공 시 main 페이지로 이동
 	                window.location.href = "main";
 	            } else {
-	                $("#loginMag1").text("아이디 또는 비밀번호를 찾지 못했습니다. 다시 시도해 주세요").css("color", "red");
+	                $("#loginMag1").text("아이디 또는 비밀번호를 다시 확인해 주세요").css("color", "red");
 	            }
 	        },
 	        error: function (jqXHR, textStatus, errorThrown) {
@@ -466,7 +464,6 @@
   		data : JSON.stringify({"email" : email, "name":name}),
   		contentType: "application/json", // JSON 데이터 전송 시 필요
   		dataType : "text",
-  		async    : false,
   		success : function(data){
   			if(data == ""){
   				$("#findIdEmailMsg").text("이름 또는 이메일을 다시 확인해주세요.").css("color","red");
@@ -587,7 +584,6 @@
 		 			type: "post",
 		 			data: JSON.stringify({"id": id, "email":email}),
 		 			contentType: "application/json",
-		 			async: false,
 		 			success:function(result){
 		 					
 		 				if(result != ""){
