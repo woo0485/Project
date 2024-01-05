@@ -22,7 +22,13 @@ public interface BasketService {
 		//회원 장바구니 추가
 		public abstract void insertBasket(Basket b);
 		
-		// 회원 장바구니 basketno에 해당하는 거 삭제함
-	public abstract void deletdBasket(int basketno);
+		//회원 장바구니 업데이트(중복) -1월 5일
+		public abstract void dupUpdateBasket(Basket b);
+		
+		// 회원 장바구니에서 productno가 중복되었는지 확인한다. -1월 5일
+		public boolean isDupBasketCheck(int productno, String id);
+		
+		// 회원 장바구니 basketno에 해당하는 거 삭제함 - 1월 5일 수정함
+		public abstract void deletdBasket(int basketno, String id);
 
 }

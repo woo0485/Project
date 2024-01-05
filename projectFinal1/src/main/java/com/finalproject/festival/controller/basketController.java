@@ -61,10 +61,15 @@ public class basketController {
 	}
 	
 	//회원 장바구니 추가"redirect:productList"; - 1월 5일 수정함
-	@RequestMapping(value = "/basketForm", method = RequestMethod.POST)
+	@RequestMapping(value = "/addBasket", method = RequestMethod.POST)
 	public String insertBasket(
 			HttpServletRequest request, 
-			int basketproductcount, int basketno, int productprice, String id) 	throws IOException {	
+			 @RequestParam("basketproductcount")    int basketproductcount, 
+			 @RequestParam("basketno") int basketno, 
+			 @RequestParam("productprice") int productprice, 
+			 @RequestParam("id") String id) 	throws IOException {	
+		
+		// 장바구니에 productno가 하나도 없을 때만 추가한다. 장바구니에 productno가 없다면?
 		
 		Basket b = new Basket();
 		b.setBasketproductcount(basketproductcount);
@@ -77,15 +82,29 @@ public class basketController {
 		bs.insertBasket(b);
 		System.out.println("basket insert에서 basketno: " + b.getBasketno());
 		
-		return "redirect:basket";
+		return "redirect:productDetail";
 	}
 	
-	// 회원 장바구니 삭제 - 1월 5일
-	@RequestMapping("/checkBasketForm")
-	public String deleteBasket (HttpServletResponse response,
-			PrintWriter out, int basketno) {
+	// 회원 장바구니 업데이트 -1월 5일
+	public String dupUpdateBasket (Model m, HttpServletResponse response, 
+			int productno, int basketno, String id, int basketproductcount) throws IOException {	
 		
-			bs.deletdBasket(basketno);
+		// 서비스에서 중복된 productno가 있는지 확인한다.
+		
+		// 중복된 productno가 있다면???? 
+		
+		return "bakset";
+		
+		
+	}
+	
+
+	// 회원 장바구니 삭제 - 1월 5일 수정
+	@RequestMapping(value = {"/checkBasketForm", "/deleteB"})
+	public String deleteBasket (HttpServletResponse response,
+			PrintWriter out, 
+			int basketno, String id) {
+		bs.deletdBasket(basketno, id);
 		
 		return "redirect:basket";
 	}

@@ -59,9 +59,38 @@ public void insertBasket(Basket b) {
 
 // 장바구니 삭제 - 1월 5일
 @Override
-public void deleteBasket(int basketno) {
-	sqlSession.insert(NAME_SPACE + ".deleteBasket", basketno);
+public void deleteBasket(int basketno, String id) {
+	
+	Map<String, Object> map = new HashMap<String, Object>();
+	map.put("id", id);
+	map.put("basketno", basketno);
+	
+	sqlSession.insert(NAME_SPACE + ".deleteBasket", map);
+	}
+
+// 장바구니 업데이트 - 1월 5일
+@Override
+public void dupUpdateBasket(Basket b) {
+	sqlSession.insert(NAME_SPACE + ".updateBasket",b);
 	
 }
 
+// 회원 장바구니에 productno가 중복되었는지 확인함 - 1월 5일
+@Override
+public boolean isDupBasketCheck(int productno, String id) {
+	
+	boolean result = true;
+	
+	// isDupBasketCheck 맵핑 구문을 호출하면서 productno를 파라미터로 지정한다.
+	String dbProductNO = sqlSession.selectOne(NAME_SPACE + ".isDupBasketCheck",productno);
+	
+	// productno가 존재한다면 false를 반환한다. => 새로 담기
+	// productno가 존재하지 않으면 true를 반환해서 basketproductcount를 증가시킨다.
+	if(dbProductNO.equals(productno)) {  //  productno가 존재하면 수량만 증가하기
+		result = false;
+	} else { //  productno가 존재하지 않으면 새로 담기
+		result = true;
+	}
+	return result;
+	}
 }

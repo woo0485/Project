@@ -52,10 +52,23 @@ public class BasketServiceImpl implements BasketService {
 		BD.insertBasket(b);
 	}
 
+	// 장바구니 제품 삭제 - 1월 5일 수정함
 	@Override
-	public void deletdBasket(int basketno) {
-		BD.deleteBasket(basketno);
+	public void deletdBasket(int basketno, String id) {
 		
+		BD.deleteBasket(basketno, id);
+	}
+	
+	// 장바구니 중복있을 땐 수량만 증가, 장바구니에 productno가 없을 땐  아예 넣기 -1월 5일 수정
+	@Override
+	public void dupUpdateBasket(Basket b) {
+		BD.dupUpdateBasket(b);
 	}
 
+	// 회원 장바구니에서 productno가 중복되었는지 확인한다. -1월 5일
+	@Override
+	public boolean isDupBasketCheck(int productno, String id) {
+		return BD.isDupBasketCheck(productno, id);
+	}
+	
 }

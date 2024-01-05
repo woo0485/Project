@@ -18,8 +18,14 @@ public interface BasketDao {
 	// 회원 장바구니 추가
 		public abstract void insertBasket(Basket b);
 		
-	// 회원 장바구니 삭제 - 1월 5일
-		public abstract void deleteBasket(int basketno);
+	// 회원 장바구니 업데이트 -1월 5일
+		public abstract void dupUpdateBasket(Basket b);
+	
+	// 회원 장바구니 producno가 중복되었는지 확인 - 1월 5일
+		public boolean isDupBasketCheck(int productno, String id);
+		
+	// 회원 장바구니 삭제 - 1월 5일 - id에 해당하는 basketno를 삭제한다.
+		public abstract void deleteBasket(int basketno, String id);
 		
 		
 

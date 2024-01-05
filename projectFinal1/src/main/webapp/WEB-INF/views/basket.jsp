@@ -38,8 +38,8 @@
 		<thead>
 			<tr>
 				<th></th>
-				<th>상품</th>
 				<th>이미지</th>
+				<th>상품</th>
 				<th>판매가</th>
 				<th>수량</th>
 				<th>합계</th>
@@ -73,6 +73,10 @@
 				</td>
 				
 				<td>
+					${b.productPrice * b.basketProductCount}원
+				</td>
+				
+				<td>
 				<input class="btn btn-danger" type="button"  name="deleteBasket"  id="deleteBasket" value="삭제">
 				</td>
 				
@@ -101,8 +105,10 @@
 			<th>결제예상금액</th>
 		</tr>
 		
+		<!-- ~~~~~~~~~~~~~ 금액 계산 ~~~~~~~~~~~~ -->
+	<c:set var="num1" value="${b.productPrice}" />
 		<tr>
-			<td>0 원</td>
+			<td>${b.productPrice * b.basketProductCount}원</td>
 			<td>0 원</td>
 		</tr>
 		</table>

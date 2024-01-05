@@ -33,7 +33,7 @@ $(function() {
 	// 장바구니에서 제품 하나 삭제 - 1월 5일
 	$("#deleteBasket").on("click", function() {
 		
-		$("#checkBasketForm").attr("action", "delete");
+		$("#checkBasketForm").attr("action", "deleteB");
 		$("#checkBasketForm").attr("method", "post");
 		$("#checkBasketForm").submit();
 	});
