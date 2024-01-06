@@ -48,7 +48,8 @@
 		WHERE productno = #{productno}
 	</select>
 	
-		<insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="productno">
+	<!--  insert부터 문제있음 => 1월 6일 수정 => mysql OK -->
+	<insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="productno">
 		INSERT INTO Product(productname, productcontent, 
 				productimage, productlocation, productprice, productopendate, productclosedate, 
 				productticketcount,productremainticketcount,adminpassword)

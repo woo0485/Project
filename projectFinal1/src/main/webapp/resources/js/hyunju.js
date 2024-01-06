@@ -10,12 +10,12 @@ $(function() {
 	//});	
 	
 	// 장바구니에서 제품 하나 삭제 - 1월 5일
-	$("#deleteBasket").on("click", function() {
+	//$("#deleteBasket").on("click", function() {
 		
-		$("#checkBasketForm").attr("action", "deleteB");
-		$("#checkBasketForm").attr("method", "post");
-		$("#checkBasketForm").submit();
-	});
+	//	$("#checkBasketForm").attr("action", "deleteB");
+	//	$("#checkBasketForm").attr("method", "post");
+	//	$("#checkBasketForm").submit();
+//	});
 
 ///////////////여기서부터는 product CRUD /////////////////
 	$("#detailUpdate").on("click", function() {

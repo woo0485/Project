@@ -90,7 +90,9 @@ public class ProductServieImpl implements ProductService {
 
 	@Override
 	public void insertProduct(Product p) {
-		System.out.println("서비스에서 prodcutticketcount"+p.getProductticketcount() );
+		System.out.println("product서비스에서 prodcutticketcount"+p.getProductticketcount() );
+		System.out.println("product서비스에서 location"+p.getProductlocation() );
+		System.out.println("product서비스에서 closedate"+p.getProductclosedate() );
 		PD.insertProduct(p);
 	}
 

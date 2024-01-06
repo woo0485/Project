@@ -39,20 +39,21 @@
 				  </div>
 				  <div class="col-10 offset-1">
 				    <label for="productlocation" class="form-label">위치 </label>
-				    <textarea name="text" id="productlocation" class="form-control" rows="10"></textarea>
+				    <input type="text" class="form-control" name="productlocation" id="productlocation">
 				  </div>
 				  <div class="col-10 offset-1">
 				    <label for="productopendate" class="form-label">오픈일 </label>
-				    <textarea name="text" id="productopendate" class="form-control" rows="10"></textarea>
+				    <input type="text" class="form-control" name="productopendate" id="productopendate">
 				  </div>
 				    <div class="col-10 offset-1">
 				    <label for="productclosedate" class="form-label">마감일 </label>
-				    <textarea name="text" id="productclosedate" class="form-control" rows="10"></textarea>
+				    <input type="text" class="form-control" name="productclosedate" id="productclosedate">
 				  </div>
 				  <div class="col-10 offset-1">
 				    <label for="productticketcount" class="form-label">티켓 수</label>
 				     <input type="text" class="form-control" name="productticketcount" id="productticketcount">
 				  </div>
+				  
 				  <div class="col-10 offset-1">
 				    <label for="productremainticketcount" class="form-label">남은 티켓 수</label>
 				    <input type="text" class="form-control" name="productremainticketcount" id="productremainticketcount">
