@@ -30,31 +30,16 @@
 				<input type="hidden" name="keyword" value="${ keyword }" />
 			</c:if>
 		</form>
-		
-		<!--%%%%%%%%  장바구니에 단순히 보여지는 것만 %%%%%%%%%%-->
-		<form name="basketForm03" id="basketForm03"  action="basket" method="post" >
-		<br><br><br><br><br>
-			<input type="hidden" name="id" id="rId03" value="${sessionScope.id}"> <br>
-			<input type="hidden" name="basketno"  id="basketno03"  value="${basket.basketno}"> <br>
-			<input type="hidden" name="productno" id="productno03" value="${product.productno}"> <br>
-			<input type="hidden" name="basketproductcount"  id="basketproductcount03" value="${basket.basketproductcount}"><br>
-			<input type="hidden" name="productprice"  id="productprice03"  value="${product.productprice}"><br>
-			<input type="hidden" name="productname"  id="productname03"  value="${product.productname}"><br>
-			<input type="submit" value="장바구니 가기" class="btn btn-primary">	
-		</form>
-		<!--%%%%%%%%  장바구니에 단순히 보여지는 것만 끝 %%%%%%%%%%-->
-		
 		<!--  장바구니에 단순히 보여지는 것만 -->
 		
 	<!--  ########## 장바구니에 추가할 때 form #############-->
 		<form name="basketForm" id="basketForm"  action="addBasket" method="post" >
-		<br><br><br><br><br>
-			<input type="hidden" name="id" id="rId" value="${sessionScope.id}"> <br>
-			<input type="hidden" name="basketno"  id="basketno"  value="${basket.basketno}"> <br>
-			<input type="hidden" name="productno" id="productno01" value="${product.productno}"> <br>
-			<input type="hidden" name="basketproductcount"  id="basketproductcount" value="${basket.basketproductcount}"><br>
-			<input type="hidden" name="productprice"  id="productprice"  value="${product.productprice}"><br>
-			<input type="hidden" name="productname"  id="productname"  value="${product.productname}"><br>
+			<input type="hidden" name="id" id="rId" value="${sessionScope.id}"> >
+			<input type="hidden" name="basketno"  id="basketno"  value="${basket.basketno}"> 
+			<input type="hidden" name="productno" id="productno01" value="${product.productno}"> 
+			<input type="hidden" name="basketproductcount"  id="basketproductcount" value="${basket.basketproductcount}">
+			<input type="hidden" name="productprice"  id="productprice"  value="${product.productprice}">
+			<input type="hidden" name="productname"  id="productname"  value="${product.productname}">
 
 <!-- @@@@@@@@ 게시 글 상세보기 영역  @@@@@@@@@@-->
 		<table>
@@ -95,10 +80,24 @@
 			</td>
 		</tr>
 		</table>
-				<br><br><br>
 	</form>
-		<!--  ############  (장바구니) 끝 ############## -->	
+		<!--  ############  (장바구니) 끝 ############## -->
 		
+		<!--%%%%%%%%  장바구니에 단순히 보여지는 것만 %%%%%%%%%%-->
+		<c:if test="${not empty sessionScope.id}">	
+		<form name="basketForm03" id="basketForm03"  action="basket" method="post" >
+			<input type="hidden" name="id" id="rId03" value="${sessionScope.id}"> 
+			<input type="hidden" name="basketno"  id="basketno03"  value="${basket.basketno}"> 
+			<input type="hidden" name="productno" id="productno03" value="${product.productno}"> 
+			<input type="hidden" name="basketproductcount"  id="basketproductcount03" value="${basket.basketproductcount}">
+			<input type="hidden" name="productprice"  id="productprice03"  value="${product.productprice}">
+			<input type="hidden" name="productname"  id="productname03"  value="${product.productname}">
+			<input type="submit" value="장바구니 가기" class="btn btn-danger">	
+		</form>
+		</c:if>	
+		<!--%%%%%%%%  장바구니에 단순히 보여지는 것만 끝 %%%%%%%%%%-->
+			<br><br><br>
+			
 		<!-- ///////////  축제 정보 이미지와 내용  //////////// -->
 		<div class="contentiamge">
 				<img src="http://via.placeholder.com/800x1000" alt=""><br>

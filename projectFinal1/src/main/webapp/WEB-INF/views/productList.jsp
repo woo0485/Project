@@ -24,7 +24,7 @@
   .bookmark {
    text-align: center;
    font-size: 20px;
-   color: black; /* 글자 색상을 원하는 색상으로 설정 */
+   color: black; 
    text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white; 
   }
   </style>
