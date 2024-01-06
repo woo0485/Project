@@ -13,11 +13,11 @@
 <script src="resources/js/hyunju.js"></script>
 <body>
 <c:forEach var="b" items="${priceOrder}" >
-		basketno: <input type="text" name="basketno"  id="basketno4"  value="${b.basketno}">  <br>
-		productno: <input type="text" name="productno" id="productno04" value="${b.basketProductNo}">  <br>
-		basketProductCount: <input class="basCount" type="text" name="basketProductCount"  id="basketProductCount04" value="${b.basketProductCount}"> <br>
-		productprice: <input type="text" name="productprice"  id="productprice04" class="prods"  value="${b.productPrice}"> <br>
-		productname: <input type="text"  class="proname" name="productname"  id="productname04"  value="${b.productName}"> <br>
+		<input type="hidden" name="basketno"  id="basketno4"  value="${b.basketno}">  <br>
+		 <input type="hidden" name="productno" id="productno04" value="${b.basketProductNo}">  <br>
+		 <input class="basCount" type="hidden" name="basketProductCount"  id="basketProductCount04" value="${b.basketProductCount}"> <br>
+		 <input type="hidden" name="productprice"  id="productprice04" class="prods"  value="${b.productPrice}"> <br>
+		 <input type="hidden"  class="proname" name="productname"  id="productname04"  value="${b.productName}"> <br>
 </c:forEach>
 
 <script>

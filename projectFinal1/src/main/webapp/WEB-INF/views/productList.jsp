@@ -22,10 +22,6 @@
   border: 1px solid blue;
   padding: auto;
   }
-  .d-block w-10{
-  width: 100px;
-  height: 100px;
-  }
   </style>
 
 <!-- content -->
@@ -112,7 +108,7 @@
 		
 		<div class="row my-3">
 			<div class="col">
-				<table class="table table-hover">
+				<table class="table">
 					<tbody class="text-secondary">
 						
 		<c:set var="i" value="0" />
@@ -131,9 +127,9 @@
 					
 <!--  %%%%%%%%%%%%%    북마크 이미지 위에 출력    %%%%%%%%%%%%%%-->
 <!--  북마크 기능 - 1월 4일  https://www.flaticon.com/kr/free-icon/bookmark_5624111?term=%EB%B6%81%EB%A7%88%ED%81%AC&page=1&position=33&origin=search&related_id=5624111-->		
-				<div id="commend" class="btnCommend text-primary" style="cursor: pointer;"> 
+				<div id="commend" class="btnCommend text-primary" > 
 						<div class="productbookmarkcount" style="font-size:15px">
-							<img src="resources/img/bookmark.png"  width="40" height="35" />
+							<img src="resources/img/bookmark.png"  width="40" height="35"  />
 							북마크 수 : ${ p.productbookmarkcount } 
 					</div>
 				</div>
@@ -163,9 +159,9 @@
 					<td class="productimage">
 							<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
 								class="text-decoration-none link-secondary">
-							<img src="${p.productimage}"  class="productimage"  width="300" height="200" /></a> <br>
+							<img src="${p.productimage}"  class="productimage"  width="300" height="200"  /></a> <br>
 <!--  %%%%%%%%%%%%%    북마크 이미지 위에 출력    %%%%%%%%%%%%%%-->			
-					<div id="commend" class="btnCommend text-primary" style="cursor: pointer;"> 
+					<div id="commend" class="btnCommend text-primary" > 
 						<div class="productbookmarkcount" style="font-size:15px">
 						<img src="resources/img/bookmark.png"  width="40" height="35" />
 						북마크 수 : ${ p.productbookmarkcount } 

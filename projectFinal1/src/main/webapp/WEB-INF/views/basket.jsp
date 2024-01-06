@@ -11,11 +11,11 @@
 <form name="checkBasketForm" id="checkBasketForm"  action="checkBasketForm">
 			<input type="text" name="id" id="rId02" value="${sessionScope.id}">
 	<c:forEach var="b" items="${basketList}" >
-		basketno: <input type="text" name="basketno"  id="basketno02"  value="${b.basketno}">  <br>
-		productno: <input type="text" name="productno" id="productno02" value="${b.basketProductNo}">  <br>
-		basketProductCount: <input type="text" name="basketProductCount"  id="basketProductCount02" value="${b.basketProductCount}"> <br>
-		productprice: <input type="text" name="productprice"  id="productprice02"  value="${b.productPrice}"> <br>
-		productname: <input type="text" name="productname"  id="productname02"  value="${b.productName}"> <br>
+		<input type="hidden" name="basketno"  id="basketno02"  value="${b.basketno}">  <br>
+		 <input type="hidden" name="productno" id="productno02" value="${b.basketProductNo}">  <br>
+		 <input type="hidden" name="basketProductCount"  id="basketProductCount02" value="${b.basketProductCount}"> <br>
+		 <input type="hidden" name="productprice"  id="productprice02"  value="${b.productPrice}"> <br>
+		 <input type="hidden" name="productname"  id="productname02"  value="${b.productName}"> <br>
 	</c:forEach>
 </form>
 <!--  장바구니에서 제품 수정, 삭제 버튼 클릭시 쓸 폼  끝-->

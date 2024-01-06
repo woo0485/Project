@@ -21,7 +21,7 @@
 <div class="row my-5" id="global-content">
 	<div class="offset-1 col-10">
 		<form name="checkForm" id="checkForm">
-			<input type="text" name="productno" id="productno" value="${product.productno}"> 
+			<input type="hidden" name="productno" id="productno" value="${product.productno}"> 
 			<input type="hidden" name="adminpassword" id="rPass"> 
 			<input type="hidden" name="pageNum" value="${ pageNum }" />
 
@@ -30,29 +30,31 @@
 				<input type="hidden" name="keyword" value="${ keyword }" />
 			</c:if>
 		</form>
-		<!--  장바구니에 단순히 보여지는 것만 -->
+		
+		<!--%%%%%%%%  장바구니에 단순히 보여지는 것만 %%%%%%%%%%-->
 		<form name="basketForm03" id="basketForm03"  action="basket" method="post" >
 		<br><br><br><br><br>
-			아이디: <input type="hidden" name="id" id="rId03" value="${sessionScope.id}"> <br>
-			basketno: <input type="text" name="basketno"  id="basketno03"  value="${basket.basketno}"> <br>
-			productno: <input type="text" name="productno" id="productno03" value="${product.productno}"> <br>
-			productcount: <input type="text" name="basketproductcount"  id="basketproductcount03" value="${basket.basketproductcount}"><br>
-			productprice: <input type="text" name="productprice"  id="productprice03"  value="${product.productprice}"><br>
-			productname: <input type="text" name="productname"  id="productname03"  value="${product.productname}"><br>
-				<input type="submit" value="장바구니 가기" class="btn btn-primary">	
+			<input type="hidden" name="id" id="rId03" value="${sessionScope.id}"> <br>
+			<input type="hidden" name="basketno"  id="basketno03"  value="${basket.basketno}"> <br>
+			<input type="hidden" name="productno" id="productno03" value="${product.productno}"> <br>
+			<input type="hidden" name="basketproductcount"  id="basketproductcount03" value="${basket.basketproductcount}"><br>
+			<input type="hidden" name="productprice"  id="productprice03"  value="${product.productprice}"><br>
+			<input type="hidden" name="productname"  id="productname03"  value="${product.productname}"><br>
+			<input type="submit" value="장바구니 가기" class="btn btn-primary">	
 		</form>
+		<!--%%%%%%%%  장바구니에 단순히 보여지는 것만 끝 %%%%%%%%%%-->
 		
 		<!--  장바구니에 단순히 보여지는 것만 -->
 		
 	<!--  ########## 장바구니에 추가할 때 form #############-->
 		<form name="basketForm" id="basketForm"  action="addBasket" method="post" >
 		<br><br><br><br><br>
-			아이디: <input type="hidden" name="id" id="rId" value="${sessionScope.id}"> <br>
-			basketno: <input type="text" name="basketno"  id="basketno"  value="${basket.basketno}"> <br>
-			productno: <input type="text" name="productno" id="productno01" value="${product.productno}"> <br>
-			productcount: <input type="text" name="basketproductcount"  id="basketproductcount" value="${basket.basketproductcount}"><br>
-			productprice: <input type="text" name="productprice"  id="productprice"  value="${product.productprice}"><br>
-			productname: <input type="text" name="productname"  id="productname"  value="${product.productname}"><br>
+			<input type="hidden" name="id" id="rId" value="${sessionScope.id}"> <br>
+			<input type="hidden" name="basketno"  id="basketno"  value="${basket.basketno}"> <br>
+			<input type="hidden" name="productno" id="productno01" value="${product.productno}"> <br>
+			<input type="hidden" name="basketproductcount"  id="basketproductcount" value="${basket.basketproductcount}"><br>
+			<input type="hidden" name="productprice"  id="productprice"  value="${product.productprice}"><br>
+			<input type="hidden" name="productname"  id="productname"  value="${product.productname}"><br>
 
 <!-- @@@@@@@@ 게시 글 상세보기 영역  @@@@@@@@@@-->
 		<table>
@@ -83,6 +85,7 @@
 				<input type="number"  value="1" name="basketproductcount"  id="basketproductcount" min="1" max="4" >
 		<!--  수량 선택 끝--> <br><br>
 				<input type="submit" value="장바구니 담기" class="btn btn-primary">	
+				
 		</c:if>	
 				<br><br>
 						전체 티켓 수: ${ product.productticketcount }
