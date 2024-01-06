@@ -15,12 +15,17 @@
     left: 80%;
     transform: translate( -50%, -50% );
     color: black;
-    border: 5px solid red;
-    background-color: white;
+    background-color: transparent;
   }
   .carousel{
   border: 1px solid blue;
   padding: auto;
+  }
+  .bookmark {
+   text-align: center;
+   font-size: 20px;
+   color: black; /* 글자 색상을 원하는 색상으로 설정 */
+   text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white; 
   }
   </style>
 
@@ -118,19 +123,18 @@
 						<c:if test="${i%j == 0 }">
 						<tr>
 						</c:if>
-						
+								
 					<td class="productimage">
 					<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
 								class="text-decoration-none link-secondary">
-								
 					<img src="${p.productimage}"  width="300" height="200" /></a> <br>
 					
 <!--  %%%%%%%%%%%%%    북마크 이미지 위에 출력    %%%%%%%%%%%%%%-->
 <!--  북마크 기능 - 1월 4일  https://www.flaticon.com/kr/free-icon/bookmark_5624111?term=%EB%B6%81%EB%A7%88%ED%81%AC&page=1&position=33&origin=search&related_id=5624111-->		
 				<div id="commend" class="btnCommend text-primary" > 
 						<div class="productbookmarkcount" style="font-size:15px">
-							<img src="resources/img/bookmark.png"  width="40" height="35"  />
-							북마크 수 : ${ p.productbookmarkcount } 
+							<img src="resources/img/bookmark.png"  width="40" height="35"  /> <br>
+							<div class="bookmark"> ${ p.productbookmarkcount } </div>
 					</div>
 				</div>
 				
@@ -163,8 +167,8 @@
 <!--  %%%%%%%%%%%%%    북마크 이미지 위에 출력    %%%%%%%%%%%%%%-->			
 					<div id="commend" class="btnCommend text-primary" > 
 						<div class="productbookmarkcount" style="font-size:15px">
-						<img src="resources/img/bookmark.png"  width="40" height="35" />
-						북마크 수 : ${ p.productbookmarkcount } 
+						<img src="resources/img/bookmark.png"  width="40" height="35" /><br>
+						<div class="bookmark"> ${ p.productbookmarkcount } </div>
 					</div>
 				</div>
 					
