@@ -39,8 +39,8 @@
 		<input type="text" name="productprice"  id="productprice"  value="${product.productprice}">
 		<input type="text" name="productname"  id="productname"  value="${product.productname}">
 		 -->
-			<input type="text" name="id" id="rId" value="${sessionScope.id}"> 
-			<input type="text" name="productno" id="productno01" value="${product.productno}"> 
+			<input type="hidden" name="id" id="rId" value="${sessionScope.id}"> 
+			<input type="hidden" name="productno" id="productno01" value="${product.productno}"> 
 
 <!-- @@@@@@@@ 게시 글 상세보기 영역  @@@@@@@@@@-->
 		<table>

@@ -52,11 +52,11 @@
 	<insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="productno">
 		INSERT INTO Product(productname, productcontent, 
 				productimage, productlocation, productprice, productopendate, productclosedate, 
-				productticketcount,productremainticketcount,adminpassword)
+				productticketcount,productremainticketcount,adminpassword, productbookmarkcount, productreadcount)
 				
 			VALUES(#{productname}, #{productcontent}, 
 				 #{productimage}, #{productlocation}, #{productprice}, #{productopendate}, #{productclosedate},
-				  #{productticketcount}, #{productremainticketcount}, #{adminpassword})
+				  #{productticketcount}, #{productremainticketcount}, #{adminpassword}, 0, 0)
 	</insert>
 	
 	<select id="isPassCheck" resultType="String">
