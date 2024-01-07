@@ -7,8 +7,9 @@
 <script src="resources/js/hyunju.js"></script>
 <script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.1.min.js" type="application/javascript"></script>
 
-<!--  장바구니에서 제품 수정, 삭제 버튼 클릭시 쓸 폼 -->
-<form name="checkBasketForm" id="checkBasketForm"  action="checkBasketForm">
+<!--  장바구니에서 제품 등록 버튼 클릭시 쓸 폼 -->
+<!-- 
+form name="checkBasketForm" id="checkBasketForm"  action="checkBasketForm">
 		<input type="hidden" name="id" id="rId02" value="${sessionScope.id}">
 	<c:forEach var="b" items="${basketList}" >
 		<input type="hidden" name="basketno"  id="basketno02"  value="${b.basketno}">  
@@ -18,9 +19,9 @@
 		 <input type="hidden" name="productname"  id="productname02"  value="${b.productName}"> 
 	</c:forEach>
 </form>
-<!--  장바구니에서 제품 수정, 삭제 버튼 클릭시 쓸 폼  끝-->
+ -->
 
-<!--/////////////////////////  결제하기로 보낼 폼 //////////////////////////-->
+<!--/////////////  결제하기로 보낼 폼으로 보내면서 동시에 reservation 테이블에 정보 추가하기???////////////////-->
 <form name="priceForm" id="priceForm"  action="priceOrder" method="post" >
 	<input type="hidden" name="id" id="rId" value="${sessionScope.id}">
 	<c:forEach var="b" items="${basketList}" >
@@ -29,7 +30,11 @@
 		<input type="hidden" name="basketProductCount"  id="basketProductCount" value="${b.basketProductCount}"> 
 		<input type="hidden" name="productprice"  id="productprice"  value="${b.productPrice}"> 
 		<input type="hidden" name="productname"  id="productname"  value="${b.productName}"> 
-		</c:forEach>
+	</c:forEach>
+	<c:forEach var="r" items="${basketList}" >
+	
+	</c:forEach>
+
 <!--///////////////////  결제하기로 보낼 폼  끝 //////////////////////////-->
 
 	<!--  상품정보 테이블 --><br>
@@ -68,8 +73,11 @@
 				</td>
 				
 				<td>
-					<input type="number"  value="${b.basketProductCount }"  max="4" min="1" maxlength="3">
-					<input type="submit" value="변경" class="btn btn-primary">		
+				<!-- 
+				<input type="number"  value="${b.basketProductCount }"  max="4" min="1" maxlength="3">
+				 -->
+					<input type="number"  value="${b.basketProductCount }" >
+					<input type="submit" value="변경(지금안됨)" class="btn btn-primary">		
 				</td>
 				
 				<td>
@@ -77,7 +85,7 @@
 				</td>
 				
 				<td>
-				<input class="btn btn-danger" type="button"  name="deleteBasket"  id="deleteBasket" value="삭제">
+				<input class="btn btn-danger" type="button"  name="deleteBasket"  id="deleteBasket" value="삭제(지금안됨)">
 				</td>
 				
 			</tr>

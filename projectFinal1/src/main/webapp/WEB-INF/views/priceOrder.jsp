@@ -19,6 +19,9 @@
 		 <input type="hidden" name="productprice"  id="productprice04" class="prods"  value="${b.productPrice}"> <br>
 		 <input type="hidden"  class="proname" name="productname"  id="productname04"  value="${b.productName}"> <br>
 </c:forEach>
+<form>
+	<input type="text">
+</form>
 
 <script>
 let totalResult = 0;

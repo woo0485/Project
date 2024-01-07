@@ -17,6 +17,7 @@ $(function() {
 	//	$("#checkBasketForm").submit();
 //	});
 
+
 ///////////////여기서부터는 product CRUD /////////////////
 	$("#detailUpdate").on("click", function() {
 			

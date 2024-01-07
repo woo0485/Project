@@ -19,7 +19,7 @@
   }
   .carousel{
   border: 1px solid blue;
-  padding: auto;
+  text-align: center;
   }
   .bookmark {
    text-align: center;
@@ -123,7 +123,6 @@
 						<c:if test="${i%j == 0 }">
 						<tr>
 						</c:if>
-								
 					<td class="productimage">
 					<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
 								class="text-decoration-none link-secondary">

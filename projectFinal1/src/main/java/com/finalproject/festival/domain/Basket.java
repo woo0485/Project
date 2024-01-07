@@ -8,9 +8,6 @@ public class Basket {
 	private String id;
 	private int basketproductcount;
 	
-	// 상품테이블인데 장바구니에서 활용할 것
-	private String productname;
-	private int productprice;
 	
 	public Basket() {}
 	
@@ -19,10 +16,8 @@ public class Basket {
 		this.productno = productno;
 		this.id = id;
 		this.basketproductcount = basketproductcount;
-		this.productname = productname;
-		this.productprice = productprice;
 	}
-
+	
 	public int getBasketno() {
 		return basketno;
 	}
@@ -53,22 +48,6 @@ public class Basket {
 
 	public void setBasketproductcount(int basketproductcount) {
 		this.basketproductcount = basketproductcount;
-	}
-
-	public String getProductname() {
-		return productname;
-	}
-
-	public void setProductname(String productname) {
-		this.productname = productname;
-	}
-
-	public int getProductprice() {
-		return productprice;
-	}
-
-	public void setProductprice(int productprice) {
-		this.productprice = productprice;
 	}
 	
 }

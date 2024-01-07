@@ -18,25 +18,9 @@ public class BasketServiceImpl implements BasketService {
 	public void setBasketDao (BasketDao bd) {
 		this.BD = bd;
 	}
-/*
-	@Override
-	public Map<String, Object> basketList (String id, int productno, int basketno, int basketproductcount) {
-		
-		List<Basket> basketList = BD.basketList(productno, basketno, basketproductcount, id);
-		Map<String, Object> modelMap = new HashMap<String, Object>();
-		modelMap.put("basketList", basketList);
-	return modelMap;
-	} */
-	
-	// 장바구니 목록 보기 - 1월 3일
-	/*@Override
-	public List<Basket> basketList(String id) {
-		List<Basket> basketList = BD.basketList(id);
-		return basketList;
-	} */
+
 	@Override
 	public 	List<Map<String,Object>> basketList(String id, int productno) {
-
 		return BD.basketList(id, productno);
 	}
 	
@@ -47,28 +31,48 @@ public class BasketServiceImpl implements BasketService {
 		return BD.checkBasket(b);
 	} */
 
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
 	@Override
 	public void insertBasket(Basket b) {
-		BD.insertBasket(b);
-	}
+		
+		boolean isExist = BD.isDupBasketCheck(b.getProductno(), b.getId());
+		System.out.println("basketdao에서 service로 넘어가는 productno 전부 카운트한 갯수의 boolean "+isExist );
+		  // DAO에서=> productno가 존재하면 >0 이고 true 없으면 false
 
+        if (isExist) {
+        	// 장바구니에 productno가 이미 존재하면 수량만 업데이트
+        	//BD.updateBasketProductCount(id, productno, incrementcount);
+        	Basket basket = new Basket();
+            basket.setId(b.getId());
+            basket.setProductno(b.getProductno());
+            basket.setBasketproductcount(b.getBasketproductcount());
+            System.out.println("service에서 updateproductcount가 실행될 때: " + basket.getBasketproductcount() );
+ 
+        	BD.updateBasketProductCount(basket);
+        	//BD.updateBasketProductCount(b.getId(), b.getProductno(), b.getBasketproductcount());
+        	System.out.println(basket.getBasketproductcount());
+       
+        } else {
+        	 // 장바구니에 productno가 존재하지 않으면 insert
+            Basket basket = new Basket();
+            basket.setId(b.getId());
+            basket.setProductno(b.getProductno());
+            basket.setBasketproductcount(b.getBasketproductcount());
+            
+            System.out.println("basketService에서 insertBasket - id:  " +basket.getId() );
+            System.out.println("basketService에서 insertBasket - productno:  " +basket.getProductno() );
+            System.out.println("basketService에서 insertBasket - basketproductcount:  " + basket.getBasketproductcount() );
+            System.out.println("service에서 insert(중복된 productno가 없을때)가 실행될 때: " + basket.getBasketproductcount() );
+            BD.insertBasket(basket);
+        	System.out.println(basket.getBasketproductcount());
+        } 
+        
+	}
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 장바구니 제품 삭제 - 1월 5일 수정함
 	@Override
 	public void deletdBasket(int basketno, String id) {
-		
 		BD.deleteBasket(basketno, id);
 	}
-	
-	// 장바구니 중복있을 땐 수량만 증가, 장바구니에 productno가 없을 땐  아예 넣기 -1월 5일 수정
-	@Override
-	public void dupUpdateBasket(Basket b) {
-		BD.dupUpdateBasket(b);
-	}
-
-	// 회원 장바구니에서 productno가 중복되었는지 확인한다. -1월 5일
-	@Override
-	public boolean isDupBasketCheck(int productno, String id) {
-		return BD.isDupBasketCheck(productno, id);
-	}
-	
 }

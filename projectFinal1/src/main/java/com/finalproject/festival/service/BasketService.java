@@ -7,27 +7,22 @@ import com.finalproject.festival.domain.Basket;
 
 public interface BasketService {
 	
-	// 회원 장바구니
-/*		public abstract Map<String, Object> basketList(
-		 String id, int productno, int basketno, int basketproductcount); */
-	
 	// 장바구니 목록 보기 - 1월 3일
-		//public List<Basket> basketList(String id);
 		public abstract List<Map<String,Object>> basketList(String id, int productno);
 		
 		/*
 	// 장바구니 확인 - 1월 3일
 		public Basket checkBasket(Basket b); */
 		
-		//회원 장바구니 추가
-		public abstract void insertBasket(Basket b);
+/////////////// 여기서부터는 productDetail에서 basket으로 갈 때 장바구니에 담을 때~~~ /////////////////////////////
+		//회원 장바구니 추가) productno가 존재하거나 존재하지 않을 시 insert 하기 - 1월 7일 => 2가지 경우 둘다
+		public void insertBasket(Basket b);
 		
-		//회원 장바구니 업데이트(중복) -1월 5일
-		public abstract void dupUpdateBasket(Basket b);
+		// 장바구니에 productno가 존재할 경우 수량만 증가시키기- 1월 7일
+//		public void updateBasketProductCount(Basket b, int incrementcount);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 		
-		// 회원 장바구니에서 productno가 중복되었는지 확인한다. -1월 5일
-		public boolean isDupBasketCheck(int productno, String id);
-		
+		//////////////////////여기서부터는 장바구니 안에서 수량 변경 삭제 ///////////////////
 		// 회원 장바구니 basketno에 해당하는 거 삭제함 - 1월 5일 수정함
 		public abstract void deletdBasket(int basketno, String id);
 
