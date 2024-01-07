@@ -9,9 +9,9 @@
 <div class="row my-3 pt-5">
 		<div class="col-10 offset-1 ">
 			<div class="row offset-8">
-		 	<form class="d-flex" role="search">
-		        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-		        <button class="btn btn-outline-success" type="submit">Search</button>
+		 	<form class="d-flex" role="search" action="mainSearch">
+		        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchWord">
+		        <button class="btn btn-outline-dark" type="submit">Search</button>
 		      </form>
 			</div>
 			
@@ -84,6 +84,7 @@
 						           
 							          <ul class="dropdown-menu">
 							            <li><a class="dropdown-item" href="myPageMain?id=${sessionScope.id}">마이페이지</a></li>
+							           	<li><a class="dropdown-item" href="#">장바구니</a></li>
 							           	<li><a class="dropdown-item" href="logout">로그아웃</a></li>
 							          </ul>
 							        </li>
