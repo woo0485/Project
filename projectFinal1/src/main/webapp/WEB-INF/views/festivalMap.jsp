@@ -3,47 +3,92 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="row mt-5">
-	<div class="col-4 border border-primary" id="festivalMapDetail"
-		style="display: none;">
-		<div class="row">
-			<div class="col text-center fs-3">
-				<p class="productName mt-3"></p>
+	<div class="col-4 border border-dark" style="border-radius: 17px;">
+		<div class="row mt-3 ps-4 pe-4">
+			<div class="col text-center">
+				<button type="button" class="btn btn-outline-dark btn-lg">서울</button>
+			</div>
+			<div class="col text-center">
+				<button type="button" class="btn btn-outline-dark btn-lg">인천</button>
+			</div>
+			<div class="col text-center">
+				<button type="button" class="btn btn-outline-dark btn-lg">세종</button>
+			</div>
+			<div class="col text-center">
+				<button type="button" class="btn btn-outline-dark btn-lg">대전</button>
+			</div>
+		</div>
+		<div class="row mt-3 ps-4 pe-4">
+			<div class="col text-center">
+				<button type="button" class="btn btn-outline-dark btn-lg">대구</button>
+			</div>
+			<div class="col text-center">
+				<button type="button" class="btn btn-outline-dark btn-lg">울산</button>
+			</div>
+			<div class="col text-center">
+				<button type="button" class="btn btn-outline-dark btn-lg">광주</button>
+			</div>
+			<div class="col text-center">
+				<button type="button" class="btn btn-outline-dark btn-lg">부산</button>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col">
-				<img alt="" class="productImage" style="width: 100%; height: 250px;">
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<p class="productContent mt-3" style="font-size: 18px;"></p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<p class="mt-3">
-					<span>축제 기간 : </span> <span class="productopendate"></span> - <span class="productclosedate"></span>
-				</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<p>
-					<span>가격 : </span><span class="productPrice"></span><span> 원</span>
-				</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<p>
-					<span>주소 : </span><span class="productLocation"></span>
-				</p>
+			<div class="col" id="festivalMapDetail" style="display: none;">
+				<div class="row">
+					<div class="col text-center fs-3">
+						<p class="productName mt-3"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<img alt="" class="productImage"
+							style="width: 100%; height: 270px;">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<p class="productContent mt-3" style="font-size: 18px;"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<p class="mt-3">
+							<span>&nbsp;축제 기간 : </span> <span class="productopendate"></span>
+							- <span class="productclosedate"></span>
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<p>
+							<span>&nbsp;가격 : </span><span class="productPrice"></span><span>원</span>
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<p>
+							<span>&nbsp;주소 : </span><span class="productLocation"></span>
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<p>
+							<span>&nbsp;남은티켓 : </span><span class="productRemainTicket"></span>
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<a class="productDetail btn btn-outline-dark">상세보기</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 	<div class="col" id="festivalMap">
-		<div id="map" style="width: 100%; height: 1100px;"></div>
+		<div id="map" style="width: 100%; height: 1200px;"></div>
 	</div>
 </div>
 <script type="text/javascript"
@@ -129,6 +174,15 @@
 		                	productLocation.innerHTML = location.productlocation;
 		                	var productPrice = document.querySelector('.productPrice');
 		                	productPrice.innerHTML = location.productprice;
+		                	var productRemainTicket = document.querySelector('.productRemainTicket');
+		                	if( location.productremainticketcount == 0 ){
+		                		productRemainTicket.innerHTML = "매진";
+		                	} else {
+		                		productRemainTicket.innerHTML = location.productremainticketcount + "장";
+		                	}
+		                	var productDetail = document.querySelector('.productDetail');
+		                	productDetail.href = "productDetail?productno=" + location.productno;
+		                	
 		                    
 		                });
 		            }

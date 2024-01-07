@@ -1,5 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+    String id = (String) session.getAttribute("id");
+    if (id != null) {
+%>
+    <form action="gallery" method="post" id="galleryidform">
+        <input type="hidden" name="id" value="<%= id %>">
+    </form>
+<%
+    } else {
+%>
+    <form action="gallery" method="post" id="galleryidform"></form>
+<%
+    }
+%>
 <style type="text/css">
 	a:link{text-decoration:none;}
 	a:visited{text-decoration:none;}
@@ -42,7 +56,7 @@
 					          <ul class="dropdown-menu">
 					            <li><a class="dropdown-item" href="news">축제 기사</a></li>
 					            <li><a class="dropdown-item" href="productList">축제 정보</a></li>
-					            <li><a class="dropdown-item" href="gallery">갤러리</a></li>
+					            <li><a class="dropdown-item" href="gallery" id="galleryPage">갤러리</a></li>
 					          </ul>
 					        </li>
 					        <li class="nav-item dropdown me-5">

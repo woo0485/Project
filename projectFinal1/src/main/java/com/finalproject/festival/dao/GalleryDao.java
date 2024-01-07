@@ -18,5 +18,12 @@ public interface GalleryDao {
 	public abstract int gallerybad(int galleryno, String id);
 	
 	public abstract List<GalleryBookMark> galleryBookmark(String id);
-
+	
+	public abstract String galleryCheckPassword(String userInputPassword, String userId);
+	
+	public abstract void galleryDelete(int galleryno);
+	
+	public abstract Gallery galleryModifyFormData(int galleryno);
+	
+	public abstract void galleryModify(Gallery gallery);
 }

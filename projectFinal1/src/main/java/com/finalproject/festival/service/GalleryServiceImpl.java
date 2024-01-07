@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.finalproject.festival.dao.GalleryDao;
@@ -61,6 +62,40 @@ public class GalleryServiceImpl implements GalleryService {
 		
 		System.out.println(gd.galleryBookmark(id));
 		return gd.galleryBookmark(id);
+	}
+
+	@Override
+	public String galleryCheckPassword(String userInputPassword, String userId) {
+		
+		String checkPassword = gd.galleryCheckPassword(userInputPassword, userId);
+		
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		
+		boolean check = passwordEncoder.matches(userInputPassword, checkPassword);
+		
+		String response = String.valueOf(check);
+		
+		return response;
+	}
+
+	@Override
+	public void galleryDelete(int galleryno) {
+		
+		gd.galleryDelete(galleryno);
+		
+	}
+
+	@Override
+	public Gallery galleryModifyFormData(int galleryno) {
+		
+		return gd.galleryModifyFormData(galleryno);
+	}
+
+	@Override
+	public void galleryModify(Gallery gallery) {
+		
+		gd.galleryModify(gallery);
+		
 	}
 
 }

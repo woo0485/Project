@@ -61,6 +61,34 @@
 	<select id="galleryBookmark" parameterType="String" resultType="GalleryBookMark">
 		SELECT * FROM GalleryBookmark WHERE id = #{id}
 	</select>
+	
+	<select id="galleryCheckPassword" parameterType="String" resultType="String">
+	    SELECT password FROM Member WHERE id = #{userId}
+	</select>
+	
+	<delete id="galleryDelete" parameterType="int">
+	    DELETE FROM Gallery WHERE galleryno = #{galleryno}
+	</delete>
+	
+	<delete id="galleryBookmarkDelete" parameterType="int">
+	    DELETE FROM GalleryBookmark WHERE galleryno = #{galleryno}
+	</delete>
+	
+	<select id="galleryModifyFormData" parameterType="int" resultType="Gallery">
+		SELECT * FROM Gallery WHERE galleryno = #{galleryno}
+	</select>
+	
+	<update id="galleryModify" parameterType="Gallery">
+		UPDATE Gallery
+		SET gallerytitle = #{gallerytitle}, gallerycontent = #{gallerycontent}, gallerywriter = #{gallerywriter}
+		WHERE galleryno = #{galleryno}
+	</update>
+	
+	<update id="galleryModifyContainImage" parameterType="HashMap">
+		UPDATE Gallery
+		SET gallerytitle = #{gallery.gallerytitle}, gallerycontent = #{gallery.gallerycontent}, gallerywriter = #{gallery.gallerywriter}, galleryimage = #{sqlimage} 
+		WHERE galleryno = #{gallery.galleryno}
+	</update>
 
 	<resultMap id="galleryResultMap" type="Gallery">
 		<result property="id" column="id" />
