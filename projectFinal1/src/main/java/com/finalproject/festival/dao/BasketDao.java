@@ -15,11 +15,22 @@ public interface BasketDao {
 	// 장바구니 확인 - 1월 3일
 		public Basket checkBasket(Basket b); */
 	
-	// 회원 장바구니 추가
+/////////////////////////// 여기는 전부 productno 중복인지 확인해서 장바구니에 추가할 때 ///////////////////////////////
+	// 회원 장바구니 추가 
 		public abstract void insertBasket(Basket b);
+
+	// 회원 장바구니 producno가 중복되었는지 확인 - 1월 7일 수정 => selectList로 해야할듯 isDupBasketCheck
+		boolean isDupBasketCheck(int productno, String id);
 		
-	// 회원 장바구니 삭제 - 1월 5일
-		public abstract void deleteBasket(int basketno);
+	// 회원 장바구니에 productno가 이미 존재하는 경우 수량만 update 해준다.
+		public void updateBasketProductCount(Basket b);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		
+		
+	// 회원 장바구니 삭제 - 1월 5일 - id에 해당하는 basketno를 삭제한다.
+		public abstract void deleteBasket(int basketno, String id);
 		
 		
 

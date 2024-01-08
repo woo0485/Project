@@ -23,6 +23,9 @@
 				<c:if test="${qu.questionCategory eq 'individual'}">
 				 	개인문의<br>
 				</c:if>
+				<c:if test="${qu.questionCategory eq 'Product'}">
+				 	상품문의<br>
+				</c:if>
 				${qu.email}<br>
 				${qu.answerProgress}<br>
 				${qu.answerTitle}<br>
@@ -32,19 +35,7 @@
 			</div>
 		</div>
 	</c:forEach>
-	${qu.id}<br>
-	${qu.questionTitle}<br>
-	${qu.questionContent}<br>
-	${qu.questionDate}<br>
-	<c:if test="${qu.questionCategory eq 'individual'}">
-	 	개인문의<br>
-	</c:if>
-	${qu.email}<br>
-	${qu.answerProgress}<br>
-	${qu.answerTitle}<br>
-	${qu.answerTitle}<br>
-	${qu.answerDate}<br>
-	${qu.toEmail}<br> 
+	
 	
 </body>
 </html>

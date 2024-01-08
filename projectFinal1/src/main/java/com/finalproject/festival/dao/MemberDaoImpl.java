@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.finalproject.festival.domain.Admin;
+import com.finalproject.festival.domain.Main;
 import com.finalproject.festival.domain.Member;
+import com.finalproject.festival.domain.Product;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -50,6 +52,13 @@ public class MemberDaoImpl implements MemberDao {
 		st.insert(NAME_SPACE+".joinMember",m);
 		
 	}
+	
+	@Override
+	public void newMemberCoupon(String id) {
+		
+		st.insert(NAME_SPACE+".newMemberCoupon", id);
+	}
+
 
 	@Override
 	public String userFindId(Map<String, Object> userfind) {
@@ -75,6 +84,8 @@ public class MemberDaoImpl implements MemberDao {
 		return  st.update(NAME_SPACE+".userNewPassword" ,newPassword);
 	}
 
+	/****************************************************************/
+	
 	@Override
 	public void adminUserAdd(Map<String, Object> adminUserAdd) {
 		st.insert(NAME_SPACE+".adminUserAdd", adminUserAdd);
@@ -86,7 +97,22 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return st.selectList(NAME_SPACE+".adminUserSelect");
 	}
+	
+	/****************************************************************/
 
+	@Override
+	public List<Main> mainSearchPage(String keyword) {
+		
+		return st.selectList(NAME_SPACE+".mainSearchPage", keyword);
+	}
+
+	@Override
+	public List<Product> mainProductCarousel() {
+		
+		return st.selectList(NAME_SPACE+".mainProductCarousel");
+	}
+
+	
 	
 
 

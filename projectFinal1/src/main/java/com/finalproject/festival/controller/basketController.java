@@ -33,19 +33,6 @@ public class basketController {
 		this.bs = bs;
 	}
 	
-	// 회원 장바구니 목록 보여지는 것
-/*	@RequestMapping(value = {"/basket"}, method= RequestMethod.POST)
-	public String basketList (Model m, 
-			@RequestParam(value = "basketno", required=false, defaultValue="1") int basketno, 
-			@RequestParam(value = "productno", required=false, defaultValue="1") int productno,   
-			@RequestParam(value = "basketproductcount", required=false, defaultValue="1") int basketproductcount,
-			@RequestParam(value =  "id") String id) { 
-		
-		Map<String, Object> modelMap = bs.basketList(id, productno, basketno, basketproductcount) ;
-		m.addAttribute(modelMap);
-		return "basket";
-	} */
-	
 	// 장바구니 목록 보여지는 것 - 1월 3일 ) 회원 아이디로
 	@RequestMapping(value = {"/basket"}, method= RequestMethod.POST)
 	public String basketList (Model m, String id, int productno	) {
@@ -60,47 +47,52 @@ public class basketController {
 		return "basket";
 	}
 	
-	//회원 장바구니 추가"redirect:productList"; - 1월 5일 수정함
-	@RequestMapping(value = "/basketForm", method = RequestMethod.POST)
-	public String insertBasket(
-			HttpServletRequest request, 
-			int basketproductcount, int basketno, int productprice, String id) 	throws IOException {	
-		
-		Basket b = new Basket();
-		b.setBasketproductcount(basketproductcount);
-		b.setBasketno(basketno);
-		b.setProductprice(productprice);
-		b.setId(id);
-		System.out.println("basketcontroller에서 티켓 수량 입력 숫자:" + b.getBasketproductcount());
-		//System.out.println("basketcontroller에서 가격:" +	b.setProductprice());
-		
-		bs.insertBasket(b);
-		System.out.println("basket insert에서 basketno: " + b.getBasketno());
-		
-		return "redirect:basket";
-	}
+	// @@@@@@@@@@ 장바구니에 담기 @@@@@@@@@@
+	////// 여기서부터는 장바구니에 1) productno가 이미 존재하면  수량만 증가(update)시켜주기 2) productno가 존재하지 않으면 productno와 수량 둘다 insert하기/////
 	
-	// 회원 장바구니 삭제 - 1월 5일
-	@RequestMapping("/checkBasketForm")
+		// productno가 중복되면 productno랑 수량만 증가시켜주기 update 쿼리문 -1월 6일
+	//Service에서 if문으로 처리해줘서 Controller에서는 그냥 insert만 시켜줘도 될듯??????? - 1월 7일
+		@RequestMapping(value = "/addBasket", method = RequestMethod.POST)
+		public String InsertBasket (
+				HttpServletRequest request, 
+				 @RequestParam(value = "basketproductcount")  int basketproductcount, 
+				 @RequestParam(value = "productno") int productno, 
+				 @RequestParam(value = "id") String id) 	throws IOException {	
+			
+			Basket b = new Basket();
+			b.setId(id);
+			b.setProductno(productno);
+			b.setBasketproductcount(basketproductcount);
+			System.out.println("BasketController에서 insertBasket 회원 아이디 : " + b.getId());
+			System.out.println("BasketController에서 insertBasket productno : " + b.getProductno());
+			System.out.println("BasketController에서 insertBasket basketproductcount : " + b.getBasketproductcount());
+			
+			bs.insertBasket(b);
+			
+			return "redirect:productList";
+		}
+
+		// @@@@@@@@@@ 장바구니에 담기 끝 @@@@@@@@@@
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// 회원 장바구니 삭제 - 1월 5일 수정
+		/*
+	@RequestMapping(value = {"/deleteB"})
 	public String deleteBasket (HttpServletResponse response,
-			PrintWriter out, int basketno) {
-		
-			bs.deletdBasket(basketno);
+			PrintWriter out, 
+			int basketno, String id) {
+		bs.deletdBasket(basketno, id);
 		
 		return "redirect:basket";
 	}
+	*/
 	
 	// 결제로 넘겨지는 1월 5일
 	@RequestMapping(value = {"/priceOrder"}, method= RequestMethod.POST)
 	public String priceOrder (Model m, String id, int productno	) {
 	//	System.out.println("장바구니컨트롤러 세션 아이디" + session.getAttribute("id"));
-		
 		List<Map<String,Object>> priceOrder = bs.basketList(id, productno);
-			
-		System.out.println(priceOrder.get(0).get(""));
-		
+		System.out.println(priceOrder.get(0).get("basketno"));
 		m.addAttribute("priceOrder",priceOrder);
-		
 		return "priceOrder";
 	}
 	

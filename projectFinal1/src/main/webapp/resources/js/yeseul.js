@@ -3,44 +3,48 @@
  */
   $(function(){
   
- /*-----------------------main.js----------------------------------*/	
-	 	
- 	// 선택자
- 	/*
-	const sliderWrap = document.querySelector(".slider__wrap");
-	const sliderImg = sliderWrap.querySelector(".slider__img");             // 보여지는 영역
-	const sliderInner = sliderWrap.querySelector(".slider__inner");         // 움직이는 영역
-	const slider = sliderWrap.querySelectorAll(".slider");                  // 개별 이미지
-	
-	let currentIndex = 0;                                                   // 현재 보이는 이미지
-	let sliderCount = slider.length;                                        // 이미지 갯수
-	let sliderInterval = 3000;                                              // 이미지 변경 간격 시간
-	let sliderWidth = slider[0].clientWidth;                                // 이미지 가로값 구하기
-	let sliderClone = sliderInner.firstElementChild.cloneNode(true);        // 첫 번째 이미지 복사	
- 
- sliderInner.append(sliderClone);
+//기사 -js
 
-        function sliderEffect(){
-            currentIndex++;
+   var visibleItems = 5;
 
-            $(".slider__inner").css({
-                'transition': 'all 0.6s',
-                'transform': `translateX(-${sliderWidth * currentIndex}px)`
+        // 3초마다 새로운 항목을 표시하고 이전 항목을 위로 이동
+        setInterval(function() {
+            var newsItems = $('.news-item');
+
+            // 이전 항목을 위로 이동
+            newsItems.filter(':visible').first().slideUp(function() {
+                $(this).appendTo('#latestNewsContainer').slideDown();
             });
 
-            if(currentIndex == sliderCount){
-                setTimeout(() => {
-                    $(".slider__inner").css({
-                        'transition': '0s',
-                        'transform': 'translateX(0px)'
-                    });
-                }, 700);
-                currentIndex = 0;
-            }
-        };
+            // 새로운 항목을 표시
+            newsItems.slice(visibleItems, visibleItems + 1).slideDown();
+        }, 3000);
+   
+  /*-----------------------mainSearch.js--------------------------------*/ 
 
-        setInterval(sliderEffect, sliderInterval);
-        */
+	$("#seeMoreProduct").click(function(){
+		$("#pills-home-tab").removeClass("active");
+		$("#pills-profile-tab").addClass("active");
+		$("#pills-home").removeClass("active show");
+		$("#pills-profile").addClass("active show");
+	});
+	$("#seeMoreNews").click(function(){
+		$("#pills-home-tab").removeClass("active");
+		$("#pills-contact-tab").addClass("active");
+		$("#pills-home").removeClass("active show");
+		$("#pills-contact").addClass("active show");
+	});
+	$("#seeMoreGallery").click(function(){
+		$("#pills-home-tab").removeClass("active");
+		$("#pills-disabled-tab").addClass("active");
+		$("#pills-home").removeClass("active show");
+		$("#pills-disabled").addClass("active show");
+	});
+
+
+
+
+
  /*-----------------------member.js--------------------------------*/
  
  
@@ -253,7 +257,7 @@
 		    $("#joinPasswordCheck").attr("data-code","true");
 		    $("#joinPasswordCheckMsg").text("비밀번호가 일치 합니다").css("color","green");
 	    }else{
-	    	 $("#joinPasswordCheckMsg").text("비밀번호가 일치하지 않습니다.");
+	    	 $("#joinPasswordCheckMsg").text("비밀번호가 일치하지 않습니다.").css("color","red");
 	    }
 	
    });
@@ -261,15 +265,26 @@
    //비밀번호 보기
 	$("#seeJoinPassword").click(function(){
 		if($("#joinPassword").attr("type") == "password"){
+			$("#seeJoinPassword").removeClass("bi-eye-slash");	
+			$("#seeJoinPassword").addClass("bi-eye");	
 			$("#joinPassword").attr("type","text");
+			
 		}else{
+			$("#seeJoinPassword").removeClass("bi-eye");	
+			$("#seeJoinPassword").addClass("bi-eye-slash");	
 			$("#joinPassword").attr("type","password");
 		}
 	});
+	//비밀번호 확인보기
 	$("#seeJoinPasswordCheck").click(function(){
 		if($("#joinPasswordCheck").attr("type") == "password"){
+			$("#seeJoinPassword").removeClass("bi-eye-slash");	
+			$("#seeJoinPassword").addClass("bi-eye");	
 			$("#joinPasswordCheck").attr("type","text");
+			
 		}else{
+			$("#seeJoinPassword").removeClass("bi-eye");	
+			$("#seeJoinPassword").addClass("bi-eye-slash");	
 			$("#joinPasswordCheck").attr("type","password");
 		}
 	});
@@ -279,8 +294,6 @@
  		//이메일 인증
  	$('#eMailCheckBtn').click(function() {
 		const email = $('#eMailId').val() +"@"+ $('#eMailDomain').val(); // 이메일 주소값 얻어오기!
-		console.log('js완성된 이메일 : ' + email); // 이메일 오는지 확인
-		
 		
 			    $.ajax({
 					type : 'post',
@@ -387,7 +400,7 @@
 		const id = $("#id").val();
  		const password = $("#password").val();
  		
- 		console.log("id"+id+"password"+password);
+
  		
  		
 	 	if (id == "") {
