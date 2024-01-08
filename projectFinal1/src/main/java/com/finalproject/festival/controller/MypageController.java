@@ -13,9 +13,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.finalproject.festival.service.MyPageMemberService;
 import com.finalproject.festival.domain.Coupon;
+import com.finalproject.festival.domain.Gallery;
+import com.finalproject.festival.domain.GalleryBookMark;
 import com.finalproject.festival.domain.Member;
 import com.finalproject.festival.domain.MemberCoupon;
 import com.finalproject.festival.domain.Question;
+import com.finalproject.festival.domain.Bookmark;
+import com.finalproject.festival.domain.Product;
+import com.finalproject.festival.domain.Reservation;
+
+
 
 @Controller
 public class MypageController {
@@ -26,7 +33,17 @@ public class MypageController {
 	
 	// 마이페이지 예약
 	@RequestMapping("/myPageReservation")
-	public String myPageReservation() {
+	public String myPageReservation(@RequestParam("id")String id, Model model) {
+		List<Reservation> Reservation = service.Reservation(id);
+		for(Reservation reservation : Reservation) {
+			int productno = reservation.getProductno();
+		}
+		
+		List<Product> ReProduct = service.ReProduct(Reservation);
+		
+		model.addAttribute("ReProduct", ReProduct);
+		model.addAttribute("Reservation", Reservation);
+		
 		return "myPageReservation";
 	}
 	
@@ -43,7 +60,28 @@ public class MypageController {
 	
 	// 마이페이지 즐겨찾기
 	@RequestMapping("/myPageFavorite")
-	public String myPageFavorite() {
+	public String myPageFavorite(@RequestParam("id")String id, Model model) {
+		List<GalleryBookMark> GalleryBookMark = service.GalleryBookMark(id);
+		for(GalleryBookMark gallerybookmark : GalleryBookMark) {
+			int galleryno = gallerybookmark.getGalleryno();
+		}
+		
+		List<Gallery> Gallery = service.Gallery(GalleryBookMark);
+		
+		
+		model.addAttribute("Gallery",Gallery);
+		model.addAttribute("GalleryBookMark",GalleryBookMark);
+		
+		List<Bookmark> Bookmark = service.Bookmark(id);
+		for(Bookmark bookmark : Bookmark) {
+			int productno = bookmark.getProductno();
+		}
+		
+		List<Product> Product = service.Product(Bookmark);
+		
+		model.addAttribute("Product", Product);
+		model.addAttribute("Bookmark",Bookmark);
+		
 		return "myPageFavorite";
 	}
 	
@@ -51,7 +89,9 @@ public class MypageController {
 	@RequestMapping("/myPageCoupon")
 	public String myPageCoupon(@RequestParam("id")String id, Model model) {
 		MemberCoupon membercoupon = service.MyCoupon(id);
+		Coupon coupon = service.Coupon(id);
 		model.addAttribute("membercoupon", membercoupon);
+		model.addAttribute("coupon",coupon);
 		return "myPageCoupon";
 	}
 	
@@ -69,11 +109,11 @@ public class MypageController {
 		if(member.getGrade() == 0) {
 			mp = 500000 - totalpay;
 		} else if (member.getGrade() == 1) {
-			mp = 799999 - totalpay;
+			mp = 800000 - totalpay;
 		} else if (member.getGrade() == 2) {
-			mp = 2999999 - totalpay;
+			mp = 3000000 - totalpay;
 		} else if (member.getGrade() == 3) {
-			mp = 4999999 - totalpay;
+			mp = 5000000 - totalpay;
 		}
 		
 		String fmp = decimalFormat.format(mp);
@@ -88,12 +128,29 @@ public class MypageController {
 	@RequestMapping("/myPageMain")
 	public String MyInfo(@RequestParam("id")String id, Model model) {
 		Member member = service.MyInfo(id);
+		Member MyGrade = service.MyGrade(id, member.getGrade(), member.getTotalpay());
+		int totalpay = member.getTotalpay();
+		int grade = member.getGrade();
 		
-		System.out.print("ddd"+member.getGrade());
+		
+		if(totalpay >= 5000000) {
+			grade = 4;
+		} else if(totalpay >= 3000000) {
+			grade = 3;
+		} else if(totalpay >= 800000) {
+			grade = 2;
+		} else if(totalpay >= 500000) {
+			grade = 1;
+		} else {
+			grade = 0;
+		}
+		member.setGrade(grade);
 		
 		model.addAttribute("member", member);
 		return "myPageMain";
 	}
 	
 	
+	 
 }
+	 

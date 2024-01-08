@@ -23,4 +23,53 @@
 			SELECT * FROM Question WHERE id = #{id}
 		</select>
 	
+		<update id="MyGrade" parameterType="HashMap">
+			UPDATE Member
+			SET grade = #{grade}
+			WHERE id = #{id};
+		</update>
+		
+		<select id="GalleryBookMark" resultType="GalleryBookMark">
+			SELECT *
+			FROM  GalleryBookmark
+			WHERE id = #{id};
+		</select>
+		
+		<select id="GalleryInfo" resultType="Gallery" parameterType="int">
+			SELECT *
+			FROM Gallery
+			WHERE galleryno = #{galleryno}
+		</select>
+		
+		<select id="Bookmark" resultType="Bookmark">
+			SELECT * 
+			FROM Bookmark
+			WHERE id = #{id}
+		</select>
+		
+		<select id="Product" resultType="Product">
+			SELECT *
+			FROM Product
+			WHERE productno = #{productno}
+		</select>
+		
+		<select id="Reservation" resultType="Reservation">
+			SELECT *
+			FROM Reservation
+			WHERE id = #{id}
+		</select>
+		
+		<select id="ReProduct" resultType="Product">
+			SELECT *
+			FROM Product
+			WHERE productno = #{productno}
+		</select>
+		
+		<!-- <update id="MyPassUpdate" parameterType="Member">
+			UPDATE Member
+			SET phonenumber = #{phonenumber}
+			WHERE id = #{id}
+		</update> -->
+		
+		
 	</mapper>
