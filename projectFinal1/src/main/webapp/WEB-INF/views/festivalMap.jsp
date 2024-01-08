@@ -2,34 +2,134 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<c:set var="AreaMap" value="${fesivalAreaProduct}"></c:set>
+
 <div class="row mt-5">
-	<div class="col-4 border border-dark" style="border-radius: 17px;">
+	<div class="col-4 border border-dark border-3"
+		style="border-radius: 17px; --bs-border-opacity: 0.3;">
 		<div class="row mt-3 ps-4 pe-4">
 			<div class="col text-center">
-				<button type="button" class="btn btn-outline-dark btn-lg">서울</button>
+				<button type="button" class="btn btn-outline-dark btn-lg areabutton" id="seoulProduct">서울</button>
 			</div>
 			<div class="col text-center">
-				<button type="button" class="btn btn-outline-dark btn-lg">인천</button>
+				<button type="button" class="btn btn-outline-dark btn-lg areabutton"
+					id="incheonProduct">인천</button>
 			</div>
 			<div class="col text-center">
-				<button type="button" class="btn btn-outline-dark btn-lg">세종</button>
+				<button type="button" class="btn btn-outline-dark btn-lg areabutton"
+					id="gangwonProduct">강원</button>
 			</div>
 			<div class="col text-center">
-				<button type="button" class="btn btn-outline-dark btn-lg">대전</button>
+				<button type="button" class="btn btn-outline-dark btn-lg areabutton ps-0 pe-0"
+					id="daejeonProduct" style="font-size: 20px; width: 83px;">충북/충남</button>
 			</div>
 		</div>
-		<div class="row mt-3 ps-4 pe-4">
+		<div class="row mt-3 pb-3 border-bottom border-3 mb-3 ps-4 pe-4">
 			<div class="col text-center">
-				<button type="button" class="btn btn-outline-dark btn-lg">대구</button>
+				<button type="button" class="btn btn-outline-dark btn-lg ps-0 pe-0 areabutton"
+					id="gwangjuProduct" style="font-size: 20px; width: 83px;">전남/전북</button>
 			</div>
 			<div class="col text-center">
-				<button type="button" class="btn btn-outline-dark btn-lg">울산</button>
+				<button type="button" class="btn btn-outline-dark btn-lg areabutton" id="daeguProduct">대구</button>
 			</div>
 			<div class="col text-center">
-				<button type="button" class="btn btn-outline-dark btn-lg">광주</button>
+				<button type="button" class="btn btn-outline-dark btn-lg areabutton" id="busanProduct">부산</button>
 			</div>
 			<div class="col text-center">
-				<button type="button" class="btn btn-outline-dark btn-lg">부산</button>
+				<button type="button" class="btn btn-outline-dark btn-lg areabutton" id="jejuProduct">제주</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col" id="startInfo">
+				<h3 class="areaName">서울</h3>
+				<c:forEach var="seoulProduct" items="${AreaMap['seoul']}" end="3">
+					<div class="row seoulProduct mapProductList">
+						<div class="col">
+							<h4 class="mt-1">${seoulProduct.productname}</h4>
+							<a href="#"> <img alt="" src="${seoulProduct.productimage}"
+								width="100%" height="200px;">
+							</a>
+						</div>
+					</div>
+				</c:forEach>
+				<c:forEach var="incheonProduct" items="${AreaMap['incheon']}"
+					end="3">
+					<div class="row incheonProduct mapProductList"
+						style="display: none;">
+						<div class="col">
+							<h4 class="mt-1">${incheonProduct.productname}</h4>
+							<a href="#"> <img alt="" src="${incheonProduct.productimage}"
+								width="100%" height="200px;">
+							</a>
+						</div>
+					</div>
+				</c:forEach>
+				<c:forEach var="gangwonProduct" items="${AreaMap['gangwon']}"
+					end="3">
+					<div class="row gangwonProduct mapProductList"
+						style="display: none;">
+						<div class="col">
+							<h4 class="mt-1">${gangwonProduct.productname}</h4>
+							<a href="#"> <img alt="" src="${gangwonProduct.productimage}"
+								width="100%" height="200px;">
+							</a>
+						</div>
+					</div>
+				</c:forEach>
+				<c:forEach var="daejeonProduct" items="${AreaMap['daejeon']}"
+					end="3">
+					<div class="row daejeonProduct mapProductList"
+						style="display: none;">
+						<div class="col">
+							<h4 class="mt-1">${daejeonProduct.productname}</h4>
+							<a href="#"> <img alt="" src="${daejeonProduct.productimage}"
+								width="100%" height="200px;">
+							</a>
+						</div>
+					</div>
+				</c:forEach>
+				<c:forEach var="daeguProduct" items="${AreaMap['daegu']}" end="3">
+					<div class="row daeguProduct mapProductList" style="display: none;">
+						<div class="col">
+							<h4 class="mt-1">${daeguProduct.productname}</h4>
+							<a href="#"> <img alt="" src="${daeguProduct.productimage}"
+								width="100%" height="200px;">
+							</a>
+						</div>
+					</div>
+				</c:forEach>
+				<c:forEach var="gwangjuProduct" items="${AreaMap['gwangju']}"
+					end="3">
+					<div class="row gwangjuProduct mapProductList"
+						style="display: none;">
+						<div class="col">
+							<h4 class="mt-1">${gwangjuProduct.productname}</h4>
+							<a href="#"> <img alt="" src="${gwangjuProduct.productimage}"
+								width="100%" height="200px;">
+							</a>
+						</div>
+					</div>
+				</c:forEach>
+				<c:forEach var="busanProduct" items="${AreaMap['busan']}" end="3">
+					<div class="row busanProduct mapProductList" style="display: none;">
+						<div class="col">
+							<h4 class="mt-1">${busanProduct.productname}</h4>
+							<a href="#"> <img alt="" src="${busanProduct.productimage}"
+								width="100%" height="200px;">
+							</a>
+						</div>
+					</div>
+				</c:forEach>
+				<c:forEach var="jejuProduct" items="${AreaMap['jeju']}" end="3">
+					<div class="row jejuProduct mapProductList" style="display: none;">
+						<div class="col">
+							<h4 class="mt-1">${jejuProduct.productname}</h4>
+							<a href="#"> <img alt="" src="${jejuProduct.productimage}"
+								width="100%" height="200px;">
+							</a>
+						</div>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 		<div class="row">
@@ -88,7 +188,7 @@
 		</div>
 	</div>
 	<div class="col" id="festivalMap">
-		<div id="map" style="width: 100%; height: 1200px;"></div>
+		<div id="map" style="width: 100%; height: 1220px;"></div>
 	</div>
 </div>
 <script type="text/javascript"
@@ -104,6 +204,13 @@
 		var map = new kakao.maps.Map(mapContainer, mapOption);
 
 		var geocoder = new kakao.maps.services.Geocoder();
+		
+		function moveMapCenter(latitude, longitude) {
+		    var newCenter = new kakao.maps.LatLng(latitude, longitude);
+		    
+		    map.setCenter(newCenter);
+
+		}
 
 		function makeOverListener(map, marker, infowindow) {
 			return function() {
@@ -156,6 +263,8 @@
 		                kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
 		                kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 		                kakao.maps.event.addListener(marker, 'click', function() {
+		                	var festivalStartInfo = document.getElementById('startInfo');
+		                	festivalStartInfo.style.display = 'none';
 		                	var festivalMapDetail = document.getElementById('festivalMapDetail');
 		                	festivalMapDetail.style.display = 'block';
 		                	var productName = document.getElementsByClassName('productName');

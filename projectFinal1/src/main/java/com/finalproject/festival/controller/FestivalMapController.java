@@ -31,6 +31,10 @@ public class FestivalMapController {
 		m.addAttribute("festivalMap", json);
 
 		m.addAttribute("festivalMapSize", fs.productList().size());
+		
+		m.addAttribute("festivalProduct", fs.productList());
+		
+		m.addAttribute("fesivalAreaProduct", fs.productArea());
 
 		return "festivalMap";
 	}
