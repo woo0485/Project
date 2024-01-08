@@ -21,6 +21,7 @@ form name="checkBasketForm" id="checkBasketForm"  action="checkBasketForm">
 </form>
  -->
 
+		
 <!--/////////////  결제하기로 보낼 폼으로 보내면서 동시에 reservation 테이블에 정보 추가하기???////////////////-->
 <form name="priceForm" id="priceForm"  action="priceOrder" method="post" >
 	<input type="hidden" name="id" id="rId" value="${sessionScope.id}">
@@ -30,9 +31,6 @@ form name="checkBasketForm" id="checkBasketForm"  action="checkBasketForm">
 		<input type="hidden" name="basketProductCount"  id="basketProductCount" value="${b.basketProductCount}"> 
 		<input type="hidden" name="productprice"  id="productprice"  value="${b.productPrice}"> 
 		<input type="hidden" name="productname"  id="productname"  value="${b.productName}"> 
-	</c:forEach>
-	<c:forEach var="r" items="${basketList}" >
-	
 	</c:forEach>
 
 <!--///////////////////  결제하기로 보낼 폼  끝 //////////////////////////-->
@@ -94,13 +92,10 @@ form name="checkBasketForm" id="checkBasketForm"  action="checkBasketForm">
 
 		</table>
 		
-		<!--  여기까지 상품정보테이블이였다. -->
-		<br><br>
-		<div>
-			<span> 할인 적용 금액은 주문서 작성의 결제 예정 금액에서 확인 가능합니다. (여기서 확인 못한다는 뜻)</span>
-		</div>
-		<br><br>
+		<!--  여기까지 상품정보테이블이였다. --> <br><br><br>
 		
+		어쩌구 저쩌구 안내문 할인정보는 여기서 확인 못한다 어쩌구 저쩌구
+		 <br><br>
 		<div>
 			<button>장바구니 비우기</button>
 		</div>
@@ -130,3 +125,16 @@ form name="checkBasketForm" id="checkBasketForm"  action="checkBasketForm">
 		</div>
 		</form>
 	<!--  결제예정금액 테이블 끝-->
+	
+	<!--@@@@@@  예약 테이블을 단순히 보여지는 페이지로 넘김 - priceOrderFinish 페이지로 넘김 @@@@@@-->
+	<form name="ReservationForm" id="ReservationForm"  action="reservation" method="post" >
+		<input type="text" name="id" id="rId036" value="${sessionScope.id}"> <br>
+	
+	<c:forEach var="b" items="${basketList}" >
+    	장바구니 productno를 배열로 받았을 때; <input type="text" name="productno" id="productno45345345" value="${b.basketProductNo}"> <br>
+   		장바구니의 productno의 개수: <input type="text" name="basketproductcount" id="basketproductcount5645645" value="${b.basketProductCount}"><br>
+   		 장바구니의 productno의 가격: <input type="text" name="productprice" id="productprice324324" value="${b.productPrice}"><br>
+	</c:forEach>
+		<input type="submit" value="단순히 결제한 예약정보 (reservation 테이블)보기" class="btn btn-danger">	
+	</form>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
