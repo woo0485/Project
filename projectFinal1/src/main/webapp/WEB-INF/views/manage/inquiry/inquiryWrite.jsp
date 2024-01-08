@@ -61,7 +61,7 @@
 							<div class="col-6 offset-1 mb-3">
 								<input type="hidden" name="answerProgress" value="답변 대기">
 								<input type="hidden" class="form-control" id="id" name="id" value="${sessionScope.id }">
-								<input type="text" class="form-control" name="email" value="${sessionScope.email }">
+								<input type="hidden" class="form-control" name="email" value="${sessionScope.email }">
 								<label class="fw-bold mb-2">제목</label> 
 								<input type="text" class="form-control" id="questionTitle" name="questionTitle">
 							</div>

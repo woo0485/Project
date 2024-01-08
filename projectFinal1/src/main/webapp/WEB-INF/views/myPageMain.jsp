@@ -70,6 +70,12 @@
 											</c:if>
 												<td style="border:none;">${my.phonenumber}</td>
 									</tr>
+									<tr>
+										<th style="border:none;">주소</th>
+												<td style="border:none;">${my.address1} - ${my.address2}</td>
+
+									</tr>
+									
 								</c:if>
 							</tbody>
 						</table>

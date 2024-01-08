@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.finalproject.festival.dao.MemberDao;
 import com.finalproject.festival.domain.Admin;
+import com.finalproject.festival.domain.Gallery;
 import com.finalproject.festival.domain.Main;
 import com.finalproject.festival.domain.Member;
+import com.finalproject.festival.domain.News;
 import com.finalproject.festival.domain.Product;
 
 @Service
@@ -96,17 +98,27 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 		////////////////////////////////////////////////////////
-	@Override
-	public List<Main> mainSearchPage(String keyword) {
-		
-		return memberDao.mainSearchPage(keyword);
-	}
 
 	@Override
 	public List<Product> mainProductCarousel() {
 		
 		return memberDao.mainProductCarousel();
 	}
+
+		@Override
+		public List<Product> mainSearchProduct(String keyword) {
+			return memberDao.mainSearchProduct(keyword);
+		}
+
+		@Override
+		public List<News> mainSearchNews(String keyword) {
+			return memberDao.mainSearchNews(keyword);
+		}
+
+		@Override
+		public List<Gallery> mainSearchGallery(String keyword) {
+			return memberDao.mainSearchGallery(keyword);
+		}
 
 	
 

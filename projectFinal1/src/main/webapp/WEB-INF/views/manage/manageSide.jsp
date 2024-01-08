@@ -48,6 +48,14 @@
 				</div>
 				<div class="row pt-5">
 					<div class="col-4 text-end">
+						<i class="bi bi-cart-check"></i>
+					</div>	
+					<div class="col-8 text-start">						  	
+					    <a class="text-decoration-none fontblack" href="manageFestivalProduct">상품 관리</a>
+					</div>
+				</div>
+				<div class="row pt-5">
+					<div class="col-4 text-end">
 						<i class="bi bi-basket"></i>
 					</div>	
 					<div class="col-8 text-start">						  	

@@ -11,11 +11,68 @@
 		FROM Product
 	</select>
 	
-	<select id="newsDetail" parameterType="int" resultType="News">
-	    SELECT
-	    *
-	    FROM News
-	    WHERE newsno = #{no}
+	<select id="seoulList" resultType="Product">
+		SELECT *
+		FROM Product
+		WHERE productlocation LIKE '%서울%'
+		ORDER BY productreadcount DESC
+		LIMIT 5
+	</select>
+	
+	<select id="incheonList" resultType="Product">
+		SELECT *
+		FROM Product
+		WHERE productlocation LIKE '%인천%'
+		ORDER BY productreadcount DESC
+		LIMIT 5
+	</select>
+	
+	<select id="gangwonList" resultType="Product">
+		SELECT *
+		FROM Product
+		WHERE productlocation LIKE '%강원%'
+		ORDER BY productreadcount DESC
+		LIMIT 5
+	</select>
+	
+	<select id="daejeonList" resultType="Product">
+		SELECT *
+		FROM Product
+		WHERE (productlocation LIKE '%충북%' OR productlocation LIKE '%충남%' OR productlocation LIKE '%대전%')
+		ORDER BY productreadcount DESC
+		LIMIT 5
+	</select>
+	
+	<select id="daeguList" resultType="Product">
+		SELECT *
+		FROM Product
+		WHERE productlocation LIKE '대구%'
+		ORDER BY productreadcount DESC
+		LIMIT 5
+	</select>
+	
+	<select id="gwangjuList" resultType="Product">
+		SELECT *
+		FROM Product
+		WHERE (productlocation LIKE '%전라%' OR productlocation LIKE '%전남%' OR productlocation LIKE '%전북%')
+		ORDER BY productreadcount DESC
+		LIMIT 5
+	</select>
+	
+	<select id="busanList" resultType="Product">
+		SELECT *
+		FROM Product
+		WHERE productlocation LIKE '%부산%'
+		ORDER BY productreadcount DESC
+		LIMIT 5
+	</select>
+	
+	<select id="jejuList" resultType="Product">
+		SELECT *
+		FROM Product
+		WHERE productlocation LIKE '%제주%'
+		ORDER BY productreadcount DESC
+		LIMIT 5
 	</select>
 	
 </mapper>	

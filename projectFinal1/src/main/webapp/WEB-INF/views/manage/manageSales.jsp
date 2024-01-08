@@ -473,7 +473,7 @@
 									// ④실제 차트에 표시할 데이터들(Array), dataset객체들을 담고 있다.
 									datasets : [ {
 										// ⑤dataset의 이름(String)
-										label : '월 매출 최고의 달',
+										label : 'DB저장된 월 매출 최고의 달',
 										// ⑥dataset값(Array)
 																									
 										data : [ 

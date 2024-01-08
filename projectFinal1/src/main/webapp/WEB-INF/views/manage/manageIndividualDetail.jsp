@@ -96,7 +96,7 @@
 			</c:if>
 			
 			<c:if test="${ question.answerContent == null }">
-				<div class="my-5 border" style="color:red;"><h4>현재 답변 대기중..</h4></div>
+				<div class="my-5" style="color:red;">현재 답변 대기중</div>
 			</c:if>	
 			
 			<div class="row">

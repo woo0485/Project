@@ -16,51 +16,57 @@
 			<div class="col">
 			
 				<div id="carouselExampleCaptions" class="carousel slide">
-				  <div class="carousel-indicators">
-				<c:forEach var="product" items="${productList}" varStatus="productLoop" end="5">
-				  <c:if test="${productLoot.index == 0}">
-				    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="${productLoop.index}"  class="active" aria-current="true" aria-label="Slide ${productLoot.index}"></button>
-				  </c:if>
-				  <c:if test="${productLoot.index ne 0}">
-				    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="${productLoop.index}" aria-label="Slide ${productLoot.index}"></button>
-				  </c:if>
-				</c:forEach>
-				  </div>
-					  <c:forEach var="product" items="${productList}" varStatus="productLoop" end="5"> 
-					  <div class="carousel-inner">
-					  <c:if test="${productLoop.index == 0 }">
-						    <div class="carousel-item active">
-						      <img src="${product.productimage }" class="d-block w-100" alt="..." style="width: 100%" height="500px;">
-						      <div class="carousel-caption d-none d-md-block">
-						        <h5>${product.productname }</h5>
-						        <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; word-wrap:break-word;">
-						        	${product.productcontent }
-						        </p>
-						      </div>
-						    </div>
-					  </c:if>
-					  </div>
-					  <c:if test="${productLoop.index ne 0 }">
-					  <div class="carousel-item">
-					      <img src="${product.productimage }" class="d-block w-100" alt="...">
-					      <div class="carousel-caption d-none d-md-block">
-					        <h5>${product.productname }</h5>
-					        <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; word-wrap:break-word;">
-						        ${product.productcontent }
-						    </p>
-					      </div>
-					    </div>
-					  </c:if>
-					  </c:forEach>
+				    <div class="carousel-indicators">
+				        <c:forEach var="product" items="${productList}" varStatus="productLoop" end="5">
+				            <c:choose>
+				                <c:when test="${productLoop.index == 0}">
+				                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="${productLoop.index}" class="active" aria-current="true" aria-label="Slide ${productLoop.index}"></button>
+				                </c:when>
+				                <c:otherwise>
+				                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="${productLoop.index}" aria-label="Slide ${productLoop.index}"></button>
+				                </c:otherwise>
+				            </c:choose>
+				        </c:forEach>
+				    </div>
 				    
-				  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				    <span class="visually-hidden">Previous</span>
-				  </button>
-				  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-				    <span class="visually-hidden">Next</span>
-				  </button>
+				    <div class="carousel-inner">
+				        <c:forEach var="product" items="${productList}" varStatus="productLoop" end="5">
+				            <c:choose>
+				                <c:when test="${productLoop.index == 0}">
+				                    <div class="carousel-item active">
+				                        <img src="${product.productimage}" class="d-block w-100" alt="..." style="height: 500px;">
+				                        <div class="carousel-caption d-none d-md-block">
+				                            <h5>${product.productname}</h5>
+				                            <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; word-wrap: break-word;">
+				                                ${product.productcontent}
+				                            </p>
+				                        </div>
+				                    </div>
+				                </c:when>
+				                <c:otherwise>
+				                    <div class="carousel-item">
+				                        <img src="${product.productimage}" class="d-block w-100" alt="..." style="height: 500px;">
+				                        <div class="carousel-caption d-none d-md-block">
+				                            <h5>${product.productname}</h5>
+				                            <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; word-wrap: break-word;">
+				                                ${product.productcontent}
+				                            </p>
+				                        </div>
+				                    </div>
+				                </c:otherwise>
+				            </c:choose>
+				        </c:forEach>
+				    </div>
+				    
+				    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+				        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				        <span class="visually-hidden">Previous</span>
+				    </button>
+				    
+				    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+				        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+				        <span class="visually-hidden">Next</span>
+				    </button>
 				</div>
 
 
@@ -73,7 +79,7 @@
 		<div class="col-1 d-flex align-items-center"><i class="bi bi-arrow-left-circle-fill" style="font-size: 2rem;"></i></div>
 		<c:forEach var="gallery" items="${galleryList}" varStatus="galleryLoop" end="10">
 			<div class="col gallery-item" style="display: ${galleryLoop.index <=4 ? 'inline' : 'none'};">
-				<img style="width: 120%; height: 300px;" src="resources/upload/example.png" alt="이미지1">
+				<img style="width: 120%; height: 300px;" src="resources/upload/${gallery.galleryimage}" alt="이미지1">
 			</div>
 		</c:forEach>
 		<div class="col-1 d-flex align-items-center"><i class="bi bi-arrow-right-circle-fill" style="font-size: 2rem;"></i></div>	

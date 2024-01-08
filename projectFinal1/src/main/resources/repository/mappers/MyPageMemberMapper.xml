@@ -65,15 +65,15 @@
 			WHERE productno = #{productno}
 		</select>
 		
-		<delete id="MyReservation" parameterType="Reservatiion">
+		<delete id="MyReservation" parameterType="HashMap">
 			DELETE
 			FROM Reservation
-			WHERE productno = #{productno} AND id = #{id}
+			WHERE id = #{id} AND productno = #{productno}
 		</delete>
 		
-		<update id="MyCancleTicket">
+		<update id="MyCancleTicket" parameterType="HashMap">
 			UPDATE Product
-			SET productticketcount
+			SET productremainticketcount = productremainticketcount + #{reservationticketcount}
 			WHERE productno = #{productno}
 		</update>
 		

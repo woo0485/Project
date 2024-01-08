@@ -123,7 +123,7 @@
 										<td>${ r.reservationticketcount }장</td>
 										<td>${ r.reservationdate }</td>						
 										<td>
-										<a href="updateManageReservation?reservationno=${ r.reservationno }"
+										<a href="updateManageReservation?reservationno=${ r.reservationno }" id="updateManageReservation"
 												class="btn btn-outline-warning py-0" role="button" style="font-size:small;">예약 수정</a>
 										</td>
 										<td><button type="button" class="btn btn-outline-danger py-0" 

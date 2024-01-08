@@ -3,20 +3,18 @@
  */
  /* 
 $.ajax({
-            url: "galleryOrderType",
+            url: "url",
             method: "GET",
-            data : { orderType : "galleryDatePopularity" },
+            data : { data : "data" },
             success: function(response) {
                 
             console.log("Ajax success:", response);
-            
-            
-
             
             },
             error: function(xhr, status, error) {
                 
                 console.error("Ajax error:", status, error);
+                
             }
         });
 */
@@ -222,6 +220,42 @@ $(document).on("click", ".gallerybad", function(event) {
  			$("#galleryidform").submit();
  
  });
+ 
+ $(".areabutton").click(function(){
+ 
+ var areaName = $(this).text();
+ var thisName = $(this).attr("id");
+ 
+ $(".areaName").text(areaName)
+ 
+ $("#festivalMapDetail").hide();
+ $("#startInfo").show();
+ 
+ $(".mapProductList").hide();
+ $('.' + thisName).show();
+ 
+ })
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  
  

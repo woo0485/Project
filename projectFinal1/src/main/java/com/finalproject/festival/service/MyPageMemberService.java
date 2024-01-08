@@ -37,8 +37,8 @@ public interface MyPageMemberService {
 	
 	public List<Product> ReProduct (List<Reservation> Reservation);
 	
-	public List<Reservation> MyReservation(String id, int productno);
+	public Reservation MyReservation (String id, int productno);
 	
-	
-	
+	public Reservation MyCancleTicket (int reservationticketcount, int productno, String id);
+	 
 }

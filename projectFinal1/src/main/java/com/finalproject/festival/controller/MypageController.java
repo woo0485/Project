@@ -38,8 +38,12 @@ public class MypageController {
 	@RequestMapping("/myPageReservation")
 	public String myPageReservation(@RequestParam("id")String id, Model model) {
 		List<Reservation> Reservation = service.Reservation(id);
+		String id1 = "";
 		for(Reservation reservation : Reservation) {
 			int productno = reservation.getProductno();
+			System.out.println(productno);
+			id1 = reservation.getId();
+			System.out.println(id1);
 		}
 		
 		List<Product> ReProduct = service.ReProduct(Reservation);
@@ -51,10 +55,11 @@ public class MypageController {
 	}
 	
 	// 마이페이지 예약취소
-	@RequestMapping(value = "/mydelete")
+	@RequestMapping("/mydelete")
 	public String myPageReservationdelete(@RequestParam("id")String id, @RequestParam("productno")int productno, @RequestParam("reservationticketcount")int reservationticketcount,  Model model){
 		
-		
+		Reservation MyReservation = service.MyReservation(id, productno);
+		Reservation MycancleTicket = service.MyCancleTicket(reservationticketcount, productno, id);
 		
 		
 		return "redirect:myPageReservation?id=" + id;

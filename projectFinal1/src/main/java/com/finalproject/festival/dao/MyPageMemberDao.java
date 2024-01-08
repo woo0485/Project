@@ -51,12 +51,12 @@ public interface MyPageMemberDao {
 	public abstract List<Product> ReProduct (List<Reservation> Reservation);
 	
 	// 회원예약 - 취소
-	public abstract List<Reservation> MyReservation (int productno, String id);
+	public abstract Reservation MyReservation (String id, int productno);
 	
 	
-	// 회원예약 - 취소 후 반환
-	
-	
+	// 회원예약 - 취소 후 반환 
+	public abstract Reservation MyCancleTicket (int reservationticketcount, int productno, String id);
+	 
 	
 	 
 }

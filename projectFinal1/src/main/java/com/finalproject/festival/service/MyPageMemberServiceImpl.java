@@ -94,4 +94,22 @@ public class MyPageMemberServiceImpl implements MyPageMemberService {
 		return Product;
 	}
 	
+	@Override
+	public Reservation MyReservation (String id, int productno) {
+		
+		Reservation MyReservation = dao.MyReservation(id, productno);
+		
+		return MyReservation;
+	}
+	
+	
+	 @Override 
+	 public Reservation MyCancleTicket (int reservationticketcount, int productno, String id) { 
+		 
+		 Reservation MyCancleTicket = dao.MyCancleTicket(reservationticketcount, productno, id);
+	 
+	 	 return MyCancleTicket; 
+	 }
+	 
+	
 }

@@ -59,126 +59,104 @@ td input:focus {
 							<table class="table table-hover">
 								<tr class="">
 									<td>
-										<div class="pt-2">이름</div>
+										<div class="py-1">이름</div>
 									</td>
 									<td>
-										<div>
-											<input type="text" class="form-control" name="name" id="name"
-												placeholder="이름" value="${member.name }"
-												style="border-width: 0;" readonly="readonly">
+										<div class="text-start fs-6 py-1">
+											${member.name }
 										</div>
 									</td>
 								</tr>
 								<tr class="">
 									<td>
-										<div class="pt-2">아이디</div>
+										<div class="py-1">아이디</div>
 									</td>
 									<td>
-										<div>
-											<input type="text" class="form-control" name="id" id="id"
-												placeholder="아이디" value="${member.id }"
-												style="border-width: 0;" readonly="readonly">
+										<div class="text-start fs-6 py-1">
+											${member.id }
 										</div>
 									</td>
 								</tr>
 								<tr class="">
 									<td>
-										<div class="pt-2">이메일</div>
+										<div class="py-1">이메일</div>
 									</td>
 									<td>
-										<div>
-											<input type="text" class="form-control" name="email" id="email"
-												 placeholder="이메일" value="${member.email }"
-												style="border-width: 0;">
+										<div class="text-start fs-6 py-1">
+											${member.email }
 										</div>
 									</td>
 								</tr>
 								<tr class="">
 									<td>
-										<div class="pt-2">핸드폰 번호</div>
+										<div class="py-1">핸드폰 번호</div>
 									</td>
 									<td>
-										<div>
-											<input type="text" class="form-control" name="phonenumber"
-												id="phonenumber" placeholder="핸드폰 번호"
-												value="${member.phonenumber }" style="border-width: 0;">
+										<div class="text-start fs-6 py-1">
+											${member.phonenumber }
 										</div>
 									</td>
 								</tr>
 								<tr class="">
 									<td>
-										<div class="pt-2">누적구매금액</div>
+										<div class="py-1">누적구매금액</div>
 									</td>
 									<td>
-										<div>
-											<input type="text" class="form-control" name="totalpay"
-												id="totalpay" placeholder="누적구매금액"
-												value="${member.totalpay }" style="border-width: 0;">
+										<div class="text-start fs-6 py-1">
+											${member.totalpay }원
 										</div>
 									</td>
 								</tr>
 								<tr class="">
 									<td>
-										<div class="pt-2">등급</div>
+										<div class="py-1">회원 등급</div>
 									</td>
 									<td>
-										<div>
-											<select class="form-select" name="grade"
-												style="border-width: 0;">											
-												<option ${member.grade == '0' ? 'selected' : ''}>0</option>
-												<option ${member.grade == '1' ? 'selected' : ''}>1</option>
-												<option ${member.grade == '2' ? 'selected' : ''}>2</option>
-												<option ${member.grade == '3' ? 'selected' : ''}>3</option>
-												<option ${member.grade == '4' ? 'selected' : ''}>4</option>
-											</select>
+										<div class="text-start fs-6 py-1">
+											<c:if test="${member.grade == 1}">BLACK</c:if>
+											<c:if test="${member.grade == 2}">SILVER</c:if>
+											<c:if test="${member.grade == 3}">GOLD</c:if>
+											<c:if test="${member.grade == 4}">VIP</c:if>
 										</div>
 									</td>
 								</tr>
 								<tr class="">
 									<td>
-										<div class="pt-2">생성일</div>
+										<div class="py-1">생성일</div>
 									</td>
 									<td>
-										<div>
-											<input type="text" class="form-control" name="joindate"
-												id="joindate" placeholder="생성일"
-												value="${member.joindate }" style="border-width: 0;">
+										<div class="text-start fs-6 py-1">
+											${member.joindate }
 										</div>
 									</td>
 								</tr>
 								<tr class="">
 									<td>
-										<div class="pt-2">우편 번호</div>
+										<div class="py-1">우편 번호</div>
 									</td>
 									<td>
-										<div>
-											<input type="text" class="form-control" name="zipcode"
-												id="zipcode" placeholder="우편 번호"
-												value="${member.zipcode }" style="border-width: 0;">
+										<div class="text-start fs-6 py-1">
+											${member.zipcode }
 										</div>
 									</td>
 								</tr>
 								<tr class="">
 									<td>
-										<div class="pt-2">주소</div>
+										<div class="py-1">주소</div>
 									</td>
 									<td>
-										<div>
-											<input type="text" class="form-control" name="address1"
-												id="address1" placeholder="주소"
-												value="${member.address1 }" style="border-width: 0;">
+										<div class="text-start fs-6 py-1">
+											${member.address1 }
 										</div>
 									</td>
 								</tr>
 								<tr class="">
 									<td>
-										<div class="pt-2">상세 주소</div>
+										<div class="py-1">상세 주소</div>
 									</td>
 									<td>
-										<div>
-											<input type="text" class="form-control" name="address2"
-												id="address2" placeholder="상세 주소"
-												value="${member.address2 }" style="border-width: 0;">
+										<div class="text-start fs-6 py-1">
+											${member.address2 }
 										</div>
 									</td>
 								</tr>
@@ -186,17 +164,11 @@ td input:focus {
 						</div>
 					</div>
 
-					<div class="row my-5">
-						<div class="col-6 text-center">
-							<div class="row">
-								<div class="col text-end">
-									<input type="submit" value="수정하기" class="btn-3 px-3">
-								</div>
-								<div class="col text-start">
-									<input type="button" value="뒤로가기" class="btn-3 px-3"
-										onclick="javascript:history.back();">
-								</div>
-							</div>
+					<div class="row my-3">
+						<div class="col-6 text-start">							
+							<div class="col my-4 ms-2">
+								<input class="custom-btn btn-3 px-4" type="button" value="목록" style="font-size:small;" onclick="history.back();"/>
+							</div>							
 						</div>
 					</div>
 					
