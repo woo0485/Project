@@ -1,5 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+    String id = (String) session.getAttribute("id");
+    if (id != null) {
+%>
+    <form action="gallery" method="post" id="galleryidform">
+        <input type="hidden" name="id" value="<%= id %>">
+    </form>
+<%
+    } else {
+%>
+    <form action="gallery" method="post" id="galleryidform"></form>
+<%
+    }
+%>
 <style type="text/css">
 	a:link{text-decoration:none;}
 	a:visited{text-decoration:none;}
@@ -9,9 +23,9 @@
 <div class="row my-3 pt-5">
 		<div class="col-10 offset-1 ">
 			<div class="row offset-8">
-		 	<form class="d-flex" role="search">
-		        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-		        <button class="btn btn-outline-success" type="submit">Search</button>
+		 	<form class="d-flex" role="search" action="mainSearch">
+		        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchWord">
+		        <button class="btn btn-outline-dark" type="submit">Search</button>
 		      </form>
 			</div>
 			
@@ -42,7 +56,7 @@
 					          <ul class="dropdown-menu">
 					            <li><a class="dropdown-item" href="news">축제 기사</a></li>
 					            <li><a class="dropdown-item" href="productList">축제 정보</a></li>
-					            <li><a class="dropdown-item" href="gallery">갤러리</a></li>
+					            <li><a class="dropdown-item" href="gallery" id="galleryPage">갤러리</a></li>
 					          </ul>
 					        </li>
 					        <li class="nav-item dropdown me-5">
@@ -84,6 +98,7 @@
 						           
 							          <ul class="dropdown-menu">
 							            <li><a class="dropdown-item" href="myPageMain?id=${sessionScope.id}">마이페이지</a></li>
+							           	<li><a class="dropdown-item" href="#">장바구니</a></li>
 							           	<li><a class="dropdown-item" href="logout">로그아웃</a></li>
 							          </ul>
 							        </li>

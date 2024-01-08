@@ -21,7 +21,7 @@
 			${my.couponclosedate}<br>
 		
 	
-			${coupon.couponname} - 쿠폰테이블 이름
+			${coupon.couponname} - 쿠폰테이블 이름<br>
 			${coupon.couponno} - 쿠폰테이블에서 가져온 기존 쿠폰번호
 
 </body> 

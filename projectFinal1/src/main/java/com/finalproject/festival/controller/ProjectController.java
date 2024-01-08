@@ -26,8 +26,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.finalproject.festival.domain.Admin;
 import com.finalproject.festival.domain.Gallery;
+import com.finalproject.festival.domain.Main;
 import com.finalproject.festival.domain.Member;
 import com.finalproject.festival.domain.News;
+import com.finalproject.festival.domain.Product;
 import com.finalproject.festival.service.GalleryService;
 import com.finalproject.festival.service.MailService;
 import com.finalproject.festival.service.MemberService;
@@ -55,16 +57,34 @@ public class ProjectController {
 	
 	@RequestMapping("/main")//메인페이지로 이동
 	public String main (Model model) {
-		List<Gallery>galleryList = new ArrayList<>();
-		List<News>newsList = new ArrayList<>();
-		galleryList = galleryService.gallery();
-		newsList = newsService.newslist(); 
-		
+		List<Gallery>galleryList = galleryService.gallery();
+		List<News>newsList =  newsService.newslist();
+		List<Product>productList = memberService.mainProductCarousel();
+		 
+		System.out.println(productList);
 		model.addAttribute("galleryList",galleryList);
 		model.addAttribute("newsList",newsList);
-		
+		model.addAttribute("productList", productList);
 		return "main";
 	}
+	
+	@RequestMapping("/mainSearch")
+	public String mainSearchPage(String searchWord, Model model) {
+		
+		String keyword = searchWord.replaceAll("\\s", "");//정규식으로 공백제거
+		
+		List<Main> mainSearchResult =memberService.mainSearchPage(keyword);
+		
+		System.out.println("keyword-----------"+keyword);
+		
+		model.addAttribute("mainSearchResult",mainSearchResult);
+		model.addAttribute("keyword",keyword);
+	System.out.println(mainSearchResult );
+	
+		return "mainSearchPage";
+	}
+	
+	/********************************** member ****************************************/
 	
 	@RequestMapping("/login")//로그인 페이지로 이동
 	public String loginFrom (){
@@ -80,6 +100,11 @@ public class ProjectController {
 	@RequestMapping("/memberJoinForm")//회원가입페이지
 	public String memberJoinForm(){
 		return"memberJoinForm";
+	}
+	
+	@RequestMapping("/joinSuccess")
+	public String joinSuccess() {
+		return "joinSuccess";
 	}
 	
 	@RequestMapping("/privacyPolicyPage")//정보처리방침
@@ -102,37 +127,13 @@ public class ProjectController {
 		return "idPasswordFindPage";
 	}
 	
-	@RequestMapping("/logout")
+	@RequestMapping("/logout")//로그아웃
 	public String logout(HttpSession session) {
 		session.removeAttribute("id");
 		session.removeAttribute("userType");
-		return "main";
+		return "redirect:main";
 	}
-	
-	//adminUser
-	@RequestMapping("/adminUser")
-	public String adminUser(Model model) {
-		
-		
-		model.addAttribute("adminList",memberService.adminUserSelect());
-		
-		return "adminUser";
-	}
-	
-	//adminAdd
-	@RequestMapping(value = "/adminUserAdd",method = RequestMethod.POST )
-	public String adminUserAdd(String adminname,String adminid,String adminpassword) {
-		Map<String, Object> adminUserAdd = new HashMap<>();
-		String password = passwordEncoder.encode(adminpassword);
-		
-		adminUserAdd.put("adminname", adminname);
-		adminUserAdd.put("adminid", adminid);
-		adminUserAdd.put("adminpassword", password);
-		
-		memberService.adminUserAdd(adminUserAdd);
-		return "redirect:adminUser";
-	}
-	
+
 	
 	
 	//로그인 
@@ -213,7 +214,6 @@ public class ProjectController {
 	@ResponseBody
 	@RequestMapping(value = "/mailCheck", method = RequestMethod.POST)
 	public String mailCheck(String email) {
-		System.out.println("이메일 인증 요청이 들어옴!");
 		System.out.println("이메일 인증 이메일 : " + email);
 		return mailService.joinEmail(email);
 	}
@@ -224,7 +224,7 @@ public class ProjectController {
 	//회원가입 
 	@ResponseBody
 	@RequestMapping(value = "/memberJoin", method = RequestMethod.POST)
-	public String memberJoin(@RequestParam("joinName")String name,@RequestParam("joinId")String id,@RequestParam("phoneNumber")String phonenumber,
+	public String memberJoin(@RequestParam("joinName")String name,@RequestParam("joinId")String id,@RequestParam("phoneNumber")String phone,
 							 @RequestParam("joinPasswordCheck")String password,@RequestParam("zipcode")String zipcode,
 							 @RequestParam("address1")String address1,@RequestParam("address2")String address2,
 							 @RequestParam("eMailId")String eMailId,@RequestParam("eMailDomain")String eMailDomain){
@@ -232,9 +232,12 @@ public class ProjectController {
 					String email = eMailId +"@"+eMailDomain;
 					String passEncode = passwordEncoder.encode(password);
 					
+					String phonenumber = phone.replaceFirst("(\\d{3})(\\d{4})(\\d{4})", "$1-$2-$3");
+					
 						Member member =new Member();
 						member.setName(name);
 						member.setId(id);
+						member.setPhonenumber(phonenumber);
 						member.setPassword(passEncode);
 						member.setZipcode(zipcode);
 						member.setAddress1(address1);
@@ -242,9 +245,9 @@ public class ProjectController {
 						member.setEmail(email);
 						
 						memberService.joinMember(member);
+						memberService.newMemberCoupon(id);
 		
-		
-		return "joinSuccess";
+		return "redirect:joinSuccess";
 	}
 	
 
@@ -306,5 +309,34 @@ public class ProjectController {
 		return result;
 	}
 	
+	/******************************** admin *************************************/
+	
+	//adminUser
+	@RequestMapping("/adminUser")
+	public String adminUser(Model model) {
+		
+		
+		model.addAttribute("adminList",memberService.adminUserSelect());
+		
+		return "adminUser";
+	}
+	
+	//adminAdd
+	@RequestMapping(value = "/adminUserAdd",method = RequestMethod.POST )
+	public String adminUserAdd(String adminname,String adminid,String adminpassword) {
+		Map<String, Object> adminUserAdd = new HashMap<>();
+		String password = passwordEncoder.encode(adminpassword);
+		
+		adminUserAdd.put("adminname", adminname);
+		adminUserAdd.put("adminid", adminid);
+		adminUserAdd.put("adminpassword", password);
+		
+		memberService.adminUserAdd(adminUserAdd);
+		return "redirect:adminUser";
+	}
+	
+	
+	
+
 	
 }

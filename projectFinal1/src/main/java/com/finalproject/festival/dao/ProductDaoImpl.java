@@ -58,7 +58,6 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public void insertProduct(Product p) {
 		sqlSession.insert(NAME_SPACE + ".insertProduct", p);
-		
 	}
 
 	@Override

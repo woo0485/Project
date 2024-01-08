@@ -14,7 +14,7 @@ public class NewsController {
 	@Autowired
 	NewsService ns;
 	
-	@RequestMapping("/news")//기사페이지
+	@RequestMapping("/news")
 	public String news(Model m) {
 		
 		m.addAttribute("newsList",ns.newslist());

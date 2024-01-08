@@ -73,7 +73,7 @@
 							<input type="password" id="joinPassword" class="form-control border-0" style="height: 50px;">
 						</div> 
 						<div class="col">
-							<i class="bi bi-eye" style="font-size: 25px;" id="seeJoinPassword"></i>
+							<i class="bi bi-eye-slash" style="font-size: 25px;" id="seeJoinPassword"></i>
 						</div>
 					</div>
 					<div class="row">
@@ -101,7 +101,7 @@
 									class="form-control border-0" data-code="false" style="height: 50px;">
 						</div>
 						<div class="col">
-							<i class="bi bi-eye" style="font-size: 25px;" id="seeJoinPasswordCheck"></i>
+							<i class="bi bi-eye-slash" style="font-size: 25px;" id="seeJoinPasswordCheck"></i>
 						</div>
 					</div>
 					<div class="row">

@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
 <link href="resources/css/hyunju.css" rel="stylesheet">
 <script src="resources/js/jquery-3.2.1.min.js"></script>
 <script src="resources/js/HyunJu.js"></script>
-
+<script>
+  $(function() {
+    $("#productopendate, #productclosedate").datepicker();
+  });
+</script>
 	<!-- content 영역 -->
 	<div class="row my-5" id="global-content">		
 		<div class="offset-1 col-10">
@@ -39,20 +44,21 @@
 				  </div>
 				  <div class="col-10 offset-1">
 				    <label for="productlocation" class="form-label">위치 </label>
-				    <textarea name="text" id="productlocation" class="form-control" rows="10"></textarea>
+				    <input type="text" class="form-control" name="productlocation" id="productlocation">
 				  </div>
 				  <div class="col-10 offset-1">
 				    <label for="productopendate" class="form-label">오픈일 </label>
-				    <textarea name="text" id="productopendate" class="form-control" rows="10"></textarea>
+				    <input type="text" class="form-control" name="productopendate" id="productopendate">
 				  </div>
 				    <div class="col-10 offset-1">
 				    <label for="productclosedate" class="form-label">마감일 </label>
-				    <textarea name="text" id="productclosedate" class="form-control" rows="10"></textarea>
+				    <input type="text" class="form-control" name="productclosedate" id="productclosedate">
 				  </div>
 				  <div class="col-10 offset-1">
 				    <label for="productticketcount" class="form-label">티켓 수</label>
 				     <input type="text" class="form-control" name="productticketcount" id="productticketcount">
 				  </div>
+				  
 				  <div class="col-10 offset-1">
 				    <label for="productremainticketcount" class="form-label">남은 티켓 수</label>
 				    <input type="text" class="form-control" name="productremainticketcount" id="productremainticketcount">
