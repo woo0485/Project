@@ -26,7 +26,7 @@
 				  </c:if>
 				</c:forEach>
 				  </div>
-					 <c:forEach var="product" items="${productList}" varStatus="productLoop" end="5"> 
+					  <c:forEach var="product" items="${productList}" varStatus="productLoop" end="5"> 
 					  <div class="carousel-inner">
 					  <c:if test="${productLoop.index == 0 }">
 						    <div class="carousel-item active">
@@ -51,9 +51,6 @@
 					      </div>
 					    </div>
 					  </c:if>
-					  
-					  
-					  
 					  </c:forEach>
 				    
 				  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
@@ -93,7 +90,7 @@
 	                <a href="#" style="font-size: 25px;">${news.newstitle}</a>
 	            </div>
 	        </c:forEach>
-	    </div>
+	    </div>	
 	</div>
 	
 	<div class="row my-5">
