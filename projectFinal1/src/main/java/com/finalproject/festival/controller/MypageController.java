@@ -4,11 +4,14 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.finalproject.festival.service.MyPageMemberService;
@@ -47,6 +50,15 @@ public class MypageController {
 		return "myPageReservation";
 	}
 	
+	// 마이페이지 예약취소
+	@RequestMapping(value = "/mydelete")
+	public String myPageReservationdelete(@RequestParam("id")String id, @RequestParam("productno")int productno, @RequestParam("reservationticketcount")int reservationticketcount,  Model model){
+		
+		
+		
+		
+		return "redirect:myPageReservation?id=" + id;
+	}
 	// 마이페이지 문의
 	@RequestMapping("/myPageInquiry")
 	public String myPageInquiry(@RequestParam("id")String id, Model model) {

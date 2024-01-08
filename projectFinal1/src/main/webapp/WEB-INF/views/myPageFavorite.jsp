@@ -17,8 +17,8 @@
 		 	<div class="row">
 		 		<div class="col">
 		 			${ga.galleryno}<br>
-		 			${ga.id} <br>
-		 			${ga.gallerytitle }<br>
+		 			작성자 ${ga.id} <br>
+		 			${ga.gallerytitle}<br>
 		 			${ga.galleryimage}<br>
 		 		</div>
 		 	</div>
