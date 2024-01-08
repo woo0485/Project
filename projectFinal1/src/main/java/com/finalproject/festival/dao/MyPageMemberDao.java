@@ -21,10 +21,10 @@ public interface MyPageMemberDao {
 	public abstract Member MyInfo(String id);
 	
 	// 회원쿠폰
-	public abstract MemberCoupon MyCoupon(String id);
+	public abstract List<MemberCoupon> MemberCoupon(String id);
 
 	// 기존쿠폰
-	public abstract Coupon Coupon(String id);
+	public abstract List<Coupon> Coupon(List<MemberCoupon> MemberCoupon);
 
 	// 회원문의
 	public abstract List<Question> Question (String id);
@@ -57,6 +57,7 @@ public interface MyPageMemberDao {
 	// 회원예약 - 취소 후 반환 
 	public abstract Reservation MyCancleTicket (int reservationticketcount, int productno, String id);
 	 
-	
+	// 회원주소변경
+	public abstract void myupdate(Member Member);
 	 
 }

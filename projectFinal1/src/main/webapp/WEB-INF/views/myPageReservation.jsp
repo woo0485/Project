@@ -16,7 +16,7 @@
 	 		<jsp:include page="/WEB-INF/views/myPageHeader.jsp"></jsp:include>
 	</div>
 					
-						<c:if test="${fn:length(re) == 0}">
+							<c:if test="${fn:length(re) == 0}">
 							    <div class="row">
 							        <div class="col">
 							            예매하신 축제 상품이 없습니다! 어서 빨리 GALAGO에서 다양한 축제를 즐겨보세요!

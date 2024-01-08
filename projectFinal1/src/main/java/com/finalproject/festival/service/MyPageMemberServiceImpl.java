@@ -31,14 +31,14 @@ public class MyPageMemberServiceImpl implements MyPageMemberService {
 	}
 	
 	@Override
-	public MemberCoupon MyCoupon(String id) {
-		MemberCoupon mycoupon = dao.MyCoupon(id);
-		return mycoupon;
+	public List<MemberCoupon> MemberCoupon (String id) {
+		List<MemberCoupon> MemberCoupon = dao.MemberCoupon(id);
+		return MemberCoupon;
 	}
 	
 	@Override
-	public Coupon Coupon(String id) {
-		Coupon coupon = dao.Coupon(id);
+	public List<Coupon> Coupon(List<MemberCoupon> MemberCoupon) {
+		List<Coupon> coupon = dao.Coupon(MemberCoupon);
 		return coupon;
 	}
 	
@@ -110,6 +110,11 @@ public class MyPageMemberServiceImpl implements MyPageMemberService {
 	 
 	 	 return MyCancleTicket; 
 	 }
+
+	@Override
+	public void myupdate(Member Member) {
+		dao.myupdate(Member);
+	}
 	 
 	
 }

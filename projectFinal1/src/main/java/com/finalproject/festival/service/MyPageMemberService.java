@@ -17,9 +17,9 @@ public interface MyPageMemberService {
 
 	public Member MyInfo(String id);
 	
-	public MemberCoupon MyCoupon (String id);
+	public List<MemberCoupon> MemberCoupon (String id);
 	
-	public Coupon Coupon(String id);
+	public List<Coupon> Coupon(List<MemberCoupon> MemberCoupon);
 	
 	public List<Question> Question(String id);
 	
@@ -40,5 +40,7 @@ public interface MyPageMemberService {
 	public Reservation MyReservation (String id, int productno);
 	
 	public Reservation MyCancleTicket (int reservationticketcount, int productno, String id);
+	
+	public abstract void myupdate(Member Member);
 	 
 }

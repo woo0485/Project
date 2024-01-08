@@ -33,7 +33,6 @@ public class MypageController {
 	@Autowired
 	private MyPageMemberService service;
 	
-	
 	// 마이페이지 예약
 	@RequestMapping("/myPageReservation")
 	public String myPageReservation(@RequestParam("id")String id, Model model) {
@@ -105,10 +104,13 @@ public class MypageController {
 	// 마이페이지 쿠폰
 	@RequestMapping("/myPageCoupon")
 	public String myPageCoupon(@RequestParam("id")String id, Model model) {
-		MemberCoupon membercoupon = service.MyCoupon(id);
-		Coupon coupon = service.Coupon(id);
-		model.addAttribute("membercoupon", membercoupon);
-		model.addAttribute("coupon",coupon);
+		List<MemberCoupon> MemberCoupon = service.MemberCoupon(id);
+		for(MemberCoupon membercoupon : MemberCoupon) {
+			int membercouponno = membercoupon.getCouponno();
+		}
+		List<Coupon> Coupon = service.Coupon(MemberCoupon);
+		model.addAttribute("MemberCoupon", MemberCoupon);
+		model.addAttribute("Coupon",Coupon);
 		return "myPageCoupon";
 	}
 	
@@ -165,6 +167,14 @@ public class MypageController {
 		
 		model.addAttribute("member", member);
 		return "myPageMain";
+	}
+	
+	@RequestMapping("/myupdate")
+	public String myupdate(Member Member) {
+		
+		service.myupdate(Member);
+		String id = Member.getId();
+		return "redirect:myPageMain?id=" + id;
 	}
 	
 	

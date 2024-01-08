@@ -1,7 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="my" value="${member}"></c:set>    
+<c:set var="my" value="${member}"></c:set>
+<script>
+$(function(){
+    $("#btnZipcode").on("click", function() {
+        // input 태그의 타입을 hidden에서 text로 변경
+        $("#zipcode").attr("type", "text");
+        $("#address1").attr("type", "text");
+        $("#address2").attr("type", "text");
+        $("#myUpAddr").attr("type", "submit");
+    });
+});
+</script>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +36,7 @@
 								<tr class="table-danger">
 									<th>회원정보</th>
 								</tr>
-							</thead>
+							</thead> 
 							<tbody class="text-start">
 								<c:if test="${sessionScope.id eq my.id}">	
 									<tr>
@@ -73,7 +84,19 @@
 									<tr>
 										<th style="border:none;">주소</th>
 												<td style="border:none;">${my.address1} - ${my.address2}</td>
-
+												<td><input type="button" class="btn btn btn-outline-dark" id="btnZipcode" 
+									onclick="findAddr()" value="주소변경"></td>
+									</tr>
+									<tr>
+									<form name="UpdateAddr" id ="updateAddr" action="myupdate">
+										<input type="hidden" id="id" name="id" value="${sessionScope.id}">
+										<input type="hidden" class="form-control border-0" name="zipcode"
+												id="zipcode" maxlength="5" readonly data-code="false" style="height: 50px;" >
+										<input type="hidden" class="form-control border-0"  name="address1" id="address1"
+										 readonly>
+										<input type="hidden" class="form-control border-0" name="address2" id="address2">
+										<input type="hidden" class="btn btn btn-outline-dark" id="myUpAddr" value="확인">
+									</form> 
 									</tr>
 									
 								</c:if>

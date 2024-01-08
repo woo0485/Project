@@ -36,16 +36,24 @@ public class MyPageMemberDaoImpl implements MyPageMemberDao {
 	}
 	
 	@Override
-	public MemberCoupon MyCoupon (String id) {
+	public List<MemberCoupon> MemberCoupon(String id) {
 		
-		return st.selectOne(NAME_SPACE + ".MyCoupon", id);
+		return st.selectList(NAME_SPACE + ".MyCoupon", id);
 	}
 	
 	@Override
-	public Coupon Coupon (String id) {
+	public List<Coupon> Coupon (List<MemberCoupon> MemberCoupon) {
+		List<Coupon> Coupon = new ArrayList<Coupon>();
 		
-		return st.selectOne(NAME_SPACE + ".Coupon", id);
+		for(MemberCoupon membercoupon : MemberCoupon) {
+			int couponno = membercoupon.getCouponno();
+			Coupon c = st.selectOne(NAME_SPACE + ".Coupon", couponno);
+			Coupon.add(c);
+		}
+		
+		return Coupon;
 	}
+	
 	
 	@Override
 	public List<Question> Question (String id) {
@@ -146,6 +154,13 @@ public class MyPageMemberDaoImpl implements MyPageMemberDao {
 	 map.put("productno", productno);
 		 return st.selectOne(NAME_SPACE + ".MyCancleTicket", map ); 
 	 }
+
+	@Override
+	public void myupdate(Member Member) {
+		
+		st.update(NAME_SPACE + ".MyAddrUpdate", Member);
+		
+	}
 	 
 	
 	

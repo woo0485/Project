@@ -11,12 +11,15 @@
 	
 	
 		<select id="MyCoupon" resultType="MemberCoupon">
-			SELECT * FROM MemberCoupon WHERE id = #{id}
+			SELECT * 
+			FROM MemberCoupon 
+			WHERE id = #{id}
 		</select>
 	
 		<select id="Coupon" resultType="Coupon">
-			SELECT c.couponname, c.couponno, c.coupondiscountrate FROM Coupon c JOIN MemberCoupon mc ON c.couponno = mc.couponno
-            WHERE mc.id = #{id}
+			SELECT * 
+			FROM Coupon
+            WHERE couponno = #{couponno}
 		</select>
 		
 		<select id = "Question" resultType="Question">
@@ -26,13 +29,13 @@
 		<update id="MyGrade" parameterType="HashMap">
 			UPDATE Member
 			SET grade = #{grade}
-			WHERE id = #{id};
+			WHERE id = #{id}
 		</update>
 		
 		<select id="GalleryBookMark" resultType="GalleryBookMark">
 			SELECT *
 			FROM  GalleryBookmark
-			WHERE id = #{id};
+			WHERE id = #{id}
 		</select>
 		
 		<select id="GalleryInfo" resultType="Gallery" parameterType="int">
@@ -76,5 +79,12 @@
 			SET productremainticketcount = productremainticketcount + #{reservationticketcount}
 			WHERE productno = #{productno}
 		</update>
+		
+		<update id="MyAddrUpdate" parameterType="Member">
+			UPDATE Member
+			SET zipcode = #{zipcode}, address1 = #{address1}, address2 = #{address2}
+			WHERE id = #{id}
+		</update>
+		
 		
 	</mapper>

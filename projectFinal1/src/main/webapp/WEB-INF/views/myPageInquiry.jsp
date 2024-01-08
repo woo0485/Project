@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="qu" value="${Question}"></c:set>    
 <!DOCTYPE html>
 <html>
@@ -12,6 +13,13 @@
 	<div class="row col-auto">
 	 		<jsp:include page="/WEB-INF/views/myPageHeader.jsp"></jsp:include>
 	 </div>
+	 <c:if test="${fn:length(qu) == 0}">
+							    <div class="row">
+							        <div class="col">
+							            예매하신 문의 내용이 없습니다!
+							        </div>
+							    </div>
+							</c:if>
 	<c:forEach var="qu" items="${Question}" >
 		<div class="row">
 			<div class="col">
