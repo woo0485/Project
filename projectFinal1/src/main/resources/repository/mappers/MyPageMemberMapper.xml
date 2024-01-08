@@ -65,7 +65,7 @@
 			WHERE productno = #{productno}
 		</select>
 		
-		<delete id="MyReservation" parameterType="HashMap">
+		<delete id="MyReservation" parameterType="Reservatiion">
 			DELETE
 			FROM Reservation
 			WHERE productno = #{productno} AND id = #{id}

@@ -37,7 +37,7 @@ public interface MyPageMemberService {
 	
 	public List<Product> ReProduct (List<Reservation> Reservation);
 	
-	
+	public List<Reservation> MyReservation(String id, int productno);
 	
 	
 	
