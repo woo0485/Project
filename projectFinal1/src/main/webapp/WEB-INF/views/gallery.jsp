@@ -8,12 +8,14 @@
 
 <div class="row">
 	<div class="col-10 offset-1">
-	<form action="galleryModifyForm" method="POST" id="galleryModifyForm">
-		<input type="hidden" name="galleryno" id="galleryModifyFormgalleryno">
-		<input type="hidden" name="gallerytitle" id="galleryModifyFormgallerytitle">
-		<input type="hidden" name="gallerycontent" id="galleryModifyFormgallerycontent">
-		<input type="hidden" name="gallerywriter" id="galleryModifyFormgallerywriter">
-	</form>
+		<form action="galleryModifyForm" method="POST" id="galleryModifyForm">
+			<input type="hidden" name="galleryno" id="galleryModifyFormgalleryno">
+			<input type="hidden" name="gallerytitle"
+				id="galleryModifyFormgallerytitle"> <input type="hidden"
+				name="gallerycontent" id="galleryModifyFormgallerycontent">
+			<input type="hidden" name="gallerywriter"
+				id="galleryModifyFormgallerywriter">
+		</form>
 		<div class="modal fade" id="passwordModal" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -314,6 +316,8 @@
 							<div class="modal-body">${gallery.galleryuploaddate}</div>
 							<div class="modal-footer">
 								<c:if test="${sessionScope.id == gallery.id}">
+									<input type="hidden" class="galleryModifyDeleteInput"
+										value="${gallery.galleryno}">
 									<button type="button"
 										class="btn btn-outline-dark galleryModifyFormButton">수정</button>
 									<button type="button"
@@ -449,6 +453,8 @@
 							<div class="modal-body">${gallery.galleryuploaddate}</div>
 							<div class="modal-footer">
 								<c:if test="${sessionScope.id == gallery.id}">
+									<input type="hidden" class="galleryModifyDeleteInput"
+										value="${gallery.galleryno}">
 									<button type="button"
 										class="btn btn-outline-dark galleryModifyFormButton">수정</button>
 									<button type="button"
