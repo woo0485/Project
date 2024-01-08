@@ -94,6 +94,7 @@ public class ProductController {
 	 * 
 	 * 
 	 */
+	
 	@RequestMapping("/productDetail")
 	public String ProductDetail(Model m,  int productno,
 			@RequestParam(value="pageNum", required=false, 
@@ -120,11 +121,12 @@ public class ProductController {
 		return "productDetail";
 	}
 	
-	// 1) 게시글 쓰기폼에서 들어오는....
+	// 1월 6일 수정) 게시글 쓰기폼에서 들어오는....
 	@RequestMapping(value="/writeProcess", method=RequestMethod.POST)
 	public String insertProduct(
 			HttpServletRequest request,
-			int productprice, String productname, String productcontent, String adminpassword,
+			int productprice, String productname, String productcontent, 
+			String adminpassword,
 			@RequestParam(value="productimage", required=false) MultipartFile multipartFile, 
 			String productlocation, Timestamp productopendate, Timestamp productclosedate,
 			int productticketcount, int productremainticketcount) 

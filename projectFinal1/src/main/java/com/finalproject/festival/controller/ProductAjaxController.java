@@ -1,4 +1,4 @@
-package com.finalproject.festival.product.ajax;
+package com.finalproject.festival.controller;
 
 import java.util.Map;
 

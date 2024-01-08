@@ -48,17 +48,46 @@ ORDER BY sb.basketno
 			AND productno =#{productno}
 	</select> -->
 	
-	<insert id="insertBasket" >
+	<!--///////////  여기서부터는 장바구니에 담기 시작 ///////////////////////////////////////////////////////////////////////////-->
+	<!--  장바구니에서  id 에 해당하는 productno를 조회한다  그래서 dao에서 productno가 존재하면/ 존재하지 않으면 으로 나눠서  1월 6일-->
+	<!-- <select id="isDupBasketCheck" resultType="String" resultMap="basketResultMap"> -->
+	<!-- 
+	<select id="isDupBasketCheck" resultType="hashmap"  parameterType="Map">
+	SELECT productno
+        FROM ShoppingBasket
+        WHERE id = #{id}
+	</select>
+	 -->
+	<select id="isDupBasketCheck" resultType="Integer" parameterType="map">
+    SELECT COUNT(*) 
+   		 FROM ShoppingBasket
+    WHERE id = #{id} AND productno = #{productno}
+	</select>
+	
+<!--  장바구니 추가하는 거 1월 5일 수정 -->
+	<insert id="insertBasket"   parameterType="Basket"  useGeneratedKeys="true"  keyProperty="basketno">
 		INSERT INTO ShoppingBasket
-				(basketno, id, productno, basketproductcount)
+				(id, productno, basketproductcount)
 		
-			VALUES( #{basketno}, #{id}, #{productno}, #{basketproductcount})
+			VALUES( #{id}, #{productno}, #{basketproductcount})
 	</insert>
+	
+	<!--  장바구니에 prodcutno가 이미 존재할 때 수량만 update 해줌 1월 6일  MYSQL OK-->
+	<update id="updateBasketProductCount" parameterType="Map">
+  UPDATE ShoppingBasket 
+    	SET basketproductcount = basketproductcount + #{basketproductcount}
+   		 WHERE productno = #{productno} 
+    AND id = #{id}
+</update>
+	<!--///////////  여기서부터는 장바구니에 담기 끝 ~~~  ////////////////////////////////////////////////////////////////////////////-->
+	
+	
 	
 	<!--  장바구니에서 basketno에 해당하는 제품 삭제하기 1월 5일 -->
 	<delete id="deletdBasket">
 		DELETE FROM ShoppingBasket
-		WHERE basketno = #{basketno}
+        		WHERE id = #{id} 
+        		AND basketno = #{basketno}
 	</delete>
 	
 	<resultMap id="basketResultMap" type="Basket" >

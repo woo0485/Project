@@ -21,7 +21,7 @@
 <div class="row my-5" id="global-content">
 	<div class="offset-1 col-10">
 		<form name="checkForm" id="checkForm">
-			<input type="text" name="productno" id="productno" value="${product.productno}"> 
+			<input type="hidden" name="productno" id="productno" value="${product.productno}"> 
 			<input type="hidden" name="adminpassword" id="rPass"> 
 			<input type="hidden" name="pageNum" value="${ pageNum }" />
 
@@ -30,16 +30,17 @@
 				<input type="hidden" name="keyword" value="${ keyword }" />
 			</c:if>
 		</form>
+		<!--  장바구니에 단순히 보여지는 것만 -->
 		
-	<!--  ########## 장바구니에 담을 때  js로 넘겨지는 form #############-->
-		<form name="basketForm" id="basketForm"  action="basket" method="post" >
-		<br><br><br><br><br>
-			아이디: <input type="hidden" name="id" id="rId" value="${sessionScope.id}"> <br>
-			basketno: <input type="text" name="basketno"  id="basketno"  value="${basket.basketno}"> <br>
-			productno: <input type="text" name="productno" id="productno01" value="${product.productno}"> <br>
-			productcount: <input type="text" name="basketproductcount"  id="basketproductcount" value="${basket.basketproductcount}"><br>
-			productprice: <input type="text" name="productprice"  id="productprice"  value="${product.productprice}"><br>
-			productname: <input type="text" name="productname"  id="productname"  value="${product.productname}"><br>
+	<!--  ########## 장바구니에 추가할 때 form #############-->
+		<form name="addBasket" id="addBasket"  action="addBasket" method="post" >
+		<!-- 
+		<input type="text" name="basketno"  id="basketno"  value="${basket.basketno}"> 
+		<input type="text" name="productprice"  id="productprice"  value="${product.productprice}">
+		<input type="text" name="productname"  id="productname"  value="${product.productname}">
+		 -->
+			<input type="hidden" name="id" id="rId" value="${sessionScope.id}"> 
+			<input type="hidden" name="productno" id="productno01" value="${product.productno}"> 
 
 <!-- @@@@@@@@ 게시 글 상세보기 영역  @@@@@@@@@@-->
 		<table>
@@ -65,11 +66,12 @@
 		
 		<!--  ############ 여기서부터는 회원 아이디 로그인했을 때만 구매버튼 보이게 한다 (장바구니) ############## -->	
 		<c:if test="${not empty sessionScope.id}">	
-		<!--  수량 선택 -->
-		<label for="basketproductcount" class="form-label">수량을 선택하시오 테스트</label>
-				<input type="number"  value="1" name="basketproductcount"  id="basketproductcount" min="1" max="4" >
+		<!--  수량 선택  남은 수량 : productremainticketcount -->
+			<label for="basketproductcount" class="form-label">수량을 선택하시오 테스트</label>
+			<!-- **** max 에  남은 티켓 수를 넣어줘야한다.??????? **** -->
+				<input type="number"  value="1" name="basketproductcount"  id="basketproductcount" min="1" max="${ product.productremainticketcount }" >
 		<!--  수량 선택 끝--> <br><br>
-				<input type="submit" value="장바구니" class="btn btn-primary">	
+				<input type="submit" value="장바구니 담기" class="btn btn-primary">	
 		</c:if>	
 				<br><br>
 						전체 티켓 수: ${ product.productticketcount }
@@ -79,10 +81,24 @@
 			</td>
 		</tr>
 		</table>
-				<br><br><br>
 	</form>
-		<!--  ############  (장바구니) 끝 ############## -->	
+		<!--  ############  (장바구니) 끝 ############## -->
 		
+		<!--%%%%%%%%  장바구니에 단순히 보여지는 것만 %%%%%%%%%%-->
+		<c:if test="${not empty sessionScope.id}">	
+		<form name="basketForm03" id="basketForm03"  action="basket" method="post" >
+			<input type="hidden" name="id" id="rId03" value="${sessionScope.id}"> 
+			<input type="hidden" name="basketno"  id="basketno03"  value="${basket.basketno}"> 
+			<input type="hidden" name="productno" id="productno03" value="${product.productno}"> 
+			<input type="hidden" name="basketproductcount"  id="basketproductcount03" value="${basket.basketproductcount}">
+			<input type="hidden" name="productprice"  id="productprice03"  value="${product.productprice}">
+			<input type="hidden" name="productname"  id="productname03"  value="${product.productname}">
+			<input type="submit" value="장바구니 가기" class="btn btn-danger">	
+		</form>
+		</c:if>	
+		<!--%%%%%%%%  장바구니에 단순히 보여지는 것만 끝 %%%%%%%%%%-->
+			<br><br><br>
+			
 		<!-- ///////////  축제 정보 이미지와 내용  //////////// -->
 		<div class="contentiamge">
 				<img src="http://via.placeholder.com/800x1000" alt=""><br>
