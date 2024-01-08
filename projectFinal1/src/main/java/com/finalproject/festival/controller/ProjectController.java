@@ -73,13 +73,17 @@ public class ProjectController {
 		
 		String keyword = searchWord.replaceAll("\\s", "");//정규식으로 공백제거
 		
-		List<Main> mainSearchResult =memberService.mainSearchPage(keyword);
+		List<Product> mainSearchProduct = memberService.mainSearchProduct(keyword);
 		
-		System.out.println("keyword-----------"+keyword);
+		List<News> mainSearchNews = memberService.mainSearchNews(keyword);
 		
-		model.addAttribute("mainSearchResult",mainSearchResult);
+		List<Gallery> mainSearchGallery = memberService.mainSearchGallery(keyword);
+		
+		model.addAttribute("mainSearchProduct",mainSearchProduct);
+		model.addAttribute("mainSearchNews",mainSearchNews);
+		model.addAttribute("mainSearchGallery",mainSearchGallery);
 		model.addAttribute("keyword",keyword);
-	System.out.println(mainSearchResult );
+	
 	
 		return "mainSearchPage";
 	}

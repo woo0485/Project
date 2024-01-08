@@ -78,70 +78,23 @@
 	
 				<!--************** main ****************-->		
 				
-	<!-- Combined resultMap -->
-	<resultMap id="combinedResultMap" type="java.util.HashMap">
-	    <result property="tableName" column="table_name"/>
-	    <result property="itemTitle" column="item_title"/>
-	    <result property="itemContent" column="item_content"/>
-	    <result property="itemImg" column="item_img"/>
-	    <result property="itemNo" column="item_no"/>
-	    <result property="itemId" column="item_id"/>
-	    <result property="itemPrice" column="item_price"/>
-	</resultMap>
 				
 	<select id="mainProductCarousel" resultType="Product">
 		SELECT * FROM Product ORDER BY productbookmarkcount DESC
-	</select>	
+	</select>
+		
+	<select id="mainSearchProduct"  resultType="Product">
+		SELECT * FROM Product WHERE productname LIKE CONCAT('%', #{keyword}, '%') OR productcontent LIKE CONCAT('%', #{keyword}, '%');
+	</select>
 	
-	<select id="mainSearchPage" resultMap="combinedResultMap" resultType="Main">
-		 SELECT
-		    'Product' AS table_name,
-		    productname AS item_title,
-		    productcontent AS item_content,
-		    productimage AS item_img,
-		    productno AS item_no,
-		    NULL AS item_id,
-		    productprice AS item_price
-		    
-		FROM
-		    Product
-		WHERE
-		    productname LIKE CONCAT('%', #{keyword}, '%') OR
-		    productcontent LIKE CONCAT('%', #{keyword}, '%') 
-		
-		UNION
-		
-		SELECT
-		    'Gallery' AS table_name,
-		    gallerytitle AS item_title,
-		    gallerycontent AS item_content,
-		    galleryimage AS item_img,
-			galleryno AS item_no,
-		    id AS item_id,
-		   NULL AS item_price
-		FROM
-		    Gallery
-		WHERE
-		    gallerytitle LIKE CONCAT('%', #{keyword}, '%') OR
-		    gallerycontent LIKE CONCAT('%', #{keyword}, '%') 
-		
-		UNION
-		
-		SELECT
-		    'News' AS table_name,
-		    newstitle AS item_title,
-		    newscontent AS item_content,
-		    newsimage AS item_img,
-		    newsno AS item_no,
-		    NULL AS item_id,
-		    NULL AS item_price 
-		   
-		FROM
-		    News
-		WHERE
-		    newstitle LIKE CONCAT('%', #{keyword}, '%') OR
-		    newscontent LIKE CONCAT('%', #{keyword}, '%') 
-</select>	
+	<select id="mainSearchNews"  resultType="News">
+		SELECT * FROM News WHERE newstitle LIKE CONCAT('%', #{keyword}, '%') OR newscontent LIKE CONCAT('%', #{keyword}, '%');
+	</select>
+	
+	<select id="mainSearchGallery" resultType="Gallery">
+		SELECT * FROM Gallery WHERE gallerytitle LIKE CONCAT('%', #{keyword}, '%') OR gallerycontent LIKE CONCAT('%', #{keyword}, '%');
+	</select>
+	
 	
 </mapper>	
 

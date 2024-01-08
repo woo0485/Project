@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.finalproject.festival.domain.Admin;
+import com.finalproject.festival.domain.Gallery;
 import com.finalproject.festival.domain.Main;
 import com.finalproject.festival.domain.Member;
+import com.finalproject.festival.domain.News;
 import com.finalproject.festival.domain.Product;
 
 public interface MemberDao {
@@ -36,8 +38,11 @@ public interface MemberDao {
 	
 	/************************Main***************************/
 	
-	public List<Main> mainSearchPage(String keyword);
-	
 	public List<Product>mainProductCarousel();
 	
+	public List<Product> mainSearchProduct(String keyword);
+	
+	public List<News> mainSearchNews(String keyword);
+	
+	public List<Gallery> mainSearchGallery(String keyword);
 }

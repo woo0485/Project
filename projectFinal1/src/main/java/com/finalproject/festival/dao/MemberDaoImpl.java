@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.finalproject.festival.domain.Admin;
+import com.finalproject.festival.domain.Gallery;
 import com.finalproject.festival.domain.Main;
 import com.finalproject.festival.domain.Member;
+import com.finalproject.festival.domain.News;
 import com.finalproject.festival.domain.Product;
 
 @Repository
@@ -100,16 +102,26 @@ public class MemberDaoImpl implements MemberDao {
 	
 	/****************************************************************/
 
-	@Override
-	public List<Main> mainSearchPage(String keyword) {
-		
-		return st.selectList(NAME_SPACE+".mainSearchPage", keyword);
-	}
 
 	@Override
 	public List<Product> mainProductCarousel() {
 		
 		return st.selectList(NAME_SPACE+".mainProductCarousel");
+	}
+
+	@Override
+	public List<Product> mainSearchProduct(String keyword) {
+		return st.selectList(NAME_SPACE+".mainSearchProduct",keyword);
+	}
+
+	@Override
+	public List<News> mainSearchNews(String keyword) {
+		return st.selectList(NAME_SPACE+".mainSearchNews",keyword);
+	}
+
+	@Override
+	public List<Gallery> mainSearchGallery(String keyword) {
+		return st.selectList(NAME_SPACE+".mainSearchGallery",keyword);
 	}
 
 	

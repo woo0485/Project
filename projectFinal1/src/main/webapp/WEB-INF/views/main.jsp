@@ -79,7 +79,7 @@
 		<div class="col-1 d-flex align-items-center"><i class="bi bi-arrow-left-circle-fill" style="font-size: 2rem;"></i></div>
 		<c:forEach var="gallery" items="${galleryList}" varStatus="galleryLoop" end="10">
 			<div class="col gallery-item" style="display: ${galleryLoop.index <=4 ? 'inline' : 'none'};">
-				<img style="width: 120%; height: 300px;" src="resources/upload/example.png" alt="이미지1">
+				<img style="width: 120%; height: 300px;" src="resources/upload/${gallery.galleryimage}" alt="이미지1">
 			</div>
 		</c:forEach>
 		<div class="col-1 d-flex align-items-center"><i class="bi bi-arrow-right-circle-fill" style="font-size: 2rem;"></i></div>	
