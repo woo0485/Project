@@ -10,6 +10,7 @@ public class Reservation {
 	private int reservationprice;
 	private int reservationticketcount;
 	private Timestamp reservationdate;
+
 	private int totalReservationPrice;
 	private int salesTotalPrice;
 	
@@ -68,14 +69,6 @@ public class Reservation {
 		this.reservationticketcount = reservationticketcount;
 	}
 
-	public Timestamp getReservationdate() {
-		return reservationdate;
-	}
-
-	public void setReservationdate(Timestamp reservationdate) {
-		this.reservationdate = reservationdate;
-	}
-
 	public int getTotalReservationPrice() {
 		return totalReservationPrice;
 	}
@@ -90,6 +83,14 @@ public class Reservation {
 
 	public void setSalesTotalPrice(int salesTotalPrice) {
 		this.salesTotalPrice = salesTotalPrice;
+	}
+
+	public Timestamp getReservationdate() {
+		return reservationdate;
+	}
+
+	public void setReservationdate(Timestamp reservationdate) {
+		this.reservationdate = reservationdate;
 	}
 
 	
