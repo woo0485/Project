@@ -44,7 +44,7 @@
 	<view-controller path="/manageProduct?qestionCategory=product" view-name="redirect:/manage/manageProduct" />
 	<view-controller path="/manageIndividual?qestionCategory=individual" view-name="redirect:/manage/manageIndividual" />
 	<view-controller path="/manageCoupon" view-name="redirect:/manage/manageCoupon" />
-
+	<view-controller path="/manageFestivalProduct"	view-name="redirect:/manage/manageFestivalProduct" />
 
 		
 

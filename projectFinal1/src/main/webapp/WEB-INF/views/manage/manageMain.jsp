@@ -77,8 +77,8 @@
 				<c:if test="${ not empty salesList }">
 					<div class="row">
 						<div class="col text-end">
-							<button type="button" class="button99 py-1 mt-4"
-								data-bs-toggle="modal" data-bs-target="#myModal">매출 초기화
+							<button type="button" class="button99 py-0 mt-4"
+								data-bs-toggle="modal" data-bs-target="#myModal" style="font-size:small;">올해 월 매출 삭제
 							</button>
 						</div>
 					</div>
@@ -96,7 +96,7 @@
 							<div class="col" style="font-size: small;">
 								<table class="table">
 									<tr>
-										<th>순위</th>
+										<th style="width:60px;">순위</th>
 										<th>상품 이름</th>
 									</tr>
 									<c:forEach var="pp" items="${manageProductCountList}"

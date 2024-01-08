@@ -37,7 +37,7 @@
 				</div>
 			</div>
 			
-			<c:if test="${sessionScope.reporter.writer == board.writer }">
+			<c:if test="${sessionScope.userType =='Admin' }">
 				<div class="row">
 					<div class="col offset-6 mt-3">
 						<input class="btn btn-outline-danger" type="button" id="informationUseDetailUpdate" value="수정" />&nbsp;&nbsp;

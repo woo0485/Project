@@ -82,7 +82,7 @@
 			</c:if>
 			
 			<c:if test="${ question == null }">
-				<span>${question.answerProgress }</span>
+				<div class="my-5" style="color:red;">현재 답변 대기중</div>
 			</c:if>
 			
 			<div class="row">

@@ -1,5 +1,7 @@
 package com.finalproject.festival.domain;
 
+import java.sql.Timestamp;
+
 public class Reservation {
 
 	private int reservationno;
@@ -7,14 +9,14 @@ public class Reservation {
 	private int productno;
 	private int reservationprice;
 	private int reservationticketcount;
-	private String reservationdate;
+	private Timestamp reservationdate;
 	private int totalReservationPrice;
 	private int salesTotalPrice;
 	
 	public Reservation() {}
 
 	public Reservation(int reservationno, String id, int productno, int reservationprice, int reservationticketcount,
-			String reservationdate, int totalReservationPrice, int salesTotalPrice) {
+			Timestamp reservationdate, int totalReservationPrice, int salesTotalPrice) {
 		super();
 		this.reservationno = reservationno;
 		this.id = id;
@@ -66,11 +68,11 @@ public class Reservation {
 		this.reservationticketcount = reservationticketcount;
 	}
 
-	public String getReservationdate() {
+	public Timestamp getReservationdate() {
 		return reservationdate;
 	}
 
-	public void setReservationdate(String reservationdate) {
+	public void setReservationdate(Timestamp reservationdate) {
 		this.reservationdate = reservationdate;
 	}
 
@@ -89,6 +91,8 @@ public class Reservation {
 	public void setSalesTotalPrice(int salesTotalPrice) {
 		this.salesTotalPrice = salesTotalPrice;
 	}
+
+	
 
 	
 	
