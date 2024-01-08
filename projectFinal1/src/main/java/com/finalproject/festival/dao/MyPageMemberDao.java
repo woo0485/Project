@@ -47,7 +47,16 @@ public interface MyPageMemberDao {
 	// 회원예약 - 조회
 	public abstract List<Reservation> Reservation (String id);
 	
-	// 회원예약 - 취소
+	// 회원예약 - 조회
 	public abstract List<Product> ReProduct (List<Reservation> Reservation);
+	
+	// 회원예약 - 취소
+	public abstract List<Reservation> MyReservation (int productno, String id);
+	
+	
+	// 회원예약 - 취소 후 반환
+	
+	
+	
 	 
 }

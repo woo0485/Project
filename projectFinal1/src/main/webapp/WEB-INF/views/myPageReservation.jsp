@@ -14,19 +14,25 @@
 	<div class="row col-auto">
 	 		<jsp:include page="/WEB-INF/views/myPageHeader.jsp"></jsp:include>
 	</div>
+	
+					<form name="DeleteForm" id="deleteForm" action="mydelete">
+					<input type="hidden" id="id" name="id" value="${sessionScope.id}">
+			 			<input type="hidden" id="productno" name="productno" value="">
+			 			<input type="hidden" id="reservationticketcount" name="reservationticketcount" value="">
+			 		</form>
 	 	<c:forEach var="rep" items="${ReProduct}" >
-		 	<div class="row">
-		 		<div class="col">
-		 		<form name="DeleteForm" id="deleteForm" action="delete">
-		 			<input type="hidden" name="productno" value="${rep.productno}">
-					<input type="button" name>
-		 		</form>
-		 			${rep.productno}<br>
-		 			${rep.productname} <br>
-		 			${rep.productcontent }<br>
-		 			<img src="${rep.productimage }"><br>
-		 		</div>
-		 	</div>
+	 		<c:forEach var="re" items="${Reservation}">
+			 	<div class="row">
+			 		<div class="col">
+			 		<input type="button" id="cancleTicket" value="예약취소" class="btn btn-danger">
+			 		<span>${rep.productno}</span>
+			 		<span>${re.reservationticketcount}</span><br>
+			 			${rep.productname} <br>
+			 			${rep.productcontent }<br>
+			 			<img src="${rep.productimage }"><br>
+			 		</div>
+			 	</div>
+		 	</c:forEach>
  		</c:forEach>
 
 

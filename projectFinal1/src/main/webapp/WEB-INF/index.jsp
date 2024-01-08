@@ -14,7 +14,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
 <script src="resources/js/yeseul.js?ver=0"></script>
 <script src="resources/js/seongjin.js?ver=1"></script>
-<script src="resources/js/wooseong.js"></script>
+<script src="resources/js/wooseong.js?ver=2"></script>
 <script src="resources/js/hyunju.js"></script>
 <script src="resources/js/donggyun.js?ver=1"></script>
 <link rel="stylesheet" href="resources/css/seongjin.css?ver=1">

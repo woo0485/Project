@@ -65,11 +65,16 @@
 			WHERE productno = #{productno}
 		</select>
 		
-		<!-- <update id="MyPassUpdate" parameterType="Member">
-			UPDATE Member
-			SET phonenumber = #{phonenumber}
-			WHERE id = #{id}
-		</update> -->
+		<delete id="MyReservation" parameterType="HashMap">
+			DELETE
+			FROM Reservation
+			WHERE productno = #{productno} AND id = #{id}
+		</delete>
 		
+		<update id="MyCancleTicket">
+			UPDATE Product
+			SET productticketcount
+			WHERE productno = #{productno}
+		</update>
 		
 	</mapper>

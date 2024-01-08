@@ -55,7 +55,6 @@ public class MyPageMemberDaoImpl implements MyPageMemberDao {
 	
 	@Override
 	public Member MyGrade (String id, int grade, int totalpay) {
-		System.out.println(totalpay);
 		Map<String, Object> map = new HashMap<>();
 		
 		if(totalpay >= 5000000) {
@@ -129,7 +128,15 @@ public class MyPageMemberDaoImpl implements MyPageMemberDao {
 		return Product;
 	}
 	
-	
+	@Override
+	public List<Reservation> MyReservation (int productno, String id) {
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("id", id);
+		map.put("productno", productno);
+		
+		return st.selectList(NAME_SPACE + ".MyReservation", map);
+	}
 	
 	
 }
