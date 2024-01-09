@@ -30,8 +30,16 @@ public class basketController {
 	@Autowired
 	private BasketService bs;
 	
+	
 	public void setBasketService (BasketService bs) {
 		this.bs = bs;
+	}
+	
+	@RequestMapping("/basketRedirect")
+	public String basketRedirect () {
+		
+		return "basketRedirect";
+		
 	}
 	
 	// 장바구니 목록 보여지는 것 - 1월 3일 ) 회원 아이디로

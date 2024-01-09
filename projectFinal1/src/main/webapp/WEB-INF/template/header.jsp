@@ -117,7 +117,7 @@
 						           
 							          <ul class="dropdown-menu">
 							            <li><a class="dropdown-item" href="myPageMain?id=${sessionScope.id}">마이페이지</a></li>
-							           	<li><a class="dropdown-item" href="#">장바구니</a></li>
+							           	<li><a class="dropdown-item" href="basketRedirect">장바구니</a></li>
 							           	<li><a class="dropdown-item" href="logout">로그아웃</a></li>
 							          </ul>
 							        </li>
