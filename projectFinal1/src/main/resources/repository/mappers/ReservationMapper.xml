@@ -3,8 +3,107 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.finalproject.festival.mapper.ReservationMapper" >
+
+<!--  Reservation 테이블에서 id에 해당하는 productno를 가져오고 Product에서 price를 가져와서 장바구니의 product 개수와 곱해줘서 reservationprice에 넘겨주는 -->
+<!-- 
+<select id="BasketListByIdByProductno" resultType="Reservation"  parameterType="String">
+	SELECT sb.id, sb.productno, (sb.basketproductcount * p.productprice) AS   reservationprice, 
+						sb.basketproductcount
+			FROM ShoppingBasket sb
+			JOIN Product p ON sb.productno = p.productno
+			WHERE sb.id =  #{id}
+</select>
+ -->
+<!-- 
+<select id="BasketListByIdByProductno" resultType="Reservation"  parameterType="String">
+	SELECT sb.id, sb.productno,  reservationprice, 
+						sb.basketproductcount
+			FROM ShoppingBasket sb
+			JOIN Product p ON sb.productno = p.productno
+			WHERE sb.id =  #{id}
+</select>
+ -->
+
+<!--  장바구니에서 id에 해당하는 정보 조회하기 -->
+<select id="BasketListByProductno" resultType="Basket"  parameterType="String">
+   SELECT sb.id, sb.productno, (sb.basketproductcount * p.productprice) AS   reservationprice, 
+						sb.basketproductcount
+			FROM ShoppingBasket sb
+			JOIN Product p ON sb.productno = p.productno
+			WHERE sb.id =  #{id}
+</select>
+
+<!--  reservation 테이블에 정보 추가 -->
+	<insert id="insertReservation"   parameterType="String"  useGeneratedKeys="true"  keyProperty="reservationno">
+		insert into Reservation ( id, productno, reservationprice, reservationticketcount, reservationdate)
+		SELECT sb.id id, sb.productno, (sb.basketproductcount * p.productprice) AS reservationprice, sb.basketproductcount , SYSDATE()
+		FROM ShoppingBasket sb
+		JOIN Product p ON sb.productno = p.productno
+		WHERE sb.id =  #{id}
+	</insert>
 	
-	<!--  장바구니 목록보기 mysql OK -->
+	<delete id="deleteBasket" parameterType="String">
+		delete from ShoppingBasket
+		 where id =  #{id}
+	</delete>
+
+	<select id="myReservation"  parameterType="String">
+		select * from Reservation 
+		where id = #{id}
+	</select>
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- 
+ 장바구니에서 id에 해당하는 productno 전부 가져오기 
+<select id="BasketListById" resultType="Basket"  parameterType="String">
+    SELECT
+    R.reservationno,
+    R.id AS id,
+    R.productno AS productno
+FROM Reservation R
+JOIN Member M ON R.id = M.id
+LEFT JOIN ShoppingBasket SB ON R.id = SB.id 
+AND R.productno = SB.productno 
+LEFT JOIN Product P ON R.productno = P.productno
+WHERE R.id =  #{id}
+</select>
+
+<select id="BasketListByProductno" resultType="Basket"  parameterType="int">
+  ShoppingBasket 테이블과 Product 테이블을 조인하여 productprice를 가져오는 쿼리 --> <!--  MYSQL 오류나서 검증 못함 
+    SELECT P.productprice
+    FROM ShoppingBasket SB
+    JOIN Product P ON SB.productno = P.productno
+    WHERE SB.productno = #{productno}
+</select>
+ -->
+<!--  장바구니에서 id에 해당하는 productno 전부 가져오기 
+<select id="BasketListById" resultType="Basket"  parameterType="String">
+    SELECT
+    R.reservationno,
+    R.id AS id,
+    R.productno AS productno
+FROM Reservation R
+JOIN Member M ON R.id = M.id
+LEFT JOIN ShoppingBasket SB ON R.id = SB.id 
+AND R.productno = SB.productno 
+LEFT JOIN Product P ON R.productno = P.productno
+WHERE R.id =  #{id}
+</select>
+-->
+<!-- 
+<select id="BasketListByProductno" resultType="Basket"  parameterType="int">
+  ShoppingBasket 테이블과 Product 테이블을 조인하여 productprice를 가져오는 쿼리   MYSQL 오류나서 검증 못함
+    SELECT P.productprice
+    FROM ShoppingBasket SB
+    JOIN Product P ON SB.productno = P.productno
+    WHERE SB.productno = #{productno}
+</select>
+ -->
+
+	
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<!--  Reservation 목록보기 mysql OK -->
+	
 	<select id="reservationList" resultType="hashmap"  parameterType="Map">
 	SELECT
     R.reservationno,
@@ -45,7 +144,7 @@ AND R.reservationticketcount = SB.basketproductcount
 LEFT JOIN Product P ON R.productno = P.productno
 WHERE R.id = #{id}
 	</select>
-
+	
 	
 	<resultMap id="ReservationResultMap" type="Reservation" >
 		<id property="reservationno" column="reservationno" />
@@ -54,6 +153,14 @@ WHERE R.id = #{id}
 		<result property="reservationticketcount" column="reservationticketcount" />
 		<result property="reservationprice" column="reservationprice" />
 	</resultMap>
+	
+		<resultMap id="basketResultMap" type="Basket" >
+		<id property="basketno" column="basketno" />
+		<result property="productno" column="productno" />
+		<result property="id" column="id" />
+		<result property="basketproductcount" column="basketproductcount" />
+	</resultMap>
+	
 	
 </mapper>	
 
