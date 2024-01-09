@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.finalproject.festival.domain.Basket;
 import com.finalproject.festival.domain.Member;
 import com.finalproject.festival.service.BasketService;
@@ -92,6 +93,7 @@ public class basketController {
 	//	System.out.println("장바구니컨트롤러 세션 아이디" + session.getAttribute("id"));
 		List<Map<String,Object>> priceOrder = bs.basketList(id, productno);
 		System.out.println(priceOrder.get(0).get("basketno"));
+		
 		m.addAttribute("priceOrder",priceOrder);
 		return "priceOrder";
 	}

@@ -7,7 +7,8 @@ public class Basket {
 	private int productno;
 	private String id;
 	private int basketproductcount;
-	
+	// 가격
+	private int productprice;
 	
 	public Basket() {}
 	
@@ -16,6 +17,7 @@ public class Basket {
 		this.productno = productno;
 		this.id = id;
 		this.basketproductcount = basketproductcount;
+		this.productprice = productprice;
 	}
 	
 	public int getBasketno() {
@@ -49,5 +51,13 @@ public class Basket {
 	public void setBasketproductcount(int basketproductcount) {
 		this.basketproductcount = basketproductcount;
 	}
-	
+
+	public int getProductprice() {
+		return productprice;
+	}
+
+	public void setProductprice(int productprice) {
+		this.productprice = productprice;
+	}
+
 }
