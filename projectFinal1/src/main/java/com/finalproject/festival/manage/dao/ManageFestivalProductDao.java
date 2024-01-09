@@ -10,10 +10,6 @@ public interface ManageFestivalProductDao {
 
 	public abstract List<Product> manageFestivalProduct(int start, int num, String type, String keyword);
 	
-	public abstract Product getManageFestivalProduct(int productno);
-	
-	public abstract void updateManageFestivalProduct(Product product);
-	
 	public abstract void deleteManageFestivalProduct(int productno);
 
 }

@@ -149,7 +149,7 @@ td input:focus {
 						<div class="col-6 text-center">
 							<div class="row">
 								<div class="col text-end">
-									<input type="submit" value="수정하기" class="btn-3 px-3">
+									<input type="submit" value="수정하기" class="btn-3 px-3" id="manageReservationUpdateBtn">
 								</div>
 								<div class="col text-start">
 									<input type="button" value="뒤로가기" class="btn-3 px-3"

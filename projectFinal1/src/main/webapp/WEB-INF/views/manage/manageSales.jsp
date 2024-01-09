@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.text.SimpleDateFormat"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <script
 	src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
 <link href="resources/css/donggyun.css" rel="stylesheet">
@@ -41,8 +42,6 @@
 }
 </style>
 
-
-
 <div class="row">
 	<div class="col">
 
@@ -68,8 +67,8 @@
 							<tbody class="text-secondary">
 								<c:forEach var="r" items="${rList}">
 									<tr style="color: black; font-size: small;">
-										<td>${ r.reservationdate }</td>
-										<td>${ r.totalReservationPrice }원</td>
+										<td><fmt:formatDate value="${r.reservationdate}" pattern="yyyy-MM-dd" /></td>
+										<td><fmt:formatNumber value="${r.totalReservationPrice}" pattern="#,##0원" /></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -84,24 +83,24 @@
 
 										<c:if test="${ startPage > pageGroup }">
 											<li class="page-item"><a class="page-link"
-												href="manageSales?pageNum=${startPage - pageGroup }">이전</a></li>
+												href="manageSales?pageNum=${startPage - pageGroup }" style="font-size:small;"><</a></li>
 										</c:if>
 
 										<c:forEach var="i" begin="${startPage}" end="${endPage}">
 											<c:if test="${i == currentPage}">
 												<li class="page-item " aria-current="page"><span
-													class="page-link">${i}</span></li>
+													class="page-link" style="font-size:small;">${i}</span></li>
 											</c:if>
 
 											<c:if test="${i != currentPage}">
 												<li class="page-item"><a class="page-link"
-													href="manageSales?pageNum=${i}">${i}</a></li>
+													style="font-size:small;" href="manageSales?pageNum=${i}">${i}</a></li>
 											</c:if>
 										</c:forEach>
 
 										<c:if test="${ endPage < pageCount }">
 											<li class="page-item"><a class="page-link"
-												href="manageSales?pageNum=${endPage + 1}">다음</a></li>
+												style="font-size:small;" href="manageSales?pageNum=${endPage + 1}">></a></li>
 										</c:if>
 
 									</ul>
@@ -151,7 +150,7 @@
 											<input type="hidden" name="salesTotalPrice"
 												value="${ sales1.salesTotalPrice }">
 											<td style="border-left: 0;">1월</td>
-											<td>${ sales1.salesTotalPrice }원</td>
+											<td><fmt:formatNumber value="${ sales1.salesTotalPrice }" pattern="#,##0원" /></td>
 											<td><input type="submit" value="DB전송" class="btn py-0"
 												id="dbsubmit1" style="font-size: small; color:red;"></td>
 
@@ -168,7 +167,7 @@
 											<input type="hidden" name="salesTotalPrice"
 												value="${ sales2.salesTotalPrice }">
 											<td style="border-left: 0;">2월</td>
-											<td>${ sales2.salesTotalPrice }원</td>
+											<td><fmt:formatNumber value="${ sales2.salesTotalPrice }" pattern="#,##0원" /></td>
 											<td><input type="submit" value="DB전송"
 												class="btn px-4 py-0" id="dbsubmit2"
 												style="font-size: small; color:red;"></td>
@@ -185,7 +184,7 @@
 											<input type="hidden" name="salesTotalPrice"
 												value="${ sales3.salesTotalPrice }">
 											<td style="border-left: 0;">3월</td>
-											<td>${ sales3.salesTotalPrice }원</td>
+											<td><fmt:formatNumber value="${ sales3.salesTotalPrice }" pattern="#,##0원" /></td>
 											<td><input type="submit" value="DB전송"
 												class="btn px-4 py-0" id="dbsubmit3"
 												style="font-size: small; color:red;"></td>
@@ -202,7 +201,7 @@
 											<input type="hidden" name="salesTotalPrice"
 												value="${ sales4.salesTotalPrice }">
 											<td style="border-left: 0;">4월</td>
-											<td>${ sales4.salesTotalPrice }원</td>
+											<td><fmt:formatNumber value="${ sales4.salesTotalPrice }" pattern="#,##0원" /></td>
 											<td><input type="submit" value="DB전송"
 												class="btn px-4 py-0" id="dbsubmit4"
 												style="font-size: small; color:red;"></td>
@@ -219,7 +218,7 @@
 											<input type="hidden" name="salesTotalPrice"
 												value="${ sales5.salesTotalPrice }">
 											<td style="border-left: 0;">5월</td>
-											<td>${ sales5.salesTotalPrice }원</td>
+											<td><fmt:formatNumber value="${ sales5.salesTotalPrice }" pattern="#,##0원" /></td>
 											<td><input type="submit" value="DB전송"
 												class="btn px-4 py-0" id="dbsubmit5"
 												style="font-size: small; color:red;"></td>
@@ -236,7 +235,7 @@
 											<input type="hidden" name="salesTotalPrice"
 												value="${ sales6.salesTotalPrice }">
 											<td style="border-left: 0;">6월</td>
-											<td>${ sales6.salesTotalPrice }원</td>
+											<td><fmt:formatNumber value="${ sales6.salesTotalPrice }" pattern="#,##0원" /></td>
 											<td><input type="submit" value="DB전송"
 												class="btn px-4 py-0" id="dbsubmit6"
 												style="font-size: small; color:red;"></td>
@@ -253,7 +252,7 @@
 											<input type="hidden" name="salesTotalPrice"
 												value="${ sales7.salesTotalPrice }">
 											<td style="border-left: 0;">7월</td>
-											<td>${ sales7.salesTotalPrice }원</td>
+											<td><fmt:formatNumber value="${ sales7.salesTotalPrice }" pattern="#,##0원" /></td>
 											<td><input type="submit" value="DB전송"
 												class="btn px-4 py-0" id="dbsubmit7"
 												style="font-size: small; color:red;"></td>
@@ -270,7 +269,7 @@
 											<input type="hidden" name="salesTotalPrice"
 												value="${ sales8.salesTotalPrice }">
 											<td style="border-left: 0;">8월</td>
-											<td>${ sales8.salesTotalPrice }원</td>
+											<td><fmt:formatNumber value="${ sales8.salesTotalPrice }" pattern="#,##0원" /></td>
 											<td><input type="submit" value="DB전송"
 												class="btn px-4 py-0" id="dbsubmit8"
 												style="font-size: small; color:red;"></td>
@@ -287,7 +286,7 @@
 											<input type="hidden" name="salesTotalPrice"
 												value="${ sales9.salesTotalPrice }">
 											<td style="border-left: 0;">9월</td>
-											<td>${ sales9.salesTotalPrice }원</td>
+											<td><fmt:formatNumber value="${ sales9.salesTotalPrice }" pattern="#,##0원" /></td>
 											<td><input type="submit" value="DB전송"
 												class="btn px-4 py-0" id="dbsubmit9"
 												style="font-size: small; color:red;"></td>
@@ -304,7 +303,7 @@
 											<input type="hidden" name="salesTotalPrice"
 												value="${ sales10.salesTotalPrice }">
 											<td style="border-left: 0;">10월</td>
-											<td>${ sales10.salesTotalPrice }원</td>
+											<td><fmt:formatNumber value="${ sales10.salesTotalPrice }" pattern="#,##0원" /></td>
 											<td><input type="submit" value="DB전송"
 												class="btn px-4 py-0" id="dbsubmit10"
 												style="font-size: small; color:red;"></td>
@@ -321,7 +320,7 @@
 											<input type="hidden" name="salesTotalPrice"
 												value="${ sales11.salesTotalPrice }">
 											<td style="border-left: 0;">11월</td>
-											<td>${ sales11.salesTotalPrice }원</td>
+											<td><fmt:formatNumber value="${ sales11.salesTotalPrice }" pattern="#,##0원" /></td>
 											<td><input type="submit" value="DB전송"
 												class="btn px-4 py-0" id="dbsubmit11"
 												style="font-size: small; color:red;"></td>
@@ -337,7 +336,7 @@
 											<input type="hidden" name="salesTotalPrice"
 												value="${ sales12.salesTotalPrice }">
 											<td style="border-left: 0;">12월</td>
-											<td>${ sales12.salesTotalPrice }원</td>
+											<td><fmt:formatNumber value="${ sales12.salesTotalPrice }" pattern="#,##0원" /></td>
 											<td><input type="submit" value="DB전송"
 												class="btn px-4 py-0" id="dbsubmit12"
 												style="font-size: small; color:red;"></td>
@@ -383,7 +382,7 @@
 
 											<c:if test="${not empty rListBest}">
 										    <c:forEach var="rListBest" items="${rListBest}">									     											    
-									       		'${rListBest.reservationdate}',
+									       		'<fmt:formatDate value="${rListBest.reservationdate}" pattern="yyyy-MM-dd" />',
 										    </c:forEach>
 										</c:if>										
 									],

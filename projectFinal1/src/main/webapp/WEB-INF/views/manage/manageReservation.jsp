@@ -97,7 +97,7 @@
 										<td>${ r.reservationno }</td>
 										<td>${ r.id }</td>
 										<td>${ r.productno }번</td>
-										<td>${ r.reservationprice }원</td>
+										<td><fmt:formatNumber value="${ r.reservationprice }" pattern="#,##0원" /></td>
 										<td>${ r.reservationticketcount }장</td>
 										<td>${ r.reservationdate }</td>						
 										<td>
@@ -118,8 +118,8 @@
 									<tr class="text-center" style="color:black; font-size:small">
 										<td>${ r.reservationno }</td>
 										<td>${ r.id }</td>
-										<td>${ r.productno }번</td>
-										<td>${ r.reservationprice }원</td>
+										<td>${ r.productno }번</td>										
+										<td><fmt:formatNumber value="${ r.reservationprice }" pattern="#,##0원" /></td>
 										<td>${ r.reservationticketcount }장</td>
 										<td>${ r.reservationdate }</td>						
 										<td>

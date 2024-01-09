@@ -59,19 +59,6 @@ public class ManageFestivalProductServiceImpl implements ManageFestivalProductSe
 
 		return modelMap;
 	}
-	
-
-	@Override
-	public Product getManageFestivalProduct(int productno) {
-		
-		return manageFestivalProductDao.getManageFestivalProduct(productno);
-	}
-
-	@Override
-	public void updateManageFestivalProduct(Product product) {
-		
-		manageFestivalProductDao.updateManageFestivalProduct(product);
-	}
 
 	@Override
 	public void deleteManageFestivalProduct(int productno) {

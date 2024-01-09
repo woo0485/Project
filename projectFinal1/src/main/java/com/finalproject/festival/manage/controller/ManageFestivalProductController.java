@@ -21,34 +21,13 @@ public class ManageFestivalProductController {
 	private ManageFestivalProductService manageFestivalProductService;
 	
 	// 상품 관리 삭제
-	@RequestMapping ("/manageFestivalProductDeleteProcess")
+	@RequestMapping ("/manageFestivalProductDeleteProcess.ajax")
 	public String deleteManageFestivalProduct(int productno) {
 		
 		manageFestivalProductService.deleteManageFestivalProduct(productno);
 		
 		return "redirect:manageFestivalProduct";
 	}
-	
-	// 상품 관리 수정
-		@RequestMapping (value="/manageFestivalProductUpdateProcess", method=RequestMethod.POST)
-		public String updateManageFestivalProduct(Product product) {
-			
-			manageFestivalProductService.updateManageFestivalProduct(product);
-			
-			return "redirect:manageFestivalProduct";
-		}
-	
-	// 상품 관리 수정
-	@RequestMapping ("/manageFestivalProductUpdate")
-	public String updateManageFestivalProduct(Model model, int productno ) {
-		
-		Product FestivalProduct = manageFestivalProductService.getManageFestivalProduct(productno);
-		
-		model.addAttribute("FestivalProduct", FestivalProduct);
-		
-		return "manage/manageFestivalProductUpdate";
-	}
-
 	
 	// 상품 관리 페이지
 	@RequestMapping (value="/manageFestivalProduct", method=RequestMethod.GET)

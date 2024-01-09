@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <link href="resources/css/donggyun.css" rel="stylesheet">
 <style>
 
@@ -100,8 +101,8 @@
 											<td>${ m.id }</td>
 											<td>${ m.name }</td>
 											<td>${ m.phonenumber }</td>
-											<td>${ m.email }</td>
-											<td>${ m.totalpay }</td>
+											<td>${ m.email }</td>											
+											<td><fmt:formatNumber value="${ m.totalpay }" pattern="#,##0원" /></td>
 											<td><c:if test="${m.grade == 1}">BLACK</c:if>
 												<c:if test="${m.grade == 2}">SILVER</c:if>
 												<c:if test="${m.grade == 3}">GOLD</c:if>
@@ -124,7 +125,7 @@
 											<td>${ m.name }</td>
 											<td>${ m.phonenumber }</td>
 											<td>${ m.email }</td>
-											<td>${ m.totalpay }</td>
+											<td><fmt:formatNumber value="${ m.totalpay }" pattern="#,##0원" /></td>
 											<td><c:if test="${m.grade == 1}">BLACK</c:if>
 												<c:if test="${m.grade == 2}">SILVER</c:if>
 												<c:if test="${m.grade == 3}">GOLD</c:if>
