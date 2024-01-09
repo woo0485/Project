@@ -10,7 +10,6 @@ public class Reservation {
 	private int reservationprice;
 	private int reservationticketcount;
 	private Timestamp reservationdate;
-
 	private int totalReservationPrice;
 	private int salesTotalPrice;
 	

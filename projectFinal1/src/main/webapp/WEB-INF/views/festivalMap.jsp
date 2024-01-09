@@ -5,126 +5,126 @@
 <c:set var="AreaMap" value="${fesivalAreaProduct}"></c:set>
 
 <div class="row mt-5">
-	<div class="col-4 border border-dark border-3"
+	<div class="col-4 border border-dark border-3 mt-2"
 		style="border-radius: 17px; --bs-border-opacity: 0.3;">
-		<div class="row mt-3 ps-4 pe-4">
+		<div class="row mt-3 ps-2 pe-2">
 			<div class="col text-center">
-				<button type="button" class="btn btn-outline-dark btn-lg areabutton" id="seoulProduct">서울</button>
+				<button type="button" class="btn btn-outline-dark btn-lg areabutton pe-3 ps-3" id="seoulProduct" style="width: 75px;">서울</button>
 			</div>
 			<div class="col text-center">
 				<button type="button" class="btn btn-outline-dark btn-lg areabutton"
-					id="incheonProduct">인천</button>
+					id="incheonProduct" style="width: 75px;">인천</button>
 			</div>
 			<div class="col text-center">
 				<button type="button" class="btn btn-outline-dark btn-lg areabutton"
-					id="gangwonProduct">강원</button>
+					id="gangwonProduct" style="width: 75px;">강원</button>
 			</div>
 			<div class="col text-center">
 				<button type="button" class="btn btn-outline-dark btn-lg areabutton ps-0 pe-0"
 					id="daejeonProduct" style="font-size: 20px; width: 83px;">충북/충남</button>
 			</div>
 		</div>
-		<div class="row mt-3 pb-3 border-bottom border-3 mb-3 ps-4 pe-4">
+		<div class="row mt-3 pb-3 border-bottom border-3 mb-3 ps-2 pe-2">
+			<div class="col text-center">
+				<button type="button" class="btn btn-outline-dark btn-lg areabutton" id="daeguProduct" style="width: 75px;">대구</button>
+			</div>
+			<div class="col text-center">
+				<button type="button" class="btn btn-outline-dark btn-lg areabutton" id="busanProduct" style="width: 75px;">부산</button>
+			</div>
+			<div class="col text-center">
+				<button type="button" class="btn btn-outline-dark btn-lg areabutton" id="jejuProduct" style="width: 75px;">제주</button>
+			</div>
 			<div class="col text-center">
 				<button type="button" class="btn btn-outline-dark btn-lg ps-0 pe-0 areabutton"
 					id="gwangjuProduct" style="font-size: 20px; width: 83px;">전남/전북</button>
 			</div>
-			<div class="col text-center">
-				<button type="button" class="btn btn-outline-dark btn-lg areabutton" id="daeguProduct">대구</button>
-			</div>
-			<div class="col text-center">
-				<button type="button" class="btn btn-outline-dark btn-lg areabutton" id="busanProduct">부산</button>
-			</div>
-			<div class="col text-center">
-				<button type="button" class="btn btn-outline-dark btn-lg areabutton" id="jejuProduct">제주</button>
-			</div>
 		</div>
 		<div class="row">
 			<div class="col" id="startInfo">
-				<h3 class="areaName">서울</h3>
-				<c:forEach var="seoulProduct" items="${AreaMap['seoul']}" end="3">
-					<div class="row seoulProduct mapProductList">
+				<h4 class="areaName">서울</h4>
+				<c:forEach var="seoulProduct" items="${AreaMap['seoul']}" end="3" varStatus="status">
+					<div class="row seoulProduct mapProductList ${status.last ? '' : ' border-bottom'} pb-2">
 						<div class="col">
-							<h4 class="mt-1">${seoulProduct.productname}</h4>
-							<a href="#"> <img alt="" src="${seoulProduct.productimage}"
+							<h5 class="mt-1">${seoulProduct.productname}</h5>
+							<a href="productDetail?productno=${seoulProduct.productno}"> <img alt="" src="${seoulProduct.productimage}"
 								width="100%" height="200px;">
 							</a>
 						</div>
 					</div>
 				</c:forEach>
 				<c:forEach var="incheonProduct" items="${AreaMap['incheon']}"
-					end="3">
-					<div class="row incheonProduct mapProductList"
+					end="3" varStatus="status">
+					<div class="row incheonProduct mapProductList ${status.last ? '' : ' border-bottom'} pb-2"
 						style="display: none;">
 						<div class="col">
 							<h4 class="mt-1">${incheonProduct.productname}</h4>
-							<a href="#"> <img alt="" src="${incheonProduct.productimage}"
+							<a href="productDetail?productno=${incheonProduct.productno}"> <img alt="" src="${incheonProduct.productimage}"
 								width="100%" height="200px;">
 							</a>
 						</div>
 					</div>
 				</c:forEach>
 				<c:forEach var="gangwonProduct" items="${AreaMap['gangwon']}"
-					end="3">
-					<div class="row gangwonProduct mapProductList"
+					end="3" varStatus="status">
+					<div class="row gangwonProduct mapProductList ${status.last ? '' : ' border-bottom'} pb-2"
 						style="display: none;">
 						<div class="col">
 							<h4 class="mt-1">${gangwonProduct.productname}</h4>
-							<a href="#"> <img alt="" src="${gangwonProduct.productimage}"
+							<a href="productDetail?productno=${gangwonProduct.productno}"> <img alt="" src="${gangwonProduct.productimage}"
 								width="100%" height="200px;">
 							</a>
 						</div>
 					</div>
 				</c:forEach>
 				<c:forEach var="daejeonProduct" items="${AreaMap['daejeon']}"
-					end="3">
-					<div class="row daejeonProduct mapProductList"
+					end="3" varStatus="status">
+					<div class="row daejeonProduct mapProductList ${status.last ? '' : ' border-bottom'} pb-2"
 						style="display: none;">
 						<div class="col">
 							<h4 class="mt-1">${daejeonProduct.productname}</h4>
-							<a href="#"> <img alt="" src="${daejeonProduct.productimage}"
+							<a href="productDetail?productno=${daejeonProduct.productno}"> <img alt="" src="${daejeonProduct.productimage}"
 								width="100%" height="200px;">
 							</a>
 						</div>
 					</div>
 				</c:forEach>
-				<c:forEach var="daeguProduct" items="${AreaMap['daegu']}" end="3">
-					<div class="row daeguProduct mapProductList" style="display: none;">
+				<c:forEach var="daeguProduct" items="${AreaMap['daegu']}" end="3" varStatus="status">
+					<div class="row daeguProduct mapProductList ${status.last ? '' : ' border-bottom'} pb-2" style="display: none;">
 						<div class="col">
 							<h4 class="mt-1">${daeguProduct.productname}</h4>
-							<a href="#"> <img alt="" src="${daeguProduct.productimage}"
+							<a href="productDetail?productno=${daeguProduct.productno}"> <img alt="" src="${daeguProduct.productimage}"
 								width="100%" height="200px;">
 							</a>
 						</div>
 					</div>
 				</c:forEach>
 				<c:forEach var="gwangjuProduct" items="${AreaMap['gwangju']}"
-					end="3">
-					<div class="row gwangjuProduct mapProductList"
+					end="3" varStatus="status">
+					<div class="row gwangjuProduct mapProductList ${status.last ? '' : ' border-bottom'} pb-2"
 						style="display: none;">
 						<div class="col">
 							<h4 class="mt-1">${gwangjuProduct.productname}</h4>
-							<a href="#"> <img alt="" src="${gwangjuProduct.productimage}"
+							<a href="productDetail?productno=${gwangjuProduct.productno}"> <img alt="" src="${gwangjuProduct.productimage}"
 								width="100%" height="200px;">
 							</a>
 						</div>
 					</div>
 				</c:forEach>
-				<c:forEach var="busanProduct" items="${AreaMap['busan']}" end="3">
-					<div class="row busanProduct mapProductList" style="display: none;">
+				<c:forEach var="busanProduct" items="${AreaMap['busan']}" end="3" varStatus="status">
+					<div class="row busanProduct mapProductList ${status.last ? '' : ' border-bottom'} pb-2" style="display: none;">
 						<div class="col">
 							<h4 class="mt-1">${busanProduct.productname}</h4>
-							<a href="#"> <img alt="" src="${busanProduct.productimage}"
+							<a href="productDetail?productno=${busanProduct.productno}"> <img alt="" src="${busanProduct.productimage}"
 								width="100%" height="200px;">
 							</a>
 						</div>
 					</div>
 				</c:forEach>
-				<c:forEach var="jejuProduct" items="${AreaMap['jeju']}" end="3">
-					<div class="row jejuProduct mapProductList" style="display: none;">
+				<c:forEach var="jejuProduct" items="${AreaMap['jeju']}" end="3" varStatus="status">
+					<div class="row jejuProduct mapProductList ${status.last ? '' : ' border-bottom'} pb-2" style="display: none;">
 						<div class="col">
 							<h4 class="mt-1">${jejuProduct.productname}</h4>
-							<a href="#"> <img alt="" src="${jejuProduct.productimage}"
+							<a href="productDetail?productno=${jejuProduct.productno}"> <img alt="" src="${jejuProduct.productimage}"
 								width="100%" height="200px;">
 							</a>
 						</div>
@@ -180,7 +180,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col">
+					<div class="col mb-3">
 						<a class="productDetail btn btn-outline-dark">상세보기</a>
 					</div>
 				</div>
@@ -188,7 +188,7 @@
 		</div>
 	</div>
 	<div class="col" id="festivalMap">
-		<div id="map" style="width: 100%; height: 1220px;"></div>
+		<div id="map" style="width: 100%; height: 1250px;"></div>
 	</div>
 </div>
 <script type="text/javascript"
@@ -205,10 +205,36 @@
 
 		var geocoder = new kakao.maps.services.Geocoder();
 		
-		function moveMapCenter(latitude, longitude) {
+		document.getElementById('seoulProduct').addEventListener('click', function() {
+	        moveMapCenter(37.5642135, 126.97500, 7);
+	    });
+		document.getElementById('incheonProduct').addEventListener('click', function() {
+	        moveMapCenter(37.4563, 126.7052, 8);
+	    });
+		document.getElementById('gangwonProduct').addEventListener('click', function() {
+	        moveMapCenter(37.5556, 128.2094, 10);
+	    });
+		document.getElementById('daejeonProduct').addEventListener('click', function() {
+	        moveMapCenter(36.3504, 127.3845, 10);
+	    });
+		document.getElementById('daeguProduct').addEventListener('click', function() {
+	        moveMapCenter(35.8714, 128.6014, 10);
+	    });
+		document.getElementById('busanProduct').addEventListener('click', function() {
+	        moveMapCenter(35.1796, 129.0756, 8);
+	    });
+		document.getElementById('jejuProduct').addEventListener('click', function() {
+	        moveMapCenter(33.4890, 126.4983, 9);
+	    });
+		document.getElementById('gwangjuProduct').addEventListener('click', function() {
+	        moveMapCenter(35.1595, 126.8514, 11);
+	    });
+		
+		function moveMapCenter(latitude, longitude, zoomLevel) {
 		    var newCenter = new kakao.maps.LatLng(latitude, longitude);
 		    
 		    map.setCenter(newCenter);
+		    map.setLevel(zoomLevel);
 
 		}
 
