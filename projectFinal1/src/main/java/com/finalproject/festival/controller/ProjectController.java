@@ -30,6 +30,7 @@ import com.finalproject.festival.domain.Main;
 import com.finalproject.festival.domain.Member;
 import com.finalproject.festival.domain.News;
 import com.finalproject.festival.domain.Product;
+import com.finalproject.festival.domain.Search;
 import com.finalproject.festival.service.GalleryService;
 import com.finalproject.festival.service.MailService;
 import com.finalproject.festival.service.MemberService;
@@ -40,7 +41,6 @@ import com.finalproject.festival.service.NewsService;
 
 @Controller
 public class ProjectController {
-	
 	
 	@Autowired
 	private MemberService memberService;
@@ -55,16 +55,33 @@ public class ProjectController {
 	@Autowired
 	private NewsService newsService;
 	
+	
+	
+	@RequestMapping("/login")//로그인 페이지로 이동
+	public String loginFrom (){
+		return "login";
+	}
+	
+	@RequestMapping("/logout")//로그아웃
+	public String logout(HttpSession session) {
+		session.removeAttribute("id");
+		session.removeAttribute("userType");
+		return "redirect:main";
+	}
+	
+	
+	
 	@RequestMapping("/main")//메인페이지로 이동
 	public String main (Model model) {
 		List<Gallery>galleryList = galleryService.gallery();
 		List<News>newsList =  newsService.newslist();
 		List<Product>productList = memberService.mainProductCarousel();
-		 
+		
 		System.out.println(productList);
 		model.addAttribute("galleryList",galleryList);
 		model.addAttribute("newsList",newsList);
 		model.addAttribute("productList", productList);
+		//model.addAttribute("searchList", searchList);
 		return "main";
 	}
 	
@@ -79,21 +96,22 @@ public class ProjectController {
 		
 		List<Gallery> mainSearchGallery = memberService.mainSearchGallery(keyword);
 		
+		
 		model.addAttribute("mainSearchProduct",mainSearchProduct);
 		model.addAttribute("mainSearchNews",mainSearchNews);
 		model.addAttribute("mainSearchGallery",mainSearchGallery);
 		model.addAttribute("keyword",keyword);
+		
 	
 	
 		return "mainSearchPage";
 	}
 	
+	
+	
 	/********************************** member ****************************************/
 	
-	@RequestMapping("/login")//로그인 페이지로 이동
-	public String loginFrom (){
-		return "login";
-	}
+	
 
 	
 	@RequestMapping("/memberJoinPage")//가입 정보동의약관
@@ -131,12 +149,7 @@ public class ProjectController {
 		return "idPasswordFindPage";
 	}
 	
-	@RequestMapping("/logout")//로그아웃
-	public String logout(HttpSession session) {
-		session.removeAttribute("id");
-		session.removeAttribute("userType");
-		return "redirect:main";
-	}
+
 
 	
 	
