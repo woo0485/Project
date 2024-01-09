@@ -43,7 +43,17 @@ public class ReservationImpl implements ReservationDao {
 		map.put("id", id);
 		map.put("productno",productno);
 		
-		return sqlSession.selectList(NAME_SPACE + ".reservationList",map);
+		return  sqlSession.selectList(NAME_SPACE + ".reservationList",map);
+	}
+
+	@Override
+	public void deleteBasket(String id) {
+		sqlSession.selectOne(NAME_SPACE + ".deleteBasket",id);
+	}
+
+	@Override
+	public List<Reservation> myReservation(String id) {
+		return  sqlSession.selectList(NAME_SPACE + ".reservationList",id);
 	}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////

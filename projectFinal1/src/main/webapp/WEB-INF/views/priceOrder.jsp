@@ -110,7 +110,7 @@ console.log("proname 값의 총 합: " + totalName);
               "reservationticketcount":  basketproductcount ,
               "reservationprice" :  0
               // 여기에 필요한 다른 데이터도 추가하세요.
-          }),
+          },
           success: function (response) {
               // Insert 성공 시에 priceRedirect로 보낸 후 priceOrderFinish.jsp로 이동
               window.location.href = 'reservationSucess?id=' +id + '&productno=' + productno;

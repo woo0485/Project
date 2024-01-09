@@ -1,6 +1,7 @@
 package com.finalproject.festival.domain;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class Reservation {
 
@@ -10,6 +11,9 @@ public class Reservation {
 	private int reservationprice;
 	private int reservationticketcount;
 	private Timestamp reservationdate;
+
+//	private LocalDateTime reservationdate;
+
 	private int totalReservationPrice;
 	private int salesTotalPrice;
 	
@@ -91,9 +95,16 @@ public class Reservation {
 	public void setReservationdate(Timestamp reservationdate) {
 		this.reservationdate = reservationdate;
 	}
+	
+	
 
-	
+	/*
+	public LocalDateTime getReservationdate() {
+		return reservationdate;
+	}
 
-	
-	
+	public void setReservationdate(LocalDateTime reservationdate) {
+		this.reservationdate = reservationdate;
+	}
+*/
 }

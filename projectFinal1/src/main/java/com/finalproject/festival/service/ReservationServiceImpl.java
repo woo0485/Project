@@ -1,5 +1,7 @@
 package com.finalproject.festival.service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -26,31 +28,19 @@ public class ReservationServiceImpl implements ReservtionService {
 	public List<Reservation> BasketListByIdByProductno (String id, Reservation r) {
 		System.out.println("reservationService에서 Reservation" + r);
 		
-	//	RD.insertReservation();
+		// 1) insert reservation 테이블 하기
+		// 시간 조정하기
+		//LocalDateTime reservationDate = LocalDateTime.now(ZoneOffset.UTC).plusHours(9);
+	//	r.setReservationdate(reservationDate);
+		RD.insertReservation(id);
 		
-		// Basket에서 id에 해당하는 product 정보 가져오기
-	List<Reservation> reservationDATA = RD.BasketListByIdByProductno(id);
-			
-		
-		// 1) insert하기
-	/*
-		for (int i=0; i < reservationDATA.size() ;  i++) {
-			//Reservation rr = reservationDATA.get(i);
-			//reservationDATA.set(i, r.getId());
-		//	insertReservations.set(i, r);
-			reservationDATA.set(i, r);
-		//	RD.insertReservation(r);
-			
-		System.out.println("BasketListByIdByProductno에서의 insert :" + r);
-		}
-		*/
-		//2) select 하기
-		List<Reservation> reservationList01 = RD.BasketListByIdByProductno(id);
-		System.out.println("BasketListByIdByProductno에서의 select" + reservationList01.get(0));
-		return RD.BasketListByIdByProductno(id);
+		// 2) delete basket 하기 
+		RD.deleteBasket(id);
+	
+		//3) Reservation 테이블에서 id에 해당하는 정보 전부 select 하기
+		return RD.myReservation(id);
 
 	}
-	
 	
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
