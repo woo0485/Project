@@ -10,6 +10,7 @@ import com.finalproject.festival.domain.Main;
 import com.finalproject.festival.domain.Member;
 import com.finalproject.festival.domain.News;
 import com.finalproject.festival.domain.Product;
+import com.finalproject.festival.domain.Search;
 
 public interface MemberService {
 	
@@ -45,4 +46,10 @@ public interface MemberService {
 	public List<News> mainSearchNews(String keyword);
 	
 	public List<Gallery> mainSearchGallery(String keyword);
+	
+	public void searchKeyword(String searchKeyword); 
+	
+	public List<Search>mainSearchSelect();
+			
+	
 }

@@ -8,8 +8,8 @@
 	
 </script>
  
-<div class="row">
-	<div class="col-10 offset-1">
+<div class="row mt-5">
+	<div class="col-10 offset-1 mt-1">
 
 
 		<div class="row">
@@ -34,7 +34,7 @@
 				            <c:choose>
 				                <c:when test="${productLoop.index == 0}">
 				                    <div class="carousel-item active">
-				                        <img src="${product.productimage}" class="d-block w-100" alt="..." style="height: 500px;">
+				                        <a href="productDetail?productno=${product.productno}"><img src="${product.productimage}" class="d-block w-100" alt="..." style="height: 600px;"></a>
 				                        <div class="carousel-caption d-none d-md-block">
 				                            <h5>${product.productname}</h5>
 				                            <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; word-wrap: break-word;">
@@ -45,7 +45,7 @@
 				                </c:when>
 				                <c:otherwise>
 				                    <div class="carousel-item">
-				                        <img src="${product.productimage}" class="d-block w-100" alt="..." style="height: 500px;">
+				                        <a href="productDetail?productno=${product.productno}"><img src="${product.productimage}" class="d-block w-100" alt="..." style="height: 600px;"></a>
 				                        <div class="carousel-caption d-none d-md-block">
 				                            <h5>${product.productname}</h5>
 				                            <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; word-wrap: break-word;">
@@ -76,10 +76,11 @@
 
 	
 	<div class="row my-5">
-		<div class="col-1 d-flex align-items-center"><i class="bi bi-arrow-left-circle-fill" style="font-size: 2rem;"></i></div>
+		<div class="col-mb-1 d-flex align-items-center"><i class="bi bi-arrow-left-circle-fill" style="font-size: 2rem;"></i></div>
 		<c:forEach var="gallery" items="${galleryList}" varStatus="galleryLoop" end="10">
 			<div class="col gallery-item" style="display: ${galleryLoop.index <=4 ? 'inline' : 'none'};">
-				<img style="width: 120%; height: 300px;" src="resources/upload/${gallery.galleryimage}" alt="이미지1">
+				<img class="img-responsive" style="width: 120%; height: 300px;" src="resources/upload/${gallery.galleryimage[0]}" alt="이미지1">
+				<div class="carousel-capction"><p>${gallery.gallerytitle}</p></div>
 			</div>
 		</c:forEach>
 		<div class="col-1 d-flex align-items-center"><i class="bi bi-arrow-right-circle-fill" style="font-size: 2rem;"></i></div>	
@@ -93,7 +94,7 @@
 	    <h4>최신 축제기사</h4>
 	        <c:forEach var="news" items="${newsList}" varStatus="newsLoop" end="10">
 	            <div class="row news-item" style="display: ${newsLoop.index <= 4 ? 'none' : 'block'};">
-	                <a href="#" style="font-size: 25px;">${news.newstitle}</a>
+	                <a href="newsdetail?no=${news.newsno}" style="font-size: 25px;">${news.newstitle}</a>
 	            </div>
 	        </c:forEach>
 	    </div>	

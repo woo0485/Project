@@ -21,6 +21,21 @@
 				<div class="col"><button>등록</button></div>
 			</div>
 		</form>
+		<form action="userjoin" method="post">
+			<div class="row">
+				
+				<div class="col"><p>회원 아이디:</p></div>
+				<div class="col">
+				  	<input type="text" name=id >
+				</div>
+				<div class="col"><p>회원 비밀번호:</p></div>
+				<div class="col">
+					<input type="password" name=password> 
+				</div>
+				<div class="col"><button>등록</button></div>
+			</div>
+		</form>
+		
 		<div class="row">
 			<div class="col">
 			<c:forEach var="adminList" items="${adminList}">
@@ -32,6 +47,22 @@
 					<div class="col"><p> 관리자 아이디:</p></div>
 					<div class="col">
 					  	<input type="text" name=adminid value="${adminList.adminid}">
+					</div>
+				</div>
+			</c:forEach>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+			<c:forEach var="userList" items="${userList}">
+				<div class="row">
+					<div class="col"><p>user 이름:</p></div>
+					<div class="col">
+						<input type="text"  value="${userList.name}">
+					</div>
+					<div class="col"><p>user 아이디:</p></div>
+					<div class="col">
+					  	<input type="text"  value="${userList.id}">
 					</div>
 				</div>
 			</c:forEach>

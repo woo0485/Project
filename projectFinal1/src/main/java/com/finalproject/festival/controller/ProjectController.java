@@ -76,7 +76,7 @@ public class ProjectController {
 		List<Gallery>galleryList = galleryService.gallery();
 		List<News>newsList =  newsService.newslist();
 		List<Product>productList = memberService.mainProductCarousel();
-		
+		//List<Search>searchList = memberService.mainSearchSelect();
 		System.out.println(productList);
 		model.addAttribute("galleryList",galleryList);
 		model.addAttribute("newsList",newsList);
