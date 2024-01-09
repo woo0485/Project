@@ -41,18 +41,6 @@ public class ManageFestivalProductDaoImpl implements ManageFestivalProductDao {
 	}
 
 	@Override
-	public Product getManageFestivalProduct(int productno) {
-		
-		return sqlSession.selectOne(NAME_SPACE +".getManageFestivalProduct", productno);
-	}
-
-	@Override
-	public void updateManageFestivalProduct(Product product) {
-		
-		sqlSession.update(NAME_SPACE +".updateManageFestivalProduct", product);
-	}
-
-	@Override
 	public void deleteManageFestivalProduct(int productno) {
 		
 		sqlSession.delete(NAME_SPACE + ".deleteManageFestivalProduct", productno);

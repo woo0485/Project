@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.Calendar"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
     Calendar calendar = Calendar.getInstance();
     int currentYear = calendar.get(Calendar.YEAR);
@@ -73,22 +74,11 @@
 			<div class="col-6 text-start mt-5">
 				<h3>관리페이지</h3>
 
-
-				<c:if test="${ not empty salesList }">
-					<div class="row">
-						<div class="col text-end">
-							<button type="button" class="button99 py-0 mt-4"
-								data-bs-toggle="modal" data-bs-target="#myModal" style="font-size:small;">올해 월 매출 삭제
-							</button>
-						</div>
-					</div>
-				</c:if>
-
 				<div class="row">
 					<div class="col text-center mb-2">
 						<div class="row">
 							<div class="col mt-2 p-2">
-								<span><h4>조회수가 높은 상품</h4></span>
+								<span class=" fs-5">조회수가 높은 상품</span>
 							</div>
 						</div>
 
@@ -118,7 +108,7 @@
 							<div class="col mt-2 pt-2">
 								<div class="row">
 									<div class="col">
-										<span class=" fs-4">연도별 매출</span>
+										<span class=" fs-5">연도별 매출</span>
 									</div>
 								</div>
 							</div>
@@ -130,7 +120,7 @@
 								<table class="table text-center mt-2" style="font-size: small;">
 									<thead>
 										<tr>
-											<th>날짜</th>
+											<th>연도</th>
 											<th>총 매출</th>
 										</tr>
 									</thead>
@@ -147,7 +137,7 @@
 											<td><c:set var="total" value="0" /> <c:forEach var="s"
 													items="${salesList}">
 													<c:set var="total" value="${total + s.salesTotalPrice}" />
-												</c:forEach> <c:out value="${total}원" /></td>
+												</c:forEach> <fmt:formatNumber value="${total}" pattern="#,##0원" /></td>
 										</tr>
 										</c:if>
 										<tr>
@@ -155,7 +145,7 @@
 											<td><c:set var="total" value="0" /> <c:forEach
 													var="last" items="${lastYearSalesList}">
 													<c:set var="total" value="${total + last.salesTotalPrice}" />
-												</c:forEach> <c:out value="${total}원" /></td>
+												</c:forEach> <fmt:formatNumber value="${total}" pattern="#,##0원" /></td>
 										</tr>
 										<tr>
 											<td><c:out value="${currentYear-2}" />년</td>
@@ -163,7 +153,7 @@
 													var="lastYearBefore" items="${yearBeforeLastSalesList2}">
 													<c:set var="total"
 														value="${total + lastYearBefore.salesTotalPrice}" />
-												</c:forEach> <c:out value="${total}원" /></td>
+												</c:forEach> <fmt:formatNumber value="${total}" pattern="#,##0원" /></td>
 										</tr>
 									</tbody>
 								</table>
@@ -175,8 +165,14 @@
 				
 				
 				<div class="row">
-					<div class="col border rounded-3 pt-4 mt-4 text-center" style="height:580px; width:400px; background-color:#F0FFFF;">		
-					<span class=" fs-4">연도별 매출 차트</span>
+					<div class="col border rounded-3 pt-4 mt-4 text-center" style="height:610px; width:400px; background-color:#F0FFFF;">		
+					<span class=" fs-5">연도별 매출 차트</span>
+					<c:if test="${ not empty salesList }">
+						<div class="text-end" style="margin-top:-30px;">
+							<button type="button" class="button99 py-0 mt-4"
+								data-bs-toggle="modal" data-bs-target="#myModal" style="font-size:small; color:black;">중복 차트 삭제</button>
+						</div>	
+					</c:if>	
 					<c:set var="currentYear"
 						value="<%= Calendar.getInstance().get(Calendar.YEAR) %>" />
 											
@@ -209,7 +205,7 @@
 								// ④실제 차트에 표시할 데이터들(Array), dataset객체들을 담고 있다.
 								datasets : [ {
 									// ⑤dataset의 이름(String)
-									label : '올해 월 매출',
+									label : '올해 월 매출' ,
 									// ⑥dataset값(Array)
 																								
 									data : [ 
@@ -354,7 +350,7 @@
 		<!-- modal-dialog-scrollable 스크롤 기능 -->
 		<div class="modal-content">
 			<div class="modal-header">
-				<span class=""><h4>올해 매출 초기화</h4></span>
+				<span class=""><h4>중복 차트 삭제</h4></span>
 				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 			</div>
 			<div class="modal-body text-center">
@@ -364,13 +360,15 @@
 				<c:if test="${not empty salesList}">				
 						<div class="row">
 							<div class="col text-center">
+								<div style="color:red; font-size:small;"><i class="bi bi-exclamation-triangle"></i>
+									월 매출을 중복으로 DB전송 했을 경우<br>월 매출 차트가 중복으로 올라갑니다<br>월 매출 차트는 하나만 되도록 사용 해주시길 바랍니다.</div>
 								<c:forEach var="sales" items="${salesList}">
 									<c:if test="${sales.salesYear == currentYear}">
-										<div class="my-2">
+										<div class="my-2">											
 											<button type="button" data-salesNo="${sales.salesNo}"
 												class="dbAllDelete button99 py-2 px-3 rounded"
 												style="font-size: small; color: black;">
-												${sales.salesYear}년 ${sales.salesDate} 초기화</button>
+												${sales.salesYear}년 ${sales.salesDate} 매출 삭제</button>
 										</div>	
 									</c:if>
 								</c:forEach>

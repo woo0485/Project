@@ -85,11 +85,12 @@ div table tbody td {
 							<thead>
 								<tr class="table-secondary">
 									<th>상품명</th>
-									<th>가격</th>
+									<th style="width:80px;">가격</th>
 									<th>지역</th>									
-									<th>총 티켓 수</th>
-									<th>남은 티켓 수</th>
-									<th></th>						
+									<th style="width:100px;">티켓 수</th>
+									<th style="width:200px;">남은 티켓 수</th>
+									<th></th>	
+									<th></th>					
 								</tr>
 							</thead>
 							<tbody class="text-secondary">
@@ -105,8 +106,10 @@ div table tbody td {
 											<td>${ p.productlocation }</td>											
 											<td>${ p.productticketcount }</td>
 											<td>${ p.productremainticketcount }</td>																						
-											<td><a href="manageFestivalProductUpdate?productno=${ p.productno }&pageNum=${currentPage}"
-												class="btn btn-outline-warning py-0" role="button" style="font-size:small;" id="ManageProductUpdate">상품 수정</a></td>											
+											<td><a href="update?productno=${ p.productno }&pageNum=${currentPage}&adminpassword=1234"
+												class="btn btn-outline-warning py-0" role="button" style="font-size:small;" id="ManageProductUpdate">상품 수정</a></td>
+											<td><button type="button" class="manageProductDelete btn btn-outline-danger py-0" 
+												data-no="${ p.productno }" style="font-size:small;">상품 삭제</button></td>													
 										</tr>
 									</c:forEach>
 								</c:if>
@@ -122,8 +125,10 @@ div table tbody td {
 											<td>${ p.productlocation }</td>											
 											<td>${ p.productticketcount }</td>
 											<td>${ p.productremainticketcount }</td>											
-											<td><a href="manageFestivalProductUpdate?productno=${ p.productno }&pageNum=${currentPage}"
-												class="btn btn-outline-warning py-0" role="button" style="font-size:small;" id="ManageProductUpdate">상품 수정</a></td>											
+											<td><a href="update?productno=${ p.productno }&pageNum=${currentPage}&adminpassword=1234"
+												class="btn btn-outline-warning py-0" role="button" style="font-size:small;" id="ManageProductUpdate">상품 수정</a></td>
+											<td><button type="button" class="manageProductDelete btn btn-outline-danger py-0" 
+												data-no="${ p.productno }" style="font-size:small;">상품 삭제</button></td>													
 										</tr>
 									</c:forEach>
 								</c:if>

@@ -1,43 +1,47 @@
 function dbSubmit(){
-	if(!confirm('DB로 전송하시겠습니까??')){
-            return false;
-        }  
+	if(!confirm('DB로 전송하시겠습니까?')){
+		return false;
+    }      	 
 }
 
 
 $(function(){
 
-
 //#####################################예약 관리 JS########################################
-
-	$("#updateManageReservation").on("click", function(){
-		if(!confirm('예약 수정 하시겠습니까?')){
+	
+	$("#manageReservationUpdateBtn").on("click", function(){
+		if(!confirm('예약을 수정 하시겠습니까?')){
 			return false;
 		}
-
 	});
-
 
 //#####################################상품 관리 JS########################################
 
-	$("#ManageProductUpdate").on("click", function(){
-		if(!confirm('상품 수정 하시겠습니까?')){
-			return false;
-		}
-
-	});
-
-	$("#ManageProductDelete").on("click", function() {
+	$(".manageProductDelete").on("click", function() {
 	
-		if(confirm("상품을 정말 삭제하시겠습니까?")){
-			$("#checkForm").attr("action", "manageFestivalProductDeleteProcess");
-			$("#checkForm").attr("method", "post");
-			$("#checkForm").submit();
-		} else {
+		let productno = $(this).attr("data-no");	
+		let params = "productno=" + productno	
+		let result = confirm("상품을 삭제 하시겠습니까?");
+
+		if(result) {			
+			$.ajax({		
+				url: "manageFestivalProductDeleteProcess.ajax",
+				type: "post",
+				data: params,
+				//dataType: "json",
+				success: function(resData, status, xhr) { 
+					
+				document.location.href = document.location.href;
+				alert("삭제 되었습니다.");		
+				},
+				error: function(xhr, status, error) {
+				
+				alert("ajax 실패 : " + status + " - " + xhr.status);			
+				}
+			});		
+		}
 		
-			return false;
-		} 
-	});	
+	});
 
 //#####################################쿠폰 JS########################################
 
@@ -200,7 +204,6 @@ $(function(){
 				//dataType: "json",
 				success: function(resData, status, xhr) { 
 				
-				alert("취소 되었습니다.");
 				window.open("https://admin.bootpay.co.kr/receipt?s=1|12|60", "_blank");	
 				document.location.href = document.location.href;							
 				

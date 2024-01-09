@@ -108,11 +108,11 @@
 		SELECT 		
 		
 			reservationprice,
-	        DATE_FORMAT(reservationdate, '%Y-%m-%d') as reservationdate,
+	        reservationdate,
 	        SUM(reservationprice) as totalReservationPrice   
 	  
 		FROM Reservation	
-		GROUP BY reservationprice, reservationdate
+		GROUP BY reservationdate
 		ORDER BY totalReservationPrice DESC
 		LIMIT 5
 	</select>
@@ -122,7 +122,7 @@
 	<select id="manageReservation2" resultType="Reservation" resultMap="ManageReservationMap">
 		SELECT 		
 			reservationprice,
-	        DATE_FORMAT(reservationdate, '%Y-%m-%d') as reservationdate,
+	        reservationdate,
 	        SUM(reservationprice) as totalReservationPrice   
 		FROM Reservation	
 		<where>
@@ -130,7 +130,7 @@
 				reservationdate LIKE CONCAT('%', #{keyword}, '%')
 			</if>
 		</where>
-		GROUP BY reservationprice, reservationdate
+		GROUP BY reservationdate
 		ORDER BY reservationdate DESC
 		LIMIT #{start}, #{num}	
 	</select>
