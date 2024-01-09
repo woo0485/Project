@@ -165,7 +165,8 @@
 	
 								<c:if test="${ startPage > pageGroup }">
 									<li class="page-item"><a class="page-link"
-										href="manageReservation?pageNum=${startPage - pageGroup }">Pre</a></li>
+										href="manageReservation?pageNum=${startPage - pageGroup }
+											&type=${ type }&keyword=${ keyword }">Pre</a></li>
 								</c:if>
 	
 								<c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -176,13 +177,14 @@
 	
 									<c:if test="${i != currentPage}">
 										<li class="page-item"><a class="page-link"
-											href="manageReservation?pageNum=${i}">${i}</a></li>
+											href="manageReservation?pageNum=${ i }&type=${ type }&keyword=${ keyword }">${i}</a></li>
 									</c:if>
 								</c:forEach>
 	
 								<c:if test="${ endPage < pageCount }">
 									<li class="page-item"><a class="page-link"
-										href="manageReservation?pageNum=${endPage + 1}">Next</a></li>
+										href="manageReservation?pageNum=${ startPage + pageGroup }
+						     				 &type=${ type }&keyword=${ keyword }">Next</a></li>
 								</c:if>
 	
 							</ul>

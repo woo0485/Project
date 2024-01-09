@@ -106,7 +106,7 @@ div table tbody td {
 											<td>${ p.productlocation }</td>											
 											<td>${ p.productticketcount }</td>
 											<td>${ p.productremainticketcount }</td>																						
-											<td><a href="update?productno=${ p.productno }&pageNum=${currentPage}&adminpassword=1234"
+											<td><a href="update?productno=${ p.productno }&pageNum=${currentPage}"
 												class="btn btn-outline-warning py-0" role="button" style="font-size:small;" id="ManageProductUpdate">상품 수정</a></td>
 											<td><button type="button" class="manageProductDelete btn btn-outline-danger py-0" 
 												data-no="${ p.productno }" style="font-size:small;">상품 삭제</button></td>													
@@ -125,7 +125,7 @@ div table tbody td {
 											<td>${ p.productlocation }</td>											
 											<td>${ p.productticketcount }</td>
 											<td>${ p.productremainticketcount }</td>											
-											<td><a href="update?productno=${ p.productno }&pageNum=${currentPage}&adminpassword=1234"
+											<td><a href="update?productno=${ p.productno }&pageNum=${currentPage}"
 												class="btn btn-outline-warning py-0" role="button" style="font-size:small;" id="ManageProductUpdate">상품 수정</a></td>
 											<td><button type="button" class="manageProductDelete btn btn-outline-danger py-0" 
 												data-no="${ p.productno }" style="font-size:small;">상품 삭제</button></td>													
@@ -165,7 +165,8 @@ div table tbody td {
 
 									<c:if test="${ startPage > pageGroup }">
 										<li class="page-item"><a class="page-link"
-											href="manageFestivalProduct?pageNum=${startPage - pageGroup }">Pre</a></li>
+											href="manageFestivalProduct?pageNum=${startPage - pageGroup }
+												&type=${ type }&keyword=${ keyword }">Pre</a></li>
 									</c:if>
 
 									<c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -176,13 +177,14 @@ div table tbody td {
 
 										<c:if test="${i != currentPage}">
 											<li class="page-item"><a class="page-link"
-												href="manageFestivalProduct?pageNum=${i}">${i}</a></li>
+												href="manageFestivalProduct?pageNum=${ i }&type=${ type }&keyword=${ keyword }">${i}</a></li>
 										</c:if>
 									</c:forEach>
 
 									<c:if test="${ endPage < pageCount }">
 										<li class="page-item"><a class="page-link"
-											href="manageFestivalProduct?pageNum=${endPage + 1}">Next</a></li>
+											href="manageFestivalProduct?pageNum=${ startPage - pageGroup }
+						      					&type=${ type }&keyword=${ keyword }">Next</a></li>
 									</c:if>
 
 								</ul>

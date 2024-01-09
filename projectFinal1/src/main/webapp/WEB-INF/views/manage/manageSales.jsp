@@ -57,6 +57,7 @@
 					<div class="col-5 pe-5">
 					
 						<!-- 일 매출 -->
+						
 						<table class="table table-hover text-center">
 							<thead>
 								<tr class="table-secondary">
@@ -64,6 +65,9 @@
 									<th>일 매출</th>
 								</tr>
 							</thead>
+							
+							<!-- 검색요청이 아닌경우  -->
+							<c:if test="${ not searchOption and not empty rList }">
 							<tbody class="text-secondary">
 								<c:forEach var="r" items="${rList}">
 									<tr style="color: black; font-size: small;">
@@ -72,10 +76,35 @@
 									</tr>
 								</c:forEach>
 							</tbody>
+							</c:if>
+							
+							<!-- 검색요청 -->
+							<c:if test="${ searchOption and not empty rList }">
+							<tbody class="text-secondary">
+								<c:forEach var="r" items="${rList}">
+									<tr style="color: black; font-size: small;">
+										<td><fmt:formatDate value="${r.reservationdate}" pattern="yyyy-MM-dd" /></td>
+										<td><fmt:formatNumber value="${r.totalReservationPrice}" pattern="#,##0원" /></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+							</c:if>
+							
+							<!-- 검색요청이 없는 경우 -->
+							<c:if test="${ searchOption and empty rList }">
+								<tr>
+									<td colspan="5" class="text-center" style="font-size:small;">
+										"${ keyword }"가 포함된 날짜가 존재하지 않습니다.
+									</td>
+								</tr>
+							</c:if>
+							
+							
+							
 						</table>
-
-
+						
 						<!--일 매출 페이지 네이션 -->
+						<c:if test="${ not searchOption and not empty rList }">
 						<div class="row">
 							<div class="col my-1 text-center">
 								<nav aria-label="Page navigation example">
@@ -107,6 +136,45 @@
 								</nav>
 							</div>
 						</div>
+						</c:if>
+
+
+						<!-- 검색 요청 일 매출 페이지 네이션 -->
+						<c:if test="${ searchOption and not empty rList }">
+						<div class="row">
+							<div class="col my-1 text-center">
+								<nav aria-label="Page navigation example">
+									<ul class="pagination justify-content-center">
+
+										<c:if test="${ startPage > pageGroup }">
+											<li class="page-item"><a class="page-link"
+												href="manageSales?pageNum=${ startPage - pageGroup }
+						      					&type=${ type }&keyword=${ keyword }"" style="font-size:small;"><</a></li>
+										</c:if>
+
+										<c:forEach var="i" begin="${startPage}" end="${endPage}">
+											<c:if test="${i == currentPage}">
+												<li class="page-item " aria-current="page"><span
+													class="page-link" style="font-size:small;">${i}</span></li>
+											</c:if>
+
+											<c:if test="${i != currentPage}">
+												<li class="page-item"><a class="page-link"
+													style="font-size:small;" href="manageSales?pageNum=${ i }&type=${ type }&keyword=${ keyword }">${i}</a></li>
+											</c:if>
+										</c:forEach>
+
+										<c:if test="${ endPage < pageCount }">
+											<li class="page-item"><a class="page-link"
+												style="font-size:small;" href="manageSales?pageNum=${ startPage + pageGroup }
+						    					  &type=${ type }&keyword=${ keyword }">></a></li>
+										</c:if>
+
+									</ul>
+								</nav>
+							</div>
+						</div>
+						</c:if>
 
 						<form name="checkForm" id="checkForm">
 							<input type="hidden" name="pageNum" value="${ pageNum }" />

@@ -113,6 +113,7 @@ td input:focus {
 									</td>
 									<td>
 										<div class="text-start fs-6 py-1">
+											<c:if test="${member.grade == 0}">일반</c:if>
 											<c:if test="${member.grade == 1}">BLACK</c:if>
 											<c:if test="${member.grade == 2}">SILVER</c:if>
 											<c:if test="${member.grade == 3}">GOLD</c:if>

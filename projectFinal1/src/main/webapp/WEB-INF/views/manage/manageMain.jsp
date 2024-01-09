@@ -165,7 +165,7 @@
 				
 				
 				<div class="row">
-					<div class="col border rounded-3 pt-4 mt-4 text-center" style="height:610px; width:400px; background-color:#F0FFFF;">		
+					<div class="col border rounded-3 pt-4 mt-4 text-center" style="height:650px; width:400px; background-color:#F0FFFF;">		
 					<span class=" fs-5">연도별 매출 차트</span>
 					<c:if test="${ not empty salesList }">
 						<div class="text-end" style="margin-top:-30px;">
@@ -179,7 +179,7 @@
 					<!-- 올해 매출 차트 -->
 					<div class="row my-3">
 						<div class="col-10 ps-5 ms-5 pt-4"
-							style="width: 480px; height: 480px; margin-bottom: -280px;">
+							style="width: 550px; height: 480px; margin-bottom: -220px;">
 							<canvas id="myChart"></canvas>
 						</div>
 					</div>
