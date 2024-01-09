@@ -46,14 +46,18 @@ public class ReservationController {
 			 Reservation re = new Reservation();
 			 re.setId(id);
 			
-
 			 System.out.println("insertReservation 에서 :" + re.getId());
 			 System.out.println("insertReservation 에서 :" + re.getProductno());
 			 System.out.println("insertReservation 에서 :" + re.getReservationprice());
 			 System.out.println("insertReservation 에서 :" + re.getReservationticketcount());
 			 
-			 // insert하면서 동시에 select 하는 Service - 1월 9일
+			 // 1) Reservation에 insert
+			 // 2) ShoppingBasket에 delete
+			 // 3) Reservation에서 select
 			 rs.BasketListByIdByProductno(id, re);
+			 
+			 // insert하면서 동시에 select 하는 Service - 1월 9일
+			// rs.BasketListByIdByProductno(id, re);
 	
 			 return "success";
 			// return "redirect:/priceOrderFinish.jsp";

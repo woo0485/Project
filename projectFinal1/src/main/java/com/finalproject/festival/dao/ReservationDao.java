@@ -16,7 +16,9 @@ public interface ReservationDao {
 	public void insertReservation(String id);
 	//public void insertReservation(String id, int productno, int reservationprice, int reservationticketcount);
 	
+	public void deleteBasket(String id);
 	
+	public List<Reservation> myReservation (String id);
 	
 	
 	

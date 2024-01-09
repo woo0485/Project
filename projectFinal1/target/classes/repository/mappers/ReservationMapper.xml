@@ -5,25 +5,6 @@
 <mapper namespace="com.finalproject.festival.mapper.ReservationMapper" >
 
 <!--  Reservation 테이블에서 id에 해당하는 productno를 가져오고 Product에서 price를 가져와서 장바구니의 product 개수와 곱해줘서 reservationprice에 넘겨주는 -->
-<!-- 
-<select id="BasketListByIdByProductno" resultType="Reservation"  parameterType="String">
-	SELECT sb.id, sb.productno, (sb.basketproductcount * p.productprice) AS   reservationprice, 
-						sb.basketproductcount
-			FROM ShoppingBasket sb
-			JOIN Product p ON sb.productno = p.productno
-			WHERE sb.id =  #{id}
-</select>
- -->
-<!-- 
-<select id="BasketListByIdByProductno" resultType="Reservation"  parameterType="String">
-	SELECT sb.id, sb.productno,  reservationprice, 
-						sb.basketproductcount
-			FROM ShoppingBasket sb
-			JOIN Product p ON sb.productno = p.productno
-			WHERE sb.id =  #{id}
-</select>
- -->
-
 <!--  장바구니에서 id에 해당하는 정보 조회하기 -->
 <select id="BasketListByProductno" resultType="Basket"  parameterType="String">
    SELECT sb.id, sb.productno, (sb.basketproductcount * p.productprice) AS   reservationprice, 
@@ -36,17 +17,19 @@
 <!--  reservation 테이블에 정보 추가 -->
 	<insert id="insertReservation"   parameterType="String"  useGeneratedKeys="true"  keyProperty="reservationno">
 		insert into Reservation ( id, productno, reservationprice, reservationticketcount, reservationdate)
-		SELECT sb.id id, sb.productno, (sb.basketproductcount * p.productprice) AS reservationprice, sb.basketproductcount , SYSDATE()
-		FROM ShoppingBasket sb
-		JOIN Product p ON sb.productno = p.productno
+			SELECT sb.id id, sb.productno, (sb.basketproductcount * p.productprice) AS reservationprice, sb.basketproductcount , SYSDATE()
+			FROM ShoppingBasket sb
+			JOIN Product p ON sb.productno = p.productno
 		WHERE sb.id =  #{id}
 	</insert>
 	
+	<!--  결제되면서 장바구니에서 id에 해당하는 정보 전부 삭제 -->
 	<delete id="deleteBasket" parameterType="String">
 		delete from ShoppingBasket
 		 where id =  #{id}
 	</delete>
 
+<!--  예약 테이블에서 id에 해당하는 예약 테이블 정보 전부 가져오기 -->
 	<select id="myReservation"  parameterType="String">
 		select * from Reservation 
 		where id = #{id}
@@ -144,7 +127,24 @@ AND R.reservationticketcount = SB.basketproductcount
 LEFT JOIN Product P ON R.productno = P.productno
 WHERE R.id = #{id}
 	</select>
-	
+	<!-- 
+<select id="BasketListByIdByProductno" resultType="Reservation"  parameterType="String">
+	SELECT sb.id, sb.productno, (sb.basketproductcount * p.productprice) AS   reservationprice, 
+						sb.basketproductcount
+			FROM ShoppingBasket sb
+			JOIN Product p ON sb.productno = p.productno
+			WHERE sb.id =  #{id}
+</select>
+ -->
+<!-- 
+<select id="BasketListByIdByProductno" resultType="Reservation"  parameterType="String">
+	SELECT sb.id, sb.productno,  reservationprice, 
+						sb.basketproductcount
+			FROM ShoppingBasket sb
+			JOIN Product p ON sb.productno = p.productno
+			WHERE sb.id =  #{id}
+</select>
+ -->
 	
 	<resultMap id="ReservationResultMap" type="Reservation" >
 		<id property="reservationno" column="reservationno" />

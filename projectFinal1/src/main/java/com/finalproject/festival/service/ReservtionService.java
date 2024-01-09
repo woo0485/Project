@@ -10,6 +10,9 @@ import com.finalproject.festival.domain.Reservation;
 public interface ReservtionService {
 	// Reservation 테이블에서 id에 해당하는 productno를 가져오고 product에서 price를 가져와서 장바구니의 product의 개수랑 곱해줘서 넣어주는 거까지 가져오는 거
 	// insert하면서 select 동시에 해준다. => 서비스에서 처리해줌
+	// 1) insert Reservation 테이블
+	// 2) delete Basket 테이블
+	// 3) select myreservation 테이블 해서 예약 테이블 전체 다 보여주기
 	public List<Reservation> BasketListByIdByProductno (String id, Reservation r);
 	
 	

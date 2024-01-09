@@ -12,12 +12,12 @@
 <script src="resources/js/jquery-3.2.1.min.js"></script>
 <script src="resources/js/hyunju.js"></script>
 <body>
+
 <h1>결제한 내역 목록</h1>
 <div> 
 2024- 05-01 : 주문한 상품목록 어쩌구 <br>
 2024- 05-02 : 주문한 상품목록 저쩌구 
 이런식으로 보여줄 것임
-
 </div>
 
 <c:forEach var="r" items="${reservationList}" >
