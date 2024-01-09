@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="row">
-	<div class="col-10 offset-1">
+	<div class="col-10 offset-1 mt-4">
 	
 		<c:forEach var="news" items="${newsList}">
 			<div class="row mt-4">
@@ -11,7 +11,7 @@
 					<a href="newsdetail?no=${news.newsno}"> <img alt="" src="${news.newsimage}"
 						style="width: 100%; height: 100%"></a>
 				</div>
-				<div class="col-9">
+				<div class="col-9 border-top border-bottom border-2">
 					<div class="row mt-4">
 						<div class="col fs-3"
 							style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
