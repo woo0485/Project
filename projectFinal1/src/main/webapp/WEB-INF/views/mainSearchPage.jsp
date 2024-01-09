@@ -13,24 +13,24 @@
 			
 		   </div>
 	   </div>
-	   
+	  
 	   
 		<div class="row">
 		    <div class="col">
 		    	
 		    
-					<ul class="nav nav-pills mb-5 offset-1" id="pills-tab" role="tablist">
+					<ul class="nav nav-pills nav-justified mb-5 offset-1" id="pills-tab" role="tablist">
 					  <li class="nav-item" role="presentation">
-					    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">전체</button>
+					    <button class="nav-link active " id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">전체</button>
 					  </li>
 					  <li class="nav-item" role="presentation">
-					    <button class="nav-link" id="pills-profile-tab1" data-bs-toggle="pill" data-bs-target="#pills-profile1" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">축제상품</button>
+					    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">축제상품</button>
 					  </li>
 					  <li class="nav-item" role="presentation">
-					    <button class="nav-link" id="pills-contact-tab2" data-bs-toggle="pill" data-bs-target="#pills-contact2" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">축제기사</button>
+					    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">축제기사</button>
 					  </li>
 					  <li class="nav-item" role="presentation">
-					    <button class="nav-link" id="pills-disabled-tab3" data-bs-toggle="pill" data-bs-target="#pills-disabled3" type="button" role="tab" aria-controls="pills-disabled" aria-selected="false">갤러리</button>
+					    <button class="nav-link" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled" aria-selected="false">갤러리</button>
 					  </li>
 					</ul>
 					<div class="tab-content" id="pills-tabContent">
@@ -46,14 +46,14 @@
 								   <div class="col">
 									"<span>${keyword}</span>"<span style="font-size: 25px;">에 관련된 축제 정보가 존재하지 않습니다.</span>
 								   </div>
-						  	</c:if>
+						  	 	</c:if>
 							    <c:if test="${not empty searchProduct}">
 					    		
 									<div class="col-3 my-2">
 								  		<div class="card" style="width: 18rem;">
-										 <a href="#"><img src="${searchProduct.productimage}" class="card-img-top" alt="..." style="height: 250px;"></a> 
+										 <a href="productDetail?productno=${searchProduct.productno}"><img src="${searchProduct.productimage}" class="card-img-top" alt="..." style="height: 250px;"></a> 
 											  <div class="card-body" style="height: 170px;">
-												  <div class="card-text"><a href="productDetail?no=${searchProduct.productno}">${searchProduct.productname}</a></div>
+												  <div class="card-text fw-bold fs-5"><a href="productDetail?no=${searchProduct.productno}">${searchProduct.productname}</a></div>
 												  <div class="card-text" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; word-wrap:break-word;">
 												 	<a href="productDetail?no=${searchProduct.productno}">${searchProduct.productcontent}</a> 
 											  </div>
@@ -64,7 +64,7 @@
 							  </c:forEach>
 							   	</div>
 							</div>
-					  		<div id="seeMoreProduct" class="col-12 d-flex align-items-center justify-content-center border-top fw-bold" style="height: 100px; font-size: 20px;"><span><i class="bi bi-zoom-in"></i>더보기</span></div>
+					  		<div id="seeMoreProduct" class="col-12 d-flex align-items-center justify-content-center border-top fw-bold" style="height: 100px; font-size: 20px; cursor: pointer;"><span><i class="bi bi-zoom-in"></i>더보기</span></div>
 					  		</div>
 					  	
 					  	<h3>축제 기사</h3>
@@ -104,9 +104,9 @@
 							</c:forEach>
 							
 						
-							<div id="seeMoreNews" class="col-12 d-flex align-items-center justify-content-center border-top fw-bold" style="height: 100px; font-size: 20px;"><span><i class="bi bi-zoom-in"></i>더보기</span></div>
+							<div id="seeMoreNews" class="col-12 d-flex align-items-center justify-content-center border-top fw-bold" style="height: 100px; font-size: 20px; cursor: pointer;"><span><i class="bi bi-zoom-in"></i>더보기</span></div>
 					  		</div>
-					  	</div>
+					  		</div>
 					  	<h3>갤러리</h3>
 					  	<div class="row border my-5">
 					  		<div class="col">
@@ -121,12 +121,13 @@
 								    <c:if test="${not empty searchGallery}">
 										<div class="col-3 my-2">
 									  		<div class="card" style="width: 18rem;">
-											 <a href="roductDetail?productno=${searchGallery.galleryno}"><img src="resources/upload/${searchGallery.galleryimage}" class="card-img-top" alt="..." style="height: 250px;"></a> 
+											 <a href="roductDetail?productno=${searchGallery.galleryno}"><img src="resources/upload/${searchGallery.galleryimage[0]}" class="card-img-top" alt="..." style="height: 250px;"></a> 
 											  <div class="card-body" style="height: 170px;">
-												  <div class="card-text"><a href="productDetail?no=${searchGallery.galleryno}">${searchGallery.gallerytitle}</a></div>
+												    <div class="card-text fw-bold fs-5">${searchGallery.gallerytitle}</div>
 												  <div class="card-text" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; word-wrap:break-word;">
-												 	<a href="productDetail?no=${searchGallery.galleryno}">${searchGallery.gallerycontent}</a> 
+												 	<p>${searchGallery.gallerycontent}</p> 
 												  </div>
+												  <div class="card-text">작성자 : ${searchGallery.gallerywriter}</div>
 											  </div>
 										  </div>
 										</div>							    	
@@ -136,21 +137,21 @@
 								  
 								</div>
 					  		</div>
-					  		<div id="seeMoreGallery" class="col-12 d-flex align-items-center justify-content-center border-top fw-bold" style="height: 100px; font-size: 20px; "><span><i class="bi bi-zoom-in"></i>더보기</span></div>
+					  		<div id="seeMoreGallery" class="col-12 d-flex align-items-center justify-content-center border-top fw-bold" style="height: 100px; font-size: 20px; cursor: pointer; "><span><i class="bi bi-zoom-in"></i>더보기</span></div>
 					  	</div>
 					  
 					  </div>
-					  
-					  <div class="tab-pane fade" id="pills-profile1" role="tabpanel" aria-labelledby="pills-profile-tab1" tabindex="0">
+					  <div class="tab-content" id="nav-tabContent">
+					  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
 				    	<div class="row">
 							  <c:forEach var="searchProduct" items="${mainSearchProduct}">
 							    <c:if test="${not empty searchProduct}">
 					    		
 									<div class="col-3 my-2">
 								  		<div class="card" style="width: 18rem;">
-										 <a href="#"><img src="${searchProduct.productimage}" class="card-img-top" alt="..." style="height: 250px;"></a> 
+										 <a href="productDetail?productno=${searchProduct.productno}"><img src="${searchProduct.productimage}" class="card-img-top" alt="..." style="height: 250px;"></a> 
 											  <div class="card-body" style="height: 170px;">
-												  <div class="card-text"><a href="productDetail?no=${searchProduct.productno}">${searchProduct.productname}</a></div>
+												  <div class="card-text fw-bold fs-5"><a href="productDetail?no=${searchProduct.productno}">${searchProduct.productname}</a></div>
 												  <div class="card-text" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; word-wrap:break-word;">
 												 	<a href="productDetail?no=${searchProduct.productno}">${searchProduct.productcontent}</a> 
 											  </div>
@@ -167,7 +168,7 @@
 							   	</div>
 					  </div>
 					  
-					  <div class="tab-pane fade" id="pills-contact2" role="tabpanel" aria-labelledby="pills-contact-tab2" tabindex="0">
+					  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
 					  	<c:forEach var="searchNews" items="${mainSearchNews}">
 						  		<c:if test="${not empty searchNews}">
 									<div class="row mt-4">
@@ -203,13 +204,13 @@
 					  </div>
 					  
 					  
-					  <div class="tab-pane fade" id="pills-disabled3" role="tabpanel" aria-labelledby="pills-disabled-tab3" tabindex="0">
+					  <div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab" tabindex="0">
 					  	
 					  	<div class="row">
 					  		<div class="col">
 					  		<!-- 갤러리 -->
 						  		<div class="row">
-								  <c:forEach var="searchGallery" items="${mainSearchGallery}">
+								  <c:forEach var="searchGallery" items="${mainSearchGallery}" >
 						  			<c:if test="${empty searchGallery}">
 								   <div class="col">
 									"<span>${keyword}</span>"<span style="font-size: 25px;">에 관련된 갤러리가 존재하지 않습니다.</span>
@@ -218,12 +219,13 @@
 								    <c:if test="${not empty searchGallery}">
 										<div class="col-3 my-2">
 									  		<div class="card" style="width: 18rem;">
-											 <a href="roductDetail?productno=${searchGallery.galleryno}"><img src="resources/upload/${searchGallery.galleryimage}" class="card-img-top" alt="..." style="height: 250px;"></a> 
+											<img src="resources/upload/${searchGallery.galleryimage[0]}" class="card-img-top" alt="..." style="height: 250px;">
 											  <div class="card-body" style="height: 170px;">
-												  <div class="card-text"><a href="productDetail?no=${searchGallery.galleryno}">${searchGallery.gallerytitle}</a></div>
+												  <div class="card-text fw-bold fs-5">${searchGallery.gallerytitle}</div>
 												  <div class="card-text" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; word-wrap:break-word;">
-												 	<a href="productDetail?no=${searchGallery.galleryno}">${searchGallery.gallerycontent}</a> 
+												 	<p>${searchGallery.gallerycontent}</p> 
 												  </div>
+												  <div class="card-text">작성자 : ${searchGallery.gallerywriter}</div>
 											  </div>
 										  </div>
 										</div>							    	
@@ -233,7 +235,9 @@
 					  		</div>
 					  	</div>
 					</div>
+				</div>
 		    	</div>
 		    </div>
 		</div>
 	</div>
+	

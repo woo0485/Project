@@ -16,6 +16,7 @@ import com.finalproject.festival.domain.Main;
 import com.finalproject.festival.domain.Member;
 import com.finalproject.festival.domain.News;
 import com.finalproject.festival.domain.Product;
+import com.finalproject.festival.domain.Search;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -119,6 +120,35 @@ public class MemberServiceImpl implements MemberService {
 		public List<Gallery> mainSearchGallery(String keyword) {
 			return memberDao.mainSearchGallery(keyword);
 		}
+
+		@Override
+		public void searchKeyword(String keyword) {
+			String searchKeyword="";
+			
+			String koreanRegex = "^[가-힣]*$";
+	        
+	        if (keyword.matches(koreanRegex)){
+				searchKeyword=keyword;
+				
+			}	
+		int keywordCount = memberDao.searchKeywordFind(searchKeyword);
+		
+		if(keywordCount == 0) {
+			memberDao.searchKeywordInsert(searchKeyword);
+		}else {
+			
+			memberDao.searchKeywordCount(searchKeyword);
+		}
+			
+		}
+
+		@Override
+		public List<Search> mainSearchSelect() {
+		
+			return memberDao.searchKeywordSelect();
+		}
+
+	
 
 	
 

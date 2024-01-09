@@ -90,12 +90,38 @@
 	<select id="mainSearchNews"  resultType="News">
 		SELECT * FROM News WHERE newstitle LIKE CONCAT('%', #{keyword}, '%') OR newscontent LIKE CONCAT('%', #{keyword}, '%');
 	</select>
-	
-	<select id="mainSearchGallery" resultType="Gallery">
+	<resultMap id="galleryResultMap" type="Gallery">
+		<result property="id" column="id" />
+		<result property="gallerytitle" column="gallerytitle" />
+		<result property="gallerycontent" column="gallerycontent" />
+		<result property="gallerywriter" column="gallerywriter" />
+		<result property="gallerygoodcount" column="gallerygoodcount" />
+		<result property="galleryuploaddate" column="galleryuploaddate" />
+		<result property="galleryno" column="galleryno" />
+		<result property="galleryimage" column="galleryimage"
+			jdbcType="VARCHAR" javaType="java.lang.String"
+			typeHandler="com.finalproject.typeHandler.StringArrayTypeHandler" />
+	</resultMap>
+	<select id="mainSearchGallery" resultMap="galleryResultMap">
 		SELECT * FROM Gallery WHERE gallerytitle LIKE CONCAT('%', #{keyword}, '%') OR gallerycontent LIKE CONCAT('%', #{keyword}, '%');
 	</select>
 	
+			<!--************** search ****************-->	
+	<select id="searchKeywordSelect" resultType="Search">
+		  SELECT * FROM Search ORDER BY searchkeywordcount DESC
+	</select>	
 	
+	<select id="searchKeywordFind" resultType="Integer">
+		SELECT COUNT(*) FROM Search WHERE searchkeyword = #{searchKeyword}
+	</select>	
+				
+	<insert id="searchKeywordInsert">
+		INSERT INTO Search (searchkeyword, searchkeywordcount) VALUES(#{searchKeyword},1)
+	</insert>
+	
+	<update id="searchKeywordCount">
+		UPDATE Search SET searchkeyword = #{searchKeyword}, searchkeywordcount = +1 WHERE searchkeyword = #{searchKeyword}
+	</update>
 </mapper>	
 
 

@@ -15,6 +15,7 @@ import com.finalproject.festival.domain.Main;
 import com.finalproject.festival.domain.Member;
 import com.finalproject.festival.domain.News;
 import com.finalproject.festival.domain.Product;
+import com.finalproject.festival.domain.Search;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -124,7 +125,30 @@ public class MemberDaoImpl implements MemberDao {
 		return st.selectList(NAME_SPACE+".mainSearchGallery",keyword);
 	}
 
-	
+	@Override
+	public List<Search> searchKeywordSelect() {
+		
+		return st.selectList(NAME_SPACE+".searchKeywordSelect");
+		
+	}
+
+	@Override
+	public int searchKeywordFind(String searchKeyword) {
+		
+		return st.selectOne(NAME_SPACE+".searchKeywordFind", searchKeyword);
+	}
+
+	@Override
+	public void searchKeywordInsert(String searchKeyword) {
+		st.insert(NAME_SPACE+".searchKeywordInsert", searchKeyword);
+		
+	}
+
+	@Override
+	public void searchKeywordCount(String searchKeyword) {
+		st.update(NAME_SPACE+".searchKeywordCount", searchKeyword);
+	}
+
 	
 
 

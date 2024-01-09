@@ -9,6 +9,7 @@ import com.finalproject.festival.domain.Main;
 import com.finalproject.festival.domain.Member;
 import com.finalproject.festival.domain.News;
 import com.finalproject.festival.domain.Product;
+import com.finalproject.festival.domain.Search;
 
 public interface MemberDao {
 
@@ -45,4 +46,13 @@ public interface MemberDao {
 	public List<News> mainSearchNews(String keyword);
 	
 	public List<Gallery> mainSearchGallery(String keyword);
+	
+	public List<Search> searchKeywordSelect();
+	
+	public int searchKeywordFind(String searchKeyword); 
+	
+	public void searchKeywordInsert(String searchKeyword);
+			
+	public void searchKeywordCount(String searchKeyword);
+
 }
