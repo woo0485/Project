@@ -40,7 +40,7 @@
 		        <button class="btn btn-outline-dark" type="submit">Search</button>
 		        </form>
 		        <div class="row mt-4">
-					<div class="col-3 p-0 fw-bold text-end">인기 검색어 :</div>
+					<div class="col-3 p-0 fw-bold text-end">인기 검색어  :</div>
 					<div class="col p-0 text-start">
 					<c:forEach var="publicKeyword" items="${searchList}">
 						<span class="me-2">
