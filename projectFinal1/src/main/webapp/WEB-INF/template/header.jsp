@@ -84,9 +84,9 @@
 					          </a>
 					          
 					          <ul class="dropdown-menu">
-					            <li><a class="dropdown-item" href="event">진행중 이벤트</a></li>
-					            <li><a class="dropdown-item" href="#">종료된 이벤트</a></li>
-					         	<li><a class="dropdown-item" href="#">당첨자</a></li>
+					            <li><a class="dropdown-item" href="event?eventType=Proceeding">진행중 이벤트</a></li>
+					            <li><a class="dropdown-item" href="event?eventType=Terminated">종료된 이벤트</a></li>
+					         	<li><a class="dropdown-item" href="event?eventType=Winner">당첨자</a></li>
 					          </ul>
 					         </li>
 					        <li class="nav-item dropdown me-5">

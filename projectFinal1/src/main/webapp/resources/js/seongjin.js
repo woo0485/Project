@@ -181,6 +181,20 @@ $(document).on("click", ".galleryheart", function(event) {
     }
 });
 
+$(".eventtab").click(function(){
+
+$(".eventtab").css("opacity", 0.3);
+
+$(this).css("opacity", 1);
+
+$(".tab-pane").css("display", "none");
+
+var datacode = $(this).attr("data-code");
+
+$("#" + datacode).addClass("show active").css("display", "block");
+
+});
+
 $(document).on("click", ".gallerybad", function(event) {
     event.stopPropagation();
 
