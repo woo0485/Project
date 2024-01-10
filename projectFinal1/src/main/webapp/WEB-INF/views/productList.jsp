@@ -17,10 +17,6 @@
     color: black;
     background-color: transparent;
   }
-  .carousel{
-  border: 1px solid blue;
-  text-align: center;
-  }
   .bookmark {
    text-align: center;
    font-size: 20px;
@@ -48,19 +44,20 @@
 				<input type="submit" value="검 색" class="btn btn-primary"/>
 			</div>
 		</form>
-<!--  검색 폼 -->			
+<!--  검색 폼 -->		
+	
 <!--  캐러셀 -->
 <div class="carousel">
 	<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" >
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="2000">
-      <img src="resources/img/4.jpg" class="d-block w-10" alt="...">
+      <img src="resources/img/4.jpg" class="d-block w-100" alt="..." style="height: 500px;">
     </div>
     <div class="carousel-item" data-bs-interval="2000">
-      <img src="resources/img/5.jpg" class="d-block w-10" alt="...">
+      <img src="resources/img/5.jpg" class="d-block w-100" alt="..." style="height: 500px;">
     </div>
     <div class="carousel-item" data-bs-interval="2000">
-      <img src="resources/img/3.jpg" class="d-block w-10" alt="...">
+      <img src="resources/img/3.jpg" class="d-block w-100" alt="..." style="height: 500px;">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -76,14 +73,8 @@
 <!--  캐러셀  끝-->	 	
 	
 <!--/////////////      축제정보 등록      /////////////-->
-<!-- 관리자 로그인 XXXXXX  (임시로 관리자 로그인되었을 때 안되었을 때 둘 다 보이게 함 최종때는 수정할 것임)-->	
-	 <c:if test="${empty sessionScope.adminid}">
-		<div class="col-12 text-end">
-				<a href="writeForm" class="btn btn-outline-success">축제정보 등록</a>
-		</div>
-		</c:if>
 <!-- 관리자 로그인되었을 때  OOOOO-->							
-	<c:if test="${not empty sessionScope.adminid}">
+	<c:if test="${sessionScope.userType =='Admin'}">
 	<div class="col-12 text-end">
 				<a href="writeForm" class="btn btn-outline-success">축제정보 등록</a>
 		</div>

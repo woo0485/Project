@@ -4,7 +4,7 @@
 
 
 <div class="row mt-5 border-top" style="height: 500px;">
-	<div class="col-10 offset-1 mt-5">
+	<div class=" mt-5">
 	
 	<c:if test="${empty sessionScope.id }">
 		<div class="row mt-5 container text-center">

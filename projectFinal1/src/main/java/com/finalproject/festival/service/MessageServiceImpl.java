@@ -30,6 +30,7 @@ public class MessageServiceImpl implements MessageService {
 		
 		makeRandomNumber();
 		
+		System.out.println(authNumber);
 		DefaultMessageService messageService =  NurigoApp.INSTANCE.initialize("NCS5YWLDO6O6K8IJ", "VNGBFXVYNZM1WOHKIV9XHMHSZRFPRMYZ", "https://api.coolsms.co.kr");
 		// Message 패키지가 중복될 경우 net.nurigo.sdk.message.model.Message로 치환하여 주세요
 		Message message = new Message();

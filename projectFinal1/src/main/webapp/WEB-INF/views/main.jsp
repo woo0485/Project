@@ -2,12 +2,29 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  
-<script>
-	
-		
-	
+
+ <script type="text/javascript">
+$(document).ready(function(){
+    var owl = $('.owl-carousel');
+    
+    owl.owlCarousel({
+        items:4,                 // 한번에 보여줄 아이템 수
+        loop:true,               // 반복여부
+        margin:35,               // 오른쪽 간격
+        autoplay:true,           // 자동재생 여부
+        autoplayTimeout:2500,    // 재생간격
+        autoplayHoverPause:true  //마우스오버시 멈출지 여부
+    });    
+    
+    $('.customNextBtn').click(function() {
+        owl.trigger('next.owl.carousel');
+    })
+    
+    $('.customPrevBtn').click(function() {
+        owl.trigger('prev.owl.carousel', [300]);
+    })
+});
 </script>
- 
 <div class="row mt-5">
 	<div class="col-10 offset-1 mt-1">
 
@@ -15,7 +32,7 @@
 		<div class="row">
 			<div class="col">
 			
-				<div id="carouselExampleCaptions" class="carousel slide">
+				<div id="carouselExampleCaptions" class="carousel slide carousel-fade"  data-bs-ride="carousel">
 				    <div class="carousel-indicators">
 				        <c:forEach var="product" items="${productList}" varStatus="productLoop" end="5">
 				            <c:choose>
@@ -36,8 +53,8 @@
 				                    <div class="carousel-item active">
 				                        <a href="productDetail?productno=${product.productno}"><img src="${product.productimage}" class="d-block w-100" alt="..." style="height: 600px;"></a>
 				                        <div class="carousel-caption d-none d-md-block">
-				                            <h5>${product.productname}</h5>
-				                            <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; word-wrap: break-word;">
+				                            <h5 class="fs-3 fw-bold" style="text-shadow:black 2px 0 10px;">${product.productname}</h5>
+				                            <p style="text-shadow:black 2px 0 10px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; word-wrap: break-word;">
 				                                ${product.productcontent}
 				                            </p>
 				                        </div>
@@ -47,8 +64,8 @@
 				                    <div class="carousel-item">
 				                        <a href="productDetail?productno=${product.productno}"><img src="${product.productimage}" class="d-block w-100" alt="..." style="height: 600px;"></a>
 				                        <div class="carousel-caption d-none d-md-block">
-				                            <h5>${product.productname}</h5>
-				                            <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; word-wrap: break-word;">
+				                            <h5 class="fs-3 fw-bold" style="text-shadow:black 2px 0 10px;">${product.productname}</h5>
+				                            <p style="text-shadow:black 2px 0 10px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; word-wrap: break-word;">
 				                                ${product.productcontent}
 				                            </p>
 				                        </div>
@@ -72,21 +89,6 @@
 
 			</div>
 		</div>
-
-
-	
-	<div class="row my-5">
-		<div class="col-mb-1 d-flex align-items-center"><i class="bi bi-arrow-left-circle-fill" style="font-size: 2rem;"></i></div>
-		<c:forEach var="gallery" items="${galleryList}" varStatus="galleryLoop" end="10">
-			<div class="col gallery-item" style="display: ${galleryLoop.index <=4 ? 'inline' : 'none'};">
-				<img class="img-responsive" style="width: 120%; height: 300px;" src="resources/upload/${gallery.galleryimage[0]}" alt="이미지1">
-				<div class="carousel-capction"><p>${gallery.gallerytitle}</p></div>
-			</div>
-		</c:forEach>
-		<div class="col-1 d-flex align-items-center"><i class="bi bi-arrow-right-circle-fill" style="font-size: 2rem;"></i></div>	
-	</div>	
-	
-	
 	
 	
 	<div class="row my-5" id="latestNewsContainer" style="height: 300px;">
@@ -100,43 +102,28 @@
 	    </div>	
 	</div>
 	
-	<div class="row my-5">
-		<div class="col">
-			<div id="carouselExampleIndicators" class="carousel slide">
-			  <div class="carousel-indicators">
-			    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-			    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-			    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-			  </div>
-			  <div class="carousel-inner">
-			    <div class="carousel-item active">
-			      <img src="https://via.placeholder.com/800x200" class="" alt="...">
-			    </div>
-			    <div class="carousel-item">
-			      <img src="https://via.placeholder.com/800x200" class="" alt="...">
-			    </div>
-			    <div class="carousel-item">
-			      <img src="https://via.placeholder.com/800x200" class="" alt="...">
-			    </div>
-			  </div>
-			  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			    <span class="visually-hidden">Previous</span>
-			  </button>
-			  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			    <span class="visually-hidden">Next</span>
-			  </button>
-			</div>
-		</div>
-	</div>	
 	
-	<div class="row my-5">
-		<div class="col"><img src="https://via.placeholder.com/150x200" alt="이미지1"></div>
-		<div class="col"><img src="https://via.placeholder.com/150x200" alt="이미지1"></div>
-		<div class="col"><img src="https://via.placeholder.com/150x200" alt="이미지1"></div>
-		<div class="col"><img src="https://via.placeholder.com/150x200" alt="이미지1"></div>	
-	</div>		
+	
+	
+		<div class="row my-5 owl-carousel owl-theme owl-loaded">
+	 <div class="col owl-stage-outer">
+	  <div class="owl-stage">
+	  
+		  		<c:forEach var="gallery" items="${galleryList}" varStatus="galleryLoop">
+				<div class="owl-item">
+						<a href=""><img class="img-responsive" style="width:100%; height: 300px;" src="resources/upload/${gallery.galleryimage[0]}" alt="이미지1"></a>
+				</div>
+				</c:forEach>
+	   
+	   </div>
+	  </div>
+	 </div>
+	
+	
+	
+	
+	
+			
 
 			
 			
