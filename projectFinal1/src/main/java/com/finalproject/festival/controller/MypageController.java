@@ -55,9 +55,11 @@ public class MypageController {
 	
 	// 마이페이지 예약취소
 	@RequestMapping("/mydelete")
-	public String myPageReservationdelete(@RequestParam("id")String id, @RequestParam("productno")int productno, @RequestParam("reservationticketcount")int reservationticketcount,  Model model){
+	public String myPageReservationdelete(@RequestParam("id")String id, 
+			@RequestParam("productno")int productno, @RequestParam("reservationticketcount")int reservationticketcount, 
+			@RequestParam("reservationno")int reservationno,  Model model){
 		
-		Reservation MyReservation = service.MyReservation(id, productno);
+		Reservation MyReservation = service.MyReservation(id, productno, reservationno);
 		Reservation MycancleTicket = service.MyCancleTicket(reservationticketcount, productno, id);
 		
 		
@@ -84,7 +86,6 @@ public class MypageController {
 		
 		List<Gallery> Gallery = service.Gallery(GalleryBookMark);
 		
-		
 		model.addAttribute("Gallery",Gallery);
 		model.addAttribute("GalleryBookMark",GalleryBookMark);
 		
@@ -100,6 +101,33 @@ public class MypageController {
 		
 		return "myPageFavorite";
 	}
+	
+	@RequestMapping("/myPageFavorite1")
+	public String myPageFavorite1(@RequestParam("id")String id, Model model) {
+		List<GalleryBookMark> GalleryBookMark = service.GalleryBookMark(id);
+		for(GalleryBookMark gallerybookmark : GalleryBookMark) {
+			int galleryno = gallerybookmark.getGalleryno();
+		}
+		
+		List<Gallery> Gallery = service.Gallery(GalleryBookMark);
+		
+		model.addAttribute("Gallery",Gallery);
+		model.addAttribute("GalleryBookMark",GalleryBookMark);
+		
+		List<Bookmark> Bookmark = service.Bookmark(id);
+		for(Bookmark bookmark : Bookmark) {
+			int productno = bookmark.getProductno();
+		}
+		
+		List<Product> Product = service.Product(Bookmark);
+		
+		model.addAttribute("Product", Product);
+		model.addAttribute("Bookmark",Bookmark);
+		
+		return "myPageFavorite1";
+	}
+	
+	
 	
 	// 마이페이지 쿠폰
 	@RequestMapping("/myPageCoupon")

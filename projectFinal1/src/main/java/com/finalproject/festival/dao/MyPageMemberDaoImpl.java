@@ -137,10 +137,11 @@ public class MyPageMemberDaoImpl implements MyPageMemberDao {
 	}
 	
 	@Override
-	public Reservation MyReservation (String id, int productno) {
+	public Reservation MyReservation (String id, int productno, int reservationno) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("id", id);
 		map.put("productno", productno);
+		map.put("reservationno", reservationno);
 		
 		
 		return st.selectOne(NAME_SPACE + ".MyReservation", map);
