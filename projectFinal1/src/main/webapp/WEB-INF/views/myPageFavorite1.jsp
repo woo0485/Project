@@ -5,6 +5,7 @@
 <c:set var="ga" value="${Gallery}"></c:set>
 <c:set var="pr" value="${Product}"></c:set>    
 <!DOCTYPE html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <html>
 <head>
 <style>
@@ -26,7 +27,7 @@
   text-overflow: ellipsis;
 }
 </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -39,26 +40,27 @@
 	 	<li><a class="text-decoration-none fontblack" href="myPageFavorite1?id=${sessionScope.id}"><i class="fas fa-crown"></i> 축제</a></li>
 	 	<li><a class="text-decoration-none fontblack" href="myPageFavorite?id=${sessionScope.id}"><i class="fas fa-image"></i> 갤러리</a></li>
 	 	<br><br><br><br>
-	 	<c:if test="${fn:length(ga) == 0}">
+ 		
+ 		<c:if test="${fn:length(pr) == 0}">
 							    <div class="row">
 							        <div class="col">
-							            GALAGO에서 즐겨찾기 하신 갤러리 게시물이 없습니다!
+							            GALAGO에서 즐겨찾기 하신 축제정보가 없습니다! 어서 빨리 GALAGO에서 다양한 축제를 즐겨보세요!
 							        </div>
 							    </div>
 		</c:if>
-						<div class="container text-center">
+ 		
+ 		<div class="container text-center">
 							<div class="row row-cols-4">
-								<c:forEach var="ga" items="${Gallery}" >
-									<div class="col">					
-										<span id="productname" style="font-weight: bold;;">${ga.gallerytitle}</span>
-										<a href="galleryRedirect"><img src="resources/upload/${ga.galleryimage[0]}" style="width:270px; height:230px;"></a>
-									    <p id="wrap-col"> 작성자 ${ga.id} </p>
+								<c:forEach var="pr" items="${Product}" >
+									<div class="col text-center">					
+										<span id="productname" style="font-weight: bold;">${pr.productname}</span>
+										<a href="galleryRedirect"><img src="${pr.productimage}" style="width:270px; height:230px;"></a>
+									    <p id="wrap-col">주소 : ${pr.productlocation }</p>
 									    <br><br>
 									</div>
 								</c:forEach>
 							</div>				
 						</div>	
- 			<br><br><br>
  		
  		
 </body>

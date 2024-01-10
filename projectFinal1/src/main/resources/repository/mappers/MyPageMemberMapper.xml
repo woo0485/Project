@@ -38,7 +38,7 @@
 			WHERE id = #{id}
 		</select>
 		
-		<select id="GalleryInfo" resultType="Gallery" parameterType="int">
+		<select id="GalleryInfo" resultMap="galleryResultMap" parameterType="int">
 			SELECT *
 			FROM Gallery
 			WHERE galleryno = #{galleryno}
@@ -71,7 +71,7 @@
 		<delete id="MyReservation" parameterType="HashMap">
 			DELETE
 			FROM Reservation
-			WHERE id = #{id} AND productno = #{productno}
+			WHERE id = #{id} AND productno = #{productno} AND reservationno = #{reservationno}
 		</delete>
 		
 		<update id="MyCancleTicket" parameterType="HashMap">
@@ -85,6 +85,20 @@
 			SET zipcode = #{zipcode}, address1 = #{address1}, address2 = #{address2}
 			WHERE id = #{id}
 		</update>
+		
+		
+		<resultMap id="galleryResultMap" type="Gallery">
+		<result property="id" column="id" />
+		<result property="gallerytitle" column="gallerytitle" />
+		<result property="gallerycontent" column="gallerycontent" />
+		<result property="gallerywriter" column="gallerywriter" />
+		<result property="gallerygoodcount" column="gallerygoodcount" />
+		<result property="galleryuploaddate" column="galleryuploaddate" />
+		<result property="galleryno" column="galleryno" />
+		<result property="galleryimage" column="galleryimage"
+			jdbcType="VARCHAR" javaType="java.lang.String"
+			typeHandler="com.finalproject.typeHandler.StringArrayTypeHandler" />
+		</resultMap>
 		
 		
 	</mapper>
