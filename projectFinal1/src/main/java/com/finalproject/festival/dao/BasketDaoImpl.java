@@ -95,11 +95,28 @@ public void updateBasketProductCount(Basket b) {
 }
 //////////////////여기서부터는 productno 중복되는지 확인해서 장바구니에 넣기 끝 ////////////////
 
+//////////// 여기서부터는 장바구니 내에서 상품 수량 변경 및 삭제 및 전체 삭제 /////////////////////////////
+@Override
+public void updateBasketProductnoCount(Map<String, Object> param) {
+	
+	sqlSession.update(NAME_SPACE + ".updateBasketProductnoCount", param);
+}
 
+@Override
+public void deleteBasketProductno(Basket b) {
+	Map<String, Object> map = new HashMap<String, Object>();
+	map.put("id", b.getId());
+	map.put("productno", b.getProductno());
+	
+	sqlSession.delete(NAME_SPACE + ".deleteBasketProductno", map);
+}
 
+@Override
+public void deleteBasketAll(String id) {
+	sqlSession.delete(NAME_SPACE + ".deleteBasketAll", id);
+}
 
-
-
+////////////////////////////////////////////////////////////////////////////////////////
 //장바구니 삭제 - 1월 5일
 @Override
 public void deleteBasket(int basketno, String id) {

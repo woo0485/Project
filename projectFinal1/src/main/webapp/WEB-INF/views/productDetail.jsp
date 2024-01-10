@@ -84,7 +84,7 @@
 	</form>
 		<!--  ############  (장바구니) 끝 ############## -->
 		
-		<!--%%%%%%%%  장바구니에 단순히 보여지는 것만 %%%%%%%%%%-->
+		<!--%%%%%%%%                  < 장바구니 가기 >               장바구니에 단순히 보여지는 것만 %%%%%%%%%%-->
 		<c:if test="${not empty sessionScope.id}">	
 		<form name="basketForm03" id="basketForm03"  action="basket" method="post" >
 			<input type="hidden" name="id" id="rId03" value="${sessionScope.id}"> 
