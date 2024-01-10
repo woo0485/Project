@@ -85,10 +85,13 @@
 					class="basketProductNo"
 					data-basketProductNo="${b.basketProductNo }">
 					 -->
-				
-					<input class="updateBasketProductnoCount btn btn-danger"   type="button"  
+				<!--  원래 쓰던 수량 변경 버튼
+				<input class="updateBasketProductnoCount btn btn-danger"   type="button"  
 					name="updateBasketProductnoCount" 
 					value="변경"  data-no="${b.basketno }">
+				 -->
+				
+					<input type="button" class="updateBasketProductnoCount" data-basketno="  ${b.basketno }"  value="변경">
 	<!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
 				</td>
 				

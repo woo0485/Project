@@ -17,11 +17,22 @@
     color: black;
     background-color: transparent;
   }
+  .carousel{
+  border: 1px solid blue;
+  text-align: center;
+  }
   .bookmark {
    text-align: center;
    font-size: 20px;
    color: black; 
    text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white; 
+  }
+  .prroductremainticket {
+  display: flex;
+  }
+  .productname{
+   font-size: 20px;
+ font-weight: bold;
   }
   </style>
 
@@ -44,20 +55,19 @@
 				<input type="submit" value="검 색" class="btn btn-primary"/>
 			</div>
 		</form>
-<!--  검색 폼 -->		
-	
+<!--  검색 폼 -->			
 <!--  캐러셀 -->
 <div class="carousel">
 	<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" >
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="2000">
-      <img src="resources/img/4.jpg" class="d-block w-100" alt="..." style="height: 500px;">
+      <img src="resources/img/4.jpg" class="d-block w-10" alt="...">
     </div>
     <div class="carousel-item" data-bs-interval="2000">
-      <img src="resources/img/5.jpg" class="d-block w-100" alt="..." style="height: 500px;">
+      <img src="resources/img/5.jpg" class="d-block w-10" alt="...">
     </div>
     <div class="carousel-item" data-bs-interval="2000">
-      <img src="resources/img/3.jpg" class="d-block w-100" alt="..." style="height: 500px;">
+      <img src="resources/img/3.jpg" class="d-block w-10" alt="...">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -73,8 +83,14 @@
 <!--  캐러셀  끝-->	 	
 	
 <!--/////////////      축제정보 등록      /////////////-->
+<!-- 관리자 로그인 XXXXXX  (임시로 관리자 로그인되었을 때 안되었을 때 둘 다 보이게 함 최종때는 수정할 것임)-->	
+	 <c:if test="${empty sessionScope.adminid}">
+		<div class="col-12 text-end">
+				<a href="writeForm" class="btn btn-outline-success">축제정보 등록</a>
+		</div>
+		</c:if>
 <!-- 관리자 로그인되었을 때  OOOOO-->							
-	<c:if test="${sessionScope.userType =='Admin'}">
+	<c:if test="${not empty sessionScope.adminid}">
 	<div class="col-12 text-end">
 				<a href="writeForm" class="btn btn-outline-success">축제정보 등록</a>
 		</div>
@@ -121,20 +137,33 @@
 					
 <!--  %%%%%%%%%%%%%    북마크 이미지 위에 출력    %%%%%%%%%%%%%%-->
 <!--  북마크 기능 - 1월 4일  https://www.flaticon.com/kr/free-icon/bookmark_5624111?term=%EB%B6%81%EB%A7%88%ED%81%AC&page=1&position=33&origin=search&related_id=5624111-->		
-				<div id="commend" class="btnCommend text-primary" > 
+				
+				<div class="productContext">
+				 	<div class="productname"> ${ p.productname } </div>
+					${ p.productlocation } 
+					<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
+								class="text-decoration-none link-secondary">${ p.productname }</a> <br>
+				</div>
+				
+				<div id="commend" class="btnCommend text-primary" >
+				
+						<div class="prroductremainticket" style="font-size:15px"> 
+							<img src="resources/img/ticket.png"  width="40" height="35"  />  &nbsp;
+							<div class="remainticket"> ${ p.productremainticketcount } </div> &nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<img src="resources/img/won.png"  width="40" height="35"  />  &nbsp;
+							<div class="ticketprice"> ${ p.productprice } </div>
+						</div>
+						
 						<div class="productbookmarkcount" style="font-size:15px">
 							<img src="resources/img/bookmark.png"  width="40" height="35"  /> <br>
 							<div class="bookmark"> ${ p.productbookmarkcount } </div>
 					</div>
+					
 				</div>
 				
-					지역 : ${ p.productlocation } <br>
-					<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
-								class="text-decoration-none link-secondary">${ p.productname }</a> <br>
-					이름 : ${ p.productname } <br>
-					가격: ${ p.productprice } <br>
+				
 					</td>
-			
 							<c:if test="${i%j == j-1 }">		
 						</c:if>
 						 <c:set var="i" value="${i+1 }" />
@@ -155,18 +184,36 @@
 								class="text-decoration-none link-secondary">
 							<img src="${p.productimage}"  class="productimage"  width="300" height="200"  /></a> <br>
 <!--  %%%%%%%%%%%%%    북마크 이미지 위에 출력    %%%%%%%%%%%%%%-->			
-					<div id="commend" class="btnCommend text-primary" > 
+						
 						<div class="productbookmarkcount" style="font-size:15px">
-						<img src="resources/img/bookmark.png"  width="40" height="35" /><br>
-						<div class="bookmark"> ${ p.productbookmarkcount } </div>
+							<img src="resources/img/bookmark.png"  width="40" height="35"  /> <br>
+							<div class="bookmark"> ${ p.productbookmarkcount } </div>
 					</div>
-				</div>
 					
-					지역 : ${ p.productlocation } <br>
+							
+				<div class="productContext">
+				 	<div class="productname"> ${ p.productname } </div>
+					${ p.productlocation } <br>
 					<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
 								class="text-decoration-none link-secondary">${ p.productname }</a> <br>
-					이름 : ${ p.productname } <br>
-					가격: ${ p.productprice } <br>
+				</div>
+				
+				<div id="commend" class="btnCommend text-primary" >
+				
+						<div class="prroductremainticket" style="font-size:15px"> 
+							<img src="resources/img/ticket.png"  width="40" height="35"  /> &nbsp;
+							<div class="remainticket"> ${ p.productremainticketcount } </div> &nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<img src="resources/img/won.png"  width="40" height="35"  /> &nbsp;
+							<div class="ticketprice"> ${ p.productprice } </div>
+						</div>
+						
+						<div class="productbookmarkcount" style="font-size:15px">
+							<img src="resources/img/bookmark.png"  width="40" height="35"  /> <br>
+							<div class="bookmark"> ${ p.productbookmarkcount } </div>
+					</div>
+					
+				</div>
 					</td>
 			
 							<c:if test="${i%j == j-1 }">		

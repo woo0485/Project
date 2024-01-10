@@ -34,6 +34,10 @@ public interface ProductDao {
 		// 북마크 업데이트- 1월 4일) productno에 해당하는 북마크 수를 업데이트한다.
 		public abstract void updateBookmark(int productno, int productbookmarkcount);
 		
+ /////@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		// 결제되면서 상품 수량에서 결제한 수량만큼 빼주기
+		public void updateProductRemainTicketCount(int productno, int productremainticketcount );
+		
 	
 	
 }

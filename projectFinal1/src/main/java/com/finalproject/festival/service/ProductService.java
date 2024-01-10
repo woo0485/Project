@@ -28,6 +28,11 @@ public interface ProductService {
 	
 	// 북마크 기능 - 1월 4일) 북마크 정보 업데이트하고 갱신된 북마크를 가져오는 메서드
 		public Map<String, Integer> Bookmark (int productno, int productbookmarkcount );
+		
+///// 여기서부터는 결제 진행되면서 Product 테이블의 남은 티켓수에서 결제된 티켓 수만큼 빼주는 것.
+		public void updateProductRemainTicketCount (int productno, int productremainticketcount);
+		
+		
 	
 	
 }
