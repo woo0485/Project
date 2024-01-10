@@ -97,7 +97,7 @@ console.log("proname 값의 총 합: " + totalName);
       // 결제창이 닫힐때 수행됩니다. (성공,실패,취소에 상관없이 모두 수행됨)
       console.log(data);
       data: '결제창이 닫힙니다..';
-/////////@@@@@@@ 결제가 완료되면 ajax로 insert할 것  @@@@@@@@@@@////////////////////////
+/////////@@@@@@@@@ 결제가 완료되면 ajax로 insert할 것  @@@@@@@@@@@////////////////////////
       $.ajax({
           url: 'insertReservation',  // 적절한 URL로 변경하세요.
           type: 'POST',
@@ -118,33 +118,14 @@ console.log("proname 값의 총 합: " + totalName);
           error: function (error) {
               console.error('Insert 실패', error);
           }
-     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ ////////////////@@@@@@@@@@@@@@@@@@@@@@@@@@@@////////////////////////
   }).done(function (data) {
       //결제가 정상적으로 완료되면 수행됩니다
       //비즈니스 로직을 수행하기 전에 결제 유효성 검증을 하시길 추천합니다.
       console.log(data);
       data: '결제가 정상적으로 완료되었습니다.';
  /////////////////// 결제가 완료되면 ajax로 insert할 것  ////////////////////////////////////////////////////////////////////
- /*    
- $.ajax({
-          url: '/insertReservationr',  // 적절한 URL로 변경하세요.
-          type: 'POST',
-          data: {
-              id: 'memberId',  // order_id에 대한 데이터를 서버로 전송하세요.
-              productno:  'productno',
-              reservationticketcount:  'reservationticketcount',
-              reservationprice:  'reservationprice',
-              reservationdate:  'reservationdate',
-              // 여기에 필요한 다른 데이터도 추가하세요.
-          },
-          success: function (response) {
-              // Insert 성공 시에 priceOrderFinish.jsp로 이동
-              window.location.href = 'priceOrderFinish.jsp';
-          },
-          error: function (error) {
-              console.error('Insert 실패', error);
-          }
-          */
+ 
      ////////////////////////////////////////////////////////////////////////////////////////////////////////////
       });
   });

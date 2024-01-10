@@ -1,5 +1,4 @@
-/////////////////  여기는 북마크  ///////////////
-
+///////////// 여기는 장바구니에서 수량 변경 및 삭제하기  ///////////////
 
 $(function() {
 ////////////////  여기는 장바구니   ///////////////////////
@@ -142,4 +141,15 @@ $(function() {
 		$(this).attr("method", "post");
 		$(this).attr("action", "productList");		
 	});	
+	
+	
+	$("#updateBasketProductnoCount").click(function() {
+		 var val =  $(this).prev().prev().val();
+		 var productno = $(this).prev().val();
+		 
+		 $("#basketProductCount").val(val);
+		 $("#productno").val(productno);
+		 
+		 $("#updateDeleteForm").submit();
+		 });
 });

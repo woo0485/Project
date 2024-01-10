@@ -25,7 +25,22 @@ public interface BasketDao {
 	// 회원 장바구니에 productno가 이미 존재하는 경우 수량만 update 해준다.
 		public void updateBasketProductCount(Basket b);
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////// 여기서부터는 장바구니 수량 변경 및 삭제 하고 장바구니에 아무것도 없으면 텅 비었다고 보여주는 것////////////////////////////////
+		//장바구니에서  페이지에서 담은 것들 보여주는 것 => public List<Map<String,Object>> basketList(String id, int productno); 를 사용한다.
+		
+		// 회원 장바구니에서 productno에 해당하는 제품 수량 업데이트
+		public void updateBasketProductnoCount(Map<String, Object> param);
+		
+		// 회원 장바구니에서 productno에 해당하는 제품 삭제하기
+		public void deleteBasketProductno(Basket b);
+		
+		// 장바구니의 모든 제품 삭제
+		public void deleteBasketAll(String id);
+		
+		
+		
+		
+		
 		
 		
 		
