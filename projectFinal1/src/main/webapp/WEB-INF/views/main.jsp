@@ -111,7 +111,7 @@ $(document).ready(function(){
 	  
 		  		<c:forEach var="gallery" items="${galleryList}" varStatus="galleryLoop">
 				<div class="owl-item">
-						<a href=""><img class="img-responsive" style="width:100%; height: 300px;" src="resources/upload/${gallery.galleryimage[0]}" alt="이미지1"></a>
+						<a href="galleryRedirect"><img class="img-responsive" style="width:100%; height: 300px;" src="resources/upload/${gallery.galleryimage[0]}" alt="이미지1"></a>
 				</div>
 				</c:forEach>
 	   

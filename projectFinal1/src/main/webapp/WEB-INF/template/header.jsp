@@ -164,7 +164,7 @@ function updateSearchKeywords(searchList) {
 						          <ul class="dropdown-menu">
 						         	 <li><a class="dropdown-item" href="manageMain">관리자 페이지</a></li>
 						            <li><a class="dropdown-item" href="logout">로그아웃</a></li>
-						            <li><a class="dropdown-item" href="adminUser">관리자 추가</a></li>
+						            
 						           
 						          </ul>
 						        </li>
