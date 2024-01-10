@@ -13,7 +13,7 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
 <script src="resources/js/yeseul.js?ver=0"></script>
-<script src="resources/js/seongjin.js?ver=1"></script>
+<script src="resources/js/seongjin.js?ver=3"></script>
 <script src="resources/js/wooseong.js?ver=1"></script>
 <script src="resources/js/hyunju.js"></script>
 <script src="resources/js/donggyun.js?ver=1"></script>

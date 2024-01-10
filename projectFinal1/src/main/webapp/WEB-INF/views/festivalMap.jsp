@@ -9,34 +9,34 @@
 		style="border-radius: 17px; --bs-border-opacity: 0.3;">
 		<div class="row mt-3 ps-2 pe-2">
 			<div class="col text-center">
-				<button type="button" class="btn btn-outline-dark btn-lg areabutton pe-3 ps-3" id="seoulProduct" style="width: 75px;">서울</button>
+				<button type="button" class="btn btn-outline-dark btn-lg areabutton pe-3 ps-3" id="seoulProduct" style="width: 73px;">서울</button>
 			</div>
 			<div class="col text-center">
 				<button type="button" class="btn btn-outline-dark btn-lg areabutton"
-					id="incheonProduct" style="width: 75px;">인천</button>
+					id="incheonProduct" style="width: 73px;">인천</button>
 			</div>
 			<div class="col text-center">
 				<button type="button" class="btn btn-outline-dark btn-lg areabutton"
-					id="gangwonProduct" style="width: 75px;">강원</button>
+					id="gangwonProduct" style="width: 73px;">강원</button>
 			</div>
 			<div class="col text-center">
 				<button type="button" class="btn btn-outline-dark btn-lg areabutton ps-0 pe-0"
-					id="daejeonProduct" style="font-size: 20px; width: 83px;">충북/충남</button>
+					id="daejeonProduct" style="font-size: 20px; width: 90px;">충북/충남</button>
 			</div>
 		</div>
 		<div class="row mt-3 pb-3 border-bottom border-3 mb-3 ps-2 pe-2">
 			<div class="col text-center">
-				<button type="button" class="btn btn-outline-dark btn-lg areabutton" id="daeguProduct" style="width: 75px;">대구</button>
+				<button type="button" class="btn btn-outline-dark btn-lg areabutton" id="daeguProduct" style="width: 73px;">대구</button>
 			</div>
 			<div class="col text-center">
-				<button type="button" class="btn btn-outline-dark btn-lg areabutton" id="busanProduct" style="width: 75px;">부산</button>
+				<button type="button" class="btn btn-outline-dark btn-lg areabutton" id="busanProduct" style="width: 73px;">부산</button>
 			</div>
 			<div class="col text-center">
-				<button type="button" class="btn btn-outline-dark btn-lg areabutton" id="jejuProduct" style="width: 75px;">제주</button>
+				<button type="button" class="btn btn-outline-dark btn-lg areabutton" id="jejuProduct" style="width: 73px;">제주</button>
 			</div>
 			<div class="col text-center">
 				<button type="button" class="btn btn-outline-dark btn-lg ps-0 pe-0 areabutton"
-					id="gwangjuProduct" style="font-size: 20px; width: 83px;">전남/전북</button>
+					id="gwangjuProduct" style="font-size: 20px; width: 90px;">전남/전북</button>
 			</div>
 		</div>
 		<div class="row">
