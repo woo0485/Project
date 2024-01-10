@@ -8,7 +8,7 @@
 <script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.1.min.js" type="application/javascript"></script>
 <style>
 .total {
-	font-size: 30px;
+	font-size: 40px;
 }
 .nobasket {
 	font-size: 50px;
@@ -21,6 +21,12 @@
 .BasketTable {
 	font-size: 15px;
 	text-align: center;
+}
+.basketimformation {
+text-align: center;
+}
+.totalprice{
+font-size: 40px;
 }
 </style>
 <!--  장바구니에서 제품 등록 버튼 클릭시 쓸 폼 -->
@@ -39,7 +45,7 @@
 <!--//////////////////////  여기서부터 장바구니에 있는 목록 보여주는 뷰 /////////////////////////-->
 	<!--  상품정보 테이블 -->
 	<br>
-	<div>
+	<div class="basketimformation">
 	<c:if test="${not empty basketList}">
 		<table class="BasketTable">
 		<thead>
@@ -131,7 +137,7 @@
 	<!--  결제예정금액 테이블 --><br><br>
 	<table class="calculation2">
 		<tr>
-			<th>총 상품금액</th>
+			<th class="totalprice">총 상품금액</th>
 		</tr>
 		
 		<!-- ~~~~~~~~~~~~~ 금액 계산 ~~~~~~~~~~~~ -->
@@ -178,7 +184,9 @@
 	</form>
 	</c:if>
 	
-	<!--@@@@@@  예약 테이블을 단순히 보여지는 페이지로 넘김 - priceOrderFinish 페이지로 넘김 @@@@@@-->
+	
+	<!-- 
+	@@@@@@  예약 테이블을 단순히 보여지는 페이지로 넘김 - priceOrderFinish 페이지로 넘김 @@@@@@
 	<form name="ReservationForm" id="ReservationForm"  action="reservation" method="post" >
 		<input type="hidden" name="id" id="rId036" value="${sessionScope.id}"> <br>
 	
@@ -191,6 +199,7 @@
 	<input type="submit" value="단순히 결제한 예약정보 (reservation 테이블)보기" class="btn btn-danger">	
 	
 	</form>
+	 -->
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
 <!-- ################  장바구니 속  상품 수량 변경 및 삭제 ajax로 처리하게끔  #################### -->  

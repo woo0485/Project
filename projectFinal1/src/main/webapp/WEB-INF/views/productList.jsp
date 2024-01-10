@@ -17,10 +17,7 @@
     color: black;
     background-color: transparent;
   }
-  .carousel{
-  border: 1px solid blue;
-  text-align: center;
-  }
+
   .bookmark {
    text-align: center;
    font-size: 20px;
@@ -34,6 +31,12 @@
    font-size: 20px;
  font-weight: bold;
   }
+  
+  .carousel {
+  text-align: center;
+  }
+  
+
   </style>
 
 <!-- content -->
