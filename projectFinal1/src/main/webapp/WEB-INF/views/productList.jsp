@@ -139,10 +139,9 @@
 <!--  북마크 기능 - 1월 4일  https://www.flaticon.com/kr/free-icon/bookmark_5624111?term=%EB%B6%81%EB%A7%88%ED%81%AC&page=1&position=33&origin=search&related_id=5624111-->		
 				
 				<div class="productContext">
-				 	<div class="productname"> ${ p.productname } </div>
+				 	<div class="productname"><a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
+								class="text-decoration-none link-secondary">${ p.productname }</a>  </div>
 					${ p.productlocation } 
-					<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
-								class="text-decoration-none link-secondary">${ p.productname }</a> <br>
 				</div>
 				
 				<div id="commend" class="btnCommend text-primary" >
@@ -161,7 +160,6 @@
 					</div>
 					
 				</div>
-				
 				
 					</td>
 							<c:if test="${i%j == j-1 }">		
@@ -190,12 +188,10 @@
 							<div class="bookmark"> ${ p.productbookmarkcount } </div>
 					</div>
 					
-							
 				<div class="productContext">
-				 	<div class="productname"> ${ p.productname } </div>
+				<div class="productname"><a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
+								class="text-decoration-none link-secondary">${ p.productname }</a>  </div>
 					${ p.productlocation } <br>
-					<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
-								class="text-decoration-none link-secondary">${ p.productname }</a> <br>
 				</div>
 				
 				<div id="commend" class="btnCommend text-primary" >
