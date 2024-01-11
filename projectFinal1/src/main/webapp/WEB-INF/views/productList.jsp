@@ -158,7 +158,9 @@
 						</div>
 						
 						<div class="productbookmarkcount" style="font-size:15px">
-							<img src="resources/img/bookmark.png"  width="40" height="35"  /> <br>
+						<input type="hidden" name="productno" value="${p.productno}">
+						<input type="hidden" name="id" value="${sessionScope.id}">
+							<img class="productbookmark" src="resources/img/bookmark.png" style="width: 45px; height: 40px;"/> <br>
 							<div class="bookmark"> ${ p.productbookmarkcount } </div>
 					</div>
 					
@@ -187,7 +189,9 @@
 <!--  %%%%%%%%%%%%%    북마크 이미지 위에 출력    %%%%%%%%%%%%%%-->			
 						
 						<div class="productbookmarkcount" style="font-size:15px">
-							<img src="resources/img/bookmark.png"  width="40" height="35"  /> <br>
+						<input type="hidden" name="productno" value="${p.productno}">
+						<input type="hidden" name="id" value="${sessionScope.id}">
+							<img class="productbookmark" src="resources/img/bookmark.png" style="width: 45px; height: 40px;"/> <br>
 							<div class="bookmark"> ${ p.productbookmarkcount } </div>
 					</div>
 					

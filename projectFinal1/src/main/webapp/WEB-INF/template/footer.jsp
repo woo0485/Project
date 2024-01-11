@@ -8,21 +8,24 @@
 <div class="row">
 	<div class="col">
 		 
-		 <div class="row mt-5 py-4 border-top border-bottom">
-			<div class="col-2">
-				<a href="privacyPolicyPage">개인정보처리방침</a>
+		 <div class="row mt-5 py-4 border-top border-bottom d-flex justify-content-between">
+			<div class="col">
+				<a href="privacyPolicyPage" style="color: gray;">개인정보처리방침</a>
 			</div>
-			<div class="col-1">
-				<a href="termsOfUse">이용약관</a>
+			<div class="col">
+				<a href="termsOfUse" style="color: gray;">이용약관</a>
 			</div>
-			<div class="col-1">
-				<a href="copyrightPolicy">저작권정책</a>
+			<div class="col">
+				<a href="copyrightPolicy" style="color: gray;">저작권정책</a>
+			</div>
+			<div class="col">
+				<a href="customerMain" style="color: gray;">고객센터</a>
 			</div>
 		</div>
 		 
 		 <div class="row my-5">
 		 	<div class="col-2">
-		 		<img alt="" src="resources/img/logo.png" style="width:80%">
+		 		<a href="main"><img alt="" src="resources/img/logo.png" style="width:80%"></a>
 		 	</div>
 		 	<div class="col">
 				<p> 우)12312<br>

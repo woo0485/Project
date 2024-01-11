@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
+import com.finalproject.festival.dao.BookmarkDao;
 import com.finalproject.festival.dao.MemberDao;
 import com.finalproject.festival.domain.Admin;
+import com.finalproject.festival.domain.Bookmark;
 import com.finalproject.festival.domain.Gallery;
 import com.finalproject.festival.domain.Main;
 import com.finalproject.festival.domain.Member;
@@ -23,6 +25,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberDao memberDao;
+	@Autowired
+	private BookmarkDao bookmarkDao;
 	
 
 	@Override
@@ -146,6 +150,26 @@ public class MemberServiceImpl implements MemberService {
 		public List<Search> mainSearchSelect() {
 		
 			return memberDao.searchKeywordSelect();
+		}
+		
+	/************************bookmark***************************/
+		
+		@Override
+		public void bookmarkChange(String id, int productno) {
+			
+			System.out.println(id+"-----serviec-----"+productno);
+			
+			
+			int result = bookmarkDao.selectBookmarkCount(id,productno);
+			System.out.println("result"+result);
+		
+			if(result == 0) {
+				bookmarkDao.productBookmarkCount(productno);
+				bookmarkDao.bookmarkInsert(id,productno);
+			}else {
+				bookmarkDao.productBookmarkCountDelete(productno);
+				bookmarkDao.bookmarkDelete(id,productno);
+			}
 		}
 
 	

@@ -25,8 +25,9 @@ $(document).ready(function(){
     })
 });
 </script>
-<div class="row mt-5">
-	<div class="col-10 offset-1 mt-1">
+
+<div class="row  mt-3">
+	<div class="col-10  offset-1 mt-1">
 
 
 		<div class="row">
@@ -51,7 +52,7 @@ $(document).ready(function(){
 				            <c:choose>
 				                <c:when test="${productLoop.index == 0}">
 				                    <div class="carousel-item active">
-				                        <a href="productDetail?productno=${product.productno}"><img src="${product.productimage}" class="d-block w-100" alt="..." style="height: 600px;"></a>
+				                        <a href="productDetail?productno=${product.productno}"><img src="${product.productimage}" class="d-block w-100" alt="..." style="height: 620px;"></a>
 				                        <div class="carousel-caption d-none d-md-block">
 				                            <h5 class="fs-3 fw-bold" style="text-shadow:black 2px 0 10px;">${product.productname}</h5>
 				                            <p style="text-shadow:black 2px 0 10px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; word-wrap: break-word;">
@@ -62,7 +63,7 @@ $(document).ready(function(){
 				                </c:when>
 				                <c:otherwise>
 				                    <div class="carousel-item">
-				                        <a href="productDetail?productno=${product.productno}"><img src="${product.productimage}" class="d-block w-100" alt="..." style="height: 600px;"></a>
+				                        <a href="productDetail?productno=${product.productno}"><img src="${product.productimage}" class="d-block w-100" alt="..." style="height: 620px;"></a>
 				                        <div class="carousel-caption d-none d-md-block">
 				                            <h5 class="fs-3 fw-bold" style="text-shadow:black 2px 0 10px;">${product.productname}</h5>
 				                            <p style="text-shadow:black 2px 0 10px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; word-wrap: break-word;">
@@ -91,12 +92,12 @@ $(document).ready(function(){
 		</div>
 	
 	
-	<div class="row my-5" id="latestNewsContainer" style="height: 300px;">
+	<div class="row mt-5" id="latestNewsContainer" style="height: 463px;">
 	    <div class="col">
-	    <h4>최신 축제기사</h4>
+	    <h4 class="fw-bold fs-3 pt-5">최신 축제기사</h4>
 	        <c:forEach var="news" items="${newsList}" varStatus="newsLoop" end="10">
-	            <div class="row news-item" style="display: ${newsLoop.index <= 4 ? 'none' : 'block'};">
-	                <a href="newsdetail?no=${news.newsno}" style="font-size: 25px;">${news.newstitle}</a>
+	            <div class="row news-item border-bottom mt-4" style="display: ${newsLoop.index <= 4 ? 'none' : 'block'};">
+	                <a href="newsdetail?no=${news.newsno}" style="font-size: 25px; color: black;">${news.newstitle}</a>
 	            </div>
 	        </c:forEach>
 	    </div>	
@@ -106,17 +107,16 @@ $(document).ready(function(){
 	
 	
 		<div class="row my-5 owl-carousel owl-theme owl-loaded">
-	 <div class="col owl-stage-outer">
-	  <div class="owl-stage">
-	  
+			<div class="col owl-stage-outer" style="margin-top: 100px;">
+		 		<h4 class="fw-bold fs-3">갤러리</h4>
+		 		<div class="owl-stage">
 		  		<c:forEach var="gallery" items="${galleryList}" varStatus="galleryLoop">
-				<div class="owl-item">
-						<a href="galleryRedirect"><img class="img-responsive" style="width:100%; height: 300px;" src="resources/upload/${gallery.galleryimage[0]}" alt="이미지1"></a>
-				</div>
+					<div class="owl-item">
+							<a href="galleryRedirect"><img class="img-responsive" style="width:100%; height: 300px;" src="resources/upload/${gallery.galleryimage[0]}" alt="이미지1"></a>
+					</div>
 				</c:forEach>
-	   
-	   </div>
-	  </div>
+	   		  </div>
+	  	 </div>
 	 </div>
 	
 	
