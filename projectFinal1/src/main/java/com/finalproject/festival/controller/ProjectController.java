@@ -284,8 +284,9 @@ public class ProjectController {
 						
 						memberService.joinMember(member);
 						memberService.newMemberCoupon(id);
+						
 		
-		return "redirect:joinSuccess";
+		return "login";
 	}
 	
 

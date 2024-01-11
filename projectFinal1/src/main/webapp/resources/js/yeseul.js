@@ -519,6 +519,7 @@
   				$("#findIdEmailMsg").text("이름 또는 이메일을 다시 확인해주세요.").css("color","red");
   			}else{
   			$("#findId").val(data);
+  			$("#findIdLoading").css("display","block");
   			
   			$.ajax({
 							type : 'post',
@@ -526,7 +527,6 @@
 							data : JSON.stringify({"email" :email}),
 							contentType: "application/json",
 							datatype :"text",
-							async    : false,
 							success : function (data2) {
 								
 								console.log("ajax2-data2 : " +  data2);

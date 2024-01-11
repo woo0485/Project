@@ -86,14 +86,9 @@
 <!--  캐러셀  끝-->	 	
 	
 <!--/////////////      축제정보 등록      /////////////-->
-<!-- 관리자 로그인 XXXXXX  (임시로 관리자 로그인되었을 때 안되었을 때 둘 다 보이게 함 최종때는 수정할 것임)-->	
-	 <c:if test="${empty sessionScope.adminid}">
-		<div class="col-12 text-end">
-				<a href="writeForm" class="btn btn-outline-success">축제정보 등록</a>
-		</div>
-		</c:if>
+
 <!-- 관리자 로그인되었을 때  OOOOO-->							
-	<c:if test="${not empty sessionScope.adminid}">
+	<c:if test="${sessionScope.userType =='Admin' }">
 	<div class="col-12 text-end">
 				<a href="writeForm" class="btn btn-outline-success">축제정보 등록</a>
 		</div>
