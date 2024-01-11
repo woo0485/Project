@@ -3,7 +3,7 @@
  */
   $(function(){
   
-//기사 -js
+
 
    var visibleItems = 5;
 
@@ -19,6 +19,11 @@
             // 새로운 항목을 표시
             newsItems.slice(visibleItems, visibleItems + 1).slideDown();
         }, 3000);
+        
+        
+       
+       
+       
    
   /*-----------------------mainSearch.js--------------------------------*/ 
 
@@ -395,6 +400,14 @@
  
  
  //로그인 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 	$("#loginBtn").on("click",function(){
  	
 		const id = $("#id").val();
@@ -750,8 +763,64 @@
         }).open();
     };
     
+    //enter로 로그인
+
+function onEnterLogin(event) {
+    // event.which 또는 event.keyCode를 사용하여 엔터 키 코드를 확인
+    if (event.which == 13 || event.keyCode == 13) {
+        const id = $("#id").val();
+        const password = $("#password").val();
+
+        if (id == "") {
+            $("#id").focus();
+            $("#loginMag1").text("아이디를 입력해 주세요").css("color", "red");
+            return;
+        } else {
+            $("#id").blur();
+            $("#loginMag1").text("");
+        }
+
+        if (password == "") {
+            $("#password").focus();
+            $("#loginMag1").text("비밀번호를 입력해 주세요").css("color", "red");
+            return;
+        } else {
+            $("#password").blur();
+            $("#loginMag1").text("");
+        }
+
+        // 아이디와 비밀번호가 입력되었을 때에만 AJAX 요청 수행
+        if (id !== "" && password !== "") {
+            $.ajax({
+                url: "loginForm",
+                type: "post",
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify({
+                    "id": id,
+                    "password": password
+                }),
+                success: function(result) {
+                    console.log("result: " + result);
+                    if (result === 1) {
+                        // 로그인 성공 시 main 페이지로 이동
+                        window.location.href = "main";
+                    } else {
+                        $("#loginMag1").text("아이디 또는 비밀번호를 다시 확인해 주세요").css("color", "red");
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log("login err - jqXHR: " + jqXHR + " textStatus: " + textStatus + " errorThrown: " + errorThrown);
+                }
+            });
+        }
+    }
+}
+
+// Enter 키를 감지하기 위해 input 요소에 이벤트 리스너 추가
+$("#id, #password").on("keypress", function(event) {
+    onEnterLogin(event);
+});
     
-    
-    //////////////////////////////Main////////////////////////////////
+    //////////////////////////////////////////////////////////////
 
 

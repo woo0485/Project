@@ -28,22 +28,24 @@
 					<input type="hidden" id="id" name="id" value="${sessionScope.id}">
 			 			<input type="hidden" id="productno" name="productno" value="">
 			 			<input type="hidden" id="reservationticketcount" name="reservationticketcount" value="">
+			 			<input type="hidden" id="reservationno" name="reservationno" value="">
 			 		</form>
-	 	<c:forEach var="rep" items="${ReProduct}" >
-	 		<c:forEach var="re" items="${Reservation}">	
+	 	<c:forEach var="rep" items="${ReProduct}">
 			 	<div class="row">
 			 		<div class="col">
 			 		<input type="button" id="cancleTicket" value="예약취소" class="btn btn-danger">
 			 		<span>${rep.productno}</span>
-			 		<span>${re.reservationticketcount}</span><br>
 			 			${rep.productname} <br>
 			 			${rep.productcontent }<br>
 			 			<img src="${rep.productimage }"><br>
 			 		</div>
 			 	</div>
-		 	</c:forEach>
  		</c:forEach>
-
+ 		<c:forEach var="re" items="${Reservation}">
+ 					<input type="hidden" id="cancleTicket2" value="예약취소" class="btn btn-danger">
+ 					<span>${re.reservationticketcount}</span>
+			 		<span style="display:none;">${re.reservationno }</span>
+		</c:forEach>
 
 </body>
 </html>

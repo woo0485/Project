@@ -51,8 +51,7 @@ public interface MyPageMemberDao {
 	public abstract List<Product> ReProduct (List<Reservation> Reservation);
 	
 	// 회원예약 - 취소
-	public abstract Reservation MyReservation (String id, int productno);
-	
+	public abstract Reservation MyReservation (String id, int productno, int reservationno);
 	
 	// 회원예약 - 취소 후 반환 
 	public abstract Reservation MyCancleTicket (int reservationticketcount, int productno, String id);

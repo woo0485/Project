@@ -97,13 +97,15 @@
 
 									<c:forEach var="m" items="${mList}">
 
-										<tr style="color:black;">
+										<tr style="color:black; font-size:small;"">
 											<td>${ m.id }</td>
 											<td>${ m.name }</td>
 											<td>${ m.phonenumber }</td>
 											<td>${ m.email }</td>											
 											<td><fmt:formatNumber value="${ m.totalpay }" pattern="#,##0원" /></td>
-											<td><c:if test="${m.grade == 1}">BLACK</c:if>
+											<td>
+												<c:if test="${m.grade == 0}">일반</c:if>
+												<c:if test="${m.grade == 1}">BLACK</c:if>
 												<c:if test="${m.grade == 2}">SILVER</c:if>
 												<c:if test="${m.grade == 3}">GOLD</c:if>
 												<c:if test="${m.grade == 4}">VIP</c:if></td>
@@ -126,7 +128,9 @@
 											<td>${ m.phonenumber }</td>
 											<td>${ m.email }</td>
 											<td><fmt:formatNumber value="${ m.totalpay }" pattern="#,##0원" /></td>
-											<td><c:if test="${m.grade == 1}">BLACK</c:if>
+											<td>
+												<c:if test="${m.grade == 0}">일반</c:if>
+												<c:if test="${m.grade == 1}">BLACK</c:if>
 												<c:if test="${m.grade == 2}">SILVER</c:if>
 												<c:if test="${m.grade == 3}">GOLD</c:if>
 												<c:if test="${m.grade == 4}">VIP</c:if></td>
@@ -170,7 +174,7 @@
 
 									<c:if test="${ startPage > pageGroup }">
 										<li class="page-item"><a class="page-link"
-											href="manageMember?pageNum=${startPage - pageGroup }">Pre</a></li>
+											href="manageMember?pageNum=${startPage - pageGroup }&type=${ type }&keyword=${ keyword }">Pre</a></li>
 									</c:if>
 
 									<c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -181,13 +185,13 @@
 
 										<c:if test="${i != currentPage}">
 											<li class="page-item"><a class="page-link"
-												href="manageMember?pageNum=${i}">${i}</a></li>
+												href="manageMember?pageNum=${i}&type=${ type }&keyword=${ keyword }">${i}</a></li>
 										</c:if>
 									</c:forEach>
 
 									<c:if test="${ endPage < pageCount }">
 										<li class="page-item"><a class="page-link"
-											href="manageMember?pageNum=${endPage + 1}">Next</a></li>
+											href="manageMember?pageNum=${endPage + pageGroup}&type=${ type }&keyword=${ keyword }">Next</a></li>
 									</c:if>
 
 								</ul>

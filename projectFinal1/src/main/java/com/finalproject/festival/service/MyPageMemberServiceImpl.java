@@ -95,9 +95,9 @@ public class MyPageMemberServiceImpl implements MyPageMemberService {
 	}
 	
 	@Override
-	public Reservation MyReservation (String id, int productno) {
+	public Reservation MyReservation (String id, int productno, int reservationno) {
 		
-		Reservation MyReservation = dao.MyReservation(id, productno);
+		Reservation MyReservation = dao.MyReservation(id, productno, reservationno);
 		
 		return MyReservation;
 	}

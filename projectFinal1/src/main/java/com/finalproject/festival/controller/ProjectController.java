@@ -12,10 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.finalproject.festival.domain.Admin;
 import com.finalproject.festival.domain.Gallery;
@@ -69,6 +72,14 @@ public class ProjectController {
 		return "redirect:main";
 	}
 	
+	@RequestMapping("/headerKeyword")
+	public List<Search> headerKeyword() {
+		List<Search> searchList = memberService.mainSearchSelect();
+		
+		return searchList;
+	}
+	
+	
 	
 	
 	@RequestMapping("/main")//메인페이지로 이동
@@ -76,17 +87,20 @@ public class ProjectController {
 		List<Gallery>galleryList = galleryService.gallery();
 		List<News>newsList =  newsService.newslist();
 		List<Product>productList = memberService.mainProductCarousel();
-		//List<Search>searchList = memberService.mainSearchSelect();
+		
 		System.out.println(productList);
 		model.addAttribute("galleryList",galleryList);
 		model.addAttribute("newsList",newsList);
 		model.addAttribute("productList", productList);
-		//model.addAttribute("searchList", searchList);
+		
 		return "main";
 	}
 	
 	@RequestMapping("/mainSearch")
 	public String mainSearchPage(String searchWord, Model model) {
+		
+		
+		memberService.searchKeyword(searchWord);
 		
 		String keyword = searchWord.replaceAll("\\s", "");//정규식으로 공백제거
 		
@@ -96,6 +110,7 @@ public class ProjectController {
 		
 		List<Gallery> mainSearchGallery = memberService.mainSearchGallery(keyword);
 		
+		System.out.println("mainSearchProduct"+mainSearchProduct);
 		
 		model.addAttribute("mainSearchProduct",mainSearchProduct);
 		model.addAttribute("mainSearchNews",mainSearchNews);
@@ -191,6 +206,25 @@ public class ProjectController {
 			
 		
 		};	
+		
+		/*
+		//구글 로그인
+		@RestController
+		@CrossOrigin("*")
+		public class LoginController {
+		    @Value("${google.client.id}")
+		    private String googleClientId;
+		    @Value("${google.client.pw}")
+		    private String googleClientPw;
+
+		    @RequestMapping(value="/api/v1/oauth2/google", method = RequestMethod.POST)
+		    public String loginUrlGoogle(){
+		        String reqUrl = "https://accounts.google.com/o/oauth2/v2/auth?client_id=" + googleClientId
+		                + "&redirect_uri=http://localhost:8080/api/v1/oauth2/google&response_type=code&scope=email%20profile%20openid&access_type=offline";
+		        return reqUrl;
+		    }
+		}
+		*/
 	
 	//핸드폰인증번호 
 	@ResponseBody

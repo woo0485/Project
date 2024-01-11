@@ -20,10 +20,12 @@ public interface BasketService {
 		
 		// 장바구니에 productno가 존재할 경우 수량만 증가시키기- 1월 7일
 //		public void updateBasketProductCount(Basket b, int incrementcount);
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+////////////////////여기서부터는 장바구니 수량 변경 및 삭제 하고 장바구니에 아무것도 없으면 텅 비었다고 보여주는 것/////////////////////////////////////////////////		
+	
+		// 장바구니 수량 업데이트 테스트
+	//	public int updateBasketProductnoCount(int basketproductcount);
+		public void updateBasketProductnoCount ( Map<String, Object> param);
 		
-		//////////////////////여기서부터는 장바구니 안에서 수량 변경 삭제 ///////////////////
-		// 회원 장바구니 basketno에 해당하는 거 삭제함 - 1월 5일 수정함
-		public abstract void deletdBasket(int basketno, String id);
-
+	// 장바구니에 있는 상품 전체 삭제
+		public void deleteBasketAll(String id);
 }

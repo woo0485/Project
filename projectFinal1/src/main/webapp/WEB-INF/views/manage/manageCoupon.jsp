@@ -160,7 +160,8 @@ input:focus {
 		
 									<c:if test="${ startPage > pageGroup }">
 										<li class="page-item"><a class="page-link"
-											href="manageCoupon?pageNum=${startPage - pageGroup }">이전</a></li>
+											href="manageCoupon?pageNum=${startPage - pageGroup }
+												&type=${ type }&keyword=${ keyword }">이전</a></li>
 									</c:if>
 		
 									<c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -171,13 +172,14 @@ input:focus {
 		
 										<c:if test="${i != currentPage}">
 											<li class="page-item"><a class="page-link"
-												href="manageCoupon?pageNum=${i}">${i}</a></li>
+												href="manageCoupon?pageNum=${ i }&type=${ type }&keyword=${ keyword }">${i}</a></li>
 										</c:if>
 									</c:forEach>
 		
 									<c:if test="${ endPage < pageCount }">
 										<li class="page-item"><a class="page-link"
-											href="manageCoupon?pageNum=${endPage + 1}">다음</a></li>
+											href="manageCoupon?pageNum=${ startPage + pageGroup }
+						     				 &type=${ type }&keyword=${ keyword }">다음</a></li>
 									</c:if>
 		
 								</ul>

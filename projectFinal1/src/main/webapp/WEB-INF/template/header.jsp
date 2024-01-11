@@ -17,16 +17,46 @@
 <%
     }
 %>
-
+<% 
+ 
+%>
 
 <style type="text/css">
 	a:link{text-decoration:none;}
 	a:visited{text-decoration:none;}
 	a:hover{ text-decoration:none;}
 </style>
+<!-- <script>
+$(document).ready(function() {
+    // Ajax 요청
+    $.ajax({
+        url: 'headerKeyword',
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            // 서버에서 받은 데이터를 이용하여 동적으로 HTML 업데이트
+            updateSearchKeywords(data);
+            console.log("data",data);
+        },
+        error: function(error) {
+            console.log('Error:', error);
+        }
+    });
+});
 
-<div class="row my-5 pt-5">
-		<div class="col-10 offset-1 ">
+function updateSearchKeywords(searchList) {
+    // 받아온 데이터를 기반으로 HTML 업데이트
+    var html = '';
+    $.each(searchList, function(index, publicKeyword) {
+        html += '<span class="me-2"><a>' + publicKeyword.searchkeyword + '</a></span>';
+    });
+
+    // 결과를 적용할 요소에 HTML 삽입
+    $('.text-start').html(html);
+} 
+</script> -->
+<div class="row mt-5 pt-5">
+		<div class="col ">
 		
 			<div class="row">
 				<div class="col-2 align-top">
@@ -42,17 +72,17 @@
 		        <div class="row mt-4">
 					<div class="col-3 p-0 fw-bold text-end">인기 검색어  :</div>
 					<div class="col p-0 text-start">
-					<c:forEach var="publicKeyword" items="${searchList}">
+					
 						<span class="me-2">
-			   				<a>${publicKeyword.searchkeyword}</a>
+						<a></a>
 						</span>
-			   		</c:forEach>
+			   		
 			   		</div>
 				</div>
 				</div>
 			</div>
 			
-			<div class="row my-3">
+			<div class="row mt-3">
 				
 				<div class="col d-flex justify-content-around" >
 					<nav class="navbar navbar-expand-lg bg-body-tertiary  ">
@@ -128,13 +158,13 @@
 							
 								<li class="nav-item dropdown me-5">
 						        	<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						            	관리자
+						            	<i class="bi bi-gear-fill" style="font-size: 2em;"></i>
 						          	</a>
 						           
 						          <ul class="dropdown-menu">
 						         	 <li><a class="dropdown-item" href="manageMain">관리자 페이지</a></li>
 						            <li><a class="dropdown-item" href="logout">로그아웃</a></li>
-						            <li><a class="dropdown-item" href="adminUser">관리자 추가</a></li>
+						            
 						           
 						          </ul>
 						        </li>
