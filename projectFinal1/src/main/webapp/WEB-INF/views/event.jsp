@@ -71,17 +71,106 @@ $("." + className).addClass("show active");
 								</div>
 							</div>
 						</div>
+						<div class="row mt-5 ps-5">
+							<div class="col-4">
+								<img src="https://via.placeholder.com/300x200" alt="임시 이미지">
+							</div>
+							<div class="col-8">
+								<div class="row my-5">
+									<div class="col">
+										<h4>이벤트 제목</h4>
+									</div>
+								</div>
+								<div class="row mt-5">
+									<div class="col">
+										<h5>이벤트 기간</h5>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row mt-5 ps-5">
+							<div class="col-4">
+								<img src="https://via.placeholder.com/300x200" alt="임시 이미지">
+							</div>
+							<div class="col-8">
+								<div class="row my-5">
+									<div class="col">
+										<h4>이벤트 제목</h4>
+									</div>
+								</div>
+								<div class="row mt-5">
+									<div class="col">
+										<h5>이벤트 기간</h5>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 					<div class="tab-pane fade Terminated" id="nav-profile"
 						role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
 						<div class="row">
-							<div class="col">종료입니다.</div>
+							<div class="col">
+								<div class="row mt-5 ps-5">
+									<div class="col-4">
+										<img src="https://via.placeholder.com/300x200" alt="임시 이미지">
+									</div>
+									<div class="col-8">
+										<div class="row my-5">
+											<div class="col">
+												<h4>이벤트 제목</h4>
+											</div>
+										</div>
+										<div class="row mt-5">
+											<div class="col">
+												<h5>이벤트 기간</h5>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row mt-5 ps-5">
+									<div class="col-4">
+										<img src="https://via.placeholder.com/300x200" alt="임시 이미지">
+									</div>
+									<div class="col-8">
+										<div class="row my-5">
+											<div class="col">
+												<h4>이벤트 제목</h4>
+											</div>
+										</div>
+										<div class="row mt-5">
+											<div class="col">
+												<h5>이벤트 기간</h5>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row mt-5 ps-5">
+									<div class="col-4">
+										<img src="https://via.placeholder.com/300x200" alt="임시 이미지">
+									</div>
+									<div class="col-8">
+										<div class="row my-5">
+											<div class="col">
+												<h4>이벤트 제목</h4>
+											</div>
+										</div>
+										<div class="row mt-5">
+											<div class="col">
+												<h5>이벤트 기간</h5>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="tab-pane fade Winner" id="nav-contact" role="tabpanel"
 						aria-labelledby="nav-contact-tab" tabindex="0">
-						<div class="row">
-							<div class="col">당첨자발표입니다.</div>
+						<div class="row border-bottom">
+							<div class="col-2 text-center fs-5 pt-3 pb-3">No</div>
+							<div class="col-5 text-center fs-5 pt-3 pb-3">제목</div>
+							<div class="col-3 text-center fs-5 pt-3 pb-3">이벤트 기간</div>
+							<div class="col-2 text-center fs-5 pt-3 pb-3">발표일</div>
 						</div>
 					</div>
 				</div>
