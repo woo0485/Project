@@ -15,5 +15,12 @@ public class eventController {
 		return "event";
 		
 	}
+	
+	@RequestMapping("/randomBoxEvent")
+	public String randomBoxEvent () {
+		
+		return "randomBoxEvent";
+		
+	}
 
 }
