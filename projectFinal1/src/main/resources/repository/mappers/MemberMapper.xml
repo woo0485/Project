@@ -120,7 +120,7 @@
 	</insert>
 	
 	<update id="searchKeywordCount">
-		UPDATE Search SET searchkeyword = #{searchKeyword}, searchkeywordcount = +1 WHERE searchkeyword = #{searchKeyword}
+		UPDATE Search SET searchkeywordcount = searchkeywordcount+1 WHERE searchkeyword = #{searchKeyword}
 	</update>
 </mapper>	
 

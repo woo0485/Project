@@ -84,7 +84,7 @@
 	</form>
 		<!--  ############  (장바구니) 끝 ############## -->
 		
-		<!--%%%%%%%%  장바구니에 단순히 보여지는 것만 %%%%%%%%%%-->
+		<!--%%%%%%%%                  < 장바구니 가기 >               장바구니에 단순히 보여지는 것만 
 		<c:if test="${not empty sessionScope.id}">	
 		<form name="basketForm03" id="basketForm03"  action="basket" method="post" >
 			<input type="hidden" name="id" id="rId03" value="${sessionScope.id}"> 
@@ -96,7 +96,7 @@
 			<input type="submit" value="장바구니 가기" class="btn btn-danger">	
 		</form>
 		</c:if>	
-		<!--%%%%%%%%  장바구니에 단순히 보여지는 것만 끝 %%%%%%%%%%-->
+		  장바구니에 단순히 보여지는 것만 끝 %%%%%%%%%%-->
 			<br><br><br>
 			
 		<!-- ///////////  축제 정보 이미지와 내용  //////////// -->
@@ -109,8 +109,9 @@
 		</div>
 		
 <!-- @@  여기서부터는 관리자가 수정 삭제할 수 있게 하는.....  @@-->
-<!-- 관리자 로그인 XXXXXX  (임시로 관리자 로그인되었을 때 안되었을 때 둘 다 보이게 함 최종때는 수정할 것임)-->	
-	 <c:if test="${empty sessionScope.adminid}">
+<!-- 관리자 로그인 XXXXXX  (임시로 관리자 로그인되었을 때 안되었을 때 둘 다 보이게 함 최종때는 수정할 것임)-->
+	
+	 <c:if test="${sessionScope.userType =='Admin' }">
 			<div class="row my-3">
 			<div class="col text-center">
 	<!--  수정하려면 비밀번호 입력하는 영역 -->

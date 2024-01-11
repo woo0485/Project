@@ -93,8 +93,7 @@
 	<select id="getDateCount" resultType="int">
 		SELECT
 			COUNT(DISTINCT reservationdate)
-		FROM Reservation
-		
+		FROM Reservation		
 		<where>
 			<if test="type == 'reservationdate'">
 				reservationdate LIKE CONCAT('%', #{keyword}, '%')
@@ -106,13 +105,10 @@
 	
 	<select id="bestDayManageReservation" resultType="Reservation" resultMap="ManageReservationMap">
 		SELECT 		
-		
-			reservationprice,
 	        reservationdate,
-	        SUM(reservationprice) as totalReservationPrice   
-	  
+	        SUM(reservationprice) as totalReservationPrice   	  
 		FROM Reservation	
-		GROUP BY reservationdate
+		GROUP BY DATE_FORMAT(DATE(reservationdate), '%Y-%m-%d 00:00:00')
 		ORDER BY totalReservationPrice DESC
 		LIMIT 5
 	</select>
@@ -121,8 +117,7 @@
 
 	<select id="manageReservation2" resultType="Reservation" resultMap="ManageReservationMap">
 		SELECT 		
-			reservationprice,
-	        reservationdate,
+	        DATE_FORMAT(DATE(reservationdate), '%Y-%m-%d 00:00:00') as reservationdate,
 	        SUM(reservationprice) as totalReservationPrice   
 		FROM Reservation	
 		<where>
@@ -130,8 +125,8 @@
 				reservationdate LIKE CONCAT('%', #{keyword}, '%')
 			</if>
 		</where>
-		GROUP BY reservationdate
-		ORDER BY reservationdate DESC
+		GROUP BY DATE_FORMAT(DATE(reservationdate), '%Y-%m-%d 00:00:00')
+    	ORDER BY reservationdate DESC
 		LIMIT #{start}, #{num}	
 	</select>
 
