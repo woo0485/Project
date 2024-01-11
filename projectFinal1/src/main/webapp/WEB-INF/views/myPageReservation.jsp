@@ -15,11 +15,11 @@
 	<div class="row col-auto">
 	 		<jsp:include page="/WEB-INF/views/myPageHeader.jsp"></jsp:include>
 	</div>
-					
+					<br><br><br>
 							<c:if test="${fn:length(re) == 0}">
 							    <div class="row">
-							        <div class="col">
-							            예매하신 축제 상품이 없습니다! 어서 빨리 GALAGO에서 다양한 축제를 즐겨보세요!
+							        <div class="col text-center">
+							           <p style="font-weight: bold;"> 예매하신 축제 상품이 없습니다! 어서 빨리 GALAGO에서 다양한 축제를 즐겨보세요! </p>
 							        </div>
 							    </div>
 							</c:if>
