@@ -123,7 +123,9 @@
 <!--  북마크 기능 - 1월 4일  https://www.flaticon.com/kr/free-icon/bookmark_5624111?term=%EB%B6%81%EB%A7%88%ED%81%AC&page=1&position=33&origin=search&related_id=5624111-->		
 				<div id="commend" class="btnCommend text-primary" > 
 						<div class="productbookmarkcount" style="font-size:15px">
-							<img src="resources/img/bookmark.png"  width="40" height="35"  /> <br>
+						<input type="hidden" name="productno" value="${p.productno}">
+						<input type="hidden" name="id" value="${sessionScope.id}">
+							<img class="productbookmark" src="resources/img/bookmark.png" style="width: 45px; height: 40px;"/> <br>
 							<div class="bookmark"> ${ p.productbookmarkcount } </div>
 					</div>
 				</div>
@@ -157,8 +159,10 @@
 <!--  %%%%%%%%%%%%%    북마크 이미지 위에 출력    %%%%%%%%%%%%%%-->			
 					<div id="commend" class="btnCommend text-primary" > 
 						<div class="productbookmarkcount" style="font-size:15px">
-						<img src="resources/img/bookmark.png"  width="40" height="35" /><br>
-						<div class="bookmark"> ${ p.productbookmarkcount } </div>
+						<input type="hidden" name="productno" value="${p.productno}">
+						<input type="hidden" name="id" value="${sessionScope.id}">
+							<img class="productbookmark" src="resources/img/bookmark.png" style="width: 45px; height: 40px;"/> <br>
+							<div class="bookmark"> ${ p.productbookmarkcount } </div>
 					</div>
 				</div>
 					
