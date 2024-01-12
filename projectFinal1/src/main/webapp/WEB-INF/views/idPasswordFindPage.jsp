@@ -47,6 +47,9 @@
 									</div>
 								</div>
 							</div>
+							<div class="spinner-border text-success offset-5" id="findIdLoading" role="status" style="display: none;">
+							  <span class="visually-hidden">Loading...</span>
+							</div>
 							<div class="row" id="findIdEmailCheck"   hidden="">
 								<input type="hidden" id="findIdEmailCheckCodeHidden"><!-- 보낸 인증번호 -->
 								<div class="offset-5 col-3 border-bottom ">
@@ -68,6 +71,7 @@
 				</div>
 				
 			  </div>
+			  
 			  <div class="tab-pane fade show active" hidden="" id="home-tab-pane2"  role="tabpanel" aria-labelledby="home-tab" tabindex="0">
 			
 				<div class="row mt-5 container text-center">
@@ -113,7 +117,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="spinner-border text-success" id="findPasswordLoading" role="status" style="display: none;">
+							<div class="spinner-border text-success offset-5" id="findPasswordLoading" role="status" style="display: none;">
 							  <span class="visually-hidden">Loading...</span>
 							</div>
 							

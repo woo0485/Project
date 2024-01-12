@@ -18,8 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.finalproject.festival.domain.Basket;
+import com.finalproject.festival.domain.Product;
 import com.finalproject.festival.domain.Reservation;
-
+import com.finalproject.festival.service.ProductService;
 import com.finalproject.festival.service.ReservtionService;
 
 @Controller
@@ -32,13 +33,26 @@ public class ReservationController {
 		this.rs = rs;
 	}
 	
-	// 결제가 완료되면서 예약 테이블에 장바구니에 들어간 정보 insert 해주기 -1월 8일
+	@Autowired
+	private ProductService sv;
+	
+	public void setProductService(ProductService sv) {
+		this.sv = sv;
+	}
+	
+	// @@@@@@@@ 결제가 완료되면서 예약 테이블에 장바구니에 들어간 정보 insert 해주기 -1월 8일 @@@@@@@@@@@
 	// insert와 동시에 select가 이루어지기 => 컨트롤러에서틑 ajax 매핑 1개로 하고 service에서 처리해주기
+	// 3) Product 테이블 남은 티켓 수- 결제된 티켓 수 => 이건 컨트롤러에서 처리해주자~~!!!!!!
+	// 1월 10일 수정함
 	 @RequestMapping(value = "/insertReservation", method = RequestMethod.POST)
 	 @ResponseBody
 	public String InsertReservation (
 			HttpServletRequest request, 
-			 @RequestParam(value = "id") String id )throws IOException {	
+			 @RequestParam(value = "id") String id,
+			 // 여기서부터는 (( productno에 해당하는 productremainticketcount )) - basketproductcount 해준다.
+			 @RequestParam(value = "productno") int productno,
+			 @RequestParam(value = "productremainticketcount") int productremainticketcount
+			)throws IOException {	
 	
 	//	 System.out.println("reservationController에서 productno" + productno);
 		
@@ -58,6 +72,14 @@ public class ReservationController {
 			 
 			 // insert하면서 동시에 select 하는 Service - 1월 9일
 			// rs.BasketListByIdByProductno(id, re);
+			 
+			 /////////////////////////////////////////////////////////////////////////////////////////
+			 // 여기서부터는 결제되면서 product의 남은 티켓 수에서  장바구니의 티켓수만큼 빼주는 것
+			 Product p = new Product();
+			 p.setProductno(productno);
+			 p.setProductremainticketcount(productremainticketcount);
+			 
+			 sv.updateProductRemainTicketCount(productno, productremainticketcount);
 	
 			 return "success";
 			// return "redirect:/priceOrderFinish.jsp";
@@ -69,6 +91,7 @@ public class ReservationController {
 		 return "main" ;
 	 }
 		 
+	 
 		 // 들어온 거 확인 다른페이지로 연동 - 거쳐서 가는 컨트롤러
 			@RequestMapping(value = "/reservationSucess", method = RequestMethod.GET)
 			public String reservationSucess  (Model m,  

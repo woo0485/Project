@@ -13,20 +13,20 @@
 <script src="resources/js/jquery-3.2.1.min.js"></script>
 <script src="resources/js/hyunju.js"></script>
 <body>
-<input type="text" name="id" id="rId43543036" value="${sessionScope.id}"> <br>
+<input type="hidden" name="id" id="rId43543036" value="${sessionScope.id}"> <br>
 <input type="hidden" value="${priceOrder.size()}" id="priceOrderLength">
 <c:forEach var="b" items="${priceOrder}"  varStatus="status">
-		<input type="text" name="basketno"  id="basketno4"  value="${b.basketno}">  <br>
-		 <input type="text" class="basNo" name="productno" id="productno04" value="${b.basketProductNo}">  <br>
-		 <input class="basCount" type="text" name="basketProductCount"  id="basketProductCount04" value="${b.basketProductCount}"> <br>
-		 <input type="text" name="productprice"  id="productprice04" class="prods"  value="${b.productPrice}"> <br>
-		 <input type="text"  class="proname" name="productname"  id="productname04"  value="${b.productName}"> <br>
+		<input type="hidden" name="basketno"  id="basketno4"  value="${b.basketno}">  <br>
+		 <input type="hidden" class="basNo" name="productno" id="productno04" value="${b.basketProductNo}">  <br>
+		 <input class="basCount" type="hidden" name="basketProductCount"  id="basketProductCount04" value="${b.basketProductCount}"> <br>
+		 <input type="hidden" name="productprice"  id="productprice04" class="prods"  value="${b.productPrice}"> <br>
+		 <input type="hidden"  class="proname" name="productname"  id="productname04"  value="${b.productName}"> <br>
 </c:forEach>
 
 <c:forEach var="bb" items="${basketList}" >
-    	장바구니 productno를 배열로 받았을 때; <input type="text" name="productno" id="productno453423445345" value="${bb.basketProductNo}"> <br>
-   		장바구니의 productno의 개수: <input type="text" name="basketproductcount" id="basketproductcount564234234235645" value="${bb.basketProductCount}"><br>
-   		 장바구니의 productno의 가격: <input type="text" name="productprice" id="productprice324423423423324" value="${bb.productPrice}"><br>
+    	장바구니 productno를 배열로 받았을 때; <input type="hidden" name="productno" id="productno453423445345" value="${bb.basketProductNo}"> <br>
+   		장바구니의 productno의 개수: <input type="hidden" name="basketproductcount" id="basketproductcount564234234235645" value="${bb.basketProductCount}"><br>
+   		 장바구니의 productno의 가격: <input type="hidden" name="productprice" id="productprice324423423423324" value="${bb.productPrice}"><br>
 </c:forEach>
 
 

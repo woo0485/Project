@@ -586,7 +586,7 @@ o	④ 회사는 이용자의 편의를 위하여 쿠키를 운영합니다. 회�
 				<span id="LoginConfrimCheckMsg"></span>
 				<div class="offset-2 row mt-5">
 					<div class="col">
-						<a href="main" class="btn btn-outline-dark ">돌아가기</a>
+						<a href="login" class="btn btn-outline-dark ">돌아가기</a>
 					</div>
 					<div class="offset-1 col">
 						<input type="button" value="동의하고 가입하기" class="btn btn-outline-dark " id="joinConfirmBtn">

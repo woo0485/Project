@@ -162,7 +162,8 @@ public class basketController {
 
 	// 다른데로 거쳐서 가는 ajax로 보내기 때문에 GET 방식으로 보낸다 => 아닌가?
 	@RequestMapping(value = "/updateDeleteForm")
-	public String updateDeleteForm ( Model m,
+	@ResponseBody
+	public Map<String, String> updateDeleteForm ( Model m,
 			@RequestParam(value = "basketProductCount")  int basketProductCount, 
 			@RequestParam(value = "id") String id, 
 		//	@RequestParam(value = "basketProductNo") int basketProductNo,
@@ -179,7 +180,12 @@ public class basketController {
 		//m.addAttribute("param", param );
 		
 		bs.updateBasketProductnoCount(param);
-		return "basketRedirect" ;
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("result", "ok");
+		
+		
+		return map ;
 	 }	
 	
 	

@@ -124,5 +124,14 @@ public class ProductServieImpl implements ProductService {
 			return map;
 		}
 
+	/////// 결제 진행되면서 product의 남은 티켓 수에서 결제된 티켓 수만큼 빼주는 것
+		@Override
+		public void updateProductRemainTicketCount(int productno, int productremainticketcount) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("productno", productno);
+			map.put("productremainticketcount", productremainticketcount);
+			
+		}
+
 
 }
