@@ -37,8 +37,8 @@ input[type="date"]:focus {
 			enctype="multipart/form-data" id="galleryUploadForm">
 			<div class="row mt-5">
 				<div class="col-8 offset-2" style="display: flex; align-items: center; height: 100%">
-					<label for="myDate" id="eventCloseDate">이벤트 종료 날짜 : </label> <input type="date"
-						id="myDate" name="myDate" required="required">
+					<label for="eventDate" id="eventCloseDate">이벤트 종료 날짜 : </label> <input type="date"
+						id="eventDate" name="closedate" required="required">
 				</div>
 			</div>
 			<div class="row mt-4">
@@ -66,7 +66,7 @@ input[type="date"]:focus {
 					<label for="imageInput" class="form-label"><span
 						class="fs-5">이벤트 이미지 한개를 선택하세요.</span><br></label> <input
 						class="form-control form-control-lg" id="imageInput" type="file"
-						name="images" required="required">
+						name="image" required="required">
 				</div>
 			</div>
 			<div class="row mt-3">
@@ -74,7 +74,7 @@ input[type="date"]:focus {
 			</div>
 			<div class="row mt-4">
 				<div class="col text-center">
-					<input type="submit" class="btn btn-secondary" value="등록하기">
+					<input type="submit" class="btn btn-outline-secondary" value="등록하기">
 				</div>
 			</div>
 		</form>
