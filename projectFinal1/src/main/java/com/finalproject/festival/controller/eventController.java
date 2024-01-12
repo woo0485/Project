@@ -22,5 +22,12 @@ public class eventController {
 		return "randomBoxEvent";
 		
 	}
+	
+	@RequestMapping("/eventWriteForm")
+	public String eventWriteForm () {
+		
+		return "eventWriteForm";
+		
+	}
 
 }

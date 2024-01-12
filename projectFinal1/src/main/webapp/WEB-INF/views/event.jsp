@@ -57,7 +57,7 @@ $("." + className).addClass("show active");
 						aria-labelledby="nav-home-tab" tabindex="0">
 						<div class="row mt-5 ps-5">
 							<div class="col-4">
-								<a><img src="resources/img/쿠폰뽑기.jpg" alt="임시 이미지"
+								<a><img src="resources/upload/쿠폰뽑기.jpg" alt="임시 이미지"
 									style="width: 100%; height: 250px;">
 								</a>
 							</div>
@@ -76,7 +76,7 @@ $("." + className).addClass("show active");
 						</div>
 						<div class="row mt-5 ps-5">
 							<div class="col-4">
-								<img src="resources/img/회원가입쿠폰.png" alt="임시 이미지"
+								<img src="resources/upload/회원가입쿠폰.png" alt="임시 이미지"
 									style="width: 100%; height: 250px;">
 							</div>
 							<div class="col-8">
@@ -94,7 +94,7 @@ $("." + className).addClass("show active");
 						</div>
 						<div class="row mt-5 ps-5">
 							<div class="col-4">
-								<img src="resources/img/랜덤추첨.jpg" alt="임시 이미지"
+								<img src="resources/upload/랜덤추첨.jpg" alt="임시 이미지"
 									style="width: 100%; height: 250px;">
 							</div>
 							<div class="col-8">
@@ -117,7 +117,7 @@ $("." + className).addClass("show active");
 							<div class="col">
 								<div class="row mt-5 ps-5">
 									<div class="col-4">
-										<img src="resources/img/증정이벤트.jpg" alt="임시 이미지"
+										<img src="resources/upload/증정이벤트.jpg" alt="임시 이미지"
 											style="width: 100%; height: 250px;">
 
 									</div>
@@ -136,7 +136,7 @@ $("." + className).addClass("show active");
 								</div>
 								<div class="row mt-5 ps-5">
 									<div class="col-4">
-										<img src="resources/img/새해맞이이벤트.jpg" alt="임시 이미지"
+										<img src="resources/upload/새해맞이이벤트.jpg" alt="임시 이미지"
 											style="width: 100%; height: 250px;">
 									</div>
 									<div class="col-8">
@@ -154,7 +154,7 @@ $("." + className).addClass("show active");
 								</div>
 								<div class="row mt-5 ps-5">
 									<div class="col-4">
-										<img src="resources/img/공유이벤트.jpg" alt="임시 이미지"
+										<img src="resources/upload/공유이벤트.jpg" alt="임시 이미지"
 											style="width: 100%; height: 250px;">
 									</div>
 									<div class="col-8">
