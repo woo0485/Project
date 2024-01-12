@@ -1,6 +1,10 @@
 package com.finalproject.festival.service;
 
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -124,7 +128,9 @@ public class MemberServiceImpl implements MemberService {
 		public List<Gallery> mainSearchGallery(String keyword) {
 			return memberDao.mainSearchGallery(keyword);
 		}
-
+		
+	/************************search***************************/
+		
 		@Override
 		public void searchKeyword(String keyword) {
 			String searchKeyword="";
@@ -148,17 +154,37 @@ public class MemberServiceImpl implements MemberService {
 
 		@Override
 		public List<Search> mainSearchSelect() {
-		
-			return memberDao.searchKeywordSelect();
+		    LocalDateTime now = LocalDateTime.now();
+		    int nowMonth = now.getMonthValue();
+
+		    SimpleDateFormat dateFormat = new SimpleDateFormat("MM");
+		    String monthString = "";
+		    int searchMonth = 0;
+
+		    List<Search> monthList = memberDao.searchKeywordSelect();
+		    List<Search> searchList = new ArrayList<>();
+
+		    for (Search list : monthList) {
+		        Timestamp month = list.getSearchdate();
+		        monthString = dateFormat.format(month);
+		        searchMonth = Integer.parseInt(monthString);
+
+		        if (nowMonth == searchMonth) {
+		            searchList.add(list);
+		        }
+		    }
+
+		    System.out.println(nowMonth + "-----" + searchMonth);
+
+		    return searchList;
 		}
 		
 	/************************bookmark***************************/
 		
 		@Override
-		public void bookmarkChange(String id, int productno) {
+		public int bookmarkChange(String id, int productno) {
 			
 			System.out.println(id+"-----serviec-----"+productno);
-			
 			
 			int result = bookmarkDao.selectBookmarkCount(id,productno);
 			System.out.println("result"+result);
@@ -170,6 +196,8 @@ public class MemberServiceImpl implements MemberService {
 				bookmarkDao.productBookmarkCountDelete(productno);
 				bookmarkDao.bookmarkDelete(id,productno);
 			}
+			
+			return bookmarkDao.productBookmarkSelect(productno);
 		}
 
 	

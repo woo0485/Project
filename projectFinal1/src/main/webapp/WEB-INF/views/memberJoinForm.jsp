@@ -160,7 +160,9 @@
 					<div class="row">
 						<span id="eMailCheckMsg" class="form-text offset-md-3"></span>
 					</div>	
-					 
+					 <div class="spinner-border text-success offset-5" id="joinEmailLoading" role="status" style="display: none;">
+					 	 <span class="visually-hidden">Loading...</span>
+					 </div>
 					<div class="row" id="eMailCheckLi" style="display: none;">
 						<div class="offset-3 col-7 border-bottom ">
 								
