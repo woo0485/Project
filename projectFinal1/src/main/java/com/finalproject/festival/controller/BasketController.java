@@ -70,7 +70,6 @@ public class BasketController {
 			
 			return "redirect:basketRedirect";
 		}
-
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 결제로 넘겨지는 1월 5일
@@ -144,7 +143,6 @@ public class BasketController {
 		return result ;
 	 }	
 	/////////////////////////////////////////////////////////////////////////////////////////////
-	
 	////////////////////////////  그냥 장바구니에 있는 전체 상품 삭제하기
 	@RequestMapping(value = "/deleteBasketAll", method= RequestMethod.POST)
 	public String deleteProduct (
@@ -154,7 +152,5 @@ public class BasketController {
 	
 		return "basketRedirect" ;
 	}
-	
-	
 	
 }
