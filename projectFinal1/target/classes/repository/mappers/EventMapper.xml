@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.finalproject.festival.mapper.EventMapper" >
+
+	<insert id="eventUpload" parameterType="Event">
+		INSERT INTO Event (eventtitle, eventcontent, eventimage, eventopendate, eventclosedate) VALUES (#{eventtitle},#{eventcontent},#{eventimage},#{eventopendate},#{eventclosedate})
+	</insert>
+	
+	<select id="event" resultType="Event">
+		SELECT * FROM Event
+	</select>
+	
+	<select id="eventDetail" parameterType="int" resultType="Event">
+		SELECT * FROM Event WHERE eventno=#{eventno}
+	</select>
+	
+</mapper>	
+
+
+
