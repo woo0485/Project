@@ -54,7 +54,5 @@ public interface MemberDao {
 	public void searchKeywordInsert(String searchKeyword);
 			
 	public void searchKeywordCount(String searchKeyword);
-	
-	
-	
+
 }

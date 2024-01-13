@@ -86,9 +86,14 @@
 <!--  캐러셀  끝-->	 	
 	
 <!--/////////////      축제정보 등록      /////////////-->
-
+<!-- 관리자 로그인 XXXXXX  (임시로 관리자 로그인되었을 때 안되었을 때 둘 다 보이게 함 최종때는 수정할 것임)-->	
+	 <c:if test="${empty sessionScope.adminid}">
+		<div class="col-12 text-end">
+				<a href="writeForm" class="btn btn-outline-success">축제정보 등록</a>
+		</div>
+		</c:if>
 <!-- 관리자 로그인되었을 때  OOOOO-->							
-	<c:if test="${sessionScope.userType =='Admin' }">
+	<c:if test="${not empty sessionScope.adminid}">
 	<div class="col-12 text-end">
 				<a href="writeForm" class="btn btn-outline-success">축제정보 등록</a>
 		</div>
@@ -153,9 +158,7 @@
 						</div>
 						
 						<div class="productbookmarkcount" style="font-size:15px">
-						<input type="hidden" name="productno" value="${p.productno}">
-						<input type="hidden" name="id" value="${sessionScope.id}">
-							<img class="productbookmark" src="resources/img/bookmark.png" style="width: 45px; height: 40px;"/> <br>
+							<img src="resources/img/bookmark.png"  width="40" height="35"  /> <br>
 							<div class="bookmark"> ${ p.productbookmarkcount } </div>
 					</div>
 					
@@ -184,9 +187,7 @@
 <!--  %%%%%%%%%%%%%    북마크 이미지 위에 출력    %%%%%%%%%%%%%%-->			
 						
 						<div class="productbookmarkcount" style="font-size:15px">
-						<input type="hidden" name="productno" value="${p.productno}">
-						<input type="hidden" name="id" value="${sessionScope.id}">
-							<img class="productbookmark" src="resources/img/bookmark.png" style="width: 45px; height: 40px;"/> <br>
+							<img src="resources/img/bookmark.png"  width="40" height="35"  /> <br>
 							<div class="bookmark"> ${ p.productbookmarkcount } </div>
 					</div>
 					

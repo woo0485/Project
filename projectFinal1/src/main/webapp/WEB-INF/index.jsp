@@ -11,7 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
-<script src="resources/js/yeseul.js?ver=1"></script>
+<script src="resources/js/yeseul.js?ver=0"></script>
 <script src="resources/js/seongjin.js?ver=3"></script>
 <script src="resources/js/wooseong.js?ver=1"></script>
 <script src="resources/js/hyunju.js"></script>
@@ -30,7 +30,7 @@
 		<%@ include file="template/header.jsp"%>
 		<jsp:include page="${ param.bodydata }" />
 		<%@ include file="template/footer.jsp"%>
-		<div style="cursor:pointer; position: fixed; right: 150px; bottom: 100px;" onclick="window.scrollTo(0,0);">
+		<div style="cursor:pointer; position: fixed; right: 300px; bottom: 100px;" onclick="window.scrollTo(0,0);">
 			<i class="bi bi-arrow-up-square" style="font-size: 3em;"></i>
 		</div>
 	</div>

@@ -50,8 +50,6 @@ public interface MemberService {
 	public void searchKeyword(String searchKeyword); 
 	
 	public List<Search>mainSearchSelect();
+			
 	
-	/************************bookmark***************************/
-	
-	public void bookmarkChange(String id, int productno);
 }

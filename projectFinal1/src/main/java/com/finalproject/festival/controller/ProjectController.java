@@ -1,23 +1,35 @@
 package com.finalproject.festival.controller;
 
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.finalproject.festival.domain.Admin;
 import com.finalproject.festival.domain.Gallery;
+import com.finalproject.festival.domain.Main;
 import com.finalproject.festival.domain.Member;
 import com.finalproject.festival.domain.News;
 import com.finalproject.festival.domain.Product;
@@ -60,11 +72,12 @@ public class ProjectController {
 		return "redirect:main";
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "/headerKeyword", method = RequestMethod.GET, produces = "application/json")
-    public List<Search> headerKeyword() {
-        return memberService.mainSearchSelect();
-    }
+	@RequestMapping("/headerKeyword")
+	public List<Search> headerKeyword() {
+		List<Search> searchList = memberService.mainSearchSelect();
+		
+		return searchList;
+	}
 	
 	
 	
@@ -284,9 +297,8 @@ public class ProjectController {
 						
 						memberService.joinMember(member);
 						memberService.newMemberCoupon(id);
-						
 		
-		return "login";
+		return "redirect:joinSuccess";
 	}
 	
 
@@ -374,18 +386,8 @@ public class ProjectController {
 		return "redirect:adminUser";
 	}
 	
-	/******************************** bookmark *************************************/
 	
 	
-	@ResponseBody
-	@RequestMapping(value = "/bookmarkChange" ,method = RequestMethod.POST)
-	public String bookmarkChange(String id, int productno){
-		
-		System.out.println(id+"-----controller-----"+productno);
-		
-		memberService.bookmarkChange(id, productno);
-		
-		 return "success";
-	}
+
 	
 }

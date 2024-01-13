@@ -122,30 +122,6 @@
 	<update id="searchKeywordCount">
 		UPDATE Search SET searchkeywordcount = searchkeywordcount+1 WHERE searchkeyword = #{searchKeyword}
 	</update>
-	
-		<!--************** ProductBookmark ****************-->
-		
-		
-	<select id="selectBookmarkCount" resultType="Integer" parameterType="Bookmark">
-		SELECT Count(*) FROM Bookmark WHERE id = #{id} AND productno = #{productno}
-	</select>	
-	
-	<update id="productBookmarkCount">
-		UPDATE Product SET productbookmarkcount = productbookmarkcount+1 WHERE  productno = #{productno}
-	</update>
-	
-	<insert id="bookmarkInsert" parameterType="Bookmark">
-		INSERT INTO Bookmark (id, productno) VALUES(#{id}, #{productno})
-	</insert>
-	
-	<update id="productBookmarkCountDelete">
-		UPDATE Product SET productbookmarkcount = productbookmarkcount-1 WHERE  productno = #{productno}
-	</update>
-	
-	<delete id="bookmarkDelete" parameterType="Bookmark">
-		DELETE FROM Bookmark  WHERE id = #{id} AND productno = #{productno}
-	</delete>
-	
 </mapper>	
 
 

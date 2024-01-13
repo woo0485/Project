@@ -26,20 +26,20 @@
 	a:visited{text-decoration:none;}
 	a:hover{ text-decoration:none;}
 </style>
-<script>
+<!-- <script>
 $(document).ready(function() {
     // Ajax 요청
     $.ajax({
         url: 'headerKeyword',
         type: 'GET',
-        contentType: 'application/json; charset=UTF-8',
+        dataType: 'json',
         success: function(data) {
             // 서버에서 받은 데이터를 이용하여 동적으로 HTML 업데이트
             updateSearchKeywords(data);
-            console.log("data-----", data);
+            console.log("data",data);
         },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log('Error:', jqXHR, textStatus, errorThrown);
+        error: function(error) {
+            console.log('Error:', error);
         }
     });
 });
@@ -48,53 +48,56 @@ function updateSearchKeywords(searchList) {
     // 받아온 데이터를 기반으로 HTML 업데이트
     var html = '';
     $.each(searchList, function(index, publicKeyword) {
-    	if(index < 5){
-        html += '<span class="mx-3"><a style="color: gray; text-decoration: underline;" href="mainSearch?searchWord='+publicKeyword.searchkeyword+'">' + publicKeyword.searchkeyword + '</a></span>';
-    	}
+        html += '<span class="me-2"><a>' + publicKeyword.searchkeyword + '</a></span>';
     });
 
     // 결과를 적용할 요소에 HTML 삽입
-    $('#headerKeyword').html(html);
-}
-</script>
-<div class="row mt-5">
+    $('.text-start').html(html);
+} 
+</script> -->
+<div class="row mt-5 pt-5">
 		<div class="col ">
 		
-			<div class="row offset-2">
+			<div class="row">
 				<div class="col-2 align-top">
 					<a href="main">
-						<img alt="" src="resources/img/logo.png" style="width: 120%;">
+						<img alt="" src="resources/img/logo.png" style="width: 120%">
 					</a>
 				</div>
-				<div class="col-7 ms-5 mt-3">
-			 		<form class="d-flex" role="search" action="mainSearch">
-			        <input class="form-control me-2 p-3" type="search" placeholder="Search" aria-label="Search" name="searchWord">
-			        <button class="btn btn-outline-dark" type="submit">Search</button>
-			        </form>
-			        <div class="row mt-4">
-						<div class="col-3 p-0 fw-bold text-end">인기 검색어  :</div>
-						<div class="col p-0 text-start" id="headerKeyword">
-							
-				   		</div>
-					</div>
+				<div class="col-7 ms-4">
+		 		<form class="d-flex" role="search" action="mainSearch">
+		        <input class="form-control me-2 p-3" type="search" placeholder="Search" aria-label="Search" name="searchWord">
+		        <button class="btn btn-outline-dark" type="submit">Search</button>
+		        </form>
+		        <div class="row mt-4">
+					<div class="col-3 p-0 fw-bold text-end">인기 검색어  :</div>
+					<div class="col p-0 text-start">
+					
+						<span class="me-2">
+						<a></a>
+						</span>
+			   		
+			   		</div>
+				</div>
 				</div>
 			</div>
 			
-			<div class="row mt-5">
-				<div class="d-flex justify-content-around" >
+			<div class="row mt-3">
+				
+				<div class="col d-flex justify-content-around" >
 					<nav class="navbar navbar-expand-lg bg-body-tertiary  ">
 					  <div class="container-fluid "> 		
 						    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						      <span class="navbar-toggler-icon"></span>
 						    </button>
-					    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-					      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+					      <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-bottom">
 					        <li class="nav-item me-5">
-					          <a class="nav-link active fs-5 fw-bold" aria-current="page" href="festivalMap">축제 지도</a>
+					          <a class="nav-link active" aria-current="page" href="festivalMap">축제 지도</a>
 					        </li>
 					      
 					        <li class="nav-item dropdown me-5">
-					          <a class="nav-link dropdown-toggle fs-5 fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 					           	축제
 					          </a>
 					          
@@ -106,7 +109,7 @@ function updateSearchKeywords(searchList) {
 					          </ul>
 					        </li>
 					        <li class="nav-item dropdown me-5">
-					          <a class="nav-link dropdown-toggle fs-5 fw-bold" href="eventPage" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					          <a class="nav-link dropdown-toggle" href="eventPage" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 					            	이벤트
 					          </a>
 					          
@@ -117,7 +120,7 @@ function updateSearchKeywords(searchList) {
 					          </ul>
 					         </li>
 					        <li class="nav-item dropdown me-5">
-					        	<a class="nav-link dropdown-toggle fs-5 fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					        	<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 					            	고객센터
 					          	</a>
 					           

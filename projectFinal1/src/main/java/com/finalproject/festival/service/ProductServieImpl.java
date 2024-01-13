@@ -130,8 +130,12 @@ public class ProductServieImpl implements ProductService {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("productno", productno);
 			map.put("productremainticketcount", productremainticketcount);
-			
+			PD.updateProductRemainTicketCount(productno, productremainticketcount);
 		}
 
+		@Override
+		public void productnoCheckRemainticketcount(int productno) {
+			PD.productnoCheckRemainticketcount(productno);
+		}
 
 }

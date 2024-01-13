@@ -20,36 +20,9 @@
             newsItems.slice(visibleItems, visibleItems + 1).slideDown();
         }, 3000);
         
-  
-  /*-----------------------bookmark.js--------------------------------*/    
+        
        
-      $(".productbookmark").click(function() {
-		    var id = $(this).prev().val();
-		    var productno = $(this).prev().prev().val();
-		
-		    console.log("productno" + productno + "id" + id);
-		
-		    if (id == "") {
-		        alert("로그인을 해주세요.");
-		    } else {
-		        $.ajax({
-		            url: "bookmarkChange",
-		            type: "POST",
-		            data: {
-		                "id": id,
-		                "productno": productno
-		            },
-		             success: function (result) {
-		             	console.log(result);
-		             	window.location.href = "productList";
-		             },
-		            error: function(jqXHR, textStatus, errorThrown) {
-		                console.log("login err" + "jqXHR " + jqXHR + "textStatus" + textStatus + "errorThrown" + errorThrown);
-		            }
-		
-		        });
-		    }
-		});
+       
        
    
   /*-----------------------mainSearch.js--------------------------------*/ 
@@ -332,6 +305,8 @@
 					url : "joinEmailCheck",
 					data : {"email" :email},
 					datatype :"text",
+					
+					async    : false,
 					success : function (data) {
 					    
 						console.log("join이메일 체크"+data); // 성공하면
@@ -344,6 +319,7 @@
 							url : "mailCheck",
 							data : {"email" :email},
 							datatype :"text",
+							async    : false,
 							success : function (data2) {
 								console.log("ajax2-data2 : " +  data2);
 								$("#eMailCheckMsg").text("인증번호가 전송되었습니다.").css("color", "green");
@@ -519,7 +495,6 @@
   				$("#findIdEmailMsg").text("이름 또는 이메일을 다시 확인해주세요.").css("color","red");
   			}else{
   			$("#findId").val(data);
-  			$("#findIdLoading").css("display","block");
   			
   			$.ajax({
 							type : 'post',
@@ -527,6 +502,7 @@
 							data : JSON.stringify({"email" :email}),
 							contentType: "application/json",
 							datatype :"text",
+							async    : false,
 							success : function (data2) {
 								
 								console.log("ajax2-data2 : " +  data2);
