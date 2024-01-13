@@ -116,12 +116,13 @@
 	</select>	
 				
 	<insert id="searchKeywordInsert">
-		INSERT INTO Search (searchkeyword, searchkeywordcount) VALUES(#{searchKeyword},1)
+		INSERT INTO Search (searchkeyword, searchkeywordcount, searchdate) VALUES(#{searchKeyword},1,SYSDATE())
 	</insert>
 	
 	<update id="searchKeywordCount">
-		UPDATE Search SET searchkeywordcount = searchkeywordcount+1 WHERE searchkeyword = #{searchKeyword}
+		UPDATE Search SET searchkeywordcount = searchkeywordcount+1 ,searchdate = SYSDATE() WHERE searchkeyword = #{searchKeyword}
 	</update>
+
 	
 		<!--************** ProductBookmark ****************-->
 		
@@ -130,6 +131,10 @@
 		SELECT Count(*) FROM Bookmark WHERE id = #{id} AND productno = #{productno}
 	</select>	
 	
+	<select id="productBookmarkSelect" resultType="Integer">
+		SELECT productbookmarkcount FROM Product WHERE productno = #{productno}
+	</select>
+	
 	<update id="productBookmarkCount">
 		UPDATE Product SET productbookmarkcount = productbookmarkcount+1 WHERE  productno = #{productno}
 	</update>
@@ -137,7 +142,7 @@
 	<insert id="bookmarkInsert" parameterType="Bookmark">
 		INSERT INTO Bookmark (id, productno) VALUES(#{id}, #{productno})
 	</insert>
-	
+		
 	<update id="productBookmarkCountDelete">
 		UPDATE Product SET productbookmarkcount = productbookmarkcount-1 WHERE  productno = #{productno}
 	</update>
@@ -146,6 +151,7 @@
 		DELETE FROM Bookmark  WHERE id = #{id} AND productno = #{productno}
 	</delete>
 	
+
 </mapper>	
 
 

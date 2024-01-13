@@ -97,8 +97,7 @@ params.put("productbookmarkcount", productbookmarkcount);
 sqlSession.update(NAME_SPACE + ".updateBookmark", params);
 }
 
-
-//////////////// 장바구니 결제되면서 상품 남은 티켓수 조정해주기 ///////////////
+////////////////     장바구니 결제되면서 상품 남은 티켓수 조정해주기     ///////////////
 @Override
 public void updateProductRemainTicketCount(int productno, int productremainticketcount) {
 	Map<String, Object> map = new HashMap<String, Object>();
@@ -107,5 +106,9 @@ public void updateProductRemainTicketCount(int productno, int productremainticke
 	sqlSession.update(NAME_SPACE + ".updateProductRemainTicketCount", map);
 }
 
+@Override
+public void productnoCheckRemainticketcount(int productno) {
+	sqlSession.update(NAME_SPACE + ".productnoCheckRemainticketcount", productno);
+}
 	
 }

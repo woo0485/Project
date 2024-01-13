@@ -11,7 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
-<script src="resources/js/yeseul.js?ver=1"></script>
+<script src="resources/js/yeseul.js?ver=0"></script>
 <script src="resources/js/seongjin.js?ver=3"></script>
 <script src="resources/js/wooseong.js?ver=1"></script>
 <script src="resources/js/hyunju.js"></script>
@@ -23,14 +23,16 @@
 <link rel="stylesheet" href="resources/css/yeseul.css">
 <link rel="stylesheet" href="resources/css/owl.carousel.min.css">
 <link rel="stylesheet" href="resources/css/owl.theme.default.min.css">
-
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 <body>
 	<div class="container">
 		<%@ include file="template/header.jsp"%>
 		<jsp:include page="${ param.bodydata }" />
 		<%@ include file="template/footer.jsp"%>
-		<div style="cursor:pointer; position: fixed; right: 150px; bottom: 100px;" onclick="window.scrollTo(0,0);">
+		<div style="cursor:pointer; position: fixed; right: 200px; bottom: 100px;" onclick="window.scrollTo(0,0);">
 			<i class="bi bi-arrow-up-square" style="font-size: 3em;"></i>
 		</div>
 	</div>

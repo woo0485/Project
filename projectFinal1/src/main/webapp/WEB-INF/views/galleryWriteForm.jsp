@@ -65,7 +65,7 @@
 			</div>
 			<div class="row mt-4">
 				<div class="col text-center">
-					<input type="submit" class="btn btn-secondary" value="등록하기">
+					<input type="submit" class="btn btn-outline-secondary" value="등록하기">
 				</div>
 			</div>
 		</form>

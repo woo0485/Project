@@ -17,13 +17,16 @@ public class Product {
 	private int productticketcount;
 	private int productremainticketcount;
 	private String adminpassword;
+	// 결제되면서 장바구니의 결제된 수량만큼 상품의 남은 개수에서 빼주기
+	private int basketproductcount;
 	
 	public Product() {}
 	
 	public Product(int productno,  String productname, String productcontent,  int productprice, String productimage, String productlocation, 
 			Timestamp productopendate, Timestamp productclosedate, 
 			int productbookmarkcount, int productreadcount, int productticketcount,  int productremainticketcount,
-			String adminpassword) {
+			String adminpassword,
+			int basketproductcount) {
 		
 		this.productno = productno;
 		this.productname = productname;
@@ -38,6 +41,7 @@ public class Product {
 		this.productticketcount = productticketcount;
 		this.productremainticketcount = productremainticketcount;
 		this.adminpassword = adminpassword;
+		this.basketproductcount = basketproductcount;
 	}
 
 	public int getProductno() {
@@ -142,6 +146,15 @@ public class Product {
 
 	public void setAdminpassword(String adminpassword) {
 		this.adminpassword = adminpassword;
+	}
+
+	//  결제되면서 장바구니에 담긴 수량만큼 product의 남은 티켓수에서 빼주기
+	public int getBasketproductcount() {
+		return basketproductcount;
+	}
+
+	public void setBasketproductcount(int basketproductcount) {
+		this.basketproductcount = basketproductcount;
 	}
 
 }

@@ -84,7 +84,7 @@ $(function(){
 									<tr>
 										<th style="border:none; text-align:end;">주소</th>
 												<td style="border:none;">${my.address1} - ${my.address2}</td>
-												<td style="border:none;"><input type="button" class="btn btn btn-outline-dark" id="btnZipcode" 
+												<td><input type="button" class="btn btn btn-outline-dark" id="btnZipcode" 
 									onclick="findAddr()" value="주소변경"></td>
 									</tr>
 									<tr>

@@ -31,10 +31,10 @@ public class MessageServiceImpl implements MessageService {
 		makeRandomNumber();
 		
 		System.out.println(authNumber);
-		DefaultMessageService messageService =  NurigoApp.INSTANCE.initialize("NCS5YWLDO6O6K8IJ", "VNGBFXVYNZM1WOHKIV9XHMHSZRFPRMYZ", "https://api.coolsms.co.kr");
+		DefaultMessageService messageService =  NurigoApp.INSTANCE.initialize("NCSI9QMNEDQ9MTEN", "XNFRZQUNIUHFALVSOQZJHKAJRLYO94ZX", "https://api.coolsms.co.kr");
 		// Message 패키지가 중복될 경우 net.nurigo.sdk.message.model.Message로 치환하여 주세요
 		Message message = new Message();
-		message.setFrom("01057968112");
+		message.setFrom("01038731573");
 		message.setTo(phonenumber);
 		message.setText("GALAGO 회원가입 핸드폰 인증번호는 "+authNumber+"입니다.");
 
