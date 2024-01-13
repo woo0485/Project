@@ -29,7 +29,7 @@ import com.finalproject.festival.service.BasketService;
 import com.finalproject.festival.service.ProductService;
 
 @Controller
-public class basketController {
+public class BasketController {
 	
 	@Autowired
 	private BasketService bs;
