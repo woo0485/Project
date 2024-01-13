@@ -97,8 +97,7 @@ $(function(){
 										<input type="hidden" class="form-control border-0" name="address2" id="address2">
 										<input type="hidden" class="btn btn btn-outline-dark" id="myUpAddr" value="확인">
 									</form> 
-									</tr>
-									
+									</tr>									
 								</c:if>
 							</tbody>
 						</table>

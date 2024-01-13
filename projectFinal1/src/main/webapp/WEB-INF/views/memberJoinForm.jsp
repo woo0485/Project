@@ -45,9 +45,11 @@
 					      <input type="text" class="form-control border-0" id="phoneNumber" name="phoneNumber" 
 					      			data-code="false"  placeholder="'-(하이픈)' 없이 숫자 11자를 입력해 주세요" style="height: 50px;">
 					    </div>
-					    <!-- <div class="col-2 text-center">
+					     <div class="col-2 text-center">
 							<input type="button" id="phoneCheckBtn" class="form-control btn btn-outline-dark" value="인증하기">
-						</div> -->
+
+						</div>  
+
 						<input type="hidden" id="phoneNumberCheckCode">
 					</div>
 					<div class="row" id="phoneCheckLi" style="display: none;">
