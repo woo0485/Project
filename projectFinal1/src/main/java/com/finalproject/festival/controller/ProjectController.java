@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.finalproject.festival.domain.Event;
 import com.finalproject.festival.domain.Gallery;
 import com.finalproject.festival.domain.Member;
 import com.finalproject.festival.domain.News;
 import com.finalproject.festival.domain.Product;
 import com.finalproject.festival.domain.Search;
+import com.finalproject.festival.service.EventService;
 import com.finalproject.festival.service.GalleryService;
 import com.finalproject.festival.service.MailService;
 import com.finalproject.festival.service.MemberService;
@@ -45,7 +47,8 @@ public class ProjectController {
 	private GalleryService galleryService;
 	@Autowired
 	private NewsService newsService;
-	
+	@Autowired
+	EventService eventService;
 	
 	
 	@RequestMapping("/login")//로그인 페이지로 이동
@@ -74,11 +77,13 @@ public class ProjectController {
 		List<Gallery>galleryList = galleryService.gallery();
 		List<News>newsList =  newsService.newslist();
 		List<Product>productList = memberService.mainProductCarousel();
+		List<Event>eventList = eventService.event();
 		
 		System.out.println(productList);
 		model.addAttribute("galleryList",galleryList);
 		model.addAttribute("newsList",newsList);
 		model.addAttribute("productList", productList);
+		model.addAttribute("eventList", eventList);
 		
 		return "main";
 	}

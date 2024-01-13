@@ -18,6 +18,9 @@
 			<div class="col-1">
 				<a href="copyrightPolicy">저작권정책</a>
 			</div>
+			<div class="col">
+				<a href="customerMain" style="color: gray;">고객센터</a>
+			</div>
 		</div>
 		 
 		 <div class="row my-5">

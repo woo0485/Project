@@ -10,7 +10,7 @@
 	</select>
 	
 	<select id="userCount" resultType="Integer"  >
-		SELECT COUNT(*)  From Member WHERE id = #{id} OR email = #{email}
+		SELECT COUNT(*)  From Member WHERE id = #{id} OR email = #{email} 
 	</select>
 	
 	<select id="userFindId" resultType="Integer" parameterType="hashMap">
@@ -19,6 +19,14 @@
 	
 	<select id="userFindPassword" resultType="Integer" parameterType="hashMap">
 		SELECT COUNT(*) FROM Member WHERE id = #{id} AND email = #{email}	
+	</select>
+	
+	<select id="userFindIdPhonenumber" resultType="Integer" parameterType="hashMap">
+		SELECT COUNT(*) FROM Member WHERE name = #{name} AND phonenumber = #{phonenumber}	
+	</select>
+	
+	<select id="userFindPasswordPhonenumber" resultType="Integer" parameterType="hashMap">
+		SELECT COUNT(*) FROM Member WHERE id = #{id} AND phonenumber = #{phonenumber}	
 	</select>
 	
 	<select id="userLoginCount" resultType="Integer" >

@@ -433,11 +433,6 @@
  
  
  
- 
- 
- 
- 
- 
 	$("#loginBtn").on("click",function(){
  	
 		const id = $("#id").val();
@@ -496,8 +491,46 @@
  
   /*-------------------------idPasswordFind.js--------------------------------*/
   
+  $("#idFindCheckEmailIcon").click(function(){
+  	if($(this).attr("data-code") == "false"){
+	  	 $("#idFindCheckEmailIcon").removeClass("bi-circle");
+	  	 $("#idFindCheckEmailIcon").addClass("bi-check-circle");
+	 	 $("#idFindCheckEmail").css("display","block");
+	 	 $("#idFindCheckEmailIcon").attr("data-code","true");
+		
+	 	
+  	}else{
+  		$("#idFindCheckEmailIcon").removeClass("bi-check-circle");
+	  	$("#idFindCheckEmailIcon").addClass("bi-circle");
+	 	$("#idFindCheckEmail").css("display","none");
+	 	$("#idFindCheckEmailIcon").attr("data-code","false");
+	 	
+  	}
   
-  //아이디찾기
+  });
+ 	
+    $("#idFindCheckPhonelIcon").click(function(){
+  	if($(this).attr("data-code") == "false"){
+	  	 $("#idFindCheckPhonelIcon").removeClass("bi-circle");
+	  	 $("#idFindCheckPhonelIcon").addClass("bi-check-circle");
+	 	 $("#idFindCheckPhone").css("display","block");
+	 	 $("#idFindCheckPhonelIcon").attr("data-code","true");
+	 	
+  	}else{
+  		$("#idFindCheckPhonelIcon").removeClass("bi-check-circle");
+	  	$("#idFindCheckPhonelIcon").addClass("bi-circle");
+	 	$("#idFindCheckPhone").css("display","none");
+	 	$("#idFindCheckPhonelIcon").attr("data-code","false");
+	 	
+  	}
+  
+  });
+  
+  
+  
+  
+  
+  //아이디찾기(이메일)
   $("#FindIdBtn").click(function(){
   	
   	const email = $("#findIdEmail").val();
