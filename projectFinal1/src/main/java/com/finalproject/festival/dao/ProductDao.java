@@ -31,12 +31,15 @@ public interface ProductDao {
 	// 북마크 기능 - 1월 4일 ) 해당 productno에 해당하는 북마크 몇개인지 불러오기
 		public abstract Product getBookmark(int productno);
 		
-		// 북마크 업데이트- 1월 4일) productno에 해당하는 북마크 수를 업데이트한다.
-		public abstract void updateBookmark(int productno, int productbookmarkcount);
+	// 북마크 업데이트- 1월 4일) productno에 해당하는 북마크 수를 업데이트한다.
+	public abstract void updateBookmark(int productno, int productbookmarkcount);
 		
- /////@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-		// 결제되면서 상품 수량에서 결제한 수량만큼 빼주기
-		public void updateProductRemainTicketCount(int productno, int productremainticketcount );
+ /////@@@@@@@@ 여기서부터는 결제될 때 product 테이블의 남은 티켓 수 -  장바구니 티켓 배준다. @@@@@@@@@@@@@@@@@@
+	// productno에 해당하는 Product 테이블의 남은 티켓 수를 조회해온다.
+	public void productnoCheckRemainticketcount(int productno);
+	
+	// 결제되면서 상품 수량에서 결제한 수량만큼 빼주기
+	public void updateProductRemainTicketCount(int productno, int productremainticketcount );
 		
 	
 	

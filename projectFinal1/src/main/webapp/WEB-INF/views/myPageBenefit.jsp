@@ -17,7 +17,6 @@
 	 	<div class="row col-auto">
 	 		<jsp:include page="/WEB-INF/views/myPageHeader.jsp"></jsp:include>
 	 	</div>
-	 	<br><br><br>
 		<div class="row text-center">
 			<div class="col">
 				<c:if test = "${sessionScope.id eq my.id}">
@@ -26,10 +25,8 @@
 								<div class="col">
 								${my.name} 님의 회원등급은 <span style="font-weight: bold;">일반</span> 입니다.
 								</div>
-								<div class="row">
-									<div class="col">
-									현재 까지 이용하신 금액은 ${mt}원 이며, 다음 등급까지 남은 금액은 ${fmp}원 입니다.
-									</div>
+								<div class="col">
+								현재 까지 이용하신 금액은 ${mt}원 이며, 다음 등급까지 남은 금액은 ${fmp}원 입니다.
 								</div>
 							</div>
 							<span>
@@ -45,10 +42,8 @@
 								<div class="col">
 								${my.name} 님의 회원등급은 <span style="font-weight: bold;">BLACK</span> 입니다.
 								</div>
-								<div class="row">
-									<div class="col">
-									현재 까지 이용하신 금액은 ${mt}원 이며, 다음 등급까지 남은 금액은 ${fmp}원 입니다.
-									</div>
+								<div class="col">
+								현재 까지 이용하신 금액은 ${mt}원 이며, 다음 등급까지 남은 금액은 ${fmp}원 입니다.
 								</div>
 							</div>
 							<span>
@@ -61,10 +56,8 @@
 								<div class="col">
 								${my.name} 님의 회원등급은 <span style="font-weight: bold;">SILVER</span> 입니다.
 								</div>
-								<div class="row">
-									<div class="col">
-									현재 까지 이용하신 금액은 ${mt}원 이며, 다음 등급까지 남은 금액은 ${fmp}원 입니다.
-									</div>
+								<div class="col">
+								현재 까지 이용하신 금액은 ${mt}원 이며, 다음 등급까지 남은 금액은 ${fmp}원 입니다.
 								</div>
 							</div>
 							<span>
@@ -77,10 +70,8 @@
 								<div class="col">
 								${my.name} 님의 회원등급은 <span style="font-weight: bold;">GOLD</span> 입니다.
 								</div>
-								<div class="row">
-									<div class="col">
-									현재 까지 이용하신 금액은 ${mt}원 이며, 다음 등급까지 남은 금액은 ${fmp}원 입니다.
-									</div>
+								<div class="col">
+								현재 까지 이용하신 금액은 ${mt}원 이며, 다음 등급까지 남은 금액은 ${fmp}원 입니다.
 								</div>
 							</div>
 							<span>
@@ -93,10 +84,8 @@
 								<div class="col">
 								${my.name} 님의 회원등급은 <span style="font-weight: bold;">VIP</span> 입니다.
 								</div>
-								<div class="row">
-									<div class="col">
-									현재 까지 이용하신 금액은 ${mt}원 이며, 다음 등급까지 남은 금액은 ${fmp}원 입니다.
-									</div>
+								<div class="col">
+								현재 까지 이용하신 금액은 ${mt}원 이며, 다음 등급까지 남은 금액은 ${fmp}원 입니다.
 								</div>
 							</div>
 							<span>

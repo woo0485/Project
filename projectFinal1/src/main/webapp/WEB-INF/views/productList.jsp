@@ -18,7 +18,7 @@
     background-color: transparent;
   }
 
-  .bookmark {
+  .productBookmarkShowCount {
    text-align: center;
    font-size: 20px;
    color: black; 
@@ -64,13 +64,13 @@
 	<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" >
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="2000">
-      <img src="resources/img/4.jpg" class="d-block w-10" alt="...">
+      <img src="resources/img/4.jpg" class="d-block w-100" alt="..." style="height: 650px;">
     </div>
     <div class="carousel-item" data-bs-interval="2000">
-      <img src="resources/img/5.jpg" class="d-block w-10" alt="...">
+      <img src="resources/img/5.jpg" class="d-block w-100" alt="..." style="height: 650px;">
     </div>
     <div class="carousel-item" data-bs-interval="2000">
-      <img src="resources/img/3.jpg" class="d-block w-10" alt="...">
+      <img src="resources/img/3.jpg" class="d-block w-100" alt="..." style="height: 650px;">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -155,8 +155,8 @@
 						<div class="productbookmarkcount" style="font-size:15px">
 						<input type="hidden" name="productno" value="${p.productno}">
 						<input type="hidden" name="id" value="${sessionScope.id}">
-							<img class="productbookmark" src="resources/img/bookmark.png" style="width: 45px; height: 40px;"/> <br>
-							<div class="bookmark"> ${ p.productbookmarkcount } </div>
+							<img class="productbookmark" src="resources/img/bookmark.png" style="width: 50px; height: 40px; cursor: pointer;"/> <br>
+							<div class="productBookmarkShowCount"> ${ p.productbookmarkcount } </div>
 					</div>
 					
 				</div>
@@ -183,12 +183,7 @@
 							<img src="${p.productimage}"  class="productimage"  width="300" height="200"  /></a> <br>
 <!--  %%%%%%%%%%%%%    북마크 이미지 위에 출력    %%%%%%%%%%%%%%-->			
 						
-						<div class="productbookmarkcount" style="font-size:15px">
-						<input type="hidden" name="productno" value="${p.productno}">
-						<input type="hidden" name="id" value="${sessionScope.id}">
-							<img class="productbookmark" src="resources/img/bookmark.png" style="width: 45px; height: 40px;"/> <br>
-							<div class="bookmark"> ${ p.productbookmarkcount } </div>
-					</div>
+						
 					
 				<div class="productContext">
 				<div class="productname"><a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
@@ -207,8 +202,10 @@
 						</div>
 						
 						<div class="productbookmarkcount" style="font-size:15px">
-							<img src="resources/img/bookmark.png"  width="40" height="35"  /> <br>
-							<div class="bookmark"> ${ p.productbookmarkcount } </div>
+						<input type="hidden" name="productno" value="${p.productno}">
+						<input type="hidden" name="id" value="${sessionScope.id}">
+							<img class="productbookmark" src="resources/img/bookmark.png"  style="width: 50px; height: 40px; cursor: pointer;"   /> <br>
+							<div class="productBookmarkShowCount" id="thisBookmark${status.index}"> ${ p.productbookmarkcount } </div>
 					</div>
 					
 				</div>

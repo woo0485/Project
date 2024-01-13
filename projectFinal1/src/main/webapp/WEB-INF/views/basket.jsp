@@ -2,10 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link href="resources/css/hyunju.css" rel="stylesheet" >
-<script src="resources/js/jquery-3.2.1.min.js"></script>
-<script src="resources/js/hyunju.js"></script>
-<script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.1.min.js" type="application/javascript"></script>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> 장바구니 </title>
+	
+<link href="resources/bootstrap/bootstrap.min.css" rel="stylesheet" >
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<script src="resources/bootstrap/bootstrap.bundle.min.js"></script>		
+	
 <style>
 .total {
 	font-size: 40px;
@@ -18,7 +25,7 @@
 	font-size: 20px;
 	text-align: center;
 }
-.BasketTable {
+.BasketTable { 
 	font-size: 15px;
 	text-align: center;
 }
@@ -28,91 +35,104 @@ text-align: center;
 .totalprice{
 font-size: 40px;
 }
+.productName38 {
+	text-align: center;
+}
+.basketProductCount {
+   width: 50px;
+   height: 50px;
+}
+ #productNameTd {
+ font-size: 20px;
+ }
+#productSelectNumber {
+font-size: 20px;
+}
+.calculation2 {
+text-align: center;
+font-weight: bold;
+}
+.finalbuttonss {
+display: flex;
+justify-content: center;
+gap: 30px;
+}
+.totalPriceWon {
+text-align: center;
+font-weight: bold;
+font-size: 25px;
+}
+.deleteBasketProductNo, .updateBasketProductNoCount {
+height: 40px;
+font-size: 20px;
+}
+thead {
+text-align: center;
+}
+.basketData {
+vertical-align:middle;
+}
+
 </style>
+</head>
 <!--  장바구니에서 제품 등록 버튼 클릭시 쓸 폼 -->
-
+<body>
+ <script src="resources/bootstrap/bootstrap.bundle.min.js"></script>	
  <!--  ################      장바구니에서 상품 수량 변경 및 삭제  폼  ######################### -->	
- <!-- <form name="updateDeleteForm" id="updateDeleteForm"  action="updateDeleteForm"> -->
+ 
 <form name="updateDeleteForm" id="updateDeleteForm" >
-	    <input type="hidden" name="id" id="rId34534" value="${sessionScope.id}">
-
 <br><br>
  <c:if test="${empty basketList}">
     <p class="nobasket">장바구니에 담긴 상품이 없습니다.</p>
 </c:if>
 
-
 <!--//////////////////////  여기서부터 장바구니에 있는 목록 보여주는 뷰 /////////////////////////-->
 	<!--  상품정보 테이블 -->
 	<br>
-	<div class="basketimformation">
+	<div id="basketimformation">
 	<c:if test="${not empty basketList}">
-		<table class="BasketTable">
-		<thead>
-			<tr>
-				<th></th>
-				<th>이미지</th>
-				<th>상품</th>
-				<th>판매가</th>
-				<th>수량</th>
-				<th>합계</th>
-				<th>선택</th>
-			</tr>		
+	<table class="table table-light table-striped table-hover" >
+			<thead>
+				<tr>
+					<th>상품명</th>
+					<th>수량</th>
+					<th>주문금액</th>
+					<th>선택</th>
+				</tr>		
 			</thead>
 			
-		<tbody>
-		<c:forEach var="b" items="${basketList}" >
-			<tr>
-				<td>
-				<!--  	<input type="checkbox"  name="checkbox">-->
-				</td>
-			<td>
-			<!-- ${b.basketno } -->
-					<img src="${b.productImage}"  width="50" height="50" />
+<tbody id="basketTableBody">
+			<c:forEach var="b" items="${basketList}" >
+			<tr class="basketData">
+				<td  id= "productNameTd">
+						<img src="${b.productImage}"  width="90"  height="90" /> 	&nbsp;&nbsp;
+						${ b.productName }
 				</td>
 				
-				<td>
-					${ b.productName }
-				</td>
-				
-				<td>
-					${ b.productPrice }원 &nbsp;&nbsp;
-				</td>
-				
-				<td>
-	<!-- $$$$$$$$$$$  버튼이 반복문 안에서 있기 때문에 class 이름이 줘야한다. 아이디는 고유한 번호이기 떄문에 !!!!!!  $$$$$$$$$$ -->
-					<input type="number"   max="${ product.productremainticketcount }"  min="1" value="${b.basketProductCount }" 
-					class="basketProductCount"
-					name="basketProductCount" 
-					data-basketProductCount="${b.basketProductCount }">
-					
-					<!-- 
-					<input type="text" name="basketProductNo"  value="${b.basketProductNo}"
-					class="basketProductNo"
-					data-basketProductNo="${b.basketProductNo }">
-					 -->
-				<!--  원래 쓰던 수량 변경 버튼
-				<input class="updateBasketProductnoCount btn btn-danger"   type="button"  
-					name="updateBasketProductnoCount" 
-					value="변경"  data-no="${b.basketno }">
-				 -->
-				
-					<input type="button" class="updateBasketProductnoCount" data-basketno="  ${b.basketno }"  value="변경">
-	<!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ -->
-				</td>
-				
-				<td  id= "productPrice38">
-					${b.productPrice * (b.basketProductCount)}원
+				<td id= "productSelectNumber">
+					<input type="number"   max="${ product.productremainticketcount }"  min="1" 
+							value="${b.basketProductCount }" 
+							class="basketProductCount"
+							name="basketProductCount" 
+							data-basketProductCount="${b.basketProductCount }" > &nbsp;&nbsp;
+					<input type="button" class="btn btn-outline-dark updateBasketProductNoCount" 
+								data-basketno="${b.basketNo }"  data-productno="${b.productNo}" value="선택">	
 				</td>
 				
 				<td>
-				<input class="btn btn-danger"  type="text" name="deleteBasketProductno"  id="deleteBasketProductno" value="삭제">
+					<div class="totalPriceWon">${b.totalPrice}원</div>	
 				</td>
-				
-			</tr>
-			</c:forEach>
-		</tbody>
-
+		
+				 
+				<td>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+					<input type="button"  class="btn btn-outline-dark deleteBasketProductNo"    
+								data-basketno="${b.basketNo }"  data-productno="${b.productNo}"  value="삭제">
+						 &nbsp;&nbsp;
+				</td>
+			
+				</tr>
+				</c:forEach>
+</tbody>
 		</table>
 		</c:if>
 		<!--  여기까지 상품정보테이블이였다. --> 
@@ -128,129 +148,51 @@ font-size: 40px;
     5. 기타 문의사항은 고객센터로 문의해주세요.
 		</div><br>
 </c:if>	 
-		<div>
-		<!--<input class="btn btn-danger" type="text"  name="deleteBasketAll"  id="deleteBasketAll" value="장바구니 비우기">  -->
-		</div>
 	</div>
 
 <c:if test="${not empty basketList}">
 	<!--  결제예정금액 테이블 --><br><br>
-	<table class="calculation2">
-		<tr>
-			<th class="totalprice">총 상품금액</th>
-		</tr>
-		
-		<!-- ~~~~~~~~~~~~~ 금액 계산 ~~~~~~~~~~~~ -->
-	<c:set var="num1" value="${b.productPrice}" />
-		<tr>
-			<!--  총 수량 -->
-	<c:set var="totalAmount" value="0" />
-  		 <c:forEach var="b" items="${basketList}">
-   			 <c:set var="subtotal" value="${b.productPrice * b.basketProductCount}" />
-   			 <c:set var="totalAmount" value="${totalAmount + subtotal}" />
-		</c:forEach>
-			<td class="total">${totalAmount}원</td>
-		</tr>
-		</table>
+	<div class="calculation2">
+		<div class="totalprice"> 총 상품금액</div>
+		<div class="total"> ${basketTotalPrice}원</div>
+	</div>
 </c:if>
-<!--//////////////////////  여기서부터 장바구니에 있는 목록 보여주는 뷰  끝 ~~~~~ /////////////////////////-->
 </form>
-
-
-<c:if test="${not empty basketList}">
-<!--        ///////////////// 전체 상품 삭제하기  ////////////////           --> <br><br>
+<!--//////////////////////  여기서부터 장바구니에 있는 목록 보여주는 뷰  끝 ~~~~~ /////////////////////////-->
+<br><br>
+<!--        /////////////////  전체 상품 삭제하기  ////////////////           -->
+<div  class=" finalbuttonss">
+<c:if test="${not empty basketList}"> <br><br>
 <form name="deleteBasketAll" id="deleteBasketAll"   action="deleteBasketAll"  method="post" >
 	    <input type="hidden" name="id" id="rId345dfgdfgd34" value="${sessionScope.id}">
-	    <input class="btn btn-danger" type="submit"  name="deleteBasketAll"  id="deleteBasketAll" value="장바구니 비우기">
+	    <input class="btn btn-outline-danger" type="submit"  name="deleteBasketAll"  id="deleteBasketAll" value="장바구니 비우기">
 </form>
 </c:if>
 
-<!--  ################   장바구니에서 상품 수량 변경 및 삭제   끝 ~~ ##################### -->	
 <br>
-
+<!-- @@@@@@@@@@@  상품 주문으로 가는 폼  이게 진짜!!!!!! @@@@@@@@@@@@@@@ -->
 <c:if test="${not empty basketList}">
-	<!-- @@@@@@@@@@@  상품 주문으로 가는 폼  이게 진짜!!!!!! @@@@@@@@@@@@@@@ -->
 	<form name="priceForm" id="priceForm"  action="priceOrder" method="post" >
-	<input type="hidden" name="id" id="rId" value="${sessionScope.id}">
-	<c:forEach var="b" items="${basketList}" >
-		<input type="hidden" name="basketno"  id="basketno"  value="${b.basketno}">  
-		<input type="hidden" name="productno" id="productno01" value="${b.basketProductNo}"> 
-		<input type="hidden" name="basketProductCount"  id="basketProductCount" value="${b.basketProductCount}"> 
-		<input type="hidden" name="productprice"  id="productprice"  value="${b.productPrice}"> 
-		<input type="hidden" name="productname"  id="productname"  value="${b.productName}"> 
-	</c:forEach>
+		<input type="hidden" name="id" id="rId" value="${sessionScope.id}">
+		<c:forEach var="b" items="${basketList}" >
+			<input type="text" name="basketNo"  id="basketno"  value="${b.basketNo}">  
+			<input type="text" name="productNo" id="productno01" value="${b.productNo}"> 
+			<input type="text" name="basketProductCount"  id="basketProductCount" value="${b.basketProductCount}"> 
+			<input type="text" name="productPrice"  id="productprice"  value="${b.productPrice}"> 
+			<input type="text" name="productName"  id="productname"  value="${b.productName}"> 
+			<input type="text" name = "baskettotalptice" id = "baskettotalprice" value = "${b.totalPrice }">
+		</c:forEach>
 	
-		<input type="submit" value="전체상품주문하기" class="btn btn-primary">
+		<input type="submit" value="전체상품주문하기"  class="btn btn-outline-primary">
 	</form>
 	</c:if>
-	
-	
-	<!-- 
-	@@@@@@  예약 테이블을 단순히 보여지는 페이지로 넘김 - priceOrderFinish 페이지로 넘김 @@@@@@
-	<form name="ReservationForm" id="ReservationForm"  action="reservation" method="post" >
-		<input type="hidden" name="id" id="rId036" value="${sessionScope.id}"> <br>
-	
-	<c:forEach var="b" items="${basketList}" >
-    	<input type="hidden" name="productno" id="productno45345345" value="${b.basketProductNo}"> 
-   		 <input type="hidden" name="basketproductcount" id="basketproductcount5645645" value="${b.basketProductCount}">
-   		 <input type="hidden" name="productprice" id="productprice324324" value="${b.productPrice}">
-	</c:forEach>
-	
-	<input type="submit" value="단순히 결제한 예약정보 (reservation 테이블)보기" class="btn btn-danger">	
-	
+</div>	
+<!--  남은 티켓 수 보내는 폼  -->
+<form name="dfgfdg" action="dfgfdg"> 
+	<c:forEach var="p" items="${productList}" varStatus="status">
+ 남은 티켓 수: <input type="text" value="${ p.productremainticketcount }">
+ </c:forEach>
 	</form>
-	 -->
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-
-<!-- ################  장바구니 속  상품 수량 변경 및 삭제 ajax로 처리하게끔  #################### -->  
-<!--  
-<script>
-$(document).ready(function() {
-
-	 $(".updateBasketProductnoCount").click(function() {
-		 // $$$$$$ 여기서도 버튼의 아이디 이름이 아니라 class이름으로 받아오면된다.!!!!!!!!
-		 
-		 // 해당하는 수량도 반복문 안에서니까 class이름으로 받아와야한다!!!!!
-		 //const val = $("#basketProductCount").val();
-		// const id =$("#rId34534").val();
-		 //const productno = $("#productno0134").val();
-		 
-		 // ********* 변경 버튼 이 반복문에 돌아가니까 ~~~
-		// const basketno = $(this).data("no");
-		const basketno = $(this).data("no");
-		// basketproductcount 테스트
-		const basketProductCount = document.getElementsByName('basketProductCount')[0].value;
-		//const basketProductCount = $(this).data("basketProductCount");
 	
-		 // id는 session에 저장되어있으니까 안해도됨
-		 const id =$("#rId34534").val();
-		 
-		 console.log("bakset페이지에서 id " , id);
-		 console.log("bakset페이지에서 basketno " , basketno);
-		 console.log("bakset페이지에서 변경된 수량 " , basketProductCount);
-		 // $$$$$$$$$$$$$$$$$$ 여기까지 id랑 basketno랑 수량이랑 다 넘어감 !!!1 $$$$$$$$$$$$$$$
-		 /*
-		 $.ajax({
-	            type: "POST",
-	            url: "updateDeleteForm",  // 서버의 매핑 주소
-	            data: {
-	            	"id" : id ,
-	            	"basketProductCount" : basketProductCount,
-	            	"basketno" : basketno
-	            },
-	            success: function(response) {
-	                // 서버에서 받은 응답 처리
-	                console.log("서버 응답: " + response);
-	                // 필요한 동작 수행 (예: 화면 갱신, 리다이렉트 등)
-	                window.location.href = 'updateDeleteForm?id=' +id + '&basketno=' +basketno + '&basketProductCount=' + basketProductCount;
-	            },
-	            error: function(xhr, error, msg) {
-	                console.error("장바구니에서 상품 수량 변경 및 삭제 에러 발생: " + error + ". " + msg);
-	            }
-	        });
-		// console.log("bakset페이지에서" + val);	
-	*/
-	    });
-});
-	</script>
--->
+	</body>
+	</html>

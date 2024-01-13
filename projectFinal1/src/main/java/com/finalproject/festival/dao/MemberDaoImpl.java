@@ -124,7 +124,9 @@ public class MemberDaoImpl implements MemberDao {
 	public List<Gallery> mainSearchGallery(String keyword) {
 		return st.selectList(NAME_SPACE+".mainSearchGallery",keyword);
 	}
-
+	
+	/****************************************************************/
+	
 	@Override
 	public List<Search> searchKeywordSelect() {
 		

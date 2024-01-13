@@ -50,36 +50,28 @@ public class ReservationController {
 			HttpServletRequest request, 
 			 @RequestParam(value = "id") String id,
 			 // 여기서부터는 (( productno에 해당하는 productremainticketcount )) - basketproductcount 해준다.
-			 @RequestParam(value = "productno") int productno,
+			 @RequestParam(value = "productNo") int productNo,
 			 @RequestParam(value = "productremainticketcount") int productremainticketcount
-			)throws IOException {	
-	
-	//	 System.out.println("reservationController에서 productno" + productno);
-		
+			) throws IOException {	
+
 		 try {
 			 Reservation re = new Reservation();
 			 re.setId(id);
-			
-			 System.out.println("insertReservation 에서 :" + re.getId());
-			 System.out.println("insertReservation 에서 :" + re.getProductno());
-			 System.out.println("insertReservation 에서 :" + re.getReservationprice());
-			 System.out.println("insertReservation 에서 :" + re.getReservationticketcount());
-			 
+		
 			 // 1) Reservation에 insert
 			 // 2) ShoppingBasket에 delete
 			 // 3) Reservation에서 select
 			 rs.BasketListByIdByProductno(id, re);
-			 
-			 // insert하면서 동시에 select 하는 Service - 1월 9일
-			// rs.BasketListByIdByProductno(id, re);
-			 
+
 			 /////////////////////////////////////////////////////////////////////////////////////////
 			 // 여기서부터는 결제되면서 product의 남은 티켓 수에서  장바구니의 티켓수만큼 빼주는 것
-			 Product p = new Product();
-			 p.setProductno(productno);
-			 p.setProductremainticketcount(productremainticketcount);
+		 Product p = new Product();
+		 p.setProductno(productNo);
+		 p.setProductremainticketcount(productremainticketcount);
+		 System.out.println("담고나서 productno: " + productNo );
+		 System.out.println("담고 나서 남은 티켓 수: " + productremainticketcount);
 			 
-			 sv.updateProductRemainTicketCount(productno, productremainticketcount);
+		 sv.updateProductRemainTicketCount(productNo, productremainticketcount);
 	
 			 return "success";
 			// return "redirect:/priceOrderFinish.jsp";
@@ -96,9 +88,9 @@ public class ReservationController {
 			@RequestMapping(value = "/reservationSucess", method = RequestMethod.GET)
 			public String reservationSucess  (Model m,  
 					@RequestParam(value = "id") String id,
-					@RequestParam(value = "productno") int productno) {
+					@RequestParam(value = "productNo") int productNo) {
 				
-				List<Map<String, Object>> reservationList = rs.reservationList(id, productno);
+				List<Map<String, Object>> reservationList = rs.reservationList(id, productNo);
 				
 				System.out.println("reservationSuccess 에서 priceRedirect로 보낼 때 : " +reservationList.get(0).get(""));
 				m.addAttribute("reservationList", reservationList);
