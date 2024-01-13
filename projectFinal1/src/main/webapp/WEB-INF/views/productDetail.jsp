@@ -8,12 +8,12 @@
 
 <!-- content 영역 ~~~~~~~~~~~~~  -->
 <div class="row my-5" id="global-content">
-	<div class="offset-1 col-10">
+	<div class="col">
 	
 	<div class="row">
 		<div class="col">
 		<form name="checkForm" id="checkForm">
-			<input type="hidden" name="productno" id="productno" value="${product.productno}"> 
+			<input type="hidden" name="productNo" id="productno" value="${product.productno}"> 
 			<input type="hidden" name="adminpassword" id="rPass"> 
 			<input type="hidden" name="pageNum" value="${ pageNum }" />
 
@@ -27,12 +27,12 @@
 	<!--  ########## 장바구니에 추가할 때 form #############-->
 		<form name="addBasket" id="addBasket"  action="addBasket" method="post" >
 		<!-- 
-		<input type="text" name="basketno"  id="basketno"  value="${basket.basketno}"> 
-		<input type="text" name="productprice"  id="productprice"  value="${product.productprice}">
+		<input type="text" name="productNo"  id="basketno"  value="${basket.basketno}"> 
 		<input type="text" name="productname"  id="productname"  value="${product.productname}">
 		 -->
+			<input type="hidden" name="productPrice"  id="productprice"  value="${product.productprice}">
 			<input type="hidden" name="id" id="rId" value="${sessionScope.id}"> 
-			<input type="hidden" name="productno" id="productno01" value="${product.productno}"> 
+			<input type="hidden" name="productNo" id="productno01" value="${product.productno}"> 
 
 <!-- @@@@@@@@ 게시 글 상세보기 영역  @@@@@@@@@@-->
 
@@ -83,7 +83,7 @@
 						<!--  수량 선택  남은 수량 : productremainticketcount -->
 							<label for="basketproductcount" class="form-label">수량을 선택하시오 테스트</label>
 							<!-- **** max 에  남은 티켓 수를 넣어줘야한다.??????? **** -->
-							<input type="number"  value="1" name="basketproductcount"  id="basketproductcount" min="1" max="${ product.productremainticketcount }" >
+							<input type="number"  value="1" name="basketProductCount"  id="basketproductcount" min="1" max="${ product.productremainticketcount }" >
 							
 						<!--  수량 선택 끝--> <br><br>
 								<input type="submit" value="장바구니 담기" class="btn btn-outline-dark">	

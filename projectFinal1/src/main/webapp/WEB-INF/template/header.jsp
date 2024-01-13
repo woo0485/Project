@@ -106,7 +106,7 @@ function updateSearchKeywords(searchList) {
 					          </ul>
 					        </li>
 					        <li class="nav-item dropdown me-5">
-					          <a class="nav-link dropdown-toggle fs-5 fw-bold" href="eventPage" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					          <a class="nav-link dropdown-toggle fs-5 fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 					            	이벤트
 					          </a>
 					          

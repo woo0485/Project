@@ -32,7 +32,7 @@
 		<%@ include file="template/header.jsp"%>
 		<jsp:include page="${ param.bodydata }" />
 		<%@ include file="template/footer.jsp"%>
-		<div style="cursor:pointer; position: fixed; right: 300px; bottom: 100px;" onclick="window.scrollTo(0,0);">
+		<div style="cursor:pointer; position: fixed; right: 200px; bottom: 100px;" onclick="window.scrollTo(0,0);">
 			<i class="bi bi-arrow-up-square" style="font-size: 3em;"></i>
 		</div>
 	</div>
