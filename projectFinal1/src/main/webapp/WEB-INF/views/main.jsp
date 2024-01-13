@@ -90,19 +90,12 @@ $(document).ready(function(){
 			</div>
 		</div>
 	
-	
-	<div class="row my-5" id="latestNewsContainer" style="height: 300px;">
-	    <div class="col">
-	    <h4>최신 축제기사</h4>
-	        <c:forEach var="news" items="${newsList}" varStatus="newsLoop" end="10">
-	            <div class="row news-item" style="display: ${newsLoop.index <= 4 ? 'none' : 'block'};">
-	                <a href="newsdetail?no=${news.newsno}" style="font-size: 25px;">${news.newstitle}</a>
-	            </div>
-	        </c:forEach>
-	    </div>	
-	</div>
-	
-	
+		<div class="row">
+			<h4>진행중인  이벤트</h4>
+			<div class="col">
+			</div>
+		</div>
+
 	
 	
 		<div class="row my-5 owl-carousel owl-theme owl-loaded">
@@ -120,6 +113,17 @@ $(document).ready(function(){
 	 </div>
 	
 	
+	
+	<div class="row mt-5" id="latestNewsContainer" style="height: 463px;">
+	    <div class="col">
+	    <h4 class="fw-bold fs-3 pt-5">최신 축제기사</h4>
+	        <c:forEach var="news" items="${newsList}" varStatus="newsLoop" end="10">
+	            <div class="row news-item border-bottom mt-4" style="display: ${newsLoop.index <= 4 ? 'none' : 'block'};">
+	                <a href="newsdetail?no=${news.newsno}" style="font-size: 25px; color: black;">${news.newstitle}</a>
+	            </div>
+	        </c:forEach>
+	    </div>	
+	</div>
 	
 	
 	

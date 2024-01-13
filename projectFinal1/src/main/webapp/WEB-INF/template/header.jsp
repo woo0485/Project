@@ -134,15 +134,15 @@ function updateSearchKeywords(searchList) {
 					        
 							    <c:if test="${empty sessionScope.id}">
 										<li class="nav-item ms-5">
-								          <a href="login" class="row nav-link active" aria-current="page"><i class="bi bi-person-circle" style="font-size: 2em;"></i></a>
+								          <a href="login" class="row nav-link active p-0" aria-current="page"><i class="bi bi-person-circle p-0" style="font-size: 2em;"></i></a>
 								        </li>
 								</c:if>
 								
 					        <c:if test="${sessionScope.userType == 'Member' }">
 								
 									<li class="nav-item dropdown ms-5">
-										<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						            		<i class="bi bi-person-lines-fill" style="font-size: 2em;"></i>
+										<a class="nav-link dropdown-toggle p-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						            		<i class="bi bi-person-lines-fill p-0" style="font-size: 2em;"></i>
 						          		</a>
 						           
 							          <ul class="dropdown-menu">
@@ -157,8 +157,8 @@ function updateSearchKeywords(searchList) {
 							<c:if test="${sessionScope.userType =='Admin' }">	
 							
 								<li class="nav-item dropdown me-5">
-						        	<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						            	<i class="bi bi-gear-fill" style="font-size: 2em;"></i>
+						        	<a class="nav-link dropdown-toggle p-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						            	<i class="bi bi-gear-fill p-0" style="font-size: 2em;"></i>
 						          	</a>
 						           
 						          <ul class="dropdown-menu">

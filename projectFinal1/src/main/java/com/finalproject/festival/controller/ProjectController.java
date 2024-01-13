@@ -298,7 +298,9 @@ public class ProjectController {
 						memberService.joinMember(member);
 						memberService.newMemberCoupon(id);
 		
+
 		return "redirect:joinSuccess";
+
 	}
 	
 
@@ -388,6 +390,17 @@ public class ProjectController {
 	
 	
 	
+
+	@ResponseBody
+	@RequestMapping(value = "/bookmarkChange" ,method = RequestMethod.POST)
+	public int bookmarkChange(String id, int productno){
+		
+		System.out.println(id+"-----controller-----"+productno);
+		
+		
+		
+		 return memberService.bookmarkChange(id, productno);
+	}
 
 	
 }

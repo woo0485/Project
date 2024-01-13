@@ -52,4 +52,9 @@ public interface MemberService {
 	public List<Search>mainSearchSelect();
 			
 	
+
+	/************************bookmark***************************/
+	
+	public int bookmarkChange(String id, int productno);
+
 }

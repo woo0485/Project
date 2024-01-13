@@ -1,22 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<style>
-  .contentiamge {
-    position: relative;
-  }
-  .productcontent {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate( -50%, -50% );
-    color: white;
-  }
-  </style>
+
+<link href="resources/css/hyunju.css" rel="stylesheet">
+<script src="resources/js/jquery-3.2.1.min.js"></script>
+<script src="resources/js/hyunju.js"></script>
+
+
 
 <!-- content 영역 ~~~~~~~~~~~~~  -->
 <div class="row my-5" id="global-content">
 	<div class="offset-1 col-10">
+
+	
+	<div class="row">
+		<div class="col">
+		<form name="checkForm" id="checkForm">
+			<input type="hidden" name="productno" id="productno" value="${product.productno}"> 
+			<input type="hidden" name="adminpassword" id="rPass"> 
+			<input type="hidden" name="pageNum" value="${ pageNum }" />
+
+			<c:if test="${ searchOption }">
+				<input type="hidden" name="type" value="${ type }" />
+				<input type="hidden" name="keyword" value="${ keyword }" />
+			</c:if>
+		</form>
+		<!--  장바구니에 단순히 보여지는 것만 -->
+
 	<!--  ########## 장바구니에 추가할 때 form #############-->
 		<form name="addBasket" id="addBasket"  action="addBasket" method="post" >
 			<input type="hidden" name="id" id="rId" value="${sessionScope.id}"> 
@@ -24,50 +34,98 @@
 			<input type="hidden" name="productPrice" id="productprice01" value="${product.productprice}"> 
 
 <!-- @@@@@@@@ 게시 글 상세보기 영역  @@@@@@@@@@-->
-		<table>
-		<tr>
-			<td><img src="${product.productimage}"  width="400" height="450" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> 
-		<td>
+
 		
-		<!--  북마크 비동기 테스트 -->
-		<div id="recommend" class="text-end">
-		<div id="bookmark" class="btnCommend text-primary"  style="cursor: pointer;">
-			<div class="productbookmarkcount" style="font-size:15px">
-					<img src="resources/img/bookmark.png"  width="40" height="35" />
-					북마크 수 : ${ product.productbookmarkcount } 
-			</div>
+		<div class="row">
+			<div class="col-4">
+			 	<img src="${product.productimage}" style="width: 100%"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</div>	
+			<div class="col-6">
+				<div class="row">
+				<div class="col">
+					<span>조회수: ${ product.productreadcount }</span>
+				</div>
+				<div class="col">
+					<span style="font-size:15px">
+					<img src="resources/img/bookmark.png" style="cursor: pointer; width:40px; height:35px; "/>
+							북마크 수 : ${ product.productbookmarkcount } </span>
+				</div>
+				</div>
+				<div class="row  my-1">
+					<div class="col">
+						<h1>${ product.productname }</h1>
+					</div>
+				</div>
+				<div class="row  my-1">
+					<div class="col">
+						<h5>기간 ${ product.productopendate } ~ ${ product.productclosedate } </h5>
+					</div>
+				</div>
+				<div class="row my-2">
+					<div class="col ">
+						<h5>금액 ${ product.productprice }  </h5>
+					</div>
+				</div>
+						<c:if test="${not empty sessionScope.id}">	
+							<div class="row">
+								<div class="col">
+							<c:if test="${ product.productremainticketcount == 0}">
+										<p style="size: 20px; color: red;">매진</p>
+							</c:if>
+								</div>
+							</div>
+							
+							<c:if test="${ product.productremainticketcount != 0}">
+								<div class="row">
+								<div class="col">
+									<p>남은 티켓 수: ${ product.productremainticketcount }</p>
+						<!--  수량 선택  남은 수량 : productremainticketcount -->
+							<label for="basketproductcount" class="form-label">수량을 선택하시오 테스트</label>
+							<!-- **** max 에  남은 티켓 수를 넣어줘야한다.??????? **** -->
+							<input type="number"  value="1" name="basketproductcount"  id="basketproductcount" min="1" max="${ product.productremainticketcount }" >
+							
+						<!--  수량 선택 끝--> <br><br>
+								<input type="submit" value="장바구니 담기" class="btn btn-outline-dark">	
+								</div>
+								</div>
+							</c:if>
+							
+								
+						</c:if>	
+				
+				
+				
+			</div>	
 		</div>
-		</div>
-		<!--  북마크 비동기 테스트 -->
-					
-		<!--  오른쪽에 뜨는 축제 정보 글 한묶음 -->
-		<h1>${ product.productname }</h1> <br><br>
-		<h5>기간 ${ product.productopendate } ~ ${ product.productclosedate } </h5><br>
-		<h5>금액 ${ product.productprice }  </h5><br>
-		
-		<!--  ############ 여기서부터는 회원 아이디 로그인했을 때만 구매버튼 보이게 한다 (장바구니) ############## -->	
-		<c:if test="${not empty sessionScope.id}">	
-		<!--  수량 선택  남은 수량 : productremainticketcount -->
-			<label for="basketproductcount" class="form-label">수량을 선택하시오 </label> &nbsp;&nbsp;
-			<!-- **** max 에  남은 티켓 수를 넣어줘야한다.??????? **** -->
-			<input type="number"  value="1" name="basketProductCount"  id="basketProductCount" min="1" max="${ product.productremainticketcount }" >
-			<!--  수량 선택 끝--> <br><br>
-			<input type="submit" value="장바구니 담기" class="btn btn-primary">	
-		</c:if>	
-		<br><br>
-				전체 티켓 수: ${ product.productticketcount }
-				남은 티켓 수: ${ product.productremainticketcount }
-				조회수: ${ product.productreadcount }
-				<!--  축제 정보 글 한묶음 끝 -->
-			</td>
-		</tr>
-		</table>
+	
 	</form>
-		<br><br><br>			
+		</div>
+	</div>
+		<!--  ############  (장바구니) 끝 ############## -->
+		
+		<!--%%%%%%%%                  < 장바구니 가기 >               장바구니에 단순히 보여지는 것만 
+		<c:if test="${not empty sessionScope.id}">	
+		<form name="basketForm03" id="basketForm03"  action="basket" method="post" >
+			<input type="hidden" name="id" id="rId03" value="${sessionScope.id}"> 
+			<input type="hidden" name="basketno"  id="basketno03"  value="${basket.basketno}"> 
+			<input type="hidden" name="productno" id="productno03" value="${product.productno}"> 
+			<input type="hidden" name="basketproductcount"  id="basketproductcount03" value="${basket.basketproductcount}">
+			<input type="hidden" name="productprice"  id="productprice03"  value="${product.productprice}">
+			<input type="hidden" name="productname"  id="productname03"  value="${product.productname}">
+			<input type="submit" value="장바구니 가기" class="btn btn-danger">	
+		</form>
+		</c:if>	
+		  장바구니에 단순히 보여지는 것만 끝 %%%%%%%%%%-->
+			<br><br><br>
+			
+
 		<!-- ///////////  축제 정보 이미지와 내용  //////////// -->
-		<div class="contentiamge">
-				<img src="http://via.placeholder.com/800x1000" alt=""><br>
-				<div class="productcontent" style="font-size:20px">${ product.productcontent }</div>
+		<div class="row contentiamge">
+				<img src="${ product.productimage }" alt=""><br>
+				
+		</div>
+		<div class="row">
+			<div style="font-size:20px">${ product.productcontent }</div>
 		</div>
 		
 			</div>
