@@ -3,8 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
     <form action="basket" method="post" id="basketRedirectForm">
-        <input type="hidden" name="id" value="${sessionScope.id}">
-        <input type="hidden" name="productno" value=0>
+        <input type="hidden" name="id" value="${sessionScope.id}">      
     </form>
     <script>
     $("#basketRedirectForm").submit();

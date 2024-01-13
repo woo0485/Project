@@ -3,6 +3,7 @@ package com.finalproject.festival.service;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.finalproject.festival.dao.ProductDao;
 import com.finalproject.festival.dao.ReservationDao;
+import com.finalproject.festival.domain.Product;
 import com.finalproject.festival.domain.Reservation;
 
 @Service
@@ -46,8 +48,18 @@ public class ReservationServiceImpl implements ReservtionService {
 		// 2) delete basket 하기 
 		RD.deleteBasket(id);
 		
-		// 3) Product 테이블 남은 티켓 수- 결제된 티켓 수 => 이건 컨트롤러에서 처리해주자~~!!!!!!
-
+		// 3) Product 테이블 남은 티켓 수- 결제된 티켓 수 => 이건 컨트롤러에서 처리해주자~~!!!!!!=> 이거 아닌듯
+		/*
+		Product p = new Product();
+		//p.getProductno();
+		//p.getProductremainticketcount();
+		
+		Map<String, Object>  map = new HashMap<String, Object>();
+		map.put("productno", p.getProductno());
+		map.put("productremainticketcount", p.getProductremainticketcount());
+		
+		PD.updateProductRemainTicketCount(productno, productremainticketcount);
+		*/
 		//4) Reservation 테이블에서 id에 해당하는 정보 전부 select 하기
 		return RD.myReservation(id);
 
@@ -61,34 +73,4 @@ public class ReservationServiceImpl implements ReservtionService {
 		return RD.reservationList(id, productno);
 	}
 
-	/*
-	@Override
-	public List<Reservation> reservationList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Map<String, Object> RreservationList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-*/
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// id에 해당하는 예약 테이블 정보 전부 조회 - 1월 7일
-	/*
-	@Override
-	public List<Integer> reservationList(String id) {
-		return RD.reservationList(id);
-	}
-	*/
-
-	/*
-	// 장바구니에 담긴 정보를 예약 테이블에 저장 -1월 6일
-	@Override
-	public void insertReservations(String id, List<Integer> productnos, int reservationprice,
-			int reservationticketcount, int totalReservationPrice, int salesTotalPrice) {
-		RD.insertReservation(id);
-	}
-	*/
 }

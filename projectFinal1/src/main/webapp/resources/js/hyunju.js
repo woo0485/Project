@@ -1,91 +1,140 @@
 ///////////// 여기는 장바구니에서 수량 변경 및 삭제하기  ///////////////
-$(document).ready(function() {
-
-	 $(".updateBasketProductnoCount").click(function() {
-		 // $$$$$$ 여기서도 버튼의 아이디 이름이 아니라 class이름으로 받아오면된다.!!!!!!!!
-		 
-		 // 해당하는 수량도 반복문 안에서니까 class이름으로 받아와야한다!!!!!
-		 //const val = $("#basketProductCount").val();
-		// const id =$("#rId34534").val();
-		 //const productno = $("#productno0134").val();
-		 
-		 // ********* 변경 버튼 이 반복문에 돌아가니까 ~~~
-		// const basketno = $(this).data("no");
-		const basketno = $(this).data("basketno");
-		// basketproductcount 테스트
-	// 이거 수정 전	const basketProductCount = document.getElementsByName('basketProductCount')[0].value;
-		//const basketProductCount = $(this).data("basketProductCount");
-		 const basketProductCount = $(this).closest("tr").find(".basketProductCount").val();
+$(function() {
 	
-		 // id는 session에 저장되어있으니까 안해도됨
-		 const id =$("#rId34534").val();
-		 // $$$$$$$$$$$$$$$$$$ 여기까지 id랑 basketno랑 수량이랑 다 넘어감 !!!1 $$$$$$$$$$$$$$$
-		 console.log( "1234");
+	// 상품 상세 페이지에서 주문 가능 수량이 초과 되었을 때 알림
+	$("#basketProductCount").on("blur", function(e) {
+		let productCnt = Number($(this).val());
+		let maxValue = Number($(this).attr("max")); 
+		console.log("productCnt : " + productCnt + ", maxValue : " + maxValue);
+		if(productCnt > maxValue) {
+			alert(`주문 가능 수량을 초과하였습니다. - 주문 가능 수량 : ${maxValue}`);
+			$(this).val(1);
+		} 
+	});
+	///////////////////////////////////////////////////////////////
+	//  장바구니에서 제품 하나하나를 삭제클릭 했을 때
+	$(".deleteBasketProductNo").click(function(e) {		
+	const productNo = $(this).data("productno");
+	
+		  $.ajax({
+	            type: "POST",
+	            url: "deleteBasketProductNo",  // 서버의 매핑 주소
+	            data: {	            
+	            	"productNo": productNo
+	            },
+	            success: function(res) {
+	                // 서버에서 받은 응답 처리
+	                console.log( res);
+ 					window.location.href = 'basketRedirect?productNo=' +productNo;
+					  },
+	            error: function(xhr, error, msg) {
+	                console.error("장바구니에서  삭제 에러 발생: " + error + ". " + msg);
+	            }
+	        });
+    });
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// 장바구니에서 변경을 클릭했을 때
+	$(".updateBasketProductNoCount").click(function(e) {		 
+
+		const basketNo = $(this).data("basketno");
+		const productNo = $(this).data("productno");
+		const basketProductCount = $(this).prev().val();
+		console.log("basketNo : " + basketNo + ", productNo : " + productNo + ", basketProductCount : " + basketProductCount);
+		
 		  $.ajax({
 	            type: "POST",
 	            url: "updateDeleteForm",  // 서버의 매핑 주소
-	            data: {
-	            	"id" : id ,
+	            data: {	            
 	            	"basketProductCount" : basketProductCount,
-	            	"basketno" : basketno
+	            	"basketNo" : basketNo,
+	            	"productNo": productNo
 	            },
-	            success: function(response) {
+	            success: function(res) {
 	                // 서버에서 받은 응답 처리
-	                console.log( response);
-	                // 필요한 동작 수행 (예: 화면 갱신, 리다이렉트 등)
-	                //window.location.href = 'updateDeleteForm?id=' +id + '&basketno=' +basketno + '&basketProductCount=' + basketProductCount;
+	                console.log( res);
+	                if(! res.result) {
+						alert(`주문 가능 수량을 초과하였습니다. - 주문 가능 수량 : ${res.remainCnt}`);
+						return;
+					} else {
+						 window.location.href = 'basketRedirect?basketNo=' +basketNo + '&basketProductCount=' + basketProductCount + '&productNo=' + productNo;
+					}
+					
+					/*
+					alert(`${res.msg}`);
+					//console.log(res.basketList);
+					// 기존 테이블의 내용을 삭제 삭제
+					//$("#basketimformation").empty();
+					$("#basketTableBody").empty();
+					
+					let table = `<table id="basketTable">
+											<thead>
+												<tr>		
+													<th></th>											
+													<th>이미지</th>
+													<th>상품</th>
+													<th>판매가</th>
+													<th>수량</th>
+													<th>합계</th>
+													<th>선택</th>
+												</tr>		
+											</thead>
+											<tbody id="basketTableBody">
+											</tbody>
+										</table>`
+										
+					let tableContent = "" 
+					
+					$.each(res.basketList, function(index, value) {
+						// console.log(value);
+						// 여기서부터 수정함
+											
+						tableContent +=   
+								` <tr>						
+									<td  id= "Img12">	
+										<img src="${value.productImage}"  width="50" height="50" />
+									</td>
+									
+									<td  id= "productName38">
+										${value.productName}
+									</td>
+									
+									<td  id= "productPrice38sdfds">
+										${ value.productPrice }원 &nbsp;&nbsp;
+									</td>
+									
+									<td>									
+										<input type="number"   max=""  min="1" value="${value.basketProductCount}" 
+											class="basketProductCount"
+											name="basketProductCount" 
+											data-basketProductCount="${value.basketProductCount}">			
+												
+										<input type="button" class="updateBasketProductNoCount" 
+											data-basketno="${value.basketNo}"  data-productno="${value.productNo}" value="변경">	
+									</td>				
+													
+									<td  id= "productPrice38">
+										${value.totalPrice}원
+									</td>
+									
+									<td>
+									<input class="btn btn-danger"  type="text" name="deleteBasketProductNo"  id="deleteBasketProductNo" value="삭제">
+									</td>
+								</tr>`												
+					});
+					// 여기서부터 추가함
+					$("#basketTableBody").append(tableContent);
+					
+				*/
+					
 	            },
 	            error: function(xhr, error, msg) {
-	                console.error("장바구니에서 상품 수량 변경 및 삭제 에러 발생: " + error + ". " + msg);
+	                console.error("장바구니에서 상품 수량 변경 에러 발생: " + error + ". " + msg);
 	            }
 	        });
-	    });
-});
+    });
 
 
-$(function() {
-////////////////  여기는 장바구니   ///////////////////////
-
-	//$("#basket").on("submit", function() {
-	//	$(this).attr("method", "post");
-	//	$(this).attr("action", "basket");		
-	//});	
-	
-	// 장바구니에서 제품 하나 삭제 - 1월 5일
-	//$("#deleteBasket").on("click", function() {
-		
-	//	$("#checkBasketForm").attr("action", "deleteB");
-	//	$("#checkBasketForm").attr("method", "post");
-	//	$("#checkBasketForm").submit();
-//	});
-
-
-///////////////여기서부터는 product CRUD /////////////////
-/*	$("#detailUpdate").on("click", function() {
-		var pass = $("#adminpassword").val();
-		if(pass.length <= 0) {
-			alert("JS게시 글을 수정하려면 비밀번호를 입력해주세요");
-			return false;
-		}		
-		
-		$("#rPass").val(pass);
-		$("#checkForm").attr("action", "update");
-		$("#checkForm").submit();
-	});
-	*/
-	/*
-	$("#detailDelete").on("click", function() {
-		var pass = $("#adminpassword").val();
-		if(pass.length <= 0) {
-			alert("게시 글을 삭제하려면 비밀번호를 입력해주세요");
-			return false;
-		}
-		$("#rPass").val(pass);
-		$("#checkForm").attr("action", "delete");
-		$("#checkForm").attr("method", "post");
-		$("#checkForm").submit();
-	});
-	*/
 	// 게시 글쓰기 폼 유효성 검사
 	$("#writeForm").on("submit", function() {
 		if($("#productname").val().length <= 0) {
@@ -185,16 +234,6 @@ $(function() {
 		}		
 		$(this).attr("method", "post");
 		$(this).attr("action", "productList");		
-	});	
-	
-	
-	$("#updateBasketProductnoCount").click(function() {
-		 var val =  $(this).prev().prev().val();
-		 var productno = $(this).prev().val();
-		 
-		 $("#basketProductCount").val(val);
-		 $("#productno").val(productno);
-		 
-		 $("#updateDeleteForm").submit();
-		 });
+	});
+
 });

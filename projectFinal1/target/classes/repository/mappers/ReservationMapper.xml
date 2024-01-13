@@ -36,54 +36,7 @@
 	</select>
 
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- 
- 장바구니에서 id에 해당하는 productno 전부 가져오기 
-<select id="BasketListById" resultType="Basket"  parameterType="String">
-    SELECT
-    R.reservationno,
-    R.id AS id,
-    R.productno AS productno
-FROM Reservation R
-JOIN Member M ON R.id = M.id
-LEFT JOIN ShoppingBasket SB ON R.id = SB.id 
-AND R.productno = SB.productno 
-LEFT JOIN Product P ON R.productno = P.productno
-WHERE R.id =  #{id}
-</select>
 
-<select id="BasketListByProductno" resultType="Basket"  parameterType="int">
-  ShoppingBasket 테이블과 Product 테이블을 조인하여 productprice를 가져오는 쿼리 --> <!--  MYSQL 오류나서 검증 못함 
-    SELECT P.productprice
-    FROM ShoppingBasket SB
-    JOIN Product P ON SB.productno = P.productno
-    WHERE SB.productno = #{productno}
-</select>
- -->
-<!--  장바구니에서 id에 해당하는 productno 전부 가져오기 
-<select id="BasketListById" resultType="Basket"  parameterType="String">
-    SELECT
-    R.reservationno,
-    R.id AS id,
-    R.productno AS productno
-FROM Reservation R
-JOIN Member M ON R.id = M.id
-LEFT JOIN ShoppingBasket SB ON R.id = SB.id 
-AND R.productno = SB.productno 
-LEFT JOIN Product P ON R.productno = P.productno
-WHERE R.id =  #{id}
-</select>
--->
-<!-- 
-<select id="BasketListByProductno" resultType="Basket"  parameterType="int">
-  ShoppingBasket 테이블과 Product 테이블을 조인하여 productprice를 가져오는 쿼리   MYSQL 오류나서 검증 못함
-    SELECT P.productprice
-    FROM ShoppingBasket SB
-    JOIN Product P ON SB.productno = P.productno
-    WHERE SB.productno = #{productno}
-</select>
- -->
-
-	
 	<!-- /////////////////////////////////////////////////////////////////////////////////////////////////// -->
 	<!--  Reservation 목록보기 mysql OK -->
 	
@@ -127,24 +80,19 @@ AND R.reservationticketcount = SB.basketproductcount
 LEFT JOIN Product P ON R.productno = P.productno
 WHERE R.id = #{id}
 	</select>
-	<!-- 
-<select id="BasketListByIdByProductno" resultType="Reservation"  parameterType="String">
-	SELECT sb.id, sb.productno, (sb.basketproductcount * p.productprice) AS   reservationprice, 
-						sb.basketproductcount
-			FROM ShoppingBasket sb
-			JOIN Product p ON sb.productno = p.productno
-			WHERE sb.id =  #{id}
-</select>
- -->
-<!-- 
-<select id="BasketListByIdByProductno" resultType="Reservation"  parameterType="String">
-	SELECT sb.id, sb.productno,  reservationprice, 
-						sb.basketproductcount
-			FROM ShoppingBasket sb
-			JOIN Product p ON sb.productno = p.productno
-			WHERE sb.id =  #{id}
-</select>
- -->
+	
+	<!-- ////////////////////////////////////////////////////////////////////////////////////// -->
+	<!--  MemberCoupon 테이블에서 id에 해당하는 쿠폰 할인율  가져오기 -->
+	<select id="getCouponDiscountRateById" resultType="String">
+      SELECT c.coupondiscountrate
+        FROM MemberCoupon AS mc
+        JOIN Coupon AS c 
+        ON mc.couponno = c.couponno
+        WHERE mc.id = #{id}
+    </select>
+	
+	
+	
 	
 	<resultMap id="ReservationResultMap" type="Reservation" >
 		<id property="reservationno" column="reservationno" />

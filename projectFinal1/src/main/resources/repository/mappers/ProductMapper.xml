@@ -86,19 +86,22 @@
 		WHERE productno = #{productno}
 	</update>
 	
-	<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   -->
-	<!--  장바구니에서 결제되면서 Product 에서 남은 티켓 수에서 결제한 티켓 수만큼 빼주는다. -->
+	<!-- @@@@@@@@여기서부터는 결제되면서 Product 남은 티켓 수@@@@@@@@@@@@@@@@@@@@   -->
+	<!-- productno에 해당하는 productremainticket가 몇개인지 select 한다 -->
+	<select id="productnoCheckRemainticketcount" resultType="int">
+		SELECT  productremainticketcount 
+		FROM Product 
+		where productno = #{productno}
+	</select>
 	
+	<!--  장바구니에서 결제되면서 Product 에서 남은 티켓 수에서 결제한 티켓 수만큼 빼주는다. -->
 <update id="updateProductRemainTicketCount" parameterType="map">
    		 UPDATE Product
-   		 SET productremainticketcount = productremainticketcount - #{basketproductcount}
-    	WHERE productno = #{productno}
+   		 SET productremainticketcount = productremainticketcount - #{basketProductCount}
+    	WHERE productNo = #{productNo}
 </update>
 
-
-
-
-
+<!--    -->
 	<resultMap id="productResultMap" type="Product" >
 		<id property="productno" column="productno" />
 		<result property="productname" column="productname" />
@@ -113,6 +116,13 @@
 		<result property="productticketcount" column="productticketcount" />
 		<result property="productremainticketcount" column="productremainticketcount" />
 		<result property="adminpassword" column="adminpassword" />
+	</resultMap>
+	
+		<resultMap id="basketResultMap" type="Basket" >
+		<id property="basketno" column="basketno" />
+		<result property="productno" column="productno" />
+		<result property="id" column="id" />
+		<result property="basketproductcount" column="basketproductcount" />
 	</resultMap>
 	
 	

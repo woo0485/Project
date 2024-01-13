@@ -1,12 +1,15 @@
 package com.finalproject.festival.domain;
 
+import java.sql.Timestamp;
+
 public class Search {
 
 	
 	private String searchkeyword;
-	
 	private int searchkeywordcount;
+	private Timestamp searchdate;
 
+	
 	public String getSearchkeyword() {
 		return searchkeyword;
 	}
@@ -21,6 +24,14 @@ public class Search {
 
 	public void setSearchkeywordcount(int searchkeywordcount) {
 		this.searchkeywordcount = searchkeywordcount;
+	}
+
+	public Timestamp getSearchdate() {
+		return searchdate;
+	}
+
+	public void setSearchdate(Timestamp searchdate) {
+		this.searchdate = searchdate;
 	}
 	
 	

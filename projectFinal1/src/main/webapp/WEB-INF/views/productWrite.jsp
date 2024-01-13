@@ -18,9 +18,11 @@
 					<h2 class="fs-3 fw-bold text-center">축제 정보 글 쓰기</h2>
 				</div>
 			</div>
-			
+
+				
 		<form name="writeForm" action="writeProcess" id="writeForm" 
 			class="row g-3 border-primary" method="post" enctype="multipart/form-data">
+	<div class="row">
 			
 				  <div class="col-5 offset-1">
 				    <label for="productprice" class="form-label">가격</label>
@@ -69,8 +71,25 @@
 					<input type="button" value="목록보기" class="btn btn-warning"
 						onclick="location.href='productList'">				    
 				  </div>				  
-			
+				</div>
 			</form>
-			
-		</div>
-	</div>		
+			</div>
+			</div>
+	
+	<div id="summernote"></div>
+    <script>
+      $('#summernote').summernote({
+        placeholder: 'Hello stand alone ui',
+        tabsize: 2,
+        height: 120,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+      });
+    </script>	

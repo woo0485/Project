@@ -72,5 +72,13 @@ public class BookmarkDaoImpl implements BookmarkDao {
 		return st.selectList(NAME_SPACE+".productList");
 	}
 
+	@Override
+	public int productBookmarkSelect(int productno) {
+		
+		return st.selectOne(NAME_SPACE+".productBookmarkSelect", productno);
+	}
+
+	
+	
 	
 }

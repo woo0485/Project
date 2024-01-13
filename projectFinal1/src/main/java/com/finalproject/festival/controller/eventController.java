@@ -52,6 +52,7 @@ public class eventController {
 		return "event";
 		
 	}
+
 	
 	@RequestMapping("/randomBoxEvent")
 	public String randomBoxEvent () {
@@ -107,5 +108,6 @@ public class eventController {
 		return "currentEvent";
 		
 	}
+
 
 }

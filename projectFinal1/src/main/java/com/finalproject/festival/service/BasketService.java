@@ -8,7 +8,7 @@ import com.finalproject.festival.domain.Basket;
 public interface BasketService {
 	
 	// 장바구니 목록 보기 - 1월 3일
-		public abstract List<Map<String,Object>> basketList(String id, int productno);
+		public abstract Map<String, Object>  basketList(String id);
 		
 		/*
 	// 장바구니 확인 - 1월 3일
@@ -24,8 +24,13 @@ public interface BasketService {
 	
 		// 장바구니 수량 업데이트 테스트
 	//	public int updateBasketProductnoCount(int basketproductcount);
-		public void updateBasketProductnoCount ( Map<String, Object> param);
+		public void updateBasketProductNoCount ( Map<String, Object> param);
 		
 	// 장바구니에 있는 상품 전체 삭제
 		public void deleteBasketAll(String id);
+		
+		public int getProductRemainingAmount(int productNo);
+		
+		// 장바구니에 있는  productno에 해당하는 제품 하나하나 삭제
+		public void deleteBasketProductno(int productNo, String id);
 }
