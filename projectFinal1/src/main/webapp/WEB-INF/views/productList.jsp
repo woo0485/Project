@@ -86,14 +86,9 @@
 <!--  캐러셀  끝-->	 	
 	
 <!--/////////////      축제정보 등록      /////////////-->
-<!-- 관리자 로그인 XXXXXX  (임시로 관리자 로그인되었을 때 안되었을 때 둘 다 보이게 함 최종때는 수정할 것임)-->	
-	 <c:if test="${empty sessionScope.adminid}">
-		<div class="col-12 text-end">
-				<a href="writeForm" class="btn btn-outline-success">축제정보 등록</a>
-		</div>
-		</c:if>
+
 <!-- 관리자 로그인되었을 때  OOOOO-->							
-	<c:if test="${not empty sessionScope.adminid}">
+	<c:if test="${sessionScope.userType =='Admin' }">
 	<div class="col-12 text-end">
 				<a href="writeForm" class="btn btn-outline-success">축제정보 등록</a>
 		</div>
@@ -158,12 +153,10 @@
 						</div>
 						
 						<div class="productbookmarkcount" style="font-size:15px">
-
 						<input type="hidden" name="productno" value="${p.productno}">
 						<input type="hidden" name="id" value="${sessionScope.id}">
 							<img class="productbookmark" src="resources/img/bookmark.png" style="width: 50px; height: 40px; cursor: pointer;"/> <br>
 							<div class="productBookmarkShowCount"> ${ p.productbookmarkcount } </div>
-
 					</div>
 					
 				</div>
@@ -190,7 +183,8 @@
 							<img src="${p.productimage}"  class="productimage"  width="300" height="200"  /></a> <br>
 <!--  %%%%%%%%%%%%%    북마크 이미지 위에 출력    %%%%%%%%%%%%%%-->			
 						
-
+						
+					
 				<div class="productContext">
 				<div class="productname"><a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
 								class="text-decoration-none link-secondary">${ p.productname }</a>  </div>

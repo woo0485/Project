@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.finalproject.festival.dao.BookmarkDao;
 import com.finalproject.festival.dao.MemberDao;
 import com.finalproject.festival.domain.Admin;
+import com.finalproject.festival.domain.Bookmark;
 import com.finalproject.festival.domain.Gallery;
 import com.finalproject.festival.domain.Main;
 import com.finalproject.festival.domain.Member;
@@ -28,8 +29,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberDao memberDao;
-	
-	private BookmarkDao bookmarkDao;      
+	@Autowired
+	private BookmarkDao bookmarkDao;
 	
 
 	@Override
@@ -177,7 +178,6 @@ public class MemberServiceImpl implements MemberService {
 
 		    return searchList;
 		}
-
 		
 	/************************bookmark***************************/
 		
@@ -199,7 +199,6 @@ public class MemberServiceImpl implements MemberService {
 			
 			return bookmarkDao.productBookmarkSelect(productno);
 		}
-
 
 	
 

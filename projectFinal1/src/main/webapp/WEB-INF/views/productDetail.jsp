@@ -1,17 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <link href="resources/css/hyunju.css" rel="stylesheet">
 <script src="resources/js/jquery-3.2.1.min.js"></script>
 <script src="resources/js/hyunju.js"></script>
 
 
-
 <!-- content 영역 ~~~~~~~~~~~~~  -->
 <div class="row my-5" id="global-content">
 	<div class="offset-1 col-10">
-
 	
 	<div class="row">
 		<div class="col">
@@ -26,12 +23,16 @@
 			</c:if>
 		</form>
 		<!--  장바구니에 단순히 보여지는 것만 -->
-
+		
 	<!--  ########## 장바구니에 추가할 때 form #############-->
 		<form name="addBasket" id="addBasket"  action="addBasket" method="post" >
+		<!-- 
+		<input type="text" name="basketno"  id="basketno"  value="${basket.basketno}"> 
+		<input type="text" name="productprice"  id="productprice"  value="${product.productprice}">
+		<input type="text" name="productname"  id="productname"  value="${product.productname}">
+		 -->
 			<input type="hidden" name="id" id="rId" value="${sessionScope.id}"> 
-			<input type="hidden" name="productNo" id="productno01" value="${product.productno}"> 
-			<input type="hidden" name="productPrice" id="productprice01" value="${product.productprice}"> 
+			<input type="hidden" name="productno" id="productno01" value="${product.productno}"> 
 
 <!-- @@@@@@@@ 게시 글 상세보기 영역  @@@@@@@@@@-->
 
@@ -97,7 +98,18 @@
 				
 			</div>	
 		</div>
-	
+		
+
+		
+				
+						
+								
+				
+		
+		
+		
+		
+		
 	</form>
 		</div>
 	</div>
@@ -118,7 +130,6 @@
 		  장바구니에 단순히 보여지는 것만 끝 %%%%%%%%%%-->
 			<br><br><br>
 			
-
 		<!-- ///////////  축제 정보 이미지와 내용  //////////// -->
 		<div class="row contentiamge">
 				<img src="${ product.productimage }" alt=""><br>
