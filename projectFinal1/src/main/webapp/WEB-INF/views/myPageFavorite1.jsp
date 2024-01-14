@@ -37,9 +37,9 @@
 	 		<jsp:include page="/WEB-INF/views/myPageHeader.jsp"></jsp:include>
 	 	</div>
 	 	<br><br>
-	 	<li style="color:red;"><a class="text-decoration-none fontblack" href="myPageFavorite1?id=${sessionScope.id}"><i class="fas fa-crown"></i> 축제</a></li>
-	 	<li><a class="text-decoration-none fontblack" href="myPageFavorite?id=${sessionScope.id}"><i class="fas fa-image"></i> 갤러리</a></li>
-	 	<br><br><br><br>
+	 	<span style="font-size:x-large;"><li style="color:red;"><a class="text-decoration-none fontblack" href="myPageFavorite1?id=${sessionScope.id}"><i class="fas fa-crown"></i> 축제</a></li></span>
+	 	<span style="font-size:x-large;"><li><a class="text-decoration-none fontblack" href="myPageFavorite?id=${sessionScope.id}"><i class="fas fa-image"></i> 갤러리</a></li></span>
+	 	<br><br>
  		
  		<c:if test="${fn:length(pr) == 0}">
 							    <div class="row">

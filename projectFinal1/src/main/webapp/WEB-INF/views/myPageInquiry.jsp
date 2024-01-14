@@ -13,7 +13,7 @@
 	<div class="row col-auto">
 	 		<jsp:include page="/WEB-INF/views/myPageHeader.jsp"></jsp:include>
 	 </div>
-	 <br><br><br>
+	 <br><br>
 	 <c:if test="${fn:length(qu) == 0}">
 							    <div class="row">
 							        <div class="col">
@@ -21,7 +21,7 @@
 							        </div>
 							    </div>
 	</c:if>
-	<br><br><br>
+	<br><br>
 	
 	<div class="row" id="global-content">
 				<div class="col text-center">

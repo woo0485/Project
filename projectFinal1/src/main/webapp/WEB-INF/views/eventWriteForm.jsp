@@ -1,8 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
-#eventCloseDate {
+#eventCloseDateLabel {
+	display: inline-block;
+	font-size: 20px;
+	margin-bottom: 8px;
+	width: 200px;
+}
+
+#eventOpenDateLabel {
 	display: inline-block;
 	font-size: 20px;
 	margin-bottom: 8px;
@@ -33,12 +40,20 @@ input[type="date"]:focus {
 				<span class="fs-5">게시물 작성</span>
 			</div>
 		</div>
-		<form action="eventUpload" method="post"
-			enctype="multipart/form-data" id="galleryUploadForm">
+		<form action="eventUpload" method="post" enctype="multipart/form-data"
+			id="galleryUploadForm">
 			<div class="row mt-5">
-				<div class="col-8 offset-2" style="display: flex; align-items: center; height: 100%">
-					<label for="eventDate" id="eventCloseDate">이벤트 종료 날짜 : </label> <input type="date"
-						id="eventDate" name="closedate" required="required">
+				<div class="col-8 offset-2"
+					style="display: flex; align-items: center; height: 100%">
+					<label for="eventOpenDate" id="eventOpenDateLabel">이벤트 시작 날짜 : </label> <input
+						type="date" id="eventOpenDate" name="opendate" required="required">
+				</div>
+			</div>
+			<div class="row mt-4">
+				<div class="col-8 offset-2"
+					style="display: flex; align-items: center; height: 100%">
+					<label for="eventCloseDate" id="eventCloseDateLabel">이벤트 종료 날짜 : </label> <input
+						type="date" id="eventCloseDate" name="closedate" required="required">
 				</div>
 			</div>
 			<div class="row mt-4">
@@ -47,15 +62,42 @@ input[type="date"]:focus {
 						<span class="input-group-text" id="inputGroup-sizing-lg">제목</span>
 						<input type="text" class="form-control"
 							aria-label="Sizing example input"
-							aria-describedby="inputGroup-sizing-lg" name="eventtitle" required="required">
+							aria-describedby="inputGroup-sizing-lg" name="eventtitle"
+							required="required">
 					</div>
 				</div>
 			</div>
 			<div class="row mt-4">
 				<div class="col-8 offset-2">
-					<label for="exampleFormControlTextarea1" class="form-label fs-5">내용</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1"
-						rows="10" name="eventcontent" required="required"></textarea>
+					<div class="input-group input-group-lg">
+						<span class="input-group-text" id="inputGroup-sizing-lg">참여
+							대상</span> <input type="text" class="form-control"
+							aria-label="Sizing example input"
+							aria-describedby="inputGroup-sizing-lg" name="participationtarget"
+							required="required">
+					</div>
+				</div>
+			</div>
+			<div class="row mt-4">
+				<div class="col-8 offset-2">
+					<div class="input-group input-group-lg">
+						<span class="input-group-text" id="inputGroup-sizing-lg">참여
+							방법</span> <input type="text" class="form-control"
+							aria-label="Sizing example input"
+							aria-describedby="inputGroup-sizing-lg" name="participationmethod"
+							required="required">
+					</div>
+				</div>
+			</div>
+			<div class="row mt-4">
+				<div class="col-8 offset-2">
+					<div class="input-group input-group-lg">
+						<span class="input-group-text" id="inputGroup-sizing-lg">제공
+							혜택</span> <input type="text" class="form-control"
+							aria-label="Sizing example input"
+							aria-describedby="inputGroup-sizing-lg" name="benefitsprovided"
+							required="required">
+					</div>
 				</div>
 			</div>
 			<div class="row mt-5" style="display: none;" id="eventImageDetail">
@@ -149,4 +191,23 @@ input[type="date"]:focus {
 						document.getElementById('eventImageDetail').style.display = 'block';
 
 					});
+	document.addEventListener("DOMContentLoaded", function() {
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth() + 1;
+		var yyyy = today.getFullYear();
+
+		if (dd < 10) {
+			dd = '0' + dd;
+		}
+
+		if (mm < 10) {
+			mm = '0' + mm;
+		}
+
+		today = yyyy + '-' + mm + '-' + dd;
+
+		document.getElementById("eventOpenDate").min = today;
+		document.getElementById("eventCloseDate").min = today;
+	});
 </script>

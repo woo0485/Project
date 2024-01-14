@@ -33,4 +33,24 @@ public class EventServiceImpl implements EventService {
 		return ed.eventDetail(eventno);
 	}
 
+	@Override
+	public void eventPresentCondition(String id, int eventno) {
+		
+		ed.eventPresentCondition(id, eventno);
+		
+	}
+
+	@Override
+	public List<String> eventPresentConditionIdList(int eventno) {
+		
+		return ed.eventPresentConditionIdList(eventno);
+	}
+
+	@Override
+	public void eventCoupon(String id, int couponno) {
+		
+		ed.eventCoupon(id, couponno);
+		
+	}
+
 }

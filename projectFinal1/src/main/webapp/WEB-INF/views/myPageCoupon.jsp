@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		<div class="row col-auto">
 	 		<jsp:include page="/WEB-INF/views/myPageHeader.jsp"></jsp:include>
 	 	</div>
+	 	<br><br>
 	 	<c:if test="${fn:length(my) == 0}">
 							    <div class="row">
 							        <div class="col">
@@ -60,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
 							    </div>
 		</c:if>
 			
-								<br><br><br>
+							
 					 			<div class="coupon">
 						 			<div class="row">
 				 						<c:forEach var="my" items="${MemberCoupon}" varStatus="status">

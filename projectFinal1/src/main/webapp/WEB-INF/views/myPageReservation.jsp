@@ -13,20 +13,34 @@ document.addEventListener('DOMContentLoaded', function() {
 	const hiddenReservationPrice = document.querySelectorAll('input[id^="reservationprice"]');
 	const hiddenId = document.querySelectorAll('input[id^="id"]');
     const hiddenReservationTicketCount = document.querySelectorAll('input[id^="reservationticketcount"]');
+    const hiddenReservationNo = document.querySelectorAll('input[id^="reservationno"]');
+    
+    var price;
     
     hiddenReservationPrice.forEach(function(input, index) {
-    var price = input.value;
+    price = input.value;
     var correspondingElement = document.getElementById('price'+index);
     correspondingElement.innerText = price;
 
     });
     
     hiddenReservationTicketCount.forEach(function(input, index) {
-        var Ticketcount = input.value;
-        console.log(Ticketcount);
+    	var ticketCount = input.value;
         var correspondingElement = document.getElementById('Ticketcount'+index);
-        correspondingElement.innerText = Ticketcount;
-        });
+        correspondingElement.innerText = ticketCount;
+        
+        
+        var totalPriceElement = document.getElementById('totalPrice' + index);
+        totalPriceElement.innerText = price * ticketCount;
+    
+    });
+    
+    hiddenReservationNo.forEach(function(input, index) {
+    	var no = input.value;
+    	console.log(no);
+    	var correspondingElement = document.getElementById('no'+index);
+    	correspondingElement.innerText = no;
+    });
     
     hiddenId.forEach(function(input, index) {
         var id = input.value;
@@ -34,16 +48,21 @@ document.addEventListener('DOMContentLoaded', function() {
         var correspondingElement = document.getElementById('id'+index);
         correspondingElement.innerText = '예약자 : ' + id;
         });
+    
+ 
+    
 });
 </script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+<input type="hidden" value="${sessionScope.id}" id ="sibalID">
+
 	<div class="row col-auto">
 	 		<jsp:include page="/WEB-INF/views/myPageHeader.jsp"></jsp:include>
 	</div>
-					<br><br><br>
+					<br><br>
 							<c:if test="${fn:length(re) == 0}">
 							    <div class="row">
 							        <div class="col text-center">
@@ -56,23 +75,26 @@ document.addEventListener('DOMContentLoaded', function() {
 					<input type="hidden" id="id" name="id" value="${sessionScope.id}">
 			 			<input type="hidden" id="productno" name="productno" value="">
 			 			<input type="hidden" id="ticketcount" name="reservationticketcount" value="">
-			 			<input type="hidden" id="reservationno" name="reservationno" value="">
+			 			<input type="hidden" id="Freservationno" name="reservationno" value="">
 			 		</form>
 		
 		 	<c:forEach var="rep" items="${ReProduct}" varStatus="status">
-					 		<div class="row">
-						 		<div class="col" style="border: 2px dotted pink;">
-						 		<span style="font-weight: bold">상품 이름 : </span><span style="display: none;">${rep.productno}</span>
+					 		<div class="row mt-5" style="font-weight: bold;">
+						 		<div class="col-auto text-center" style="border: 2px solid black; border-radius : 10px;font-size: large;">
+						 		<img src="${rep.productimage }" style="width:140px; height:140px;">
+						 		<span style="font-weight: bold">축제명 : </span><span style="display: none;">${rep.productno}</span>
 						 			<span style="font-weight: bold;">${rep.productname}</span>
-						 			<img src="${rep.productimage }" style="width:50px; height:50px;">
-						 			<span id="price${status.index}"> </span>
-						 			<span id="id${status.index }"></span>
-						 			<span id="Ticketcount${status.index}"></span>
-						 			<input type="button" id="cancleTicket${status.index}" value="예약취소" class="btn btn-danger">
+						 			<img src="resources/img/won.png" style="width:30px; height:30px; margin-left:10px; margin-right: 10px;"><span style="font-weight: bold;" id="price${status.index}"></span>원
+						 			<span id="id${status.index}"></span>
+						 			<img src="resources/img/ticket.png" style="width:40px; height:40px; margin-left:10px; margin-right: 10px;"><span id="Ticketcount${status.index}"></span>장
+						 			 총 금액 : <span id="totalPrice${status.index }"></span>원
+						 			<input type="button" value="예약취소" class="btn btn-danger cancleTicket">
+						 			<input type="hidden" value="${rep.productno}">
+						 			<span style="display:none; "id="no${status.index}"></span>			
 						 		</div>
 						 	</div>	
 	 		</c:forEach>
- 		
+ 			
  		
  		<c:forEach var="re" items="${Reservation}" varStatus="status">
  					<input type="hidden" id="cancleTicket2${status.index }" value="예약취소" class="btn btn-danger">
