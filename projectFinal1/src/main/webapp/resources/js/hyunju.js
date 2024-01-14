@@ -154,14 +154,14 @@ $(function() {
 			$("#productprice").focus();
 			return false;
 		}
-		if($("#productimage").val().length <= 0) {
+		/*if($("#productimage").val().length <= 0) {
 			alert("사진이 입력되지 않았습니다.\n내용을 입력해주세요");
 			$("#productimage").focus();
 			return false;
-		}
-		if($("#productlocation").val().length <= 0) {
+		}*/
+		if($("#address1").val().length <= 0) {
 			alert("위치가 입력되지 않았습니다.\n내용을 입력해주세요");
-			$("#productlocation").focus();
+			$("#address1").focus();
 			return false;
 		}
 		if($("#productopendate").val().length <= 0) {
@@ -179,11 +179,11 @@ $(function() {
 			$("#productticketcount").focus();
 			return false;
 		}
-		if($("#productremainticketcount").val().length <= 0) {
+		/*if($("#productremainticketcount").val().length <= 0) {
 			alert("남은 티켓 매수가 입력되지 않았습니다.\n내용을 입력해주세요");
 			$("#productremainticketcount").focus();
 			return false;
-		}
+		}*/
 	});
 
 	//////////////////////// 게시 글 수정 폼 유효성 검사

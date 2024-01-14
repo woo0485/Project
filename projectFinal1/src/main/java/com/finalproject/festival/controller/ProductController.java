@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.UUID;
 
@@ -128,7 +129,7 @@ public class ProductController {
 			int productprice, String productname, String productcontent, 
 			String adminpassword,
 			@RequestParam(value="productimage", required=false) MultipartFile multipartFile, 
-			String productlocation, Timestamp productopendate, Timestamp productclosedate,
+			String productlocation, LocalDate productopendate, LocalDate productclosedate,
 			int productticketcount, int productremainticketcount) 
 					throws IOException {	
 		
@@ -191,12 +192,15 @@ public class ProductController {
 		p.setProductticketcount(Integer.parseInt(request.getParameter("productticketcount")));
 		p.setProductremainticketcount(Integer.parseInt(request.getParameter("productremainticketcount")));
 	
-		java.sql.Timestamp t = java.sql.Timestamp.valueOf(request.getParameter("productopendate"));
-		p.setProductopendate(t);
-		
-		java.sql.Timestamp tt = java.sql.Timestamp.valueOf(request.getParameter("productclosedate"));
-		p.setProductclosedate(tt);
-
+		/*
+		 * java.sql.Timestamp t =
+		 * java.sql.Timestamp.valueOf(request.getParameter("productopendate"));
+		 * p.setProductopendate(t);
+		 * 
+		 * java.sql.Timestamp tt =
+		 * java.sql.Timestamp.valueOf(request.getParameter("productclosedate"));
+		 * p.setProductclosedate(tt);
+		 */
 		
 		System.out.println("컨트롤러글쓰기 폼에서 들어오는 글쓰기 요청에서-productticketcount : " + p.getProductticketcount());	
 		System.out.println("컨트롤러글쓰기 폼에서 들어오는 글쓰기 요청에서-productremainticketcount : " + p.getProductremainticketcount());			
