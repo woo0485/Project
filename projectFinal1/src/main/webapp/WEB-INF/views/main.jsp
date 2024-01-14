@@ -115,9 +115,9 @@ $(document).ready(function(){
 				
 					
 					<div class="col">
-						<c:forEach var="event1" items="${eventList}">
-							<div class="row border-bottom">
-								<div class="col" style="font-size: 50px;">
+						<c:forEach var="event1" items="${eventList}" end="5">
+							<div class="row border-bottom my-2">
+								<div class="col" style="font-size: 40px;">
 									<a href="#" style="color: black; text-decoration: none; ">${event1.eventtitle}</a>
 								</div>
 							</div>
