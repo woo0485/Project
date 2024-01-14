@@ -217,8 +217,8 @@
 									<input type="button" id="findNewPasswordBtn" class="btn btn-outline-dark" value="비밀 번호 변경"/>
 								</div>
 							</div>
+						</div>
 					</div>
-				</div>
 			  </div> 
 			  <div class="tab-pane fade" id="profile-tab-pane3" role="tabpanel" aria-labelledby="profile-tab" tabindex="0" >
 				<div class="row my-5 container text-center">

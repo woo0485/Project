@@ -160,6 +160,25 @@
 	</delete>
 	
 
+					<!--************** Product ****************-->
+		
+
+	<insert id="insertProduct" parameterType="Product">
+		INSERT INTO Product(productname,productopendate, productclosedate, 
+							 productprice,productlocation, productticketcount,productremainticketcount,
+							 productcontent,productimage, productbookmarkcount,  productreadcount)
+				
+			VALUES(#{productname},#{productopendate},#{productclosedate},
+					#{productprice},#{productlocation},#{productticketcount},#{productticketcount},
+					#{productcontent},#{productimage}, 0, 0)
+	</insert>
+
+
+
+
+
+
+
 </mapper>	
 
 

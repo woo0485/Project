@@ -1,6 +1,7 @@
 package com.finalproject.festival.domain;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 public class Product {
 	
@@ -10,8 +11,8 @@ public class Product {
 	private int productprice;
 	private String productimage;
 	private String productlocation;
-	private Timestamp productopendate;
-	private Timestamp productclosedate;
+	private LocalDate productopendate;
+	private LocalDate productclosedate;
 	private int productbookmarkcount;
 	private int productreadcount;
 	private int productticketcount;
@@ -23,7 +24,7 @@ public class Product {
 	public Product() {}
 	
 	public Product(int productno,  String productname, String productcontent,  int productprice, String productimage, String productlocation, 
-			Timestamp productopendate, Timestamp productclosedate, 
+			LocalDate productopendate, LocalDate productclosedate, 
 			int productbookmarkcount, int productreadcount, int productticketcount,  int productremainticketcount,
 			String adminpassword,
 			int basketproductcount) {
@@ -91,20 +92,20 @@ public class Product {
 	public void setProductlocation(String productlocation) {
 		this.productlocation = productlocation;
 	}
-
-	public Timestamp getProductopendate() {
+	
+	public LocalDate getProductopendate() {
 		return productopendate;
 	}
 
-	public void setProductopendate(Timestamp productopendate) {
+	public void setProductopendate(LocalDate productopendate) {
 		this.productopendate = productopendate;
 	}
 
-	public Timestamp getProductclosedate() {
+	public LocalDate getProductclosedate() {
 		return productclosedate;
 	}
 
-	public void setProductclosedate(Timestamp productclosedate) {
+	public void setProductclosedate(LocalDate productclosedate) {
 		this.productclosedate = productclosedate;
 	}
 

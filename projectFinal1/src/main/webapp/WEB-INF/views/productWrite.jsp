@@ -16,77 +16,82 @@
 			<div class="row">
 				<div class="col">
 						
-				<form name="writeForm" action="writeProcess" id="writeForm" 
+				<form name="productWriteForm" action="productWriteForm" id="writeForm" 
 					class="g-3 border-primary" method="post" enctype="multipart/form-data">
 			
+						<div class="row my-3">
+						  <div class="col border-bottom">
+						    <label for="productname" class="form-label fs-5 fw-bold">제 목</label>
+						    <input type="text" class="form-control  border-0" name="productname" id="productname">
+						  </div>
+						</div>
+						<div class="row my-3">  
+						  <div class="col border-bottom">
+						    <label for="productopendate" class="form-label fs-5 fw-bold">오픈일 </label>
+						    <input type="date" class="form-control  border-0" name="productopendate" id="productopendate">
+						  </div>
+						   <div class="col border-bottom">
+						    <label for="productclosedate" class="form-label fs-5 fw-bold">마감일 </label>
+						    <input type="date" class="form-control  border-0" name="productclosedate" id="productclosedate">
+						  </div>
+						 </div>
+						<div class="row my-3">
+						  <div class="col border-bottom">
+						    <label for="productprice" class="form-label fs-5 fw-bold">가격</label>
+						    <input type="text" class="form-control  border-0" name="productprice" id="productprice">
+						  </div>
+						</div>  
+						
+						<div class="row mt-5">
+						<div class="col-2 form-label"><p class="fs-5 fw-bold">우편번호 </p></div>
+							
+						<div class="col-8 border-bottom">
+							<input type="text" class="form-control border-0"
+									id="zipcode" maxlength="5" readonly data-code="false" style="height: 50px;" >
+						</div>
+						<div class="col-2">
+							<input type="button" class="btn btn btn-outline-dark" id="btnZipcode" 
+									onclick="findAddr()" value="우편번호 찾기">
+						</div>
+					</div>
 					
-						  <div class="col-5 offset-1">
-						    <label for="productprice" class="form-label">가격</label>
-						    <input type="text" class="form-control" name="productprice" id="productprice">
+					<div class="row my-3">
+						  <label for="productlocation" class="form-label fs-5 fw-bold">주소</label>
+						<div class="col border-bottom">
+							<input type="text" class="form-control border-0"  name="productlocation" id="address1"
+							 readonly>
+						</div>
+					</div>
+						<div class="row my-3">  
+						  <div class="col border-bottom">
+						    <label for="productticketcount" class="form-label fs-5 fw-bold">총 티켓 수</label>
+						     <input type="number" class="form-control  border-0" name="productticketcount" id="productticketcount">
 						  </div>
-						  <div class="col-5">
-						    <label for="adminpassword" class="form-label">비밀번호</label>
-						    <input type="password" class="form-control" name="adminpassword" id="adminpassword">
-						  </div>
-						  <div class="col-10 offset-1">
-						    <label for="productname" class="form-label">제 목</label>
-						    <input type="text" class="form-control" name="productname" id="productname">
-						  </div>
-						  <div class="col-10 offset-1">
-						    <label for="productcontent" class="form-label">내 용</label>
+						</div>  
+						<div class="row mt-5">  
+						    <div class="col ">
+						    <label for="productcontent" class="form-label fs-5 fw-bold">내 용</label>
 						    <textarea name="productcontent" id="productcontent" class="form-control" rows="10"></textarea>
 						  </div>
-						  <div class="col-8 offset-md-2">
-						    <label for="productimage" class="form-label">사진 </label>
-						      <input type="file" class="form-control" name="productimage"  id="productimage" >
-						  </div>
-						  <div class="col-10 offset-1">
-						    <label for="productlocation" class="form-label">위치 </label>
-						    <input type="text" class="form-control" name="productlocation" id="productlocation">
-						  </div>
-						  <div class="col-10 offset-1">
-						    <label for="productopendate" class="form-label">오픈일 </label>
-						    <input type="text" class="form-control" name="productopendate" id="productopendate">
-						  </div>
-						    <div class="col-10 offset-1">
-						    <label for="productclosedate" class="form-label">마감일 </label>
-						    <input type="text" class="form-control" name="productclosedate" id="productclosedate">
-						  </div>
-						  <div class="col-10 offset-1">
-						    <label for="productticketcount" class="form-label">티켓 수</label>
-						     <input type="text" class="form-control" name="productticketcount" id="productticketcount">
 						  </div>
 						  
-						  <div class="col-10 offset-1">
-						    <label for="productremainticketcount" class="form-label">남은 티켓 수</label>
-						    <input type="text" class="form-control" name="productremainticketcount" id="productremainticketcount">
+						<div class="row my-3">  
+						  <div class="col">
+						    <label for="productimage" class="form-label fs-5 fw-bold">사진 </label>
+						      <input type="file" class="form-control" name="image"  id="productimage" >
 						  </div>
+						</div>  
+						
 						  
 						  <div class="col-10 offset-1 mt-5 text-center">
-							<input type="submit" value="등록하기" class="btn btn-primary">				    
-							<input type="button" value="목록보기" class="btn btn-warning"
+							<input type="submit" value="등록하기" class="btn btn-outline-primary">				    
+							<input type="button" value="목록보기" class="btn btn-outline-warning"
 								onclick="location.href='productList'">				    
 						  </div>				  
 						</form>
 					</div>
+				</div>
 			</div>
-			</div>
-			</div>
+		</div>
 	
-	<div id="summernote"></div>
-    <script>
-      $('#summernote').summernote({
-        placeholder: 'Hello stand alone ui',
-        tabsize: 2,
-        height: 120,
-        toolbar: [
-          ['style', ['style']],
-          ['font', ['bold', 'underline', 'clear']],
-          ['color', ['color']],
-          ['para', ['ul', 'ol', 'paragraph']],
-          ['table', ['table']],
-          ['insert', ['link', 'picture', 'video']],
-          ['view', ['fullscreen', 'codeview', 'help']]
-        ]
-      });
-    </script>	
+

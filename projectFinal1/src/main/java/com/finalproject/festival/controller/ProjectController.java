@@ -1,21 +1,38 @@
 package com.finalproject.festival.controller;
 
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.finalproject.festival.domain.Event;
 import com.finalproject.festival.domain.Gallery;
@@ -29,6 +46,7 @@ import com.finalproject.festival.service.MailService;
 import com.finalproject.festival.service.MemberService;
 import com.finalproject.festival.service.MessageServiceImpl;
 import com.finalproject.festival.service.NewsService;
+import com.google.gson.JsonObject;
 
 
 
@@ -393,4 +411,79 @@ public class ProjectController {
 		 return memberService.bookmarkChange(id, productno);
 	}
 	
-}
+	
+	/******************************** product *************************************/
+	
+	@RequestMapping("/productWrite")
+	public String productWrite() {
+		return "productWrite";
+	}
+	
+	
+	    @RequestMapping(value = "/productWriteForm", method = RequestMethod.POST)
+	    public String insertProduct(
+	    		HttpServletRequest request,
+	            @RequestParam("productname") String productname,
+	            @RequestParam("productopendate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate productopendate,
+	            @RequestParam("productclosedate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate productclosedate,
+	            @RequestParam("productprice") int productprice,
+	            @RequestParam("productlocation") String productlocation,
+	            @RequestParam("productticketcount") int productticketcount,
+	            @RequestParam("productcontent") String productcontent,
+	            @RequestParam("image") MultipartFile productimage) {
+	       
+	    	System.out.println(productopendate + "------------" + productclosedate);
+	    	 
+	    	String realPath = request.getServletContext().getRealPath("/resources/upload");
+
+			
+
+				String original = productimage.getOriginalFilename();
+
+				String filePath = realPath + java.io.File.separator;
+
+				try {
+					productimage.transferTo(new java.io.File(filePath + original));
+					System.out.println(filePath);
+					System.out.println("저장완료");
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+	    	
+	    	
+	     System.out.println(productimage);
+
+	        Product product = new Product();
+	        product.setProductname(productname);
+	        product.setProductopendate(productopendate);
+	        product.setProductclosedate(productclosedate);
+	        product.setProductprice(productprice);
+	        product.setProductlocation(productlocation);
+	        product.setProductticketcount(productticketcount);
+	        product.setProductcontent(productcontent);
+			product.setProductimage(original);
+	        memberService.insertProduct(product);
+
+	        return "redirect:productList";
+	    }
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	}
+	
+
+
+
