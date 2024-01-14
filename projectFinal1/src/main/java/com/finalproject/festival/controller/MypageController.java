@@ -42,7 +42,6 @@ public class MypageController {
 			int productno = reservation.getProductno();
 			System.out.println(productno);
 			id1 = reservation.getId();
-			System.out.println(id1);
 		}
 		
 		List<Product> ReProduct = service.ReProduct(Reservation);

@@ -54,7 +54,7 @@
 								<c:forEach var="pr" items="${Product}" >
 									<div class="col text-center">					
 										<span id="productname" style="font-weight: bold;">${pr.productname}</span>
-										<a href="galleryRedirect"><img src="${pr.productimage}" style="width:270px; height:230px;"></a>
+										<a href="productDetail?productno=${pr.productno}"><img src="${pr.productimage}" style="width:270px; height:230px;"></a>
 									    <p id="wrap-col">주소 : ${pr.productlocation }</p>
 									    <br><br>
 									</div>
