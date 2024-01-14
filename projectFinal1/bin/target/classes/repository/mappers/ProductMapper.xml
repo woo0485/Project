@@ -48,15 +48,14 @@
 		WHERE productno = #{productno}
 	</select>
 	
-	<!--  insert부터 문제있음 => 1월 6일 수정 => mysql OK -->
-	<insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="productno">
+		<insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="productno">
 		INSERT INTO Product(productname, productcontent, 
 				productimage, productlocation, productprice, productopendate, productclosedate, 
-				productticketcount,productremainticketcount,adminpassword, productbookmarkcount, productreadcount)
+				productticketcount,productremainticketcount,adminpassword)
 				
 			VALUES(#{productname}, #{productcontent}, 
 				 #{productimage}, #{productlocation}, #{productprice}, #{productopendate}, #{productclosedate},
-				  #{productticketcount}, #{productremainticketcount}, #{adminpassword}, 0, 0)
+				  #{productticketcount}, #{productremainticketcount}, #{adminpassword})
 	</insert>
 	
 	<select id="isPassCheck" resultType="String">
@@ -86,22 +85,6 @@
 		WHERE productno = #{productno}
 	</update>
 	
-	<!-- @@@@@@@@여기서부터는 결제되면서 Product 남은 티켓 수@@@@@@@@@@@@@@@@@@@@   -->
-	<!-- productno에 해당하는 productremainticket가 몇개인지 select 한다 -->
-	<select id="productnoCheckRemainticketcount" resultType="int">
-		SELECT  productremainticketcount 
-		FROM Product 
-		where productno = #{productno}
-	</select>
-	
-	<!--  장바구니에서 결제되면서 Product 에서 남은 티켓 수에서 결제한 티켓 수만큼 빼주는다. -->
-<update id="updateProductRemainTicketCount" parameterType="map">
-   		 UPDATE Product
-   		 SET productremainticketcount = productremainticketcount - #{basketProductCount}
-    	WHERE productNo = #{productNo}
-</update>
-
-<!--    -->
 	<resultMap id="productResultMap" type="Product" >
 		<id property="productno" column="productno" />
 		<result property="productname" column="productname" />
@@ -116,13 +99,6 @@
 		<result property="productticketcount" column="productticketcount" />
 		<result property="productremainticketcount" column="productremainticketcount" />
 		<result property="adminpassword" column="adminpassword" />
-	</resultMap>
-	
-		<resultMap id="basketResultMap" type="Basket" >
-		<id property="basketno" column="basketno" />
-		<result property="productno" column="productno" />
-		<result property="id" column="id" />
-		<result property="basketproductcount" column="basketproductcount" />
 	</resultMap>
 	
 	

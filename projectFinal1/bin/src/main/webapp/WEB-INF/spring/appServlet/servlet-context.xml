@@ -25,7 +25,6 @@
 		<view-controller path="/productWrite" view-name="writeForm" />
 		
 		<redirect-view-controller path="/write" redirect-url="/writeForm"/>
-		<redirect-view-controller path="/basket" redirect-url="/basket"/>
 
 	<context:component-scan
 		base-package="com.finalproject.festival" />
@@ -40,17 +39,9 @@
 	<view-controller path="/informationUseWrite" view-name="manage/informationUse/informationUseWrite" />
 	<view-controller path="/manageMember" view-name="redirect:/manage/manageMember" />
 	<view-controller path="/manageReservation" view-name="redirect:/manage/manageReservation" />
-	<view-controller path="/manageSales" view-name="redirect:/manage/manageSales" />
-	<view-controller path="/manageProduct?qestionCategory=product" view-name="redirect:/manage/manageProduct" />
-	<view-controller path="/manageIndividual?qestionCategory=individual" view-name="redirect:/manage/manageIndividual" />
-	<view-controller path="/manageCoupon" view-name="redirect:/manage/manageCoupon" />
-	<view-controller path="/manageFestivalProduct"	view-name="redirect:/manage/manageFestivalProduct" />
+	
 
-	<!-- 스프링에서 기본으로 제공하는 multipartResolver는 CommonsMultipartResolver 이므로, 순수한 multipartResolver를 사용하기 위해 빈 이름으로 "multipartResolver"를 등록해야함 + 프로퍼티를 이용 최대 가능한 업로드 사이즈 지정함 -->
-    
-	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="maxUploadSize" value="100000000"></beans:property>
-	</beans:bean>	
+		
 
 
 </beans:beans>

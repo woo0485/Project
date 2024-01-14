@@ -48,18 +48,10 @@
 				</div>
 				<div class="row pt-5">
 					<div class="col-4 text-end">
-						<i class="bi bi-cart-check"></i>
-					</div>	
-					<div class="col-8 text-start">						  	
-					    <a class="text-decoration-none fontblack" href="manageFestivalProduct">상품 관리</a>
-					</div>
-				</div>
-				<div class="row pt-5">
-					<div class="col-4 text-end">
 						<i class="bi bi-basket"></i>
 					</div>	
 					<div class="col-8 text-start">						  	
-					    <a class="text-decoration-none fontblack" href="manageCoupon">쿠폰 관리</a>
+					    <a class="text-decoration-none fontblack" href="manageEvent">이벤트 관리</a>
 					</div>
 				</div>
 				<div class="row pt-5">
@@ -81,8 +73,8 @@
 				
 				<div class="row">
 					<div class="col border-top my-5 pt-4">
-						<i class="bi bi-exclamation-circle"></i>						
-						<a href="adminUser" class="text-decoration-none fontblack ps-3">관리자 추가</a>
+						<i class="bi bi-exclamation-circle"></i>
+						<span class="ps-3">관리자님</span>
 					</div>
 				</div>
 			</div>	

@@ -5,131 +5,6 @@
 
 <mapper namespace="com.finalproject.festival.mapper.ManageReservationMapper" >
 
-	<select id="saleTotalPrice1" resultType="Reservation" resultMap="ManageReservationMap">
-		SELECT 		
-	        SUM(reservationprice) as salesTotalPrice   
-		FROM Reservation	
-	    WHERE reservationdate BETWEEN CONCAT(YEAR(CURDATE()), '-01-01') AND CONCAT(YEAR(CURDATE()), '-01-31')	
-	    GROUP BY totalReservationPrice
-	</select>
-	<select id="saleTotalPrice2" resultType="Reservation" resultMap="ManageReservationMap">
-		SELECT 		
-	        SUM(reservationprice) as salesTotalPrice   
-		FROM Reservation	
-		WHERE reservationdate BETWEEN CONCAT(YEAR(CURDATE()), '-02-01') AND CONCAT(YEAR(CURDATE()), '-02-28')	
-		GROUP BY totalReservationPrice
-	</select>
-	<select id="saleTotalPrice3" resultType="Reservation" resultMap="ManageReservationMap">
-		SELECT 		
-	        SUM(reservationprice) as salesTotalPrice   
-		FROM Reservation	
-		WHERE reservationdate BETWEEN CONCAT(YEAR(CURDATE()), '-03-01') AND CONCAT(YEAR(CURDATE()), '-03-31')
-		GROUP BY totalReservationPrice
-	</select>
-	<select id="saleTotalPrice4" resultType="Reservation" resultMap="ManageReservationMap">
-		SELECT 		
-	        SUM(reservationprice) as salesTotalPrice   
-		FROM Reservation	
-		WHERE reservationdate BETWEEN CONCAT(YEAR(CURDATE()), '-04-01') AND CONCAT(YEAR(CURDATE()), '-04-30')
-		GROUP BY totalReservationPrice
-	</select>
-	<select id="saleTotalPrice5" resultType="Reservation" resultMap="ManageReservationMap">
-		SELECT 		
-	        SUM(reservationprice) as salesTotalPrice   
-		FROM Reservation	
-		WHERE reservationdate BETWEEN CONCAT(YEAR(CURDATE()), '-05-01') AND CONCAT(YEAR(CURDATE()), '-05-31')
-		GROUP BY totalReservationPrice
-	</select>
-	<select id="saleTotalPrice6" resultType="Reservation" resultMap="ManageReservationMap">
-		SELECT 		
-	        SUM(reservationprice) as salesTotalPrice   
-		FROM Reservation			
-		WHERE reservationdate BETWEEN CONCAT(YEAR(CURDATE()), '-06-01') AND CONCAT(YEAR(CURDATE()), '-06-30')
-		GROUP BY totalReservationPrice
-	</select>
-	<select id="saleTotalPrice7" resultType="Reservation" resultMap="ManageReservationMap">
-		SELECT 		
-	        SUM(reservationprice) as salesTotalPrice   
-		FROM Reservation			
-		WHERE reservationdate BETWEEN CONCAT(YEAR(CURDATE()), '-07-01') AND CONCAT(YEAR(CURDATE()), '-07-31')
-		GROUP BY totalReservationPrice
-	</select>
-	<select id="saleTotalPrice8" resultType="Reservation" resultMap="ManageReservationMap">
-		SELECT 		
-	        SUM(reservationprice) as salesTotalPrice   
-		FROM Reservation	
-		WHERE reservationdate BETWEEN CONCAT(YEAR(CURDATE()), '-08-01') AND CONCAT(YEAR(CURDATE()), '-08-31')
-		GROUP BY totalReservationPrice
-	</select>
-	<select id="saleTotalPrice9" resultType="Reservation" resultMap="ManageReservationMap">
-		SELECT 		
-	        SUM(reservationprice) as salesTotalPrice   
-		FROM Reservation				
-		WHERE reservationdate BETWEEN CONCAT(YEAR(CURDATE()), '-09-01') AND CONCAT(YEAR(CURDATE()), '-09-30')
-		GROUP BY totalReservationPrice
-	</select>
-	<select id="saleTotalPrice10" resultType="Reservation" resultMap="ManageReservationMap">
-		SELECT 		
-	        SUM(reservationprice) as salesTotalPrice   
-		FROM Reservation	
-		WHERE reservationdate BETWEEN CONCAT(YEAR(CURDATE()), '-10-01') AND CONCAT(YEAR(CURDATE()), '-10-31')
-		GROUP BY totalReservationPrice
-	</select>
-	<select id="saleTotalPrice11" resultType="Reservation" resultMap="ManageReservationMap">
-		SELECT 		
-	        SUM(reservationprice) as salesTotalPrice   
-		FROM Reservation			
-		WHERE reservationdate BETWEEN CONCAT(YEAR(CURDATE()), '-11-01') AND CONCAT(YEAR(CURDATE()), '-11-30')
-		GROUP BY totalReservationPrice
-	</select>
-	<select id="saleTotalPrice12" resultType="Reservation" resultMap="ManageReservationMap">
-		SELECT 		
-	        SUM(reservationprice) as salesTotalPrice   
-		FROM Reservation			
-		WHERE reservationdate BETWEEN CONCAT(YEAR(CURDATE()), '-12-01') AND CONCAT(YEAR(CURDATE()), '-12-31')
-		GROUP BY totalReservationPrice
-	</select>
-	
-	<select id="getDateCount" resultType="int">
-		SELECT
-			COUNT(DISTINCT reservationdate)
-		FROM Reservation		
-		<where>
-			<if test="type == 'reservationdate'">
-				reservationdate LIKE CONCAT('%', #{keyword}, '%')
-			</if>
-		</where>
-		
-	</select>
-	
-	
-	<select id="bestDayManageReservation" resultType="Reservation" resultMap="ManageReservationMap">
-		SELECT 		
-	        reservationdate,
-	        SUM(reservationprice) as totalReservationPrice   	  
-		FROM Reservation	
-		GROUP BY DATE_FORMAT(DATE(reservationdate), '%Y-%m-%d 00:00:00')
-		ORDER BY totalReservationPrice DESC
-		LIMIT 5
-	</select>
-	
-	
-
-	<select id="manageReservation2" resultType="Reservation" resultMap="ManageReservationMap">
-		SELECT 		
-	        DATE_FORMAT(DATE(reservationdate), '%Y-%m-%d 00:00:00') as reservationdate,
-	        SUM(reservationprice) as totalReservationPrice   
-		FROM Reservation	
-		<where>
-			<if test="type == 'reservationdate'">
-				reservationdate LIKE CONCAT('%', #{keyword}, '%')
-			</if>
-		</where>
-		GROUP BY DATE_FORMAT(DATE(reservationdate), '%Y-%m-%d 00:00:00')
-    	ORDER BY reservationdate DESC
-		LIMIT #{start}, #{num}	
-	</select>
-
 	<select id="getBoardCount" resultType="int">
 		SELECT
 			COUNT(reservationno)
@@ -156,8 +31,6 @@
 		<result property="reservationprice" column="reservationprice" />
 		<result property="reservationticketcount" column="reservationticketcount" />
 		<result property="reservationdate" column="reservationdate" />
-		<result property="totalReservationPrice" column="totalReservationPrice" />
-		<result property="salesTotalPrice" column="salesTotalPrice" />
 	</resultMap>
 	
 	<select id="manageReservation" resultType="Reservation" resultMap="ManageReservationMap">
@@ -201,4 +74,7 @@
 		WHERE reservationno = #{reservationno}
 	</delete>
 
-</mapper>
+</mapper>	
+
+
+

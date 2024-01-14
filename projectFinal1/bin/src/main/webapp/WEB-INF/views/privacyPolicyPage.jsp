@@ -8,20 +8,20 @@
 	    
 	    <div class="row text-start">
 	   	 <div><h3>1. 개인정보의 처리 목적</h3></div>
-	    	<div class="offset-1 col-3 border border-black text-center">수집 목적</div><div class="col-7  border border-black text-center">수집 항목</div>
-	    	<div class="offset-1 col-3 border border-black">이용자 식별 및 본인여부 확인</div><div class="col-7  border border-black">회원가입시 수집 : 성명, 휴대전화번호, 이메일, 아이디, 비밀번호<br>본인인증시 수집 : 생년월일, 성별, 아이핀, 연계정보(CI), 중복가입확인정보(DI)</div>
-	    	<div class="offset-1 col-3 border border-black">회원정보관리를 위한 연락 및 안내</div><div class="col-7 1 border border-black">이메일, 연락처</div>
-	    	<div class="offset-1 col-3 border border-black">불법∙부정이용방지, 비인가 사용 방지, 안전한 결제 서비스 제공, 분쟁조정 해결을 위한 기록보존, 상품∙서비스 이용실적 정보를 활용한 통계∙분석, 상품∙서비스 개선</div><div class="col-7  border border-black">휴대전화번호, 가상카드번호, 아이디, 이름, 생년월일, 성별, CI, DI, IP Address, 방문일시, 서비스 이용기록(자동으로 생성되는 개인정보), 주소</div>
-	    	<div class="offset-1 col-3 border border-black">고객이 주문하신 상품 및 경품 배송을 위한 목적</div><div class="col-7  border border-black">기본배송지, 연락처, 수취인의 성명/ 전화번호/휴대폰 번호/배송주소</div>
-	    	<div class="offset-1 col-3 border border-black">대금결제서비스 제공용(선택)</div><div class="col-7  border border-black">카드번호, 유효기간, 성명, 생년월일, 성별, 카드비밀번호 앞2자리, 계약자와의 관계 증빙(타인 명의 카드 이용 시), 은행계좌번호, 입금자명, 은행명, 휴대전화번호</div>
-	    	<div class="offset-1 col-3 border border-black">계좌/카드 간편결제서비스 가입을 통한 전자금융서비스 제공 목적</div><div class="col-7 border border-black">ID, 비밀번호, 이름, 생년월일, 휴대폰번호, 이메일, 성별, 통신사명, 내외국인정보, 본인인증정보(CI, DI), 서비스 이용정보(IP, 이용 기록)<br>계좌 간편결제 : 은행명, 계좌번호, 결제 비밀번호<br>신용카드 간편결제 : 신용카드정보(카드사명, 신용카드번호, 유효기간, CVC), 결제 비밀번호</div>
-	    	<div class="offset-1 col-3 border border-black">고객 상담 및 민원의 접수 및 처리 결과 안내 목적</div><div class="col-7  border border-black">연락처, 이메일</div>
-	    	<div class="offset-1 col-3 border border-black"></div><div class="col-7  border border-black"></div>	    
+	    	<div class="offset-1 col-3 border border-black text-center">수집 목적</div><div class="col-7 offset-1 border border-black text-center">수집 항목</div>
+	    	<div class="offset-1 col-3 border border-black">이용자 식별 및 본인여부 확인</div><div class="col-7 offset1 border border-black">회원가입시 수집 : 성명, 휴대전화번호, 이메일, 아이디, 비밀번호<br>본인인증시 수집 : 생년월일, 성별, 아이핀, 연계정보(CI), 중복가입확인정보(DI)</div>
+	    	<div class="offset-1 col-3 border border-black">회원정보관리를 위한 연락 및 안내</div><div class="col-7 offset1 border border-black">이메일, 연락처</div>
+	    	<div class="offset-1 col-3 border border-black">불법∙부정이용방지, 비인가 사용 방지, 안전한 결제 서비스 제공, 분쟁조정 해결을 위한 기록보존, 상품∙서비스 이용실적 정보를 활용한 통계∙분석, 상품∙서비스 개선</div><div class="col-7 offset-md-1 border border-black">휴대전화번호, 가상카드번호, 아이디, 이름, 생년월일, 성별, CI, DI, IP Address, 방문일시, 서비스 이용기록(자동으로 생성되는 개인정보), 주소</div>
+	    	<div class="offset-1 col-3 border border-black">고객이 주문하신 상품 및 경품 배송을 위한 목적</div><div class="col-7 offset-1 border border-black">기본배송지, 연락처, 수취인의 성명/ 전화번호/휴대폰 번호/배송주소</div>
+	    	<div class="offset-1 col-3 border border-black">대금결제서비스 제공용(선택)</div><div class="col-7 offset-1 border border-black">카드번호, 유효기간, 성명, 생년월일, 성별, 카드비밀번호 앞2자리, 계약자와의 관계 증빙(타인 명의 카드 이용 시), 은행계좌번호, 입금자명, 은행명, 휴대전화번호</div>
+	    	<div class="offset-1 col-3 border border-black">계좌/카드 간편결제서비스 가입을 통한 전자금융서비스 제공 목적</div><div class="col-7 offset-1 border border-black">ID, 비밀번호, 이름, 생년월일, 휴대폰번호, 이메일, 성별, 통신사명, 내외국인정보, 본인인증정보(CI, DI), 서비스 이용정보(IP, 이용 기록)<br>계좌 간편결제 : 은행명, 계좌번호, 결제 비밀번호<br>신용카드 간편결제 : 신용카드정보(카드사명, 신용카드번호, 유효기간, CVC), 결제 비밀번호</div>
+	    	<div class="offset-1 col-3 border border-black">고객 상담 및 민원의 접수 및 처리 결과 안내 목적</div><div class="col-7 offset-1 border border-black">연락처, 이메일</div>
+	    	<div class="offset-1 col-3 border border-black"></div><div class="col-7 offset-1 border border-black"></div>	    
 	    </div>
 	    
 	    <div class="row text-start">
 	   	 <div><h3>2. 위치정보</h3></div>
-	    	<div class="offset-1 col-5 border border-black>수집목적</div><div class="col-2 border border-black">수집항목</div><div class="col-3 border border-black offset-2 border border-black">보유기간</div>	    
+	    	<div class="offset-1 col-5 border border-black>수집목적</div><div class="col-2 border border-black">수집항목</div><div class="col-3 border border-black offset-d-1 border border-black">보유기간</div>	    
 	    	<div class="offset-1 col-5 border border-black">고객의 위치정보를 이용한 주소검색</div><div class="col-2 border border-black">주변 숙박 등의 검색결과 제공	위치정보</div><div class="col-3 border border-black offset-d-1 ">수집목적 달성시 파기</div>	    
 	    </div>
 	    
@@ -68,7 +68,12 @@
 				회원의 경우 ID를 수집하여 타겟(Target) 마케팅 등의 목적을 위해 사용되며, 투어 비회원의경우 방문일시, 서비스 이용기록을 이용하여 추가 본인확인 인증없이 예약내역이나 자동로그인을 하는 등의 편의를 제공하기 위해 활용됩니다.<br>
 				쿠키는 브라우저의 종료 시나 로그아웃 시 만료됩니다.<br>
 		 </div>
-	    
+	
+		
+
+
+
+	    
+	    
 	</div>
-</div>
 </div>

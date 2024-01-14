@@ -4,8 +4,13 @@
 <%@ page import="javax.servlet.http.HttpSession"%>
 <%@ page import="javax.servlet.http.HttpServletRequest"%>
 
+<%
+	HttpSession se = request.getSession();
+
+String id = (String) se.getAttribute("id");
+%>
+
 <c:set var="id" value="${sessionScope.id}" />
-<c:set var="name" value="${sessionScope.name}" />
 
 <div class="row">
 	<div class="col-10 offset-1">
@@ -19,15 +24,15 @@
 			</div>
 		</div>
 		<form action="galleryUpload" method="post"
-			enctype="multipart/form-data" id="galleryUploadForm">
+			enctype="multipart/form-data">
 			<input type="hidden" name="id" value="${id}">
 			<div class="row mt-5">
 				<div class="col-8 offset-2">
 					<select class="form-select form-select-lg mb-3"
-						aria-label="Large select example" name="gallerywriter" required="required" id="galleryUploadWriterSelect">
-						<option selected value="">작성자(ID 또는 이름)를 선택하세요</option>
+						aria-label="Large select example" name="gallerywriter">
+						<option selected>작성자(ID 또는 이름)를 선택하세요</option>
 						<option value="${id}">${id}</option>
-						<option value="${name}">${name}</option>
+						<option value="name">이름</option>
 					</select>
 				</div>
 			</div>
@@ -37,7 +42,7 @@
 						<span class="input-group-text" id="inputGroup-sizing-lg">제목</span>
 						<input type="text" class="form-control"
 							aria-label="Sizing example input"
-							aria-describedby="inputGroup-sizing-lg" name="gallerytitle" required="required">
+							aria-describedby="inputGroup-sizing-lg" name="gallerytitle">
 					</div>
 				</div>
 			</div>
@@ -45,7 +50,7 @@
 				<div class="col-8 offset-2">
 					<label for="exampleFormControlTextarea1" class="form-label fs-5">내용</label>
 					<textarea class="form-control" id="exampleFormControlTextarea1"
-						rows="10" name="gallerycontent" required="required"></textarea>
+						rows="10" name="gallerycontent"></textarea>
 				</div>
 			</div>
 			<div class="row mt-5" style="display: none;" id="galleryImageDetail">
@@ -55,9 +60,9 @@
 				<div class="col-8 offset-2 form-group">
 					<label for="imageInput" class="form-label"><span
 						class="fs-5">사진을 선택하세요.</span><br> <span
-						style="font-size: 15px;">(사진 업로드는 최대 4개로 제한됩니다.)</span> </label> <input
+						style="font-size: 15px;">(이미지 업로드는 최대 4개로 제한됩니다.)</span> </label> <input
 						class="form-control form-control-lg" id="imageInput" type="file"
-						name="images" multiple required="required">
+						name="images" multiple>
 				</div>
 			</div>
 			<div class="row mt-3">
@@ -65,7 +70,7 @@
 			</div>
 			<div class="row mt-4">
 				<div class="col text-center">
-					<input type="submit" class="btn btn-outline-secondary" value="등록하기">
+					<input type="submit" class="btn btn-secondary" value="등록하기">
 				</div>
 			</div>
 		</form>

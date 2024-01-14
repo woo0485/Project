@@ -16,7 +16,7 @@
 			<div class="row">
 				<div class="col offset-3 fw-bold">
 					
-					<div class="row pt-5 mt-3">
+					<div class="row pt-5">
 						<div class="col-8 text-start border-2 border-dark border-top py-3">						  	
 						    <a class="text-decoration-none fontblack" id="customberSideFont" href="customerMain">고객 센터</a>
 						</div>

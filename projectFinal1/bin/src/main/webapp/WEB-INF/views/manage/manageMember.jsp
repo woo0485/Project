@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<script src="resources/js/donggyun.js"></script>
 <link href="resources/css/donggyun.css" rel="stylesheet">
 <style>
-
 .table {
   border-collapse: collapse;
   border-top: 3px solid #168;
@@ -46,19 +45,19 @@
 				<span class="font-bold p-4"><h3>회원 관리</h3></span>
 
 				<form name="checkForm" id="checkForm">
+					<input type="hidden" name="id" id="id" value="${ m.id }"> 
 					<input type="hidden" name="pageNum" value="${ pageNum }" />
 
 					<div class="row justify-content-center mb-5">
 						<div class="col-auto">
-							<select name="type" class="form-select" style="border-color:#168;">
+							<select name="type" class="form-select">
 								<option value="id">아이디</option>
 								<option value="name">이름</option>
 								<option value="memberGrade">회원등급</option>
 							</select>
 						</div>
 						<div class="col-3">
-							<input type="text" name="keyword" class="form-control" 
-								style="border-color:#168;">
+							<input type="text" name="keyword" class="form-control" />
 						</div>
 						<div class="col-auto">
 							<input type="submit" value="검 색" class="custom-btn btn-3 px-3" />
@@ -97,18 +96,13 @@
 
 									<c:forEach var="m" items="${mList}">
 
-										<tr style="color:black; font-size:small;"">
+										<tr style="color:black;">
 											<td>${ m.id }</td>
 											<td>${ m.name }</td>
 											<td>${ m.phonenumber }</td>
-											<td>${ m.email }</td>											
-											<td><fmt:formatNumber value="${ m.totalpay }" pattern="#,##0원" /></td>
-											<td>
-												<c:if test="${m.grade == 0}">일반</c:if>
-												<c:if test="${m.grade == 1}">BLACK</c:if>
-												<c:if test="${m.grade == 2}">SILVER</c:if>
-												<c:if test="${m.grade == 3}">GOLD</c:if>
-												<c:if test="${m.grade == 4}">VIP</c:if></td>
+											<td>${ m.email }</td>
+											<td>${ m.totalpay }</td>
+											<td>${ m.grade }</td>
 											<td><a href="manageMemberUpdate?id=${ m.id }&pageNum=${currentPage}"
 												class="btn btn-outline-warning py-0" role="button">회원 관리</a></td>
 											<td><button type="button" class="btn btn-outline-danger py-0" 
@@ -122,22 +116,17 @@
 
 									<c:forEach var="m" items="${mList}">
 
-										<tr style="color:black; font-size:small;">
+										<tr style="color:black;">
 											<td>${ m.id }</td>
 											<td>${ m.name }</td>
 											<td>${ m.phonenumber }</td>
 											<td>${ m.email }</td>
-											<td><fmt:formatNumber value="${ m.totalpay }" pattern="#,##0원" /></td>
-											<td>
-												<c:if test="${m.grade == 0}">일반</c:if>
-												<c:if test="${m.grade == 1}">BLACK</c:if>
-												<c:if test="${m.grade == 2}">SILVER</c:if>
-												<c:if test="${m.grade == 3}">GOLD</c:if>
-												<c:if test="${m.grade == 4}">VIP</c:if></td>
+											<td>${ m.totalpay }</td>
+											<td>${ m.grade }</td>
 											<td><a href="manageMemberUpdate?id=${ m.id }&pageNum=${currentPage}"
-												class="btn btn-outline-warning py-0" role="button" style="font-size:small;">회원 관리</a></td>
+												class="btn btn-outline-warning py-0" role="button">회원 관리</a></td>
 											<td><button type="button" class="btn btn-outline-danger py-0" 
-												id="manageIdDelete" data-id="${ m.id }" style="font-size:small;">회원 탈퇴</button></td>
+												id="manageIdDelete" data-id="${ m.id }">회원 탈퇴</button></td>
 										</tr>
 									</c:forEach>
 								</c:if>
@@ -168,13 +157,13 @@
 				<!-- 검색 요청이면서 검색된 리스트가 존재할 경우 페이지 네이션 -->
 				<c:if test="${searchOption and not empty mList}">
 					<div class="row">
-						<div class="coltext-center my-5">
+						<div class="col offset-1 text-center my-5">
 							<nav aria-label="Page navigation example">
 								<ul class="pagination justify-content-center">
 
 									<c:if test="${ startPage > pageGroup }">
 										<li class="page-item"><a class="page-link"
-											href="manageMember?pageNum=${startPage - pageGroup }&type=${ type }&keyword=${ keyword }">Pre</a></li>
+											href="manageMember?pageNum=${startPage - pageGroup }">Pre</a></li>
 									</c:if>
 
 									<c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -185,13 +174,13 @@
 
 										<c:if test="${i != currentPage}">
 											<li class="page-item"><a class="page-link"
-												href="manageMember?pageNum=${i}&type=${ type }&keyword=${ keyword }">${i}</a></li>
+												href="manageMember?pageNum=${i}">${i}</a></li>
 										</c:if>
 									</c:forEach>
 
 									<c:if test="${ endPage < pageCount }">
 										<li class="page-item"><a class="page-link"
-											href="manageMember?pageNum=${endPage + pageGroup}&type=${ type }&keyword=${ keyword }">Next</a></li>
+											href="manageMember?pageNum=${endPage + 1}">Next</a></li>
 									</c:if>
 
 								</ul>
@@ -204,7 +193,7 @@
 				<!-- 일반 게시글 요청이면서 검색된 리스트가 존재할 경우 페이지네이션  -->
 				<c:if test="${not searchOption and not empty mList}">
 					<div class="row">
-						<div class="col text-center my-5">
+						<div class="col offset-1 text-center my-5">
 							<nav aria-label="Page navigation example">
 								<ul class="pagination justify-content-center">
 
