@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.finalproject.festival.domain.Event;
@@ -31,6 +32,7 @@ public class eventController {
 		
 		LocalDate currentDate = LocalDate.now();
 		
+		List<Event> futureEvent = new ArrayList<Event>();
 		List<Event> currentEvent = new ArrayList<Event>();
 		List<Event> pastEvent = new ArrayList<Event>();
 		
@@ -39,6 +41,8 @@ public class eventController {
 			
 			if( currentDate.isAfter(event.getEventclosedate()) ) {
 				pastEvent.add(event);
+			} else if( currentDate.isBefore(event.getEventopendate()) ){
+				futureEvent.add(event);
 			} else {
 				currentEvent.add(event);
 			}
@@ -69,7 +73,7 @@ public class eventController {
 	}
 	
 	@RequestMapping(value = "/eventUpload", method = RequestMethod.POST)
-	public String eventUpload (@RequestParam("image") MultipartFile eventimage, @RequestParam("closedate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate eventclosedate, Event event, HttpServletRequest request) {
+	public String eventUpload (@RequestParam("image") MultipartFile eventimage, @RequestParam("closedate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate eventclosedate, @RequestParam("opendate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate eventopendate, Event event, HttpServletRequest request) {
 		
 		String realPath = request.getServletContext().getRealPath("/resources/upload");
 		
@@ -85,6 +89,7 @@ public class eventController {
 		
 		event.setEventimage(fileName);
 		event.setEventclosedate(eventclosedate);
+		event.setEventopendate(eventopendate);
 		
 		es.eventUpload(event);
 		
@@ -101,11 +106,43 @@ public class eventController {
 	}
 	
 	@RequestMapping("/currentEvent")
-	public String currentEvent (@RequestParam("eventno") int eventno, Model model) {
+	public String currentEvent (@RequestParam("eventno") int eventno, Model model, @RequestParam("eventtitle") String eventtitle) {
+		
+		if( eventtitle.equals("신규회원가입 이벤트") ) {
+			model.addAttribute("currentEvent",es.eventDetail(eventno));
+			
+			return "newSignupEvent";
+		} else if ( eventtitle.equals("복주머니를 찾아라!") ) {
+			model.addAttribute("currentEvent",es.eventDetail(eventno));
+			
+			return "luckyBagEvent";
+		} else if ( eventtitle.equals("LUCKY DRAW") ) {
+			model.addAttribute("currentEvent",es.eventDetail(eventno));
+			model.addAttribute("idList",es.eventPresentConditionIdList(eventno));
+			return "luckyDraw";
+		}
 		
 	    model.addAttribute("currentEvent",es.eventDetail(eventno));
 		
 		return "currentEvent";
+		
+	}
+	
+	@RequestMapping(value = "/eventPresentCondition", method = RequestMethod.POST)
+	public String eventPresentCondition ( String id, int eventno, String eventtitle ) {
+		
+		es.eventPresentCondition(id, eventno);
+		
+		return "redirect:currentEvent?eventtitle=" + eventtitle + "&eventno=" + eventno;
+	}
+	
+	@RequestMapping(value = "/eventCoupon", method = RequestMethod.POST)
+	@ResponseBody
+	public String eventCoupon (int couponno, String id) {
+		
+		es.eventCoupon(id, couponno);
+		
+		return "success";
 		
 	}
 

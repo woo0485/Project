@@ -11,14 +11,35 @@ public class Event {
 	
 	private int eventno;
 	private String eventtitle;
-	private String eventcontent;
 	private String eventimage;
+	private String participationtarget;
+	private String participationmethod;
+	private String benefitsprovided;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate eventopendate;
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate eventclosedate;
 	
+	public String getParticipationtarget() {
+		return participationtarget;
+	}
+	public void setParticipationtarget(String participationtarget) {
+		this.participationtarget = participationtarget;
+	}
+	public String getParticipationmethod() {
+		return participationmethod;
+	}
+	public void setParticipationmethod(String participationmethod) {
+		this.participationmethod = participationmethod;
+	}
+	public String getBenefitsprovided() {
+		return benefitsprovided;
+	}
+	public void setBenefitsprovided(String benefitsprovided) {
+		this.benefitsprovided = benefitsprovided;
+	}
 	public int getEventno() {
 		return eventno;
 	}
@@ -30,12 +51,6 @@ public class Event {
 	}
 	public void setEventtitle(String eventtitle) {
 		this.eventtitle = eventtitle;
-	}
-	public String getEventcontent() {
-		return eventcontent;
-	}
-	public void setEventcontent(String eventcontent) {
-		this.eventcontent = eventcontent;
 	}
 	public String getEventimage() {
 		return eventimage;

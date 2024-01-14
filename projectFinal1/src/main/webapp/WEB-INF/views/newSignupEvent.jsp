@@ -4,13 +4,14 @@
 
 <div class="row">
 	<div class="col-10 offset-1">
-		<div class="row border-top border-secondary row-content">
+		<div class="row border-top border-secondary">
 			<div class="col-10 offset-1 fs-2 fw-bolder pt-5 mb-5">${currentEvent.eventtitle}</div>
 		</div>
-		<div class="row row-content">
-			<div class="col-10 offset-1">
+		<div class="row">
+			<div class="col-10 offset-1" style="position: relative;">
 				<img alt="" src="resources/upload/${currentEvent.eventimage}"
-					style="width: 100%; height: 900px;">
+					style="width: 100%; height: 1000px;" id="signupImage">
+				<div id="clickArea" style="cursor: pointer; position: absolute; opacity: 0;"></div>
 			</div>
 		</div>
 		<div class="row">
@@ -48,3 +49,30 @@
 		</div>
 	</div>
 </div>
+
+<script>
+    function updateClickArea() {
+        var image = document.getElementById("signupImage");
+        var imageRect = image.getBoundingClientRect();
+
+        var widthRatio = image.width / imageRect.width;
+        var heightRatio = image.height / imageRect.height;
+
+        document.getElementById("clickArea").style.left = (34.8 * widthRatio) + "%";
+        document.getElementById("clickArea").style.top = (73.2 * heightRatio) + "%";
+        document.getElementById("clickArea").style.width = (30.4 * widthRatio) + "%";
+        document.getElementById("clickArea").style.height = (4.9 * heightRatio) + "%";
+    }
+
+    document.getElementById("signupImage").addEventListener("load", function() {
+        updateClickArea();
+    });
+
+    window.addEventListener("resize", function() {
+        updateClickArea();
+    });
+
+    document.getElementById("clickArea").addEventListener("click", function (event) {
+    	window.location.href = 'memberJoinPage';
+    });
+</script>
