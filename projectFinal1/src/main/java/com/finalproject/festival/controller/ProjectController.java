@@ -27,11 +27,6 @@ import com.finalproject.festival.service.MailService;
 import com.finalproject.festival.service.MemberService;
 import com.finalproject.festival.service.MessageServiceImpl;
 import com.finalproject.festival.service.NewsService;
-<<<<<<< HEAD
-
-=======
->>>>>>> 66c0b3e82b0fe3371c6eb8cdb38189ea1a418966
-
 
 
 @Controller
