@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link href="resources/css/hyunju.css" rel="stylesheet" >
 <script src="resources/js/jquery-3.2.1.min.js"></script>
@@ -90,7 +91,7 @@
 <!-- 관리자 로그인되었을 때  OOOOO-->							
 	<c:if test="${sessionScope.userType =='Admin' }">
 	<div class="col-12 text-end">
-				<a href="writeForm" class="btn btn-outline-success">축제정보 등록</a>
+				<a href="productWrite" class="btn btn-outline-success">축제정보 등록</a>
 		</div>
 	</c:if>
 <!-- ///////////////     축제정보 등록 끝      //////////////-->
@@ -131,7 +132,14 @@
 					<td class="productimage">
 					<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
 								class="text-decoration-none link-secondary">
-					<img src="${p.productimage}"  width="300" height="200" /></a> <br>
+					<c:choose>
+						<c:when test="${fn:contains(p.productimage,'http')}">
+							<img src="${p.productimage}"  class="productimage"  width="300" height="200"  /></a> <br>
+						</c:when>
+						<c:otherwise>
+							<img src="resources/upload/${p.productimage}"  class="productimage"  width="300" height="200"  /></a> <br>
+						</c:otherwise>
+					</c:choose>
 					
 <!--  %%%%%%%%%%%%%    북마크 이미지 위에 출력    %%%%%%%%%%%%%%-->
 <!--  북마크 기능 - 1월 4일  https://www.flaticon.com/kr/free-icon/bookmark_5624111?term=%EB%B6%81%EB%A7%88%ED%81%AC&page=1&position=33&origin=search&related_id=5624111-->		
@@ -180,7 +188,14 @@
 					<td class="productimage">
 							<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
 								class="text-decoration-none link-secondary">
-							<img src="${p.productimage}"  class="productimage"  width="300" height="200"  /></a> <br>
+								<c:choose>
+								<c:when test="${fn:contains(p.productimage,'http')}">
+									<img src="${p.productimage}"  class="productimage"  width="300" height="200"  /></a> <br>
+								</c:when>
+								<c:otherwise>
+									<img src="resources/upload/${p.productimage}"  class="productimage"  width="300" height="200"  /></a> <br>
+								</c:otherwise>
+								</c:choose>
 <!--  %%%%%%%%%%%%%    북마크 이미지 위에 출력    %%%%%%%%%%%%%%-->			
 						
 						

@@ -1,6 +1,7 @@
 package com.finalproject.festival.dao;
 
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -149,6 +150,14 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public void searchKeywordCount(String searchKeyword) {
 		st.update(NAME_SPACE+".searchKeywordCount", searchKeyword);
+	}
+
+	@Override
+	public void insertProduct(Product product) {
+		
+		
+		st.insert(NAME_SPACE+".insertProduct", product);
+		
 	}
 
 	
