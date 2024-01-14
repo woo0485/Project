@@ -100,13 +100,14 @@ $(document).ready(function(){
 								 <c:forEach var="event" items="${eventList}" varStatus="eventLoop">
 								 	 <c:if test="${eventLoop.index == 0}">
 									    <div class="carousel-item active">
-									      <img src="https://via.placeholder.com/700x700" class="d-block w-100" alt="...">
+									      <img src="${event.eventimage }" class="d-block w-100" alt="...">
 									    </div>
 									 </c:if>   
-									 
+									 <c:if test="${eventLoop.index != 0}">
 									    <div class="carousel-item">
-									      <img src="https://via.placeholder.com/700x700" class="d-block w-100" alt="...">
+									      <img src="${event.eventimage }" class="d-block w-100" alt="...">
 									    </div>
+									 </c:if>
 									
 								  </c:forEach> 
 						 	 </div>
@@ -115,9 +116,9 @@ $(document).ready(function(){
 				
 					
 					<div class="col">
-						<c:forEach var="event1" items="${eventList}">
+						<c:forEach var="event1" items="${eventList}" end="5">
 							<div class="row border-bottom">
-								<div class="col" style="font-size: 50px;">
+								<div class="col my2" style="font-size: 40px;">
 									<a href="#" style="color: black; text-decoration: none; ">${event1.eventtitle}</a>
 								</div>
 							</div>
