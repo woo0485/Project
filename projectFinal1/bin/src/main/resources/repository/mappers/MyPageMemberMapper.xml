@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	
+	<mapper namespace="com.finalproject.festival.mapper.MyPageMemberMapper">
+	
+		<select id="MyInfo" resultType="Member" >
+			SELECT * FROM Member WHERE id = #{id}
+		</select>
+	
+	
+		<select id="MyCoupon" resultType="MemberCoupon">
+			SELECT * 
+			FROM MemberCoupon 
+			WHERE id = #{id}
+		</select>
+	
+		<select id="Coupon" resultType="Coupon">
+			SELECT * 
+			FROM Coupon
+            WHERE couponno = #{couponno}
+		</select>
+		
+		<select id = "Question" resultType="Question">
+			SELECT * FROM Question WHERE id = #{id}
+		</select>
+	
+		<update id="MyGrade" parameterType="HashMap">
+			UPDATE Member
+			SET grade = #{grade}
+			WHERE id = #{id}
+		</update>
+		
+		<select id="GalleryBookMark" resultType="GalleryBookMark">
+			SELECT *
+			FROM  GalleryBookmark
+			WHERE id = #{id}
+		</select>
+		
+		<select id="GalleryInfo" resultMap="galleryResultMap" parameterType="int">
+			SELECT *
+			FROM Gallery
+			WHERE galleryno = #{galleryno}
+		</select>
+		
+		<select id="Bookmark" resultType="Bookmark">
+			SELECT * 
+			FROM Bookmark
+			WHERE id = #{id}
+		</select>
+		
+		<select id="Product" resultType="Product">
+			SELECT *
+			FROM Product
+			WHERE productno = #{productno}
+		</select>
+		
+		<select id="Reservation" resultType="Reservation">
+			SELECT *
+			FROM Reservation
+			WHERE id = #{id}
+		</select>
+		
+		<select id="ReProduct" resultType="Product">
+			SELECT *
+			FROM Product
+			WHERE productno = #{productno}
+		</select>
+		
+		<delete id="MyReservation" parameterType="HashMap">
+			DELETE
+			FROM Reservation
+			WHERE id = #{id} AND productno = #{productno} AND reservationno = #{reservationno}
+		</delete>
+		
+		<update id="MyCancleTicket" parameterType="HashMap">
+			UPDATE Product
+			SET productremainticketcount = productremainticketcount + #{reservationticketcount}
+			WHERE productno = #{productno}
+		</update>
+		
+		<update id="MyAddrUpdate" parameterType="Member">
+			UPDATE Member
+			SET zipcode = #{zipcode}, address1 = #{address1}, address2 = #{address2}
+			WHERE id = #{id}
+		</update>
+		
+		
+		<resultMap id="galleryResultMap" type="Gallery">
+		<result property="id" column="id" />
+		<result property="gallerytitle" column="gallerytitle" />
+		<result property="gallerycontent" column="gallerycontent" />
+		<result property="gallerywriter" column="gallerywriter" />
+		<result property="gallerygoodcount" column="gallerygoodcount" />
+		<result property="galleryuploaddate" column="galleryuploaddate" />
+		<result property="galleryno" column="galleryno" />
+		<result property="galleryimage" column="galleryimage"
+			jdbcType="VARCHAR" javaType="java.lang.String"
+			typeHandler="com.finalproject.typeHandler.StringArrayTypeHandler" />
+		</resultMap>
+		
+		
+	</mapper>

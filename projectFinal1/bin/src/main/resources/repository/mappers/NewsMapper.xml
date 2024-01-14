@@ -9,6 +9,7 @@
 		SELECT 
 			*
 		FROM News
+		ORDER BY newsuploaddate DESC
 	</select>
 	
 	<select id="newsDetail" parameterType="int" resultType="News">

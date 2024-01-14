@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.finalproject.festival.mapper.ManageSalesMapper" >
+
+	<resultMap id="ManageSalesMap" type="Sales" >
+		<id property="salesNo" column="salesNo" />	
+		<result property="salesDate" column="salesDate" />
+		<result property="salesTotalPrice" column="salesTotalPrice" />
+		<result property="salesYear" column="salesYear" />
+	</resultMap>
+	
+	<select id="bestMonth" resultType="Sales" resultMap="ManageSalesMap">
+		SELECT			  
+			 salesDate,
+			 salesTotalPrice, salesYear
+		 FROM Sales
+		 ORDER BY salesTotalPrice DESC	
+		 LIMIT 5
+	</select>
+	
+	<delete id="deleteSalesTotalPrice" parameterType="List">
+		DELETE FROM Sales
+		WHERE salesNo = #{salesNo} AND salesYear = YEAR(NOW())
+	</delete>
+	
+	<insert id="salesTotalPriceWrite" parameterType="Sales" useGeneratedKeys="true" keyProperty="salesYear">
+		INSERT INTO Sales (salesDate, salesTotalPrice, salesYear)
+   		VALUES (#{salesDate}, #{salesTotalPrice}, YEAR(CURDATE()))	
+	</insert>
+	
+	<select id="salesList" resultType="Sales" resultMap="ManageSalesMap">
+		SELECT
+			 * 
+		 FROM Sales	
+		 WHERE salesYear = YEAR(NOW())	 
+	</select>
+	
+	<select id="lastYearSalesList" resultType="Sales" resultMap="ManageSalesMap">
+	    SELECT *
+	    FROM Sales
+	    WHERE salesYear = YEAR(NOW()) - 1
+	</select>
+	
+	<select id="yearBeforeLastSalesList2" resultType="Sales" resultMap="ManageSalesMap">
+	    SELECT *
+	    FROM Sales
+	    WHERE salesYear = YEAR(NOW()) - 2
+	</select>
+
+	
+</mapper>	

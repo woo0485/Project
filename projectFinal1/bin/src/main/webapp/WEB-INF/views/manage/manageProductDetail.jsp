@@ -7,8 +7,20 @@
 .bordertop {
   border-collapse: collapse;
   border-top: 3px solid #168;
-  border-bottom: 3px solid #168;
-} 
+}
+.button99 {
+    top:50%;
+    background-color:#f0f6f9;
+    border-color:#168;
+    color: black;
+    border-radius:10px; 
+    padding:15px;
+    min-height:30px; 
+    min-width: 120px;
+  } 
+.button99:hover {
+      border-color:red;
+  }  
 </style>
 
 	<!-- content -->
@@ -28,31 +40,53 @@
 				<div class="col">
 					<span class="font-bold p-4"><h3>상품 문의함</h3></span>		
 				</div>
-				<div class="col">
-					<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" 
+				<div class="col text-end">
+					<button type="button" class="button99 py-2" data-bs-toggle="modal" 
 				         data-bs-target="#myModal">메일 답장
 					</button>
 				</div>
 			</div>
-			
+
 			<div class="row " id="global-content ">
-				<div class="col text-start bordertop py-3 ps-4">
-					<span class="fs-6">${question.questionTitle }</span>
+				<div class="col text-start bordertop py-2 ps-4" style="background: #f0f6f9; color: #168;">
+					<span style="font-size:large; font-weight: 500;">${question.questionTitle }</span>
 				</div>
-				<div class="col bordertop py-3 text-end">
-					<div class="EmailDate">${question.email}<span class="ps-3">${question.questionDate }</span></div>
+				<div class="col bordertop py-2 text-end" style="background: #f0f6f9; color: #168;">
+					<div class="EmailDate" style="font-size:small;">${question.email}<span class="ps-3" style="font-size:small;">${question.questionDate }</span></div>
 				</div>
 			</div>
 			
 			<div class="row">
-				<div class="col p-4 border-bottom py-5" class="fontbold">
+				<div class="col ps-4 border-bottom py-4 mb-4" class="fontbold">
 					<span style="font-family: 'Noto Sans KR', sans-serif;"></span>
 					${question.questionContent }
 				</div>
 			</div>	
 			
+			<c:if test="${ question != null }">
+			<div class="row " id="global-content ">
+				<div class="col text-start bordertop py-2 ps-4 mt-5" style="background: #f0f6f9; color: #168;">
+					<span style="font-size:large; font-weight: 500;">${question.answerTitle }</span>
+				</div>
+				<div class="col bordertop py-2 text-end mt-5" style="background: #f0f6f9; color: #168;">
+					<div class="EmailDate" style="font-size:small;">${question.toEmail}<span class="ps-3" style="font-size:small;">${question.answerDate }</span></div>
+				</div>
+			</div>
+			
 			<div class="row">
-				<div class="col my-4">
+				<div class="col ps-4 border-bottom py-4" class="fontbold">
+					<span style="font-family: 'Noto Sans KR', sans-serif;"></span>
+					${question.answerContent }
+				</div>
+			</div>	
+			</c:if>
+			
+			<c:if test="${ question == null }">
+				<div class="my-5" style="color:red;">현재 답변 대기중</div>
+			</c:if>
+			
+			<div class="row">
+				<div class="col my-4 ms-2">
 					<input class="custom-btn btn-3 px-4" type="button" value="목록" style="font-size:small;" onclick="history.back();"/>
 				</div>
 			</div>			
@@ -68,25 +102,23 @@
             <!-- modal-dialog-scrollable 스크롤 기능 -->
             <div class="modal-content">
                 <div class="modal-header">
+               		<span class=""><h1>Email</h1></span>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
-                <div class="modal-body">
-                    <form action="productMailWrite" method="post">
+                <div class="modal-body text-center">
+                    <form action="productMailSend" method="post" onsubmit="alert('메일이 전송 되었습니다.');">
+                    	<input type="hidden" name="questionNo" id="questionNo" value="${ question.questionNo }">
                     	<input type="hidden" name="answerProgress" value="답변 완료">
-                    	<input type="hidden" name="answerCategory" value="${question.questionCategory }">
 
-                        <input name="toEmail" placeholder="이메일 주소" class="form-control mt-2" value="${question.email }"> <br>
-                        <input name="answerTitle" placeholder="제목을 입력하세요." class="form-control" value='"${question.questionTitle }" 답변 드립니다.'> <br>
+                        <input name="toEmail" placeholder="회원 이메일 주소을 입력해주세요." class="form-control mt-2" value="${question.email }" style="border-color:#168;"> <br>
+                        <input name="answerTitle" placeholder="제목을 입력하세요." class="form-control" value='"${question.questionTitle }" 답변 드립니다.' style="border-color:#168;"> <br>
                         <textarea name="answerContent" placeholder="내용을 입력해주세요." 
-                                  cols="60" rows="20" class="form-control"></textarea><br>
-                        <button type="submit" class="btn btn-primary mt-2 mb-2">발송</button>
+                                  cols="60" rows="20" class="form-control" style="border-color:#168;"></textarea><br>                               
+                        <button type="submit" class="button99 mt-2 mb-2 px-4 py-2">전송</button>
+                        <button type="button" class="button99 px-4 py-2 ms-5" data-bs-dismiss="modal">닫기</button>              		  	
                     </form>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                </div>
+                </div> 
             </div>
         </div>
     </div>

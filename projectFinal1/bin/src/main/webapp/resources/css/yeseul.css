@@ -1,28 +1,5 @@
 @charset "UTF-8";
 
-  
- .slider_wrap {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .slider_img { /* 이미지가 보이는 영역 */
-            position: relative;
-            width: 800px;
-            height: 450px;
-            overflow: hidden;
-        }
-        .slider_inner { /* 이미지 움직이는 영역 */
-            display: flex;
-            flex-wrap: wrap;
-            width: 4800px;  /* 총 이미지가 4800px */
-            height: 450px;
-            
-        }
-        .slider { /* 개별적인 이미지 */
-            position: relative;
-            width: 800px;
-            height: 450px;
-        }
+
+
+

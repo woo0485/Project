@@ -70,7 +70,7 @@ public class ProjectController {
 	
 	
 	@RequestMapping("/login")//로그인 페이지로 이동
-	public String loginFrom (){
+	public String loginForm (){
 		return "login";
 	}
 	

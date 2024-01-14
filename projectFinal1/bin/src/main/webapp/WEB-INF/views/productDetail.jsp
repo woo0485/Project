@@ -1,15 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <link href="resources/css/hyunju.css" rel="stylesheet">
 <script src="resources/js/jquery-3.2.1.min.js"></script>
-<script src="resources/js/HyunJu.js"></script>
+<script src="resources/js/hyunju.js"></script>
 
-<!-- content 영역 -->
+
+<!-- content 영역 ~~~~~~~~~~~~~  -->
 <div class="row my-5" id="global-content">
-	<div class="offset-1 col-10">
+	<div class="col">
+	
+	<div class="row">
+		<div class="col">
 		<form name="checkForm" id="checkForm">
-			<input type="hidden" name="productno" id="productno" value="${product.productno}"> 
+			<input type="hidden" name="productNo" id="productno" value="${product.productno}"> 
 			<input type="hidden" name="adminpassword" id="rPass"> 
 			<input type="hidden" name="pageNum" value="${ pageNum }" />
 
@@ -18,44 +23,185 @@
 				<input type="hidden" name="keyword" value="${ keyword }" />
 			</c:if>
 		</form>
-		<!-- @@@@@@@@ 게시 글 상세보기 영역  @@@@@@@@@@-->
-		<table>
-		<tr>
-			<td><img src="${product.productimage}"  width="400" height="500" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> 
-			
-			<td>
-			<!--  오른쪽에 뜨는 축제 정보 글 한묶음 -->
-				<h2>${ product.productname }</h2>
-					기간 ${ product.productopendate } ~ ${ product.productclosedate } <br>
-					금액 ${ product.productprice }  <br><br>
-		<!--  수량 선택 -->
-			<label>수량을 선택하세요<input type="number" name="number_select" min="1" max="4" value="1"></label> 
-		<!--  수량 선택 끝--> <br><br>
-				<a href="priceOrder" class="text-decoration-none link-secondary">구매하기 </a> 
-				<input class="btn btn-primary" type="button" value="구매하기"
-							onclick="location.href='priceOrder'" /> &nbsp;&nbsp; 
-				<a href="basket" class="text-decoration-none link-secondary">장바구니 뷰테스트 </a> 
+		<!--  장바구니에 단순히 보여지는 것만 -->
+		
+	<!--  ########## 장바구니에 추가할 때 form #############-->
+		<form name="addBasket" id="addBasket"  action="addBasket" method="post" >
+		<!-- 
+		<input type="text" name="productNo"  id="basketno"  value="${basket.basketno}"> 
+		<input type="text" name="productname"  id="productname"  value="${product.productname}">
+		 -->
+			<input type="hidden" name="productPrice"  id="productprice"  value="${product.productprice}">
+			<input type="hidden" name="id" id="rId" value="${sessionScope.id}"> 
+			<input type="hidden" name="productNo" id="productno01" value="${product.productno}"> 
+
+<!-- @@@@@@@@ 게시 글 상세보기 영역  @@@@@@@@@@-->
+
+		
+		<div class="row">
+			<div class="col-5">
+			 	<c:choose>
+					<c:when test="${fn:contains(product.productimage,'http')}">
+						<img src="${product.productimage}"  class="productimage" style="width: 100%; height: 400px;"  /></a> <br>
+					</c:when>
+					<c:otherwise>
+						<img src="resources/upload/${product.productimage}"  class="productimage"   style="width: 100%;  height: 400px;" /></a> <br>
+					</c:otherwise>
+					</c:choose>
+			</div>	
+			<div class="col-7">
+				<div class="row">
+				<div class="col-2 offset-7">
+					<span>조회수: ${ product.productreadcount }</span>
+				</div>
 				
-				<input class="btn btn-warning" type="button" id="detailBasket" value="장바구니"> <br>
-						<br>
-						전체 티켓 수: ${ product.productticketcount }
-						남은 티켓 수: ${ product.productremainticketcount }
-						조회수: ${ product.productreadcount }
-						<!--  축제 정보 글 한묶음 끝 -->
-			</td>
-		</tr>
-		</table>
-				<br><br><br>
-				<!-- ///////////  축제 정보 이미지와 내용  //////////// -->
-				<img src="http://via.placeholder.com/800x1000" alt="">
-				<pre>${ product.productcontent }</pre>
+				<div class="col">
+					<div class="row">
+						<div class="col-3">
+							<input type="hidden" name="productno" value="${product.productno}">
+							<input type="hidden" name="id" value="${sessionScope.id}">
+							<img src="resources/img/bookmark.png"  id="productDetailBookmark" style="cursor: pointer; width:40px; height:35px; "/>
+						</div>
+						<div class="col">
+							<span style="font-size:15px" id="productDetailBookmarkCount">
+								북마크 수 : ${ product.productbookmarkcount } 
+							</span>
+						</div>	
+					</div>
+					
+				</div>
+				</div>
+				<div class="row  my-1">
+					<div class="col">
+						<h1>${ product.productname }</h1>
+					</div>
+				</div>
+				<div class="row  my-1">
+					<div class="col">
+						<h5>기간  :${ product.productopendate } ~ ${ product.productclosedate } </h5>
+					</div>
+				</div>
+				<div class="row my-2">
+					<div class="col ">
+						<h5>금액 : ${ product.productprice } 원 </h5>
+					</div>
+				</div>
+						<c:if test="${not empty sessionScope.id}">	
+							<div class="row">
+								<div class="col">
+							<c:if test="${ product.productremainticketcount == 0}">
+										<p style="size: 20px; color: red;">매진</p>
+							</c:if>
+								</div>
+							</div>
+							
+							<c:if test="${ product.productremainticketcount != 0}">
+								<div class="row">
+								<div class="col">
+									<p>남은 티켓 수: ${ product.productremainticketcount }</p>
+						<!--  수량 선택  남은 수량 : productremainticketcount -->
+							<label for="basketproductcount" class="form-label">수량 :</label>
+							<!-- **** max 에  남은 티켓 수를 넣어줘야한다.??????? **** -->
+							<input type="number"  value="1" name="basketProductCount"  id="basketproductcount" min="1" max="${ product.productremainticketcount }" >
+							
+						<!--  수량 선택 끝--> <br><br>
+								<input type="submit" value="장바구니 담기" class="btn btn-outline-dark">	
+								</div>
+								</div>
+							</c:if>
+							
+								
+						</c:if>	
+				
+				
+				
+			</div>	
+		</div>
+		
+
+		
+				
+						
+								
+				
+		
+		
+		
+		
+		
+	</form>
+		</div>
+	</div>
+		<!--  ############  (장바구니) 끝 ############## -->
+		
+		<!--%%%%%%%%                  < 장바구니 가기 >               장바구니에 단순히 보여지는 것만 
+		<c:if test="${not empty sessionScope.id}">	
+		<form name="basketForm03" id="basketForm03"  action="basket" method="post" >
+			<input type="hidden" name="id" id="rId03" value="${sessionScope.id}"> 
+			<input type="hidden" name="basketno"  id="basketno03"  value="${basket.basketno}"> 
+			<input type="hidden" name="productno" id="productno03" value="${product.productno}"> 
+			<input type="hidden" name="basketproductcount"  id="basketproductcount03" value="${basket.basketproductcount}">
+			<input type="hidden" name="productprice"  id="productprice03"  value="${product.productprice}">
+			<input type="hidden" name="productname"  id="productname03"  value="${product.productname}">
+			<input type="submit" value="장바구니 가기" class="btn btn-danger">	
+		</form>
+		</c:if>	
+		  장바구니에 단순히 보여지는 것만 끝 %%%%%%%%%%-->
+			<br><br><br>
+			
+		<!-- ///////////  축제 정보 이미지와 내용  //////////// -->
+		<div class="row contentiamge">
+				<c:choose>
+					<c:when test="${fn:contains(product.productimage,'http')}">
+						<img src="${product.productimage}"  class="productimage" style="width: 100%;"  /></a> <br>
+					</c:when>
+					<c:otherwise>
+						<img src="resources/upload/${product.productimage}"  class="productimage"   style="width: 100%;" /></a> <br>
+					</c:otherwise>
+					</c:choose>
+				
+		</div>
+		<div class="row">
+			<div style="font-size:20px">${ product.productcontent }</div>
+		</div>
+		
 			</div>
 		</div>
 		
-		<!-- @@  여기서부터는 관리자가 수정 삭제할 수 있게 하는.....  @@-->
+<!-- @@  여기서부터는 관리자가 수정 삭제할 수 있게 하는.....  @@-->
+<!-- 관리자 로그인 XXXXXX  (임시로 관리자 로그인되었을 때 안되었을 때 둘 다 보이게 함 최종때는 수정할 것임)-->
+	
+	 <c:if test="${sessionScope.userType =='Admin' }">
+			<div class="row my-3">
+			<div class="col text-center">
+	
+		<!--  수정하려면 비밀번호 입력하는 영역  끝-->
+				<input class="btn btn-outline-warning" type="button" id="detailUpdate" value="수정 폼 이동"> &nbsp;&nbsp; 
+				<input class="btn btn-outline-danger" type="button" id="detailDelete" value="삭제하기">
+
+				<%-- 일반 게시 글 리스트에서 온 요청이면 일반 게시 글 리스트로 돌려 보낸다. --%>
+				<c:if test="${ not searchOption }">	
+				&nbsp;&nbsp;
+						<input class="btn btn-outline-dark" type="button"
+									value="목록보기"
+									onclick="location.href='productList?pageNum=${pageNum}'" />
+				</c:if>
+				<%-- 검색 리스트에서 온 요청이면 검색 리스트의 동일한 페이지로 돌려보낸다. --%>
+				<c:if test="${ searchOption }">	
+				&nbsp;&nbsp;
+						<input class="btn btn-outline-dark" type="button"
+									value="목록보기"
+									onclick="location.href='productList?pageNum=${pageNum}&type=${ type }&keyword=${ keyword }'" />
+				</c:if>
+			</div>
+		</div>
+	</c:if>
+		
+<!-- 관리자 로그인되었을 때  OOOOOOOOOO -->							
+	<c:if test="${not empty sessionScope.adminid}">
 		<div class="row my-3">
 			<div class="col text-center">
-			<!--  수정하려면 비밀번호 입력하는 영역 -->
+	<!--  수정하려면 비밀번호 입력하는 영역 -->
 		<div>
 			수정하기 폼으로 이동하거나, 삭제하려면 관리자 비밀번호를 입력하시오. 
 			<input class="form-control" type="password" name="adminpassword" id="adminpassword">
@@ -67,17 +213,19 @@
 
 				<%-- 일반 게시 글 리스트에서 온 요청이면 일반 게시 글 리스트로 돌려 보낸다. --%>
 				<c:if test="${ not searchOption }">	
-				&nbsp;&nbsp;<input class="btn btn-primary" type="button"
+				&nbsp;&nbsp;
+						<input class="btn btn-outline-dark" type="button"
 						value="목록보기"
 						onclick="location.href='productList?pageNum=${pageNum}'" />
 				</c:if>
 				<%-- 검색 리스트에서 온 요청이면 검색 리스트의 동일한 페이지로 돌려보낸다. --%>
 				<c:if test="${ searchOption }">	
-				&nbsp;&nbsp;<input class="btn btn-primary" type="button"
+				&nbsp;&nbsp;
+						<input class="btn btn-outline-dark type="button"
 						value="목록보기"
 						onclick="location.href='productList?pageNum=${pageNum}&type=${ type }&keyword=${ keyword }'" />
 				</c:if>
 			</div>
 		</div>
-	</div>
-</div>
+	</c:if>
+

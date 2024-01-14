@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <link href="resources/css/donggyun.css" rel="stylesheet">
-
 <style>
 .table {
   border-collapse: collapse;
@@ -49,14 +48,14 @@
 
 					<div class="row justify-content-center mb-5">
 						<div class="col-auto">
-							<select name="type" class="form-select">
+							<select name="type" class="form-select" style="border-color:#168;">
 								<option value="reservationno">예약 번호</option>
 								<option value="id">아이디</option>
 								<option value="reservationdate">예약 날짜</option>
 							</select>
 						</div>
 						<div class="col-3">
-							<input type="text" name="keyword" class="form-control" />
+							<input type="text" name="keyword" class="form-control" style="border-color:#168;"/>
 						</div>
 						<div class="col-auto">
 							<input type="submit" value="검 색" class="custom-btn btn-3 px-3" />
@@ -76,7 +75,7 @@
 					<div class="col">
 						<table class="table table-hover">
 							<thead>
-								<tr class="table-secondary text-center" style="color:black;">
+								<tr class="table-secondary text-center" style="color:black; font-size:small;">
 									<th>예약 번호</th>
 									<th>아이디</th>
 									<th>상품 번호</th>
@@ -94,19 +93,19 @@
 							<c:if test="${searchOption and not empty rList }">						
 								
 								<c:forEach var="r" items="${rList}">
-									<tr class="text-center" style="color:black;">
+									<tr class="text-center" style="color:black; font-size:small;">
 										<td>${ r.reservationno }</td>
 										<td>${ r.id }</td>
 										<td>${ r.productno }번</td>
-										<td>${ r.reservationprice }원</td>
+										<td><fmt:formatNumber value="${ r.reservationprice }" pattern="#,##0원" /></td>
 										<td>${ r.reservationticketcount }장</td>
 										<td>${ r.reservationdate }</td>						
 										<td>
 										<a href="updateManageReservation?reservationno=${ r.reservationno }"
-												class="btn btn-outline-warning py-0" role="button">예약 수정</a>
+												class="btn btn-outline-warning py-0" role="button" style="font-size:small;">예약 수정</a>
 										</td>
 										<td><button type="button" class="btn btn-outline-danger py-0" 
-										id="reservationDelete" data-no="${ r.reservationno }">예약 취소</button></td>
+										id="reservationDelete" data-no="${ r.reservationno }" style="font-size:small;">예약 취소</button></td>
 										
 									</tr>
 								</c:forEach>							
@@ -116,19 +115,19 @@
 							<c:if test="${not searchOption and not empty rList }">						
 								
 								<c:forEach var="r" items="${rList}">
-									<tr class="text-center" style="color:black;">
+									<tr class="text-center" style="color:black; font-size:small">
 										<td>${ r.reservationno }</td>
 										<td>${ r.id }</td>
-										<td>${ r.productno }번</td>
-										<td>${ r.reservationprice }원</td>
+										<td>${ r.productno }번</td>										
+										<td><fmt:formatNumber value="${ r.reservationprice }" pattern="#,##0원" /></td>
 										<td>${ r.reservationticketcount }장</td>
 										<td>${ r.reservationdate }</td>						
 										<td>
-										<a href="updateManageReservation?reservationno=${ r.reservationno }"
-												class="btn btn-outline-warning py-0" role="button">예약 수정</a>
+										<a href="updateManageReservation?reservationno=${ r.reservationno }" id="updateManageReservation"
+												class="btn btn-outline-warning py-0" role="button" style="font-size:small;">예약 수정</a>
 										</td>
 										<td><button type="button" class="btn btn-outline-danger py-0" 
-										id="reservationDelete" data-no="${ r.reservationno }">예약 취소</button></td>
+										id="reservationDelete" data-no="${ r.reservationno }" style="font-size:small;">예약 취소</button></td>
 										
 									</tr>
 								</c:forEach>							
@@ -160,13 +159,14 @@
 			<!-- 검색 요청이면서 검색된 리스트가 존재할 경우 페이지 네이션 -->
 			<c:if test="${searchOption and not empty rList}">
 				<div class="row">
-					<div class="col offset-1 text-center my-5">
+					<div class="col text-center my-5">
 						<nav aria-label="Page navigation example">
 							<ul class="pagination justify-content-center">
 	
 								<c:if test="${ startPage > pageGroup }">
 									<li class="page-item"><a class="page-link"
-										href="manageReservation?pageNum=${startPage - pageGroup }">Pre</a></li>
+										href="manageReservation?pageNum=${startPage - pageGroup }
+											&type=${ type }&keyword=${ keyword }">Pre</a></li>
 								</c:if>
 	
 								<c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -177,13 +177,14 @@
 	
 									<c:if test="${i != currentPage}">
 										<li class="page-item"><a class="page-link"
-											href="manageReservation?pageNum=${i}">${i}</a></li>
+											href="manageReservation?pageNum=${ i }&type=${ type }&keyword=${ keyword }">${i}</a></li>
 									</c:if>
 								</c:forEach>
 	
 								<c:if test="${ endPage < pageCount }">
 									<li class="page-item"><a class="page-link"
-										href="manageReservation?pageNum=${endPage + 1}">Next</a></li>
+										href="manageReservation?pageNum=${ startPage + pageGroup }
+						     				 &type=${ type }&keyword=${ keyword }">Next</a></li>
 								</c:if>
 	
 							</ul>
@@ -195,7 +196,7 @@
 			<!-- 검색 요청이면서 검색된 리스트가 존재할 경우 페이지 네이션 -->
 			<c:if test="${not searchOption and not empty rList}">
 				<div class="row">
-					<div class="col offset-1 text-center my-5">
+					<div class="col text-center my-5">
 						<nav aria-label="Page navigation example">
 							<ul class="pagination justify-content-center">
 	

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.finalproject.festival.mapper.EventMapper" >
+
+	<insert id="eventUpload" parameterType="Event">
+		INSERT INTO Event (eventtitle, eventimage, eventopendate, eventclosedate, participationtarget, participationmethod, benefitsprovided) VALUES (#{eventtitle}, #{eventimage}, #{eventopendate}, #{eventclosedate}, #{participationtarget}, #{participationmethod}, #{benefitsprovided})
+	</insert>
+	
+	<select id="event" resultType="Event">
+		SELECT * FROM Event ORDER BY eventopendate DESC, eventno DESC
+	</select>
+	
+	<select id="eventDetail" parameterType="int" resultType="Event">
+		SELECT * FROM Event WHERE eventno=#{eventno}
+	</select>
+	
+	<insert id="eventPresentCondition" parameterType="HashMap">
+		INSERT INTO EventPresentCondition (eventno, id) VALUES (#{eventno}, #{id})
+	</insert>
+	
+	<select id="eventPresentConditionIdList" parameterType="int" resultType="String">
+		SELECT id FROM EventPresentCondition WHERE eventno = #{eventno}
+	</select>
+	
+	<insert id="eventCoupon" parameterType="HashMap">
+		INSERT INTO MemberCoupon (couponno, id, couponopendate, couponclosedate) VALUES (#{couponno},#{id},#{couponopendate},#{couponclosedate})
+	</insert>
+	
+</mapper>	
+
+
+
