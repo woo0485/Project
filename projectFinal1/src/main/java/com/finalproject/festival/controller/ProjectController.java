@@ -46,7 +46,7 @@ import com.finalproject.festival.service.MailService;
 import com.finalproject.festival.service.MemberService;
 import com.finalproject.festival.service.MessageServiceImpl;
 import com.finalproject.festival.service.NewsService;
-import com.google.gson.JsonObject;
+
 
 
 
