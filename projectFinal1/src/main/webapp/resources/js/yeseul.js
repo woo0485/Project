@@ -20,13 +20,13 @@
             newsItems.slice(visibleItems, visibleItems + 1).slideDown();
         }, 3000);
         
-  
-  /*-----------------------bookmark.js--------------------------------*/    
-       
+        
+
       $(".productbookmark").click(function() {
 		    var id = $(this).prev().val();
 		    var productno = $(this).prev().prev().val();
-		
+		    var count = $(this).next().next().attr("id");
+		console.log(count);
 		    console.log("productno" + productno + "id" + id);
 		
 		    if (id == "") {
@@ -41,7 +41,7 @@
 		            },
 		             success: function (result) {
 		             	console.log(result);
-		             	window.location.href = "productList";
+		             	$("#"+count).text(result);
 		             },
 		            error: function(jqXHR, textStatus, errorThrown) {
 		                console.log("login err" + "jqXHR " + jqXHR + "textStatus" + textStatus + "errorThrown" + errorThrown);
@@ -49,9 +49,11 @@
 		
 		        });
 		    }
+		       
 		});
-       
-   
+		
+	
+
   /*-----------------------mainSearch.js--------------------------------*/ 
 
 	$("#seeMoreProduct").click(function(){
@@ -129,7 +131,6 @@
  	//약관동의 end
  
  
- 
  	//회원가입
  	//정규식 유효성 검사
     // 이름 
@@ -158,7 +159,7 @@
  			
  			$("#joinNameMsg").text(isValid ? "" : "영문또는 한글 ,2자이상 15자 이하로만 입력해주세요.");
  			$("#joinName").attr("data-code", isValid ? "true" : "false");
- 			$(elementId).css("color",color);
+ 			$(elementId).css("color","red");
  			
  			}
  	});
@@ -326,12 +327,14 @@
  		//이메일 인증
  	$('#eMailCheckBtn').click(function() {
 		const email = $('#eMailId').val() +"@"+ $('#eMailDomain').val(); // 이메일 주소값 얻어오기!
-		
+		$("#joinEmailLoading").css("display","block");
 			    $.ajax({
 					type : 'post',
 					url : "joinEmailCheck",
 					data : {"email" :email},
 					datatype :"text",
+					
+					async    : false,
 					success : function (data) {
 					    
 						console.log("join이메일 체크"+data); // 성공하면
@@ -344,8 +347,10 @@
 							url : "mailCheck",
 							data : {"email" :email},
 							datatype :"text",
+							async    : false,
 							success : function (data2) {
 								console.log("ajax2-data2 : " +  data2);
+								$("#joinEmailLoading").css("display","none");
 								$("#eMailCheckMsg").text("인증번호가 전송되었습니다.").css("color", "green");
 								$("#eMailCheckLi").slideDown('slow');
 								$("#eMailCheckBtn").val("재전송");
@@ -415,9 +420,6 @@
 			
  
  	//회원가입 end
- 	
- 
- 
 
  
  /*-------------------------login.js--------------------------------*/ 
@@ -519,7 +521,6 @@
   				$("#findIdEmailMsg").text("이름 또는 이메일을 다시 확인해주세요.").css("color","red");
   			}else{
   			$("#findId").val(data);
-  			$("#findIdLoading").css("display","block");
   			
   			$.ajax({
 							type : 'post',
@@ -527,9 +528,11 @@
 							data : JSON.stringify({"email" :email}),
 							contentType: "application/json",
 							datatype :"text",
+							async    : false,
 							success : function (data2) {
 								
 								console.log("ajax2-data2 : " +  data2);
+								$("#findIdLoading").css("display","none");
   								$("#findIdEmailCheck").removeAttr("hidden");
 								$("#findIdEmailCheck").slideDown('slow');
 								$("#findIdEmailMsg").text("인증번호가 전송되었습니다.").css("color", "green");

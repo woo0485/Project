@@ -53,5 +53,5 @@ public interface MemberService {
 	
 	/************************bookmark***************************/
 	
-	public void bookmarkChange(String id, int productno);
+	public int bookmarkChange(String id, int productno);
 }

@@ -47,7 +47,9 @@
 					    </div>
 					     <div class="col-2 text-center">
 							<input type="button" id="phoneCheckBtn" class="form-control btn btn-outline-dark" value="인증하기">
+
 						</div>  
+
 						<input type="hidden" id="phoneNumberCheckCode">
 					</div>
 					<div class="row" id="phoneCheckLi" style="display: none;">
@@ -160,7 +162,9 @@
 					<div class="row">
 						<span id="eMailCheckMsg" class="form-text offset-md-3"></span>
 					</div>	
-					 
+					 <div class="spinner-border text-success offset-5" id="joinEmailLoading" role="status" style="display: none;">
+					 	 <span class="visually-hidden">Loading...</span>
+					 </div>
 					<div class="row" id="eMailCheckLi" style="display: none;">
 						<div class="offset-3 col-7 border-bottom ">
 								
@@ -183,7 +187,7 @@
 						
 					<div class="row offset-3 my-5 pt-5 justify-content-end">
 						<div class="col">
-							<a href="login" class="btn btn-outline-dark">돌아가기</a>
+							<a href="main" class="btn btn-outline-dark">돌아가기</a>
 						</div>
 						<div class="col">
 							<input type="submit" value="회원가입" class="btn btn-outline-dark offset-1" id="memberJoinBtn">

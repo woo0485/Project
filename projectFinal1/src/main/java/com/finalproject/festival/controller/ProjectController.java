@@ -49,7 +49,7 @@ public class ProjectController {
 	
 	
 	@RequestMapping("/login")//로그인 페이지로 이동
-	public String loginFrom (){
+	public String loginForm (){
 		return "login";
 	}
 	
@@ -286,7 +286,7 @@ public class ProjectController {
 						memberService.newMemberCoupon(id);
 						
 		
-		return "login";
+		return "redirect:login";
 	}
 	
 
@@ -379,13 +379,13 @@ public class ProjectController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/bookmarkChange" ,method = RequestMethod.POST)
-	public String bookmarkChange(String id, int productno){
+	public int bookmarkChange(String id, int productno){
 		
 		System.out.println(id+"-----controller-----"+productno);
 		
-		memberService.bookmarkChange(id, productno);
 		
-		 return "success";
+		
+		 return memberService.bookmarkChange(id, productno);
 	}
 	
 }

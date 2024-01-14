@@ -22,15 +22,16 @@ public void setSqlSession(SqlSessionTemplate sqlSession) {
 	this.sqlSession = sqlSession;
 }	
 
+// 장바구니 전체 금액 가져오기
+public Integer getBasketTotalPrice(String id) {
+	return sqlSession.selectOne(NAME_SPACE + ".getBasketTotalPrice", id);
+}
+
 // 회원 장바구니 목록보기 - 1월 3일 추가
 @Override
-public List<Map<String,Object>> basketList(String id, int productno) {
+public List<Basket>  basketList(String id) {
 	
-	Map<String, Object> map = new HashMap<>();
-	map.put("id", id);
-	map.put("productno",productno);
-	
-	return sqlSession.selectList(NAME_SPACE + ".basketList",map);
+	return sqlSession.selectList(NAME_SPACE + ".basketList", id);
 }
 
 /*
@@ -46,27 +47,6 @@ public void insertBasket(Basket b) {
 	sqlSession.insert(NAME_SPACE + ".insertBasket", b);
 }
 
-// 회원 장바구니에 productno가 중복되었는지 확인함 - 1월 5일
-/*
-@Override
-public boolean isDupBasketCheck(int productno, String id) {
-	
-	boolean result = true;
-	
-	// isDupBasketCheck 맵핑 구문을 호출하면서 productno를 파라미터로 지정한다.
-	String dbProductNO = sqlSession.selectOne(NAME_SPACE + ".isDupBasketCheck",productno);
-	
-	// productno가 존재한다면 false를 반환한다. => 새로 담기
-	// productno가 존재하지 않으면 true를 반환해서 basketproductcount를 증가시킨다.
-	if(!dbProductNO.isEmpty()) {  //  productno가 존재하면 수량만 증가하기
-		result = false;
-	} else { //  productno가 존재하지 않으면 새로 담기
-		result = true;
-	}
-	return result;
-	}
-*/
-
 @Override
 public boolean isDupBasketCheck(int productno, String id) {
     Map<String, Object> paramMap = new HashMap<>();
@@ -79,34 +59,25 @@ public boolean isDupBasketCheck(int productno, String id) {
     return count  > 0;
 }
 
+// 장바구니 추가 할 때 기존에 장바구니에 있는 상품 수량 수정
 @Override
 public void updateBasketProductCount(Basket b) {
-	Map<String, Object> map = new HashMap<String, Object>();
-	map.put("id", b.getId());
-	map.put("productno", b.getProductno());
-	map.put("basketproductcount", b.getBasketproductcount());
-	
-	System.out.println("basketdao 에서 updateBasketProductCount-  id : " +b.getId() );
-	System.out.println("basketdao 에서 updateBasketProductCount- productno : " + b.getProductno());
-	System.out.println("basketdao 에서 updateBasketProductCount - basketproductcount : " + b.getBasketproductcount());
-	
-	sqlSession.update(NAME_SPACE + ".updateBasketProductCount",map);
-	
+	sqlSession.update(NAME_SPACE + ".updateBasketProductCount", b);	
 }
 //////////////////여기서부터는 productno 중복되는지 확인해서 장바구니에 넣기 끝 ////////////////
 
 //////////// 여기서부터는 장바구니 내에서 상품 수량 변경 및 삭제 및 전체 삭제 /////////////////////////////
 @Override
-public void updateBasketProductnoCount(Map<String, Object> param) {
-	
-	sqlSession.update(NAME_SPACE + ".updateBasketProductnoCount", param);
+public void updateBasketProductNoCount(Map<String, Object> param) {	
+	sqlSession.update(NAME_SPACE + ".updateBasketProductNoCount", param);
 }
 
+//#### id에 해당하는 productno 하나하나 삭제하기
 @Override
-public void deleteBasketProductno(Basket b) {
+public void deleteBasketProductno (int productNo, String id) {
 	Map<String, Object> map = new HashMap<String, Object>();
-	map.put("id", b.getId());
-	map.put("productno", b.getProductno());
+	map.put("productNo", productNo);
+	map.put("id", id);
 	
 	sqlSession.delete(NAME_SPACE + ".deleteBasketProductno", map);
 }
@@ -116,8 +87,15 @@ public void deleteBasketAll(String id) {
 	sqlSession.delete(NAME_SPACE + ".deleteBasketAll", id);
 }
 
+//주문 가능 수량 가져오기
+@Override
+public Integer getProductRemainingAmount(int productNo) {
+	return sqlSession.selectOne(NAME_SPACE + ".getProductRemainingAmount", productNo);
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////
 //장바구니 삭제 - 1월 5일
+/*
 @Override
 public void deleteBasket(int basketno, String id) {
 	
@@ -127,4 +105,5 @@ public void deleteBasket(int basketno, String id) {
 	
 	sqlSession.insert(NAME_SPACE + ".deleteBasket", map);
 	}
+	*/
 }

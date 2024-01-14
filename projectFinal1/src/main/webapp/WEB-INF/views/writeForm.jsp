@@ -12,7 +12,7 @@
 </script>
 	<!-- content 영역 -->
 	<div class="row my-5" id="global-content">		
-		<div class="offset-1 col-10">
+		<div class="col">
 			<div class="row">
 				<div class="col">
 					<h2 class="fs-3 fw-bold text-center">축제 정보 글 쓰기</h2>

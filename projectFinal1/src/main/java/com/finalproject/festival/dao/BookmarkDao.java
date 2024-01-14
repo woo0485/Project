@@ -20,5 +20,7 @@ public interface BookmarkDao {
 	public void bookmarkDelete(String id, int productno);
 	
 	public List<Product> ProductListBookmark();
+	
+	public int productBookmarkSelect(int productno); 
 
 }
