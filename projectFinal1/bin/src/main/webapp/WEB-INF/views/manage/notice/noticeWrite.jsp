@@ -38,11 +38,10 @@
 		<input type="hidden" name="noticeImage" id="noticeImage">
 	</div>
 	
-	<div class="text-center my-2">
-			<span class="mb-5"><input type="submit" value="등록하기" class="custom-btn btn-3 px-3">
-			
-			<span class="ms-5"><input type="button" value="뒤로가기" class="custom-btn btn-3 px-3"
-				onclick="history.back()"></span>
+	<div class="text-center my-4">
+			<input type="submit" value="등록하기" class="custom-btn btn-3 px-4" >&nbsp;&nbsp;
+			<input type="button" value="뒤로가기" class="custom-btn btn-3 px-4"
+				onclick="history.back()">
 	</div>
 	
 	

@@ -68,10 +68,10 @@
 	<div class="col">
 
 		<div class="row">
-			<div class="col-3">
+			<div class="col-4">
 				<jsp:include page="/WEB-INF/views/manage/manageSide.jsp" />
 			</div>
-			<div class="col text-start mt-5">
+			<div class="col-6 text-start mt-5">
 				<h3>관리페이지</h3>
 
 				<div class="row">

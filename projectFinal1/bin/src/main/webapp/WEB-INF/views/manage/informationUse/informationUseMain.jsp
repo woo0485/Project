@@ -64,14 +64,12 @@ div table tbody td {
 
 			<div class="row">
 				<div class="col-10 text-center">
-					<c:if test="${sessionScope.userType =='Admin' }">
-						<div class="col-2 offset-10 mt-3">
-							<a href="informationUseWrite"
-								class="text-decoration-none text-danger link-secondary border border-danger rounded px-4 py-2">안내 
-								작성</a>
-						</div>
-					</c:if>
-					<table class="table mt-4" style="font-size:small;">
+					<div class="col-2 offset-10 mt-3">
+						<a href="informationUseWrite"
+							class="text-decoration-none text-danger link-secondary border border-danger rounded px-4 py-0">안내 
+							작성</a>
+					</div>
+					<table class="table mt-3">
 						<thead>
 							<tr>
 								<th class="py-3">NO</th>

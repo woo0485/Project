@@ -3,106 +3,12 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper
-	namespace="com.finalproject.festival.mapper.GalleryMapper">
+<mapper namespace="com.finalproject.festival.mapper.GalleryMapper" >
 
 	<insert id="insertGallery" parameterType="java.util.HashMap">
-		INSERT INTO Gallery
-		(id,gallerytitle,gallerycontent,galleryimage,gallerywriter,galleryuploaddate,gallerygoodcount)
-		VALUES (#{gallery.id}, #{gallery.gallerytitle},
-		#{gallery.gallerycontent}, #{sqlimage}, #{gallery.gallerywriter},
-		SYSDATE(),0)
-	</insert>
-
-	<select id="gallery" resultMap="galleryResultMap">
-		SELECT * FROM Gallery ORDER BY
-		galleryuploaddate DESC
-	</select>
-
-	<select id="orderGallery" resultMap="galleryResultMap"
-		parameterType="java.util.Map">
-		SELECT * FROM Gallery
-		<if test="orderType == 'galleryDateLatest'">
-			ORDER BY galleryuploaddate DESC
-		</if>
-		<if test="orderType == 'galleryDatePopularity'">
-			ORDER BY gallerygoodcount DESC
-		</if>
-	</select>
-	
-	<update id="galleryheart" parameterType="int">
-		UPDATE Gallery
-		SET gallerygoodcount = gallerygoodcount + 1
-		WHERE galleryno = #{galleryno}
-	</update>
-	
-	<update id="gallerybad" parameterType="int">
-		UPDATE Gallery
-		SET gallerygoodcount = gallerygoodcount - 1
-		WHERE galleryno = #{galleryno}
-	</update>
-	
-	<select id="gallerySelectUpdateCount" parameterType="int" resultType="int">
-		SELECT gallerygoodcount
-		FROM Gallery
-		WHERE galleryno = #{galleryno}
-	</select>
-	
-	<insert id="insertGalleryBookmark" parameterType="HashMap">
-		INSERT INTO GalleryBookmark
-		(id,galleryno)
-		VALUES (#{id}, #{galleryno})
+		INSERT INTO Gallery (id,gallerytitle,gallerycontent,galleryimage,gallerywriter,galleryuploaddate,gallerygoodcount) VALUES (#{gallery.id}, #{gallery.gallerytitle}, #{gallery.gallerycontent}, #{sqlimage}, #{gallery.gallerywriter}, SYSDATE(),0)
 	</insert>
 	
-	<delete id="deleteGalleryBookmark" parameterType="HashMap">
-		DELETE FROM GalleryBookmark WHERE id = #{id} AND galleryno = #{galleryno}
-	</delete>
-	
-	<select id="galleryBookmark" parameterType="String" resultType="GalleryBookMark">
-		SELECT * FROM GalleryBookmark WHERE id = #{id}
-	</select>
-	
-	<select id="galleryCheckPassword" parameterType="String" resultType="String">
-	    SELECT password FROM Member WHERE id = #{userId}
-	</select>
-	
-	<delete id="galleryDelete" parameterType="int">
-	    DELETE FROM Gallery WHERE galleryno = #{galleryno}
-	</delete>
-	
-	<delete id="galleryBookmarkDelete" parameterType="int">
-	    DELETE FROM GalleryBookmark WHERE galleryno = #{galleryno}
-	</delete>
-	
-	<select id="galleryModifyFormData" parameterType="int" resultType="Gallery">
-		SELECT * FROM Gallery WHERE galleryno = #{galleryno}
-	</select>
-	
-	<update id="galleryModify" parameterType="Gallery">
-		UPDATE Gallery
-		SET gallerytitle = #{gallerytitle}, gallerycontent = #{gallerycontent}, gallerywriter = #{gallerywriter}
-		WHERE galleryno = #{galleryno}
-	</update>
-	
-	<update id="galleryModifyContainImage" parameterType="HashMap">
-		UPDATE Gallery
-		SET gallerytitle = #{gallery.gallerytitle}, gallerycontent = #{gallery.gallerycontent}, gallerywriter = #{gallery.gallerywriter}, galleryimage = #{sqlimage} 
-		WHERE galleryno = #{gallery.galleryno}
-	</update>
-
-	<resultMap id="galleryResultMap" type="Gallery">
-		<result property="id" column="id" />
-		<result property="gallerytitle" column="gallerytitle" />
-		<result property="gallerycontent" column="gallerycontent" />
-		<result property="gallerywriter" column="gallerywriter" />
-		<result property="gallerygoodcount" column="gallerygoodcount" />
-		<result property="galleryuploaddate" column="galleryuploaddate" />
-		<result property="galleryno" column="galleryno" />
-		<result property="galleryimage" column="galleryimage"
-			jdbcType="VARCHAR" javaType="java.lang.String"
-			typeHandler="com.finalproject.typeHandler.StringArrayTypeHandler" />
-	</resultMap>
-
 </mapper>	
 
 

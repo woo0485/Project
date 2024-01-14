@@ -58,24 +58,17 @@ div table tbody td {
 										<th class="" style="width:350px;">문의 제목</th>
 										<th class="" style="width:150px;">이메일</th>
 										<th class="" style="width:150px;">문의 날짜</th>
-										<th class="">답변 여부</th>
 									</tr>
 								</thead>
 								<tbody class="text-secondary">								
 									
 									<c:forEach var="i" items="${iList}">
-										<tr style="color:black; font-size:small">
+										<tr style="color:black;">
 											<td class="text-center">${ i.id }</td>
 											<td class="px-4"><a href="manageProductDetail?questionNo=${i.questionNo}&pageNum=${currentPage}" 
 												class="text-decoration-none" style="color:black;">${ i.questionTitle }</a></td>
 											<td class="text-center">${ i.email }</td>
-											<td class="text-center">${ i.questionDate }</td>
-											<c:if test="${ i.answerProgress != '답변 완료' }">
-												<td class="text-center">${ i.answerProgress }</td>	
-											</c:if>		
-											<c:if test="${ i.answerProgress == '답변 완료' }">
-												<td class="text-center" style="color:red;">${ i.answerProgress }</td>	
-											</c:if>																									
+											<td class="text-center">${ i.questionDate }</td>										
 										</tr>
 									</c:forEach>							
 									
@@ -86,7 +79,7 @@ div table tbody td {
 					
 					<!-- 페이지네이션 -->
 					<div class="row">
-						<div class="col text-center my-5">
+						<div class="col offset-1 text-center my-5">
 							<nav aria-label="Page navigation example">
 								<ul class="pagination justify-content-center">
 

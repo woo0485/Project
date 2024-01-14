@@ -26,10 +26,10 @@ $(document).ready(function(){
 });
 </script>
 <div class="row mt-5">
-	<div class="col">
+	<div class="col-10 offset-1 mt-1">
 
 
-		<div class="row mb-5">
+		<div class="row">
 			<div class="col">
 			
 				<div id="carouselExampleCaptions" class="carousel slide carousel-fade"  data-bs-ride="carousel">
@@ -90,58 +90,27 @@ $(document).ready(function(){
 			</div>
 		</div>
 	
-		<div class="row my-5">
+		<div class="row">
+			<h4>진행중인  이벤트</h4>
 			<div class="col">
-			<h4 class="fw-bold fs-3 pt-5">진행중인  이벤트</h4>
-					<div class="row">
-						<div class="col-4">
-							<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-								<div class="carousel-inner">
-								 <c:forEach var="event" items="${eventList}" varStatus="eventLoop">
-								 	 <c:if test="${eventLoop.index == 0}">
-									    <div class="carousel-item active">
-									      <img src="https://via.placeholder.com/700x700" class="d-block w-100" alt="...">
-									    </div>
-									 </c:if>   
-									 
-									    <div class="carousel-item">
-									      <img src="https://via.placeholder.com/700x700" class="d-block w-100" alt="...">
-									    </div>
-									
-								  </c:forEach> 
-						 	 </div>
-						</div>
-					</div>
-				
-					
-					<div class="col">
-						<c:forEach var="event1" items="${eventList}" end="5">
-							<div class="row border-bottom my-2">
-								<div class="col" style="font-size: 40px;">
-									<a href="#" style="color: black; text-decoration: none; ">${event1.eventtitle}</a>
-								</div>
-							</div>
-						</c:forEach>
-					</div> 
-				</div>	
 			</div>
 		</div>
 
 	
 	
-		 	
 		<div class="row my-5 owl-carousel owl-theme owl-loaded">
-		 <div class="col owl-stage-outer">
-		 <p class="fw-bold fs-3 pt-5">갤러리</p>
-		  <div class="owl-stage">
-	  		<c:forEach var="gallery" items="${galleryList}" varStatus="galleryLoop">
+	 <div class="col owl-stage-outer">
+	  <div class="owl-stage">
+	  
+		  		<c:forEach var="gallery" items="${galleryList}" varStatus="galleryLoop">
 				<div class="owl-item">
-					<a href="galleryRedirect"><img class="img-responsive" style="width:100%; height: 300px;" src="resources/upload/${gallery.galleryimage[0]}" alt="이미지1"></a>
+						<a href="galleryRedirect"><img class="img-responsive" style="width:100%; height: 300px;" src="resources/upload/${gallery.galleryimage[0]}" alt="이미지1"></a>
 				</div>
-			</c:forEach>
-		   </div>
-		  </div>
-		 </div>
+				</c:forEach>
+	   
+	   </div>
+	  </div>
+	 </div>
 	
 	
 	

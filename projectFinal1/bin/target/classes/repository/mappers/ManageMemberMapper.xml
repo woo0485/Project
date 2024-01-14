@@ -25,7 +25,7 @@
 		
 	</select>
 
-	<resultMap id="ManageMemberMap" type="Member" >
+	<resultMap id="ManageMemberMap" type="Festival" >
 		<id property="id" column="id" />
 		<result property="password" column="password" />
 		<result property="name" column="name" />
@@ -33,13 +33,10 @@
 		<result property="email" column="email" />
 		<result property="totalpay" column="totalpay" />
 		<result property="grade" column="grade" />
-		<result property="joindate" column="joindate" />		
-		<result property="address1" column="address1" />
-		<result property="address2" column="address2" />
-		<result property="zipcode" column="zipcode" />
+		<result property="joindate" column="joindate" />
 	</resultMap>
 	
-	<select id="manageMember" resultType="Member" parameterType="hashmap">
+	<select id="manageMember" resultType="Festival" parameterType="hashmap">
 		SELECT
 			*
 		FROM Member
@@ -60,19 +57,17 @@
 		LIMIT #{start}, #{num}
 	</select>
 	
-	<select id="getManageMember" resultType="Member" resultMap="ManageMemberMap">
+	<select id="getManageMember" resultType="Festival" resultMap="ManageMemberMap">
 		SELECT
 			*
 		FROM Member
 		WHERE id = #{id}
 	</select>
 	
-	<update id="updateManageMember" parameterType="Member">
+	<update id="updateManageMember" parameterType="Festival">
 		UPDATE Member
 		SET id = #{id}, name = #{name}, phonenumber = #{phonenumber},
-			email = #{email}, totalpay = #{totalpay}, grade = #{grade}, 
-			joindate = #{joindate}, address1 = #{address1}, 
-			address2 = #{address2}, zipcode = #{zipcode}			
+			email = #{email}, totalpay = #{totalpay}, grade = #{grade}
 		WHERE id = #{id}
 	</update>
 	
@@ -85,3 +80,6 @@
 
 	
 </mapper>	
+
+
+

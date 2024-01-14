@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link href="resources/css/hyunju.css" rel="stylesheet" >
 <script src="resources/js/jquery-3.2.1.min.js"></script>
@@ -16,28 +15,17 @@
     left: 80%;
     transform: translate( -50%, -50% );
     color: black;
-    background-color: transparent;
+    border: 5px solid red;
+    background-color: white;
   }
-
-  .productBookmarkShowCount {
-   text-align: center;
-   font-size: 20px;
-   color: black; 
-   text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white; 
+  .carousel{
+  border: 1px solid blue;
+  padding: auto;
   }
-  .prroductremainticket {
-  display: flex;
+  .d-block w-10{
+  width: 100px;
+  height: 100px;
   }
-  .productname{
-   font-size: 20px;
- font-weight: bold;
-  }
-  
-  .carousel {
-  text-align: center;
-  }
-  
-
   </style>
 
 <!-- content -->
@@ -65,13 +53,13 @@
 	<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" >
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="2000">
-      <img src="resources/img/4.jpg" class="d-block w-100" alt="..." style="height: 650px;">
+      <img src="resources/img/4.jpg" class="d-block w-10" alt="...">
     </div>
     <div class="carousel-item" data-bs-interval="2000">
-      <img src="resources/img/5.jpg" class="d-block w-100" alt="..." style="height: 650px;">
+      <img src="resources/img/5.jpg" class="d-block w-10" alt="...">
     </div>
     <div class="carousel-item" data-bs-interval="2000">
-      <img src="resources/img/3.jpg" class="d-block w-100" alt="..." style="height: 650px;">
+      <img src="resources/img/3.jpg" class="d-block w-10" alt="...">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -87,11 +75,16 @@
 <!--  캐러셀  끝-->	 	
 	
 <!--/////////////      축제정보 등록      /////////////-->
-
+<!-- 관리자 로그인 XXXXXX  (임시로 관리자 로그인되었을 때 안되었을 때 둘 다 보이게 함 최종때는 수정할 것임)-->	
+	 <c:if test="${empty sessionScope.adminid}">
+		<div class="col-12 text-end">
+				<a href="writeForm" class="btn btn-outline-success">축제정보 등록</a>
+		</div>
+		</c:if>
 <!-- 관리자 로그인되었을 때  OOOOO-->							
-	<c:if test="${sessionScope.userType =='Admin' }">
+	<c:if test="${not empty sessionScope.adminid}">
 	<div class="col-12 text-end">
-				<a href="productWrite" class="btn btn-outline-success">축제정보 등록</a>
+				<a href="writeForm" class="btn btn-outline-success">축제정보 등록</a>
 		</div>
 	</c:if>
 <!-- ///////////////     축제정보 등록 끝      //////////////-->
@@ -119,7 +112,7 @@
 		
 		<div class="row my-3">
 			<div class="col">
-				<table class="table">
+				<table class="table table-hover">
 					<tbody class="text-secondary">
 						
 		<c:set var="i" value="0" />
@@ -129,47 +122,29 @@
 						<c:if test="${i%j == 0 }">
 						<tr>
 						</c:if>
+						
 					<td class="productimage">
 					<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
 								class="text-decoration-none link-secondary">
-					<c:choose>
-						<c:when test="${fn:contains(p.productimage,'http')}">
-							<img src="${p.productimage}"  class="productimage"  width="300" height="200"  /></a> <br>
-						</c:when>
-						<c:otherwise>
-							<img src="resources/upload/${p.productimage}"  class="productimage"  width="300" height="200"  /></a> <br>
-						</c:otherwise>
-					</c:choose>
+								
+					<img src='resources/upload/${p.productimage}' class="productimage"  width="300" height="200" /></a> <br>
 					
 <!--  %%%%%%%%%%%%%    북마크 이미지 위에 출력    %%%%%%%%%%%%%%-->
 <!--  북마크 기능 - 1월 4일  https://www.flaticon.com/kr/free-icon/bookmark_5624111?term=%EB%B6%81%EB%A7%88%ED%81%AC&page=1&position=33&origin=search&related_id=5624111-->		
-				
-				<div class="productContext">
-				 	<div class="productname"><a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
-								class="text-decoration-none link-secondary">${ p.productname }</a>  </div>
-					${ p.productlocation } 
-				</div>
-				
-				<div id="commend" class="btnCommend text-primary" >
-				
-						<div class="prroductremainticket" style="font-size:15px"> 
-							<img src="resources/img/ticket.png"  width="40" height="35"  />  &nbsp;
-							<div class="remainticket"> ${ p.productremainticketcount } </div> &nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<img src="resources/img/won.png"  width="40" height="35"  />  &nbsp;
-							<div class="ticketprice"> ${ p.productprice } </div>
-						</div>
-						
+				<div id="commend" class="btnCommend text-primary" style="cursor: pointer;"> 
 						<div class="productbookmarkcount" style="font-size:15px">
-						<input type="hidden" name="productno" value="${p.productno}">
-						<input type="hidden" name="id" value="${sessionScope.id}">
-							<img class="productbookmark" src="resources/img/bookmark.png" style="width: 50px; height: 40px; cursor: pointer;"/> <br>
-							<div class="productBookmarkShowCount"> ${ p.productbookmarkcount } </div>
+							<img src="resources/img/bookmark.png"  width="40" height="35" />
+							북마크 수 : ${ p.productbookmarkcount } 
 					</div>
-					
 				</div>
 				
+					지역 : ${ p.productlocation } <br>
+					<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
+								class="text-decoration-none link-secondary">${ p.productname }</a> <br>
+					이름 : ${ p.productname } <br>
+					가격: ${ p.productprice } <br>
 					</td>
+			
 							<c:if test="${i%j == j-1 }">		
 						</c:if>
 						 <c:set var="i" value="${i+1 }" />
@@ -188,42 +163,23 @@
 					<td class="productimage">
 							<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
 								class="text-decoration-none link-secondary">
-								<c:choose>
-								<c:when test="${fn:contains(p.productimage,'http')}">
-									<img src="${p.productimage}"  class="productimage"  width="300" height="200"  /></a> <br>
-								</c:when>
-								<c:otherwise>
-									<img src="resources/upload/${p.productimage}"  class="productimage"  width="300" height="200"  /></a> <br>
-								</c:otherwise>
-								</c:choose>
+								
+								<img src='resources/upload/${p.productimage}' class="productimage"  width="300" height="200" /></a> <br>
+							
+							<img src="${p.productimage}"  class="productimage"  width="300" height="200" /></a> <br>
 <!--  %%%%%%%%%%%%%    북마크 이미지 위에 출력    %%%%%%%%%%%%%%-->			
-						
-						
-					
-				<div class="productContext">
-				<div class="productname"><a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
-								class="text-decoration-none link-secondary">${ p.productname }</a>  </div>
-					${ p.productlocation } <br>
-				</div>
-				
-				<div id="commend" class="btnCommend text-primary" >
-				
-						<div class="prroductremainticket" style="font-size:15px"> 
-							<img src="resources/img/ticket.png"  width="40" height="35"  /> &nbsp;
-							<div class="remainticket"> ${ p.productremainticketcount } </div> &nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<img src="resources/img/won.png"  width="40" height="35"  /> &nbsp;
-							<div class="ticketprice"> ${ p.productprice } </div>
-						</div>
-						
+					<div id="commend" class="btnCommend text-primary" style="cursor: pointer;"> 
 						<div class="productbookmarkcount" style="font-size:15px">
-						<input type="hidden" name="productno" value="${p.productno}">
-						<input type="hidden" name="id" value="${sessionScope.id}">
-							<img class="productbookmark" src="resources/img/bookmark.png"  style="width: 50px; height: 40px; cursor: pointer;"   /> <br>
-							<div class="productBookmarkShowCount" id="thisBookmark${status.index}"> ${ p.productbookmarkcount } </div>
+						<img src="resources/img/bookmark.png"  width="40" height="35" />
+						북마크 수 : ${ p.productbookmarkcount } 
 					</div>
-					
 				</div>
+					
+					지역 : ${ p.productlocation } <br>
+					<a href="productDetail?productno=${p.productno}&pageNum=${currentPage}" 
+								class="text-decoration-none link-secondary">${ p.productname }</a> <br>
+					이름 : ${ p.productname } <br>
+					가격: ${ p.productprice } <br>
 					</td>
 			
 							<c:if test="${i%j == j-1 }">		

@@ -3,7 +3,6 @@ package com.finalproject.festival.service;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -200,13 +199,6 @@ public class MemberServiceImpl implements MemberService {
 			
 			return bookmarkDao.productBookmarkSelect(productno);
 		}
-
-	@Override
-	public void insertProduct(Product product) {
-		
-		memberDao.insertProduct(product);
-		
-	}
 
 	
 

@@ -24,12 +24,6 @@
 		<result property="questionDate" column="questionDate" />
 		<result property="questionCategory" column="questionCategory" />
 		<result property="email" column="email" />
-		<result property="answerProgress" column="answerProgress" />
-		<result property="answerTitle" column="answerTitle" />
-		<result property="answerContent" column="answerContent" />
-		<result property="answerDate" column="answerDate" />
-		<result property="answerCategory" column="answerCategory" />		
-		<result property="toEmail" column="toEmail" />
 	</resultMap>
 	
 	<select id="inquiry" resultType="Manage" resultMap="inquiryMap">
@@ -44,23 +38,17 @@
 	</select>
 	
 	<insert id="insertInquiry" parameterType="Manage" useGeneratedKeys="true" keyProperty="questionNo">
-		INSERT INTO Question(id, questionTitle, questionContent, questionDate, questionCategory, email, answerProgress)
-		VALUES (#{id}, #{questionTitle}, #{questionContent}, #{questionDate, jdbcType=TIMESTAMP}, #{questionCategory}, #{email}, #{answerProgress} )
+		INSERT INTO Question(id, questionTitle, questionContent, questionDate, questionCategory, email)
+		VALUES (#{id}, #{questionTitle}, #{questionContent}, SYSDATE(), #{questionCategory}, #{email} )
 	</insert>
 	
 	<select id="getInquiry" resultType="Manage" resultMap="inquiryMap">
 		SELECT * FROM Question
 		WHERE questionNo = #{questionNo}
 	</select>
-	
-	<update id="insertAnswer" parameterType="Manage">
-		UPDATE Question
-			SET answerTitle = #{answerTitle},
-				answerContent = #{answerContent},
-				answerDate = #{answerDate, jdbcType=TIMESTAMP},
-				answerProgress = #{answerProgress},
-				toEmail = #{toEmail}
-		WHERE questionNo = #{questionNo}	
-	</update>
 
-</mapper>
+
+</mapper>	
+
+
+

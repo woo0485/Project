@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="row">
-	<div class="col">
+	<div class="col-10 offset-1">
 		<div class="row border-top border-secondary">
 			<div class="col-10 offset-1 fs-2 fw-bolder pt-5">${newsdetail.newstitle}</div>
 		</div>

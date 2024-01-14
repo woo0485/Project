@@ -1,6 +1,5 @@
 package com.finalproject.festival.dao;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -56,7 +55,6 @@ public interface MemberDao {
 			
 	public void searchKeywordCount(String searchKeyword);
 	
-	/************************Product***************************/
-	public void insertProduct(Product product);
+	
 	
 }
