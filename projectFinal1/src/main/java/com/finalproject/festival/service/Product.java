@@ -1,4 +1,4 @@
-package com.finalproject.festival.domain;
+package com.finalproject.festival.service;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;

@@ -1,6 +1,7 @@
 package com.finalproject.festival.service;
 
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -54,4 +55,7 @@ public interface MemberService {
 	/************************bookmark***************************/
 	
 	public int bookmarkChange(String id, int productno);
+	
+	/************************Product***************************/
+	public void insertProduct(Product product);
 }

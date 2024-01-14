@@ -52,8 +52,36 @@
 		       
 		});
 		
+		$("#productDetailBookmark").click(function(){
 	
-
+			var id = $(this).prev().val();
+		    var productno = $(this).prev().prev().val();
+		    
+		    console.log("디테일페이지-productno" + productno + "id" + id);
+		
+		    	if (id == "") {
+		       		 alert("로그인을 해주세요.");
+		    } else {
+		        $.ajax({
+		            url: "bookmarkChange",
+		            type: "POST",
+		            data: {
+		                "id": id,
+		                "productno": productno
+		            },
+		             success: function (result) {
+		             	console.log(result);
+		             	$("#productDetailBookmarkCount").text("북마크 수 : "+result);
+		             },
+		            error: function(jqXHR, textStatus, errorThrown) {
+		                console.log("login err" + "jqXHR " + jqXHR + "textStatus" + textStatus + "errorThrown" + errorThrown);
+		            }
+		
+		        });
+		    }
+		       
+	});
+		
   /*-----------------------mainSearch.js--------------------------------*/ 
 
 	$("#seeMoreProduct").click(function(){
@@ -129,6 +157,7 @@
  	
  
  	//약관동의 end
+ 
  
  
  	//회원가입
@@ -221,7 +250,7 @@
 	 				if(result != ""){
 	 					$("#phoneNumberCheckCode").val(result);
 	 					$("#phoneNumberMsg").text("인증번호가 전송되었습니다.").css("color","green");
-	 					$("#phoneCheckLi").css("display","block");
+	 					$("#phoneCheckLi").css("display","inline");
 	 					$("#phoneCheckBtn").val("재전송");
 	 				}else{
 	 					$("#phoneNumberMsg").text("핸드폰 번호를 다시 확인해 주세요").css("color","red");
@@ -420,17 +449,15 @@
 			
  
  	//회원가입 end
+ 	
+ 
+ 
 
  
  /*-------------------------login.js--------------------------------*/ 
  
  
  //로그인 
- 
- 
- 
- 
- 
  
  
  
@@ -492,8 +519,42 @@
  
   /*-------------------------idPasswordFind.js--------------------------------*/
   
+  $("#idFindCheckEmailIcon").click(function(){
+  	if($(this).attr("data-code") == "false"){
+	  	 $("#idFindCheckEmailIcon").removeClass("bi-circle").addClass("bi-check-circle").attr("data-code","true");
+	 	 $("#idFindCheckEmail").css("display","block");
+	 	 
+	 	 $("#idFindCheckEmailIcon").removeClass("bi-check-circle").addClass("bi-circle").attr("data-code","false");
+	 	$("#idFindCheckPhone").css("display","none");
+	 	
+  	}else{
+  		$("#idFindCheckEmailIcon").removeClass("bi-check-circle").addClass("bi-circle").attr("data-code","false");
+	 	$("#idFindCheckEmail").css("display","none");
+	 		
+  	}
   
-  //아이디찾기
+  });
+ 	
+    $("#idFindCheckPhonelIcon").click(function(){
+  	if($(this).attr("data-code") == "false"){
+	  	 $("#idFindCheckPhonelIcon").removeClass("bi-circle").addClass("bi-check-circle").attr("data-code","true")
+	 	 $("#idFindCheckPhone").css("display","block");
+	 	 ;
+	 	$("#idFindCheckEmailIcon").attr("data-code","false").removeClass("bi-check-circle").addClass("bi-circle");
+	 	$("#idFindCheckEmail").css("display","none");
+  	}else{
+  		$("#idFindCheckPhonelIcon").removeClass("bi-check-circle").addClass("bi-circle").attr("data-code","false");
+	 	$("#idFindCheckPhone").css("display","none");
+	 	
+  	}
+  
+  });
+  
+  
+  
+  
+  
+  //아이디찾기(이메일)
   $("#FindIdBtn").click(function(){
   	
   	const email = $("#findIdEmail").val();
@@ -784,11 +845,14 @@
                 document.getElementById("zipcode").value = data.zonecode;
                 document.getElementById("zipcode").setAttribute("data-code", "ture");
                 document.getElementById("address1").value = addr;
-                // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("address2").focus();
+                /*커서를 상세주소 필드로 이동한다.
+                document.getElementById("address2").focus();*/
             }
         }).open();
     };
+    
+    
+    
     
     //enter로 로그인
 
