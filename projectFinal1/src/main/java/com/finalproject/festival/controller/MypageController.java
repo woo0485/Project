@@ -42,7 +42,6 @@ public class MypageController {
 			int productno = reservation.getProductno();
 			System.out.println(productno);
 			id1 = reservation.getId();
-			System.out.println(id1);
 		}
 		
 		List<Product> ReProduct = service.ReProduct(Reservation);
@@ -176,6 +175,11 @@ public class MypageController {
 	public String MyInfo(@RequestParam("id")String id, Model model) {
 		Member member = service.MyInfo(id);
 		Member MyGrade = service.MyGrade(id, member.getGrade(), member.getTotalpay());
+		
+		String phoneNumber = member.getPhonenumber();
+		
+		
+		
 		int totalpay = member.getTotalpay();
 		int grade = member.getGrade();
 		

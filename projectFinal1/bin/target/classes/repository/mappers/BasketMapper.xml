@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.finalproject.festival.mapper.BasketMapper" >
+	
+	<!-- id에 해당하는 장바구니 전체 금액 읽어오기 -->
+	<select id="getBasketTotalPrice" resultType="Integer">
+		SELECT 
+		    SUM(totalprice)	    
+		FROM ShoppingBasket
+		WHERE id = #{id}
+	</select>
+	
+	<!--  장바구니 목록보기 mysql OK -->
+	<select id="basketList" resultType="Basket" parameterType="String">
+		SELECT 
+	    sb.basketno AS basketNo,
+	    sb.productno AS productNo,
+	    sb.id AS id,
+	    sb.basketproductcount AS basketProductCount,
+	    p.productname AS productName,    
+	    p.productimage AS productImage,    
+	    p.productprice AS productPrice,
+	    sb.totalprice AS totalPrice
+	    
+		FROM ShoppingBasket sb
+		JOIN Member m ON sb.id = m.id
+		JOIN Product p ON sb.productno = p.productno
+		WHERE sb.id = #{id}
+		ORDER BY sb.basketno
+	</select>
+	
+
+	<select id="isDupBasketCheck" resultType="Integer" parameterType="map">
+	    SELECT COUNT(*) 
+	   		 FROM ShoppingBasket
+	    WHERE id = #{id} AND productNo = #{productNo}
+	</select>
+	
+<!--  장바구니 추가하는 거 1월 5일 수정 -->
+	<insert id="insertBasket"   parameterType="Basket"  useGeneratedKeys="true"  keyProperty="basketNo">
+		INSERT INTO ShoppingBasket
+				(productNo, id, productPrice, basketProductCount, totalPrice)
+		
+			VALUES( #{productNo}, #{id}, #{productPrice}, #{basketProductCount}, (#{basketProductCount} * #{productPrice}))
+	</insert>
+	
+	<!--  상품 상세보기에서 장바구니 추가시 장바구니에 이미 상품이 있으면 수량과 토탈 금액 변경 -->
+	<update id="updateBasketProductCount" parameterType="Basket">
+	  UPDATE ShoppingBasket 
+	    	SET basketProductCount = basketProductCount + #{basketProductCount},
+	    			totalPrice = basketProductCount * productPrice
+	   WHERE productNo = #{productNo} 
+	    		AND id = #{id}
+	</update>
+
+
+	<!--//////////////////  여기서부터는 장바구니에 담기 끝 ~~~  ////////////////////////////////////////////////////////////////////////////-->
+	
+	<!-- 장바구니 리스트에서 수량 변경시 상품의 주문 가능 수량을 읽어오는 맵핑 구문 -->
+	<select id="getProductRemainingAmount" resultType="Integer">
+		SELECT productremainticketcount 
+		FROM Product
+		WHERE productNo = #{productNo}
+	</select>
+	
+	<!-- 장바구니 보기에서  수량을 변경할 때 productno 에 해당하는 수량 업데이트-->
+	<update id="updateBasketProductNoCount" parameterType="Basket">
+	    UPDATE ShoppingBasket
+	   		    	SET basketProductCount = #{basketProductCount},
+	    			totalPrice = basketProductCount * productPrice
+	    WHERE id = #{id} 
+	    	AND basketNo = #{basketNo}
+	</update>
+
+<!--  3) 장바구니에서 productno에 해당하는 제품 삭제 -->
+<delete id="deleteBasketProductno" parameterType="Map">
+	delete from ShoppingBasket
+    	WHERE id =  #{id}  AND productNo = #{productNo}
+</delete>
+
+<!--  4) 장바구니에 있는 모든 상품 삭제 -->
+<delete id="deleteBasketAll" parameterType="String">
+	delete from ShoppingBasket
+    	WHERE id =  #{id} 
+</delete>
+	
+
+	<!-- //////////////////////////////////////////////////////////////////////////////////////////// -->
+	
+	
+	<resultMap id="basketResultMap" type="Basket" >
+		<id property="basketno" column="basketno" />
+		<result property="productno" column="productno" />
+		<result property="id" column="id" />
+		<result property="basketproductcount" column="basketproductcount" />
+	</resultMap>
+	
+</mapper>	
+
+
+

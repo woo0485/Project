@@ -250,6 +250,25 @@ $(document).on("click", ".gallerybad", function(event) {
  
  })
  
+ $(".applyButton").click(function(){
+ 
+ var applyId = $("#applyId").val();
+ var applyEventNo = $("#applyEventNo").val();
+ 
+ if( applyId == "" ){
+ 
+ alert("로그인 후 이용가능합니다.");
+ 
+ return;
+ } else {
+ 
+ alert("응모가 완료되었습니다.");
+ 
+ $("#applyForm").submit();
+ }
+ 
+ });
+ 
  
  
  

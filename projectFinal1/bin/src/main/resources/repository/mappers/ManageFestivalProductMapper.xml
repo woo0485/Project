@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.finalproject.festival.mapper.ManageFestivalProductMapper" >
+
+	<select id="getBoardCount" parameterType="hashmap" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM Product	
+		
+		<where>
+			<if test="type == 'productname'">
+				productname LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'productprice'">
+				productprice LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'productlocation'">
+				productlocation LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+		</where>
+		
+	</select>
+
+	<resultMap id="ManageFestivalProductMap" type="Product" >
+		<id property="productno" column="productno" />
+		<result property="productname" column="productname" />
+		<result property="productcontent" column="productcontent" />
+		<result property="productprice" column="productprice" />
+		<result property="productimage" column="productimage" />
+		<result property="productlocation" column="productlocation" />
+		<result property="productopendate" column="productopendate" />
+		<result property="productclosedate" column="productclosedate" />
+		<result property="productbookmarkcount" column="productbookmarkcount" />
+		<result property="productreadcount" column="productreadcount" />
+		<result property="productticketcount" column="productticketcount" />
+		<result property="productremainticketcount" column="productremainticketcount" />
+		<result property="adminpassword" column="adminpassword" />
+	</resultMap>
+	
+	<select id="manageFestivalProduct" resultType="Product" parameterType="hashmap">
+		SELECT 
+		productno, productname, productcontent, productprice, productimage, productlocation,
+		DATE_FORMAT(productopendate,'%Y-%m-%d') as productopendate,
+		DATE_FORMAT(productclosedate,'%Y-%m-%d') as productclosedate,
+		productbookmarkcount, productreadcount, productticketcount,
+		productremainticketcount		
+		FROM Product
+		<where>
+			<if test="type == 'productname'">
+				productname LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'productprice'">
+				productprice LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'productlocation'">
+				productlocation LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+		</where>
+		ORDER BY productno DESC		
+		LIMIT #{start}, #{num}
+	</select>
+	
+	<select id="getManageFestivalProduct" resultMap="ManageFestivalProductMap" resultType="Product">
+		SELECT * FROM Product
+		WHERE productno = #{productno}
+	</select>
+	
+	<update id="updateManageFestivalProduct" parameterType="Product">
+		UPDATE Product
+			SET productname = #{productname}, productprice = #{productprice}, productlocation = #{productlocation}, 
+				productopendate = #{productopendate}, productclosedate = #{productclosedate},
+				productbookmarkcount = #{productbookmarkcount}, productreadcount = #{productreadcount},
+				productticketcount = #{productticketcount}, productremainticketcount = #{productremainticketcount}
+		WHERE productno = #{productno}	
+	</update>
+	
+	<delete id="deleteManageFestivalProduct">
+		DELETE FROM Product
+		WHERE productno = #{productno} 
+	</delete>	
+
+	
+</mapper>	

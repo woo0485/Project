@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="row my-5 py-5 border-top" >
-	<div class="col" >
+	<div class="col-10 offset-1 mt-3" >
 	    
 		    <ul class="nav nav-tabs  nav-justified  fw-bold" id="myTab" role="tablist">
 			  <li class="nav-item" role="presentation">
@@ -16,114 +16,59 @@
 			   		 비밀번호 찾기
 			    </button>
 			  </li>
+			 
+			  
 			</ul>
-			
 			<div class="tab-content mt-5" id="myTabContent">
 			  <div class="tab-pane fade show active" id="home-tab-pane1" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-				
+			
 				<div class="row mt-5 container text-center" id="findIdDiv">
 					<div class="col mt-5 align-items-center">
-					
-						<div class="row my-5">
-							<div class="col">	
-								<i class="bi bi-circle" id="idFindCheckEmailIcon" data-code="false"> 이메일번호로 아이디 찾기</i>
-							</div>
-						</div>		
-						
-						<div class="row" id="idFindCheckEmail" style="display: none;">
-							<div class="col">
-								<div class="row offset-3 mt-5"  >
-									<div class="col-2">
-										<p class="fw-bold" id="findIdLavalName">이름 : <p>
-									</div>
-									<div class="col-6">
-										<div class="mb-4 border-bottom">
-											<input type="text" class="form-control border-0" id="findIdName"  
-												placeholder="이름을 입력해 주세요.">
-										</div>
+								
+							<div class="row offset-3 mt-5"  >
+								<div class="col-2">
+									<p class="fw-bold" id="findIdLavalName">이름 : <p>
+								</div>
+								<div class="col-6">
+									<div class="mb-4 border-bottom">
+										<input type="text" class="form-control border-0" id="findIdName"  
+											placeholder="이름을 입력해 주세요.">
 									</div>
 								</div>
-								<div class="row offset-3 mt-1">
-									<div class="col-2">
-										<p class="fw-bold" id="findIdLavalEmail">이메일 : <p>
-									</div>
-									<div class="col-6">
-										<div class="mb-4 border-bottom">
-											<input type="text" class="form-control border-0" id="findIdEmail"  
-												placeholder="@포함해서 이메일을 작성해주세요.">
-										</div>
-									</div>
-									<div class="col-3" >
-										<input type="button" id="FindIdBtn" class="btn btn-outline-dark" value="인증번호"/>
-									</div>
-								
+							</div>
+							<div class="row offset-3 mt-1">
+								<div class="col-2">
+									<p class="fw-bold" id="findIdLavalEmail">이메일 : <p>
 								</div>
-								<div class="row" id="findIdEmailCheck"   hidden="">
-									<input type="hidden" id="findIdEmailCheckCodeHidden"><!-- 보낸 인증번호 -->
-									<div class="offset-5 col-3 border-bottom ">
-										<input type="text" id="findIdEmailCodeCheck" class="form-control border-0"aria-describedby="findEmailCodeCheck" placeholder="인증번호를 입력해 주세요." data-code="false">
+								<div class="col-6">
+									<div class="mb-4 border-bottom">
+										<input type="text" class="form-control border-0" id="findIdEmail"  
+											placeholder="@포함해서 이메일을 작성해주세요.">
 									</div>
-									<div class="col-2 text-center">
-										<input type="button" id="findIdEmailCheckNumBtn" class="form-control btn btn-outline-dark" value="인증확인">
-									</div>
-								</div>	
-								
-								<div class="row offset-1"><span id="findIdEmailMsg"></span></div>
-							</div>
-						</div>	
-						
-						
-						<div class="row">
-							<div class="col">	
-								<i class="bi bi-circle" id="idFindCheckPhonelIcon" data-code="false"> 핸드폰번호로 아이디 찾기</i>
-							</div>
-						</div>
-						<div class="row" id="idFindCheckPhone" style="display: none" >
-							<div class="col">
-								<div class="row offset-3 mt-5"  >
-									<div class="col-2">
-										<p class="fw-bold" id="findIdLavalPhoneName">이름 : <p>
-									</div>
-									<div class="col-6">
-										<div class="mb-4 border-bottom">
-											<input type="text" class="form-control border-0" id="findIdPhoneName"  
-												placeholder="이름을 입력해 주세요.">
-										</div>
- 								</div>	
-								<div class="row offset-3 mt-1">
-									<div class="col-2">
-										<p class="fw-bold" id="findIdLavalPhone">핸드폰 번호 : <p>
-									</div>
-									<div class="col-6">
-										<div class="mb-4 border-bottom">
-											<input type="text" class="form-control border-0" id="findIdPhone"  
-												placeholder="-(하이픈없이 번호만 적어주세요)">
-										</div>
-									</div>
-									<div class="col-3" >
-										<input type="button" id="FindIdPhoneBtn" class="btn btn-outline-dark" value="인증번호"/>
-									</div>
-								
 								</div>
-								<div class="row" id="findIdPhoneCheck"   hidden="">
-									<input type="hidden" id="findIdPhoneCheckCodeHidden"><!-- 보낸 인증번호 -->
-									<div class="offset-5 col-3 border-bottom ">
-										<input type="text" id="findIdPhoneCodeCheck" class="form-control border-0"aria-describedby="findPhoneCodeCheck" placeholder="인증번호를 입력해 주세요." data-code="false">
-									</div>
-									<div class="col-2 text-center">
-										<input type="button" id="findIdPhoneCheckNumBtn" class="form-control btn btn-outline-dark" value="인증확인">
-									</div>
-								</div>	
-								<div class="row offset-1"><span id="findIdPhoneMsg"></span></div>
 							</div>
-						</div>	
+							<div class="row" id="findIdEmailCheck"   hidden="">
+								<input type="hidden" id="findIdEmailCheckCodeHidden"><!-- 보낸 인증번호 -->
+								<div class="offset-5 col-3 border-bottom ">
+									<input type="text" id="findIdEmailCodeCheck" class="form-control border-0"aria-describedby="findEmailCodeCheck" placeholder="인증번호를 입력해 주세요." data-code="false">
+								</div>
+								<div class="col-2 text-center">
+									<input type="button" id="findIdEmailCheckNumBtn" class="form-control btn btn-outline-dark" value="인증확인">
+								</div>
+							</div>	
+							
+							<div class="row offset-1"><span id="findIdEmailMsg"></span></div>
+								
+							<div class="d-grid col-3 offset-5 mt-5" >
+								<input type="button" id="FindIdBtn" class="btn btn-outline-dark" value="이메일 인증하기"/>
+							</div>
+							
+						
 					</div>
 				</div>
 				
 			  </div>
-			  
-			  
-			  <div class="tab-pane fade show active"  id="home-tab-pane2"  role="tabpanel" aria-labelledby="home-tab" tabindex="0" style="display: none">
+			  <div class="tab-pane fade show active" hidden="" id="home-tab-pane2"  role="tabpanel" aria-labelledby="home-tab" tabindex="0">
 			
 				<div class="row mt-5 container text-center">
 					<div class="col mt-5 align-items-center">
@@ -143,11 +88,11 @@
 								<div class="col-3 offset-5 mt-5"  id="moveLogin"><a href="login">로그인</a></div>
 								
 							</div>
-						</div>
+							
 					</div>
-				  </div>
+				</div>
+				
 			  </div>
-			  
 			  <div class="tab-pane fade" id="profile-tab-pane1" role="tabpanel" aria-labelledby="profile-tab" tabindex="0" >
 				<div class="row mt-5 container text-center">
 					<div class="col mt-4 align-items-center">
@@ -187,9 +132,10 @@
 							<div class="d-grid col-3 offset-5 mt-4 ">
 								<input type="button" id="FindPasswordBtn" class="btn btn-outline-dark" value="이메일 인증하기"/>
 							</div>
-						</div>
+						
 					</div>
-				  </div> 
+				</div>
+			  </div> 
 			  <div class="tab-pane fade" id="profile-tab-pane2" role="tabpanel" aria-labelledby="profile-tab" tabindex="0"  >
 				<div class="row my-5 container text-center">
 					<div class="col align-items-center">
@@ -217,8 +163,8 @@
 									<input type="button" id="findNewPasswordBtn" class="btn btn-outline-dark" value="비밀 번호 변경"/>
 								</div>
 							</div>
-						</div>
 					</div>
+				</div>
 			  </div> 
 			  <div class="tab-pane fade" id="profile-tab-pane3" role="tabpanel" aria-labelledby="profile-tab" tabindex="0" >
 				<div class="row my-5 container text-center">
