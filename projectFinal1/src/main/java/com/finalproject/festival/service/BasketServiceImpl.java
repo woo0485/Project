@@ -21,19 +21,24 @@ public class BasketServiceImpl implements BasketService {
 	}
 
 	@Override
-	public Map<String, Object>  basketList(String id) {
-		int basketTotalPrice = 0;
-		if(BD.getBasketTotalPrice(id) != null) {
-			
-			basketTotalPrice = BD.getBasketTotalPrice(id).intValue();
-		}		
-		
+	public Map<String, Object>  basketList(String id) {		
 		Map<String, Object> resultMap = new HashMap<>();
 		resultMap.put("basketList", BD.basketList(id));
-		resultMap.put("basketTotalPrice", basketTotalPrice);
+		resultMap.put("basketTotalPrice", this.getBasketTotalPrice(id));
 		
 		return resultMap;
 	}
+	
+	// 장바구니의 전체 금액을 반환하는 메서드
+	@Override
+	public int getBasketTotalPrice(String id) {
+		int basketTotalPrice = 0;
+		if(BD.getBasketTotalPrice(id) != null) {
+			basketTotalPrice = BD.getBasketTotalPrice(id).intValue();
+		}
+		return basketTotalPrice;
+	}
+	
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 	@Override
@@ -54,9 +59,7 @@ public class BasketServiceImpl implements BasketService {
 
 	@Override
 	public void updateBasketProductNoCount(Map<String, Object> param) {
-
-		BD.updateBasketProductNoCount(param);
-		
+		BD.updateBasketProductNoCount(param);		
 	}
 
 //////////////////// 여기서부터는 장바구니 수량 업데이트랑 삭제 ////////////////////////////////
@@ -74,11 +77,10 @@ public class BasketServiceImpl implements BasketService {
 	}
 
 	
-	// 장바구니에 해당하는 productno에 제품 하나하나 삭제함
+	// 장바구니에 있는 basketNo에 해당하는 상품을 삭제
 	@Override
-	public void deleteBasketProductno(int productNo, String id) {
-		BD.deleteBasketProductno(productNo, id);
-		
+	public void deleteBasketNo(int basketNo) {
+		BD.deleteBasketNo(basketNo);	
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////

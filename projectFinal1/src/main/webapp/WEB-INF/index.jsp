@@ -14,7 +14,7 @@
 <script src="resources/js/yeseul.js?ver=0"></script>
 <script src="resources/js/seongjin.js?ver=3"></script>
 <script src="resources/js/wooseong.js?ver=1"></script>
-<script src="resources/js/hyunju.js"></script>
+<script src="resources/js/hyunju.js?ver=1"></script>
 <script src="resources/js/donggyun.js?ver=1"></script>
 <link rel="stylesheet" href="resources/css/seongjin.css?ver=1">
 <link rel="stylesheet" href="resources/css/donggyun.css">

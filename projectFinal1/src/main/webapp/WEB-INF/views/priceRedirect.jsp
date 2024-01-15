@@ -28,6 +28,7 @@
 <h1 class="finisth"> " 결제가 완료되었습니다. " </h1>
 <br><br><br><br>
 
+<!-- 
 <h2 class="list">  지금까지 결제했던 목록들 </h2>
 <br><br>
 
@@ -53,6 +54,6 @@
 		 <input type="hidden" name="reservationprice"  id="reservationprice"  value="${r.reservationprice}"> <br>
 		 <input type="hidden" name="reservationdate"  id="reservationdate"  value="${r.reservationdate}"> <br>
 </c:forEach>
-
+ -->
 
     

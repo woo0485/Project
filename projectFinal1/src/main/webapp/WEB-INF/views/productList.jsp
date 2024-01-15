@@ -137,7 +137,7 @@
 							<img src="${p.productimage}"  class="productimage"  width="300" height="200"  /></a> <br>
 						</c:when>
 						<c:otherwise>
-							<img src="resources/upload/${p.productimage}"  class="productimage"  width="300" height="200"  /></a> <br>
+							<img src="resources/upload/${p.productimage}"  class="productimage"  width="300" height="200"  /> <br>
 						</c:otherwise>
 					</c:choose>
 					

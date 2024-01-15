@@ -52,7 +52,7 @@
 
 						<input type="hidden" id="phoneNumberCheckCode">
 					</div>
-					<div class="row" id="phoneCheckLi" style="display:none ;">
+					<div class="row" id="phoneCheckLi" style="display: none;">
 						<div class="offset-md-3 col-7 border-bottom">
 							<input type="text" id="phoneCheck" class="form-control border-0"
 								aria-describedby="phoneCheck" placeholder="인증번호를 입력해 주세요." data-code="false" style="height: 50px;">

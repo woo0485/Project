@@ -98,8 +98,12 @@
 <update id="updateProductRemainTicketCount" parameterType="map">
    		 UPDATE Product
    		 SET productremainticketcount = productremainticketcount - #{basketProductCount}
-    	WHERE productNo = #{productNo}
+    	WHERE productno = #{productno}
 </update>
+
+<!--  되는지 테스트용으로 -->
+
+
 
 <!--    -->
 	<resultMap id="productResultMap" type="Product" >

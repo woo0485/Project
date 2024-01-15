@@ -3,6 +3,9 @@ package com.finalproject.festival.domain;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.finalproject.typeHandler.LocalDateSerializer;
+
 public class Product {
 	
 	private int productno;
@@ -11,7 +14,9 @@ public class Product {
 	private int productprice;
 	private String productimage;
 	private String productlocation;
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate productopendate;
+	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate productclosedate;
 	private int productbookmarkcount;
 	private int productreadcount;

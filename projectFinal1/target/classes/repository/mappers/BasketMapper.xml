@@ -35,13 +35,13 @@
 	<select id="isDupBasketCheck" resultType="Integer" parameterType="map">
 	    SELECT COUNT(*) 
 	   		 FROM ShoppingBasket
-	    WHERE id = #{id} AND productNo = #{productNo}
+	    WHERE id = #{id} AND productno = #{productNo}
 	</select>
 	
 <!--  장바구니 추가하는 거 1월 5일 수정 -->
 	<insert id="insertBasket"   parameterType="Basket"  useGeneratedKeys="true"  keyProperty="basketNo">
 		INSERT INTO ShoppingBasket
-				(productNo, id, productPrice, basketProductCount, totalPrice)
+				(productno, id, productprice, basketproductcount, totalprice)
 		
 			VALUES( #{productNo}, #{id}, #{productPrice}, #{basketProductCount}, (#{basketProductCount} * #{productPrice}))
 	</insert>
@@ -49,45 +49,39 @@
 	<!--  상품 상세보기에서 장바구니 추가시 장바구니에 이미 상품이 있으면 수량과 토탈 금액 변경 -->
 	<update id="updateBasketProductCount" parameterType="Basket">
 	  UPDATE ShoppingBasket 
-	    	SET basketProductCount = basketProductCount + #{basketProductCount},
-	    			totalPrice = basketProductCount * productPrice
-	   WHERE productNo = #{productNo} 
+	    	SET basketproductcount = basketproductcount + #{basketProductCount},
+	    			totalprice = basketproductcount * productprice
+	   WHERE productno = #{productNo} 
 	    		AND id = #{id}
 	</update>
 
-
-	<!--//////////////////  여기서부터는 장바구니에 담기 끝 ~~~  ////////////////////////////////////////////////////////////////////////////-->
-	
 	<!-- 장바구니 리스트에서 수량 변경시 상품의 주문 가능 수량을 읽어오는 맵핑 구문 -->
 	<select id="getProductRemainingAmount" resultType="Integer">
 		SELECT productremainticketcount 
 		FROM Product
-		WHERE productNo = #{productNo}
+		WHERE productno = #{productNo}
 	</select>
 	
 	<!-- 장바구니 보기에서  수량을 변경할 때 productno 에 해당하는 수량 업데이트-->
 	<update id="updateBasketProductNoCount" parameterType="Basket">
 	    UPDATE ShoppingBasket
-	   		    	SET basketProductCount = #{basketProductCount},
-	    			totalPrice = basketProductCount * productPrice
+	   		    	SET basketproductcount = #{basketProductCount},
+	    			totalprice = basketproductcount * productprice
 	    WHERE id = #{id} 
-	    	AND basketNo = #{basketNo}
+	    	AND basketno = #{basketNo}
 	</update>
 
-<!--  3) 장바구니에서 productno에 해당하는 제품 삭제 -->
-<delete id="deleteBasketProductno" parameterType="Map">
-	delete from ShoppingBasket
-    	WHERE id =  #{id}  AND productNo = #{productNo}
-</delete>
-
-<!--  4) 장바구니에 있는 모든 상품 삭제 -->
-<delete id="deleteBasketAll" parameterType="String">
-	delete from ShoppingBasket
-    	WHERE id =  #{id} 
-</delete>
+	<!--  3) 장바구니에서 productno에 해당하는 제품 삭제 -->
+	<delete id="deleteBasketNo" >
+		delete from ShoppingBasket
+	    	WHERE basketno = #{basketNo}
+	</delete>
 	
-
-	<!-- //////////////////////////////////////////////////////////////////////////////////////////// -->
+	<!--  4) 장바구니에 있는 모든 상품 삭제 -->
+	<delete id="deleteBasketAll" parameterType="String">
+		delete from ShoppingBasket
+	    WHERE id = #{id} 
+	</delete>	
 	
 	
 	<resultMap id="basketResultMap" type="Basket" >

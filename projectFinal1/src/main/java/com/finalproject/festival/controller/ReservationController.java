@@ -1,15 +1,13 @@
 package com.finalproject.festival.controller;
 
 import java.io.IOException;
-import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,19 +15,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.finalproject.festival.domain.Basket;
-import com.finalproject.festival.domain.Product;
+import com.finalproject.festival.dao.ReservationDao;
 import com.finalproject.festival.domain.Reservation;
 import com.finalproject.festival.service.ProductService;
-import com.finalproject.festival.service.ReservtionService;
+import com.finalproject.festival.service.ReservationService;
 
 @Controller
 public class ReservationController {
 	
 	@Autowired
-	private ReservtionService rs;
+	private ReservationService rs;
 	
-	public void setReservationService (ReservtionService rs) {
+	public void setReservationService (ReservationService rs) {
 		this.rs = rs;
 	}
 	
@@ -40,63 +37,42 @@ public class ReservationController {
 		this.sv = sv;
 	}
 	
-	// @@@@@@@@ 결제가 완료되면서 예약 테이블에 장바구니에 들어간 정보 insert 해주기 -1월 8일 @@@@@@@@@@@
-	// insert와 동시에 select가 이루어지기 => 컨트롤러에서틑 ajax 매핑 1개로 하고 service에서 처리해주기
-	// 3) Product 테이블 남은 티켓 수- 결제된 티켓 수 => 이건 컨트롤러에서 처리해주자~~!!!!!!
-	// 1월 10일 수정함
-	 @RequestMapping(value = "/insertReservation", method = RequestMethod.POST)
-	 @ResponseBody
-	public String InsertReservation (
-			HttpServletRequest request, 
-			 @RequestParam(value = "id") String id,
-			 // 여기서부터는 (( productno에 해당하는 productremainticketcount )) - basketproductcount 해준다.
-			 @RequestParam(value = "productNo") int productNo,
-			 @RequestParam(value = "productremainticketcount") int productremainticketcount
-			) throws IOException {	
-
-		 try {
-			 Reservation re = new Reservation();
-			 re.setId(id);
-		
-			 // 1) Reservation에 insert
-			 // 2) ShoppingBasket에 delete
-			 // 3) Reservation에서 select
-			 rs.BasketListByIdByProductno(id, re);
-
-			 /////////////////////////////////////////////////////////////////////////////////////////
-			 // 여기서부터는 결제되면서 product의 남은 티켓 수에서  장바구니의 티켓수만큼 빼주는 것
-		 Product p = new Product();
-		 p.setProductno(productNo);
-		 p.setProductremainticketcount(productremainticketcount);
-		 System.out.println("담고나서 productno: " + productNo );
-		 System.out.println("담고 나서 남은 티켓 수: " + productremainticketcount);
-			 
-		 sv.updateProductRemainTicketCount(productNo, productremainticketcount);
+	@Autowired
+	private ReservationDao RD;
 	
-			 return "success";
-			// return "redirect:/priceOrderFinish.jsp";
-			 
-		 } catch (Exception e) {
-			e.printStackTrace();
-			
-		}
-		 return "main" ;
-	 }
+	public void setReservationDao(ReservationDao rd) {
+		this.RD = rd;
+	}
+	
+	// 부트페이 결제가 완료되면 Ajax로 요청이 들어오는 메서드
+	@RequestMapping(value = "/insertReservation", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> InsertReservation (HttpSession session, 
+			@RequestParam(value="basketTotalPrice") int basketTotalPrice) throws IOException {
+		 
+		// 아래에서 호출한 서비스 메서드에서 다음 작업 진행
+		// 1. ShoppingBasket 테이블에서 읽어와서 Reservation 테이블에 추가한다.
+		// 2. ShoppingBasket 테이블에 있는 상품의 수량 만큼 Product 테이블의 productremainticketcount에서 차감한다.
+		// 3. Member 테이블의 totalpay 컬럼에 현재 주문한 전체 금액을 누적한다.
+		// 4. 임시로 장바구니 데이터를 세션에 저장 - 현재 주문 내용을 DB 테이블이 가져와서
+		// 		주문 완료 화면에 출력해야 하지만 가져올 수 없기 때문에 임시 방편으로 세션에 저장해 사용한다.
+		//      서비스에서  처리하기 위해서 HttpSession 객체를 넘겨 준다.
+		// 5. ShoppingBasket 테이블에서 id에 해당하는 상품을 삭제한다.
+		rs.fromBasketToReservation(session);
+
+		// 응답 데이터
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", true);
+
+		return resultMap;
+	}
 		 
 	 
-		 // 들어온 거 확인 다른페이지로 연동 - 거쳐서 가는 컨트롤러
-			@RequestMapping(value = "/reservationSucess", method = RequestMethod.GET)
-			public String reservationSucess  (Model m,  
-					@RequestParam(value = "id") String id,
-					@RequestParam(value = "productNo") int productNo) {
-				
-				List<Map<String, Object>> reservationList = rs.reservationList(id, productNo);
-				
-				System.out.println("reservationSuccess 에서 priceRedirect로 보낼 때 : " +reservationList.get(0).get(""));
-				m.addAttribute("reservationList", reservationList);
-			
-				return "priceRedirect";
-			}
-			
+	 // 위쪽의 부트페이 주문 결제가 완료되면 이쪽으로 요청이 들어온다.
+	@RequestMapping(value = "/reservationSucess", method = RequestMethod.GET)
+	public String reservationSucess  () {
+		// 필요한 데이터는 이미 세션에 저장되어 있으므로 모델은 필요 없음
+		return "priceOrderFinish";
+	}
 }
 	 

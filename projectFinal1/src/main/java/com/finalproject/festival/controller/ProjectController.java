@@ -49,6 +49,7 @@ import com.finalproject.festival.service.NewsService;
 
 
 
+
 @Controller
 public class ProjectController {
 	
@@ -282,7 +283,7 @@ public class ProjectController {
 	
 		
 	//회원가입 
-	@ResponseBody
+	
 	@RequestMapping(value = "/memberJoin", method = RequestMethod.POST)
 	public String memberJoin(@RequestParam("joinName")String name,@RequestParam("joinId")String id,@RequestParam("phoneNumber")String phone,
 							 @RequestParam("joinPasswordCheck")String password,@RequestParam("zipcode")String zipcode,

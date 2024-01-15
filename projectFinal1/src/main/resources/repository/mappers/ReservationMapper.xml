@@ -4,81 +4,86 @@
 
 <mapper namespace="com.finalproject.festival.mapper.ReservationMapper" >
 
-<!--  Reservation 테이블에서 id에 해당하는 productno를 가져오고 Product에서 price를 가져와서 장바구니의 product 개수와 곱해줘서 reservationprice에 넘겨주는 -->
-<!--  장바구니에서 id에 해당하는 정보 조회하기 -->
-<select id="BasketListByProductno" resultType="Basket"  parameterType="String">
-   SELECT sb.id, sb.productno, (sb.basketproductcount * p.productprice) AS   reservationprice, 
-						sb.basketproductcount
-			FROM ShoppingBasket sb
-			JOIN Product p ON sb.productno = p.productno
-			WHERE sb.id =  #{id}
-</select>
-
-<!--  reservation 테이블에 정보 추가 -->
-	<insert id="insertReservation"   parameterType="String"  useGeneratedKeys="true"  keyProperty="reservationno">
-		insert into Reservation ( id, productno, reservationprice, reservationticketcount, reservationdate)
-			SELECT sb.id id, sb.productno, (sb.basketproductcount * p.productprice) AS reservationprice, sb.basketproductcount , SYSDATE()
-			FROM ShoppingBasket sb
-			JOIN Product p ON sb.productno = p.productno
-		WHERE sb.id =  #{id}
+	<!--  reservation 테이블에 정보 추가 -->
+	<insert id="insertReservation" useGeneratedKeys="true"  keyProperty="reservationno" parameterType="String">
+		insert into Reservation (id, productno, reservationprice, reservationticketcount, reservationdate)
+			SELECT id, productno, totalprice, basketproductcount, SYSDATE()
+			FROM ShoppingBasket
+			WHERE id=#{id}
 	</insert>
 	
-	<!--  결제되면서 장바구니에서 id에 해당하는 정보 전부 삭제 -->
-	<delete id="deleteBasket" parameterType="String">
-		delete from ShoppingBasket
-		 where id =  #{id}
-	</delete>
-
-<!--  예약 테이블에서 id에 해당하는 예약 테이블 정보 전부 가져오기 -->
+	<!-- 상품 테이블의 주문 가능 수량 변경 -->
+	<update id="updateProductRemainTicketCount" parameterType="Map">
+		UPDATE Product
+			SET productremainticketcount = productremainticketcount - #{basketProductCount}
+		WHERE productno = #{productNo}
+	</update>
+	
+	<!-- 회원 테이블에 회원의 전체 주문 금액 변경 -->
+	<update id="updateMemberTotalpay" parameterType="Map" >
+		UPDATE Member
+	        SET totalpay = totalpay +  #{totalPrice}
+	        WHERE id = #{id}
+   </update>
+	
+	<!-- 이거는 마이페이지 쪽에서 쓰는 것 같음 -->
+	<!--  예약 테이블에서 id에 해당하는 예약 테이블 정보 전부 가져오기 -->
 	<select id="myReservation"  parameterType="String">
 		select * from Reservation 
 		where id = #{id}
 	</select>
 
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<!--  Reservation 테이블에서 id에 해당하는 productno를 가져오고 Product에서 price를 가져와서 장바구니의 product 개수와 곱해줘서 reservationprice에 넘겨주는 -->
+	<!--  장바구니에서 id에 해당하는 정보 조회하기 -->
+	<select id="basketListByProductNo" resultType="Basket"  parameterType="String">
+	   SELECT sb.id, sb.productno, (sb.basketproductcount * p.productprice) AS   reservationprice, 
+							sb.basketproductcount
+				FROM ShoppingBasket sb
+				JOIN Product p ON sb.productno = p.productno
+				WHERE sb.id =  #{id}
+	</select>	
 
 	<!-- /////////////////////////////////////////////////////////////////////////////////////////////////// -->
 	<!--  Reservation 목록보기 mysql OK -->
-	
 	<select id="reservationList" resultType="hashmap"  parameterType="Map">
-	SELECT
-    R.reservationno,
-    R.id AS id,
-    R.productno AS productno,
-    R.reservationprice,
-    R.reservationticketcount AS ticketcount,
-    R.reservationdate,
-    R.totalReservationPrice,
-    R.salesTotalPrice,
-    SB.basketno,
-    SB.basketproductcount,
-    P.productname,
-    P.productcontent,
-    P.productimage,
-    P.productlocation,
-    P.productopendate,
-    P.productclosedate,
-    P.productbookmarkcount,
-    P.productreadcount,
-    P.productticketcount,
-    P.productremainticketcount,
-    P.productprice,
-    M.password,
-    M.name,
-    M.phonenumber,
-    M.email,
-    M.totalpay,
-    M.grade,
-    M.joindate,
-    M.address1,
-    M.address2,
-    M.zipcode
-FROM Reservation R
-JOIN Member M ON R.id = M.id
-LEFT JOIN ShoppingBasket SB ON R.id = SB.id AND R.productno = SB.productno 
-AND R.reservationticketcount = SB.basketproductcount
-LEFT JOIN Product P ON R.productno = P.productno
-WHERE R.id = #{id}
+		SELECT
+		    R.reservationno,
+		    R.id AS id,
+		    R.productno AS productno,
+		    R.reservationprice,
+		    R.reservationticketcount AS ticketcount,
+		    R.reservationdate,
+		    R.totalReservationPrice,
+		    R.salesTotalPrice,
+		    SB.basketno,
+		    SB.basketproductcount,
+		    P.productname,
+		    P.productcontent,
+		    P.productimage,
+		    P.productlocation,
+		    P.productopendate,
+		    P.productclosedate,
+		    P.productbookmarkcount,
+		    P.productreadcount,
+		    P.productticketcount,
+		    P.productremainticketcount,
+		    P.productprice,
+		    M.password,
+		    M.name,
+		    M.phonenumber,
+		    M.email,
+		    M.totalpay,
+		    M.grade,
+		    M.joindate,
+		    M.address1,
+		    M.address2,
+		    M.zipcode
+		FROM Reservation R
+		JOIN Member M ON R.id = M.id
+		LEFT JOIN ShoppingBasket SB ON R.id = SB.id AND R.productno = SB.productno 
+		AND R.reservationticketcount = SB.basketproductcount
+		LEFT JOIN Product P ON R.productno = P.productno
+		WHERE R.id = #{id}
 	</select>
 	
 	<!-- ////////////////////////////////////////////////////////////////////////////////////// -->
@@ -90,9 +95,6 @@ WHERE R.id = #{id}
         ON mc.couponno = c.couponno
         WHERE mc.id = #{id}
     </select>
-	
-	
-	
 	
 	<resultMap id="ReservationResultMap" type="Reservation" >
 		<id property="reservationno" column="reservationno" />
@@ -108,6 +110,7 @@ WHERE R.id = #{id}
 		<result property="id" column="id" />
 		<result property="basketproductcount" column="basketproductcount" />
 	</resultMap>
+	
 	
 	
 </mapper>	

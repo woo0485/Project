@@ -5,27 +5,27 @@
   $(function(){
   
   
-	  	$(".cancleTicket").on("click", function() {
-		    var bproductno = $(this).next().val();
-		    var bticketcount = $(this).prev().prev().text();
-	    	var breservationno = $(this).next().next().text();
-	    	var id = $("#sibalID").val();
-	    	
-		    if (confirm("예약을 취소하시겠습니까?")) {
-		        $("#productno").val(bproductno);
-		        $("#ticketcount").val(bticketcount);
-		        $("#Freservationno").val(breservationno);
-		        $("#id").val(id);
-		        $("#deleteForm").submit();
-		    } else {
-		       return;
-		    }
-		});
+        $(".cancleTicket").on("click", function() {
+          var bproductno = $(this).next().val();
+          var bticketcount = $(this).prev().prev().text();
+          var breservationno = $(this).next().next().text();
+          var id = $("#sibalID").val();
+          
+          if (confirm("예약을 취소하시겠습니까?")) {
+              $("#productno").val(bproductno);
+              $("#ticketcount").val(bticketcount);
+              $("#Freservationno").val(breservationno);
+              $("#id").val(id);
+              $("#deleteForm").submit();
+          } else {
+             return;
+          }
+      });
   
   
   
   
-  	//우편번호
+     //우편번호
    function findAddr() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -55,7 +55,7 @@
                         extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                     }
                     
-					}
+               }
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById("zipcode").value = data.zonecode;
                 document.getElementById("zipcode").setAttribute("data-code", "ture");

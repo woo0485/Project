@@ -121,7 +121,7 @@ public class ProductController {
 		return "productDetail";
 	}
 	
-	/*// 1월 6일 수정) 게시글 쓰기폼에서 들어오는....
+	/*/ 1월 6일 수정) 게시글 쓰기폼에서 들어오는....
 	@RequestMapping(value="/writeProcess", method=RequestMethod.POST)
 	public String insertProduct(
 			HttpServletRequest request,
@@ -224,7 +224,7 @@ public class ProductController {
 		
 		return "redirect:boardList";
 	}	
-	// multipart 끝 */
+	// multipart 끝*/
 	
 	/////////////////////////////  여기서부터는 수정하기  //////////////////////
 	@RequestMapping(value = "/update")
@@ -320,6 +320,16 @@ public class ProductController {
 		return "redirect:productList";
 	}
 	
+	//////////////////////////////////////////////////////
+	//productremainticket 가져오는 거
+	/*
+	@RequestMapping("/productnoCheckRemainticketcount")
+	public String productnoCheckRemainticketcount
+	( 		@RequestParam(value="productremainticketcount")  int productremainticketcount ){
 	
-	
+		sv.updateProductRemainTicketCount(productno, productremainticketcount);
+		
+		return "redirect:insertReservation";
+	}
+	*/
 }

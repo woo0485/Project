@@ -2,7 +2,6 @@ package com.finalproject.festival.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,6 +44,7 @@ public class BasketController {
 		m.addAllAttributes(bs.basketList(id));
 
 		return "basket";
+		//return "priceOrderFinish"; // 주문완료 테스트 화면
 	}
 	
 	// @@@@@@@@@@ 장바구니에 담기 @@@@@@@@@@
@@ -70,27 +70,31 @@ public class BasketController {
 			
 			return "redirect:basketRedirect";
 		}
+
 	
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 결제로 넘겨지는 1월 5일
 	@RequestMapping(value = {"/priceOrder"}, method= RequestMethod.POST)
-	public String priceOrder (Model m, String id	) {
+	public String priceOrder (Model model, HttpSession session) {
 
-		Map<String, Object> modelMap = bs.basketList(id);	
-		
-		m.addAllAttributes(modelMap);
+		// 세션에서 회원 아이디를 읽어온다.
+		String id = (String) session.getAttribute("id");
+
+		// 응답 데이터 생성		
+		model.addAllAttributes(bs.basketList(id));
 		return "priceOrder";
 	}	
 
 
-	// 다른데로 거쳐서 가는 ajax로 보내기 때문에 GET 방식으로 보낸다 => 아닌가?
+	// 장바구니에 있는 제품 수량 변경하기
 	@PostMapping(value = "/updateDeleteForm")
 	@ResponseBody
-	public Map<String, Object> updateDeleteForm ( Model m, HttpSession session,
+	public Map<String, Object> updateDeleteForm (HttpSession session,
 			@RequestParam(value = "basketProductCount")  int basketProductCount,
 			@RequestParam(value = "basketNo") int basketNo,
 			@RequestParam(value = "productNo") int productNo) {	
 		
+		// 세션에서 회원 아이디를 읽어온다.
 		String id = (String) session.getAttribute("id");
 		
 		// 응답 데이터
@@ -117,39 +121,53 @@ public class BasketController {
 		// 응답 데이터 생성
 		resultMap.put("result", true);
 		resultMap.put("remainCnt", remainCnt);
-		resultMap.put("msg", "주문 수량을 변경하였습니다.");
+		resultMap.put("msg", "의 수량을 변경하였습니다.");
+		resultMap.put("basketTotalPrice", bs.getBasketTotalPrice(id));
 		resultMap.put("basketList", bs.basketList(id));
 		
 		return resultMap ;
 	 }	
 	
-	///////////////// 장바구니에 있는 제품 하나하나 삭제하기  ////////////////////////////////////
-	@PostMapping(value = "/deleteBasketProductNo")
+	// 장바구니에 있는 제품 하나씩 삭제하기
+	@PostMapping(value="/deleteBasketNo")
 	@ResponseBody
-	public Map<String, Object>  deleteBasketProductNo ( Model m, HttpSession session,
-			@RequestParam(value = "productNo") int productNo) {	
+	public Map<String, Object> deleteBasketNo(HttpSession session,			
+			@RequestParam(value = "basketNo") int basketNo) {	
 		
+		// 세션에서 회원 아이디를 읽어온다.
 		String id = (String) session.getAttribute("id");
 		
-		Map<String, Object> param = new HashMap<String, Object>();
-		param.put("id", id);
-		param.put("productNo", productNo);
+		// DB 테이블에서 장바구니 삭제		
+		bs.deleteBasketNo(basketNo);
 		
-		bs.deleteBasketProductno(productNo, id);
+		// 응답 데이터 생성
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", true);		
+		resultMap.put("msg", "을 삭제하였습니다.");
+		resultMap.put("basketTotalPrice", bs.getBasketTotalPrice(id));
+		resultMap.put("basketList", bs.basketList(id));
 		
-		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("basketList", bs.basketList(id));
-	
-		return result ;
-	 }	
-	/////////////////////////////////////////////////////////////////////////////////////////////
-	////////////////////////////  그냥 장바구니에 있는 전체 상품 삭제하기
-	@RequestMapping(value = "/deleteBasketAll", method= RequestMethod.POST)
-	public String deleteProduct (
-			@RequestParam(value = "id") String id) throws Exception {
-		
-		bs.deleteBasketAll(id);
-	
-		return "basketRedirect" ;
+		return resultMap ;
 	}
-}	
+	
+	// 장바구니 비우기 - 장바구니 전체 상품 삭제하기
+	@RequestMapping(value = "/deleteBasketAll", method= RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deleteProduct(HttpSession session) throws Exception {		
+		// 세션에서 회원 아이디를 읽어온다.
+		String id = (String) session.getAttribute("id");
+		
+		// DB 테이블에서 장바구니를 비운다.
+		bs.deleteBasketAll(id);	
+		
+		// 응답 데이터 생성
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", true);		
+		resultMap.put("msg", "장바구니의 모든 상품을 삭제하였습니다.");		
+		resultMap.put("basketList", bs.basketList(id));
+		
+		return resultMap ;
+	}
+	
+	
+}
