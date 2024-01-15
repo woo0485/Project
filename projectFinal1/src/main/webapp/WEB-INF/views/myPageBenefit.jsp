@@ -17,9 +17,9 @@
 	 	<div class="row col-auto">
 	 		<jsp:include page="/WEB-INF/views/myPageHeader.jsp"></jsp:include>
 	 	</div>
-	 	<br><br><br>
+	 	<br><br>
 		<div class="row text-center">
-			<div class="col">
+			<div class="col fs-4">
 				<c:if test = "${sessionScope.id eq my.id}">
 						<c:if test = "${my.grade eq 0 }">
 							<div class="row">
@@ -28,7 +28,7 @@
 								</div>
 								<div class="row">
 									<div class="col">
-									현재 까지 이용하신 금액은 ${mt}원 이며, 다음 등급까지 남은 금액은 ${fmp}원 입니다.
+									현재 까지 이용하신 금액은 <span style="font-weight: bold;">${mt}원</span> 이며, 다음 등급까지 남은 금액은 <span style="font-weight: bold;">${fmp}원</span> 입니다.
 									</div>
 								</div>
 							</div>
@@ -47,7 +47,7 @@
 								</div>
 								<div class="row">
 									<div class="col">
-									현재 까지 이용하신 금액은 ${mt}원 이며, 다음 등급까지 남은 금액은 ${fmp}원 입니다.
+									현재 까지 이용하신 금액은 <span style="font-weight: bold;">${mt}원</span> 이며, 다음 등급까지 남은 금액은 <span style="font-weight: bold;">${fmp}원</span> 입니다.
 									</div>
 								</div>
 							</div>
@@ -63,7 +63,7 @@
 								</div>
 								<div class="row">
 									<div class="col">
-									현재 까지 이용하신 금액은 ${mt}원 이며, 다음 등급까지 남은 금액은 ${fmp}원 입니다.
+									현재 까지 이용하신 금액은 <span style="font-weight: bold;">${mt}원</span> 이며, 다음 등급까지 남은 금액은 <span style="font-weight: bold;">${fmp}원</span> 입니다.
 									</div>
 								</div>
 							</div>
@@ -79,7 +79,7 @@
 								</div>
 								<div class="row">
 									<div class="col">
-									현재 까지 이용하신 금액은 ${mt}원 이며, 다음 등급까지 남은 금액은 ${fmp}원 입니다.
+									현재 까지 이용하신 금액은 <span style="font-weight: bold;">${mt}원</span> 이며, 다음 등급까지 남은 금액은 <span style="font-weight: bold;">${fmp}원</span> 입니다.
 									</div>
 								</div>
 							</div>
@@ -95,7 +95,7 @@
 								</div>
 								<div class="row">
 									<div class="col">
-									현재 까지 이용하신 금액은 ${mt}원 이며, 다음 등급까지 남은 금액은 ${fmp}원 입니다.
+									현재 까지 이용하신 금액은 <span style="font-weight: bold;">${mt}원</span> 이며, 다음 등급까지 남은 금액은 <span style="font-weight: bold;">${fmp}원</span> 입니다.
 									</div>
 								</div>
 							</div>

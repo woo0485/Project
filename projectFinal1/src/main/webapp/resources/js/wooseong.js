@@ -5,16 +5,16 @@
   $(function(){
   
   
-	  	$("#cancleTicket").on("click", function() {
-		    var bproductno = $(this).next().text();
-		    var bticketcount = $("#cancleTicket2").next().text();
-	    	var breservationno = $("#cancleTicket2").next().next().text();
-	    	var id = $("#id").val();
+	  	$(".cancleTicket").on("click", function() {
+		    var bproductno = $(this).next().val();
+		    var bticketcount = $(this).prev().prev().text();
+	    	var breservationno = $(this).next().next().text();
+	    	var id = $("#sibalID").val();
 	    	
 		    if (confirm("예약을 취소하시겠습니까?")) {
 		        $("#productno").val(bproductno);
-		        $("#reservationticketcount").val(bticketcount);
-		        $("#reservationno").val(breservationno);
+		        $("#ticketcount").val(bticketcount);
+		        $("#Freservationno").val(breservationno);
 		        $("#id").val(id);
 		        $("#deleteForm").submit();
 		    } else {
