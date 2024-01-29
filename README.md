@@ -8,19 +8,23 @@
 무료와 유료 상품을 구별하여 제공함으로써 사용자들에게 편리함을 제공하고, 이를 통해 축제 참여자의 만족도를 높이고 수익을 창출합니다.
 
 ### ERD-Diagram
+<p align="center">
+<img src="https://github.com/woo0485/woodonggyun/assets/135837226/904cca7c-e8d3-4e86-bcd9-3b26e359cfc1.JPG" height="500"/>
+</p>
 
-![ERD1](https://github.com/woo0485/woodonggyun/assets/135837226/904cca7c-e8d3-4e86-bcd9-3b26e359cfc1.JPG)
 
 
 ### 개발 환경
 
-![개발환경](https://github.com/woo0485/woodonggyun/assets/135837226/ddc39fc5-1904-4c73-b8dc-868d76781161.JPG)
-
+<p align="center">
+<img src="https://github.com/woo0485/woodonggyun/assets/135837226/ddc39fc5-1904-4c73-b8dc-868d76781161.JPG" height="500"/>
+</p>
 
 ### 역할 분담표
 
-
-![역할 분담](https://github.com/woo0485/woodonggyun/assets/135837226/d62b2a6e-cead-47c9-af81-432bcc5aae8d.JPG)
+<p align="center">
+<img src="https://github.com/woo0485/woodonggyun/assets/135837226/d62b2a6e-cead-47c9-af81-432bcc5aae8d.JPG" height="500"/>
+</p>
 
 
 ## 주요 기능
