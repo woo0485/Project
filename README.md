@@ -26,8 +26,7 @@
 <img src="https://github.com/woo0485/woodonggyun/assets/135837226/d62b2a6e-cead-47c9-af81-432bcc5aae8d.JPG" height="500"/>
 </p>
 
-
-
+<br>
 
 ## 주요 기능
 - #### 메인 페이지
