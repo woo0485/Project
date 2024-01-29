@@ -34,7 +34,7 @@
 <img src="https://github.com/woo0485/woodonggyun/assets/135837226/d1f4b961-92d5-44fd-814f-e1257863ef93.gif" height="600"/>
 </p>
 
-- #### 축제 상품 
+- #### 축제 상품
 <p align="center">
 <img src="https://github.com/woo0485/woodonggyun/assets/135837226/a0d1cb0d-996f-4a5c-80b2-b5e3c82c8198.gif" height="500"/>
 </p>
