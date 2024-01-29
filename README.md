@@ -37,7 +37,7 @@
 
 #### 축제 지도 
 <p align="center">
-<img src="https://github.com/woo0485/woodonggyun/assets/135837226/c81772ac-a062-43c0-8d36-a3241169b4c7.JPG" width="800" height="500"/>
+<img src="https://github.com/woo0485/woodonggyun/assets/135837226/bb0a2b1b-6b7d-4406-91d8-782249a993a6.gif" height="500"/>
 </p>
 
 #### 로그인
