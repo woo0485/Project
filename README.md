@@ -38,7 +38,7 @@
 ## 주요 기능
 - #### 메인 페이지, 검색
 <p align="center">
-<img src="https://github.com/woo0485/woodonggyun/assets/135837226/da0882ba-3125-44e7-8092-aa4e5903c94b.gif" height="600"/>
+<img src="https://github.com/woo0485/woodonggyun/assets/135837226/9ea06c63-14a1-4d34-816b-8ca5fe4eddde.gif" height="600"/>
 </p>
 
 - #### 축제 상품
