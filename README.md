@@ -29,33 +29,33 @@
 
 ## 주요 기능
 
-#### 메인 페이지
+- #### 메인 페이지
 <p align="center">
 <img src="https://github.com/woo0485/woodonggyun/assets/135837226/d1f4b961-92d5-44fd-814f-e1257863ef93.gif" height="600"/>
 </p>
 
-#### 축제 상품 
+- #### 축제 상품 
 <p align="center">
 <img src="https://github.com/woo0485/woodonggyun/assets/135837226/a0d1cb0d-996f-4a5c-80b2-b5e3c82c8198.gif" height="500"/>
 </p>
 
-#### 축제 지도 
+- #### 축제 지도 
 <p align="center">
 <img src="https://github.com/woo0485/woodonggyun/assets/135837226/bb0a2b1b-6b7d-4406-91d8-782249a993a6.gif" height="500"/>
 </p>
 
-#### 로그인
+- #### 로그인
 <p align="center">
 <img src="https://github.com/woo0485/woodonggyun/assets/135837226/e270c6a0-292a-4f63-8d4d-e6b99bb6ca7c.JPG" height="500"/>
 </p>
 
 
-#### 마이 페이지
+- #### 마이 페이지
 <p align="center">
 <img src="https://github.com/woo0485/woodonggyun/assets/135837226/3bfda1da-a0d2-4664-91fd-63f08ccf43bf.JPG" height="500"/>
 </p>
 
-#### 이벤트 페이지
+- #### 이벤트 페이지
 <p align="center">
 <img src="https://github.com/woo0485/woodonggyun/assets/135837226/d947c634-fc7d-47a9-8345-cc0da932594b.gif" height="500"/>
 </p>
@@ -65,18 +65,18 @@
 <img src="https://github.com/woo0485/woodonggyun/assets/135837226/a5468ffc-f7bf-4194-af6c-ecd4748a3a3b.gif" height="500"/>
 </p>
 
-#### 관리자 페이지
+- #### 관리자 페이지
 <p align="center">
 <img src="https://github.com/woo0485/woodonggyun/assets/135837226/9229fd21-1494-41ae-a186-e1f5e7b97689.gif" height="500"/>
 </p>
 
 
-#### 축제 기사
+- #### 축제 기사
 <p align="center">
 <img src="https://github.com/woo0485/woodonggyun/assets/135837226/87a7f3d6-82c8-455e-a3ad-5d5ecd1db45f.JPG" width="500" height="500"/>
 </p>
 
-#### 갤러리
+- #### 갤러리
 <p align="center">
 <img src="https://github.com/woo0485/woodonggyun/assets/135837226/96d96b4a-01ec-4b5b-a05b-20927bed9690.JPG" width="400" height="400"/>
 </p>
