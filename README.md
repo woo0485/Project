@@ -27,8 +27,9 @@
 </p>
 
 
-## 주요 기능
 
+
+## 주요 기능
 - #### 메인 페이지
 <p align="center">
 <img src="https://github.com/woo0485/woodonggyun/assets/135837226/d1f4b961-92d5-44fd-814f-e1257863ef93.gif" height="600"/>
